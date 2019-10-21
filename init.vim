@@ -1,17 +1,17 @@
 call plug#begin('~\\vimfiles\\plugged')
-Plug 'scrooloose/nerdtree'
-Plug 'icymind/NeoSolarized'
-"Plug 'yianwillis/vimcdoc'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'itchyny/lightline.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'liuchengxu/vista.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'vim-python/python-syntax'
-"Plug 'dense-analysis/ale'
-"Plug 'lervag/vimtex'
+    Plug 'scrooloose/nerdtree'
+    Plug 'icymind/NeoSolarized'
+    "Plug 'yianwillis/vimcdoc'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    "Plug 'itchyny/lightline.vim'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'liuchengxu/vista.vim'
+    Plug 'tpope/vim-fugitive'
+    Plug 'octol/vim-cpp-enhanced-highlight'
+    Plug 'vim-python/python-syntax'
+    "Plug 'dense-analysis/ale'
+    "Plug 'lervag/vimtex'
 call plug#end()
 "|--------------my maps------------------|
 inoremap fj <Esc>
@@ -21,16 +21,15 @@ inoremap ( ()<Esc>i
 inoremap { {}<Esc>i<cr><Esc>O
 inoremap [ []<Esc>i
 nnoremap <silent> <F5> :call CodeRunner()<cr>
-noremap <silent> <F8> :NERDTreeFind<cr>	    "NERDTree %:h<cr>
+nmap <silent> <F2> :call Set_it()<cr>
+noremap <silent> <F8> :NERDTreeFind<cr>	            "NERDTree %:h<cr>
 noremap <silent> <C-F1> :AirlineTheme random<cr>
 noremap <silent> <C-F2> :!git status -s<cr>
 noremap <silent> <C-F3> :!git add %<cr>
-noremap <silent> <C-F4> :!git commit -m  
-noremap <silent> <C-F5> :call Ctags()<cr>
-noremap <silent> <C-F6> :Vista coc<cr>
+noremap <C-F4> :!git commit -m " 
+noremap <silent> <C-F5> :Vista coc<cr>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gp <Plug>(coc-diagnostic-prev)
-nmap <silent> <F2> :call Set_it()<cr>
 "|--------------my maps------------------|
 "
 "|--------------regular------------------|
@@ -39,19 +38,19 @@ let &fileencodings="utf-8,gb2312"
 let &cursorline=1
 let &number=1
 syntax enable
-let &guifont="FiraCode NF:h16" "Suggest to use *.otf fonts
-let &background="dark"
+let &guifont="DejaVu Sans Mono for Powerline:h16" "Suggest to use *.otf fonts
+let &background="light"
 colo NeoSolarized "for neovim
 "set smartindent
 let &autoindent=1
 let &termguicolors=1 "Just for neovim
 "let &cmdheight=1 " 见帮助(doc)，默认为1。
 let &softtabstop=4
-let &expandtab = 1
+let &expandtab = 1 "Don't use TABs
 let &shiftwidth=4
 "let &autochroot=1 "auto change path to current path.
 "set shell=pwsh
-"set shellpipe=\| shellredir=> shellxquote=\(	 	 "Not \" or ( !!! Must setting the xquote not quote!!!
+"set shellpipe=\| shellredir=> shellxquote=\(	 	 "Not '\' or '(' !!! Must setting the xquote not quote!!!
 "set shellcmdflag=/c					 "Not /s/c or /s\ /c or /s\ /c\ ! Can be -c or -Command
 "|--------------regular------------------|
 "
@@ -71,17 +70,8 @@ function! CodeRunner()
     endif
 endfunc
 
-function! Ctags()
-    exe "w"
-    if &filetype == 'c'
-	exe "!ctags %:p:h\\*"
-    elseif &filetype == 'cpp'
-	exe "!ctags --c++-kinds=+cdms --fields=+iaS --extras=+q %:p:h\\*"
-    endif
-endfunc
-
 function! Set_it()
-    exe "vsp ~/AppData/Local/nvim/init.vim"
+    exe "e ~/AppData/Local/nvim/init.vim"
 endfunc
 "|--------------my funcs------------------|
 "
@@ -111,7 +101,7 @@ let g:airline_powerline_fonts=1 "基本主题，需要修改的话取消注释�
 "|--------------airline------------------|
 "
 "|--------------Vista------------------|
-let g:vista_cursor_delay = 100
+let g:vista_cursor_delay = 70
 "|--------------Vista------------------|
 "
 "|--------------Coc-nvim-----------------|
