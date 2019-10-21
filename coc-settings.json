@@ -1,0 +1,21 @@
+{
+    "languageserver": {
+	"clangd": {
+	    "command": "clangd",
+	    "args": ["--background-index"],
+	    "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+	    "filetypes": ["c", "cpp", "objc", "objcpp"]
+	},
+        "elmLS": {
+            "command": "elm-language-server",
+            "filetypes": ["elm"],
+            "rootPatterns": ["elm.json"],
+            "initializationOptions": {
+                "elmPath": "elm",
+                "elmFormatPath":"elm-test",
+                "elmAnalyseTrigger": "change"
+            }
+        }
+    },
+    "suggest.enablePreview": true
+}
