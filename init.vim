@@ -12,6 +12,7 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'vim-python/python-syntax'
     "Plug 'dense-analysis/ale'
     "Plug 'lervag/vimtex'
+    Plug 'morhetz/gruvbox'
 call plug#end()
 "|--------------my maps------------------|
 inoremap fj <Esc>
@@ -32,6 +33,10 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gp <Plug>(coc-diagnostic-prev)
 "|--------------my maps------------------|
 "
+"|--------------my hooks------------------|
+autocmd TermOpen * startinsert
+"|--------------my hooks------------------|
+"
 "|--------------regular------------------|
 let &encoding="utf-8"
 let &fileencodings="utf-8,gb2312"
@@ -39,8 +44,9 @@ let &cursorline=1
 let &number=1
 syntax enable
 let &guifont="DejaVu Sans Mono for Powerline:h16" "Suggest to use *.otf fonts
-let &background="light"
-colo NeoSolarized "for neovim
+let &background="dark"
+"colo NeoSolarized "for neovim
+colo gruvbox
 "set smartindent
 let &autoindent=1
 let &termguicolors=1 "Just for neovim
