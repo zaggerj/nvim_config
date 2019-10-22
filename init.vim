@@ -1,9 +1,9 @@
 call plug#begin('~\\vimfiles\\plugged')
     Plug 'scrooloose/nerdtree'
-    "Plug 'icymind/NeoSolarized'
-    Plug 'morhetz/gruvbox'
+    Plug 'icymind/NeoSolarized'
+    Plug 'morhetz/gruvbox' "Theme
+    Plug 'joshdick/onedark.vim'
     "Plug 'yianwillis/vimcdoc'
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     "Plug 'itchyny/lightline.vim'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
@@ -11,6 +11,7 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'vim-python/python-syntax'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     "Plug 'dense-analysis/ale'
     "Plug 'lervag/vimtex'
 call plug#end()
@@ -46,10 +47,9 @@ let &fileencodings="utf-8,gb2312"
 let &cursorline=1
 let &number=1
 syntax enable
-let &guifont="FiraCode NF:h15" "Suggest to use *.otf fonts
+let &guifont="FiraCode Nerd Font:h15" "Suggest to use *.otf fonts
 let &background="dark"
-"colo NeoSolarized "for neovim
-colo gruvbox
+colo onedark
 "set smartindent
 let &autoindent=1
 let &termguicolors=1 "Just for neovim
@@ -74,6 +74,8 @@ function! CodeRunner()
     elseif &filetype=='cpp'
 	exe "!g++ -o %:r.exe %"
 	exe "te %:r.exe"
+    elseif &filetype=='scheme'
+        exe "!racket % -p sicp"
     else 
 	echo 'Do not support this type of file!'
     endif
@@ -90,7 +92,7 @@ let &showtabline = 0   " Always display if 2
 let &showmode = 0	    " no default line
 let g:airline_section_b = '%{FugitiveStatusline()}'
 "let g:airline#extensions#ale#enabled = 1
-let g:airline_theme='gruvbox' "依赖于gruvbox主题
+let g:airline_theme='onedark' "Must after colo
 let g:airline#extensions#tabline#enabled = 0
 
 let g:airline_powerline_fonts=1 "基本主题，需要修改的话取消注释掉底下对应项目以覆盖
