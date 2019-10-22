@@ -1,6 +1,7 @@
 call plug#begin('~\\vimfiles\\plugged')
     Plug 'scrooloose/nerdtree'
-    Plug 'icymind/NeoSolarized'
+    "Plug 'icymind/NeoSolarized'
+    Plug 'morhetz/gruvbox'
     "Plug 'yianwillis/vimcdoc'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     "Plug 'itchyny/lightline.vim'
@@ -12,7 +13,6 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'vim-python/python-syntax'
     "Plug 'dense-analysis/ale'
     "Plug 'lervag/vimtex'
-    Plug 'morhetz/gruvbox'
 call plug#end()
 "|--------------my maps------------------|
 inoremap fj <Esc>
@@ -27,8 +27,10 @@ noremap <silent> <F8> :NERDTreeFind<cr>	            "NERDTree %:h<cr>
 noremap <silent> <C-F1> :AirlineTheme random<cr>
 noremap <silent> <C-F2> :!git status -s<cr>
 noremap <silent> <C-F3> :!git add %<cr>
-noremap <C-F4> :!git commit -m " 
+noremap <C-F4> :!git commit -m "
 noremap <silent> <C-F5> :Vista coc<cr>
+noremap <M-C> "+y "Yank to system clipboard("+)
+noremap <M-V> "+p "Paste from system clipboard("+)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gp <Plug>(coc-diagnostic-prev)
 "|--------------my maps------------------|
@@ -40,10 +42,11 @@ autocmd TermOpen * startinsert
 "|--------------regular------------------|
 let &encoding="utf-8"
 let &fileencodings="utf-8,gb2312"
+"set clipboard+=unnamedplus "总是启用系统剪贴板(Always use system clipboard),Maybe lower speed
 let &cursorline=1
 let &number=1
 syntax enable
-let &guifont="DejaVu Sans Mono for Powerline:h16" "Suggest to use *.otf fonts
+let &guifont="DejaVuSansMono NF:h15" "Suggest to use *.otf fonts
 let &background="dark"
 "colo NeoSolarized "for neovim
 colo gruvbox
@@ -87,7 +90,7 @@ let &showtabline = 0   " Always display if 2
 let &showmode = 0	    " no default line
 let g:airline_section_b = '%{FugitiveStatusline()}'
 "let g:airline#extensions#ale#enabled = 1
-let g:airline_theme='ayu_dark'
+let g:airline_theme='gruvbox' "依赖于gruvbox主题
 let g:airline#extensions#tabline#enabled = 0
 
 let g:airline_powerline_fonts=1 "基本主题，需要修改的话取消注释掉底下对应项目以覆盖
