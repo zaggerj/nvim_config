@@ -46,7 +46,7 @@ let &fileencodings="utf-8,gb2312"
 let &cursorline=1
 let &number=1
 syntax enable
-let &guifont="DejaVuSansMono NF:h15" "Suggest to use *.otf fonts
+let &guifont="FiraCode NF:h15" "Suggest to use *.otf fonts
 let &background="dark"
 "colo NeoSolarized "for neovim
 colo gruvbox
