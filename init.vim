@@ -3,7 +3,7 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'icymind/NeoSolarized'
     Plug 'morhetz/gruvbox' "Theme
     Plug 'joshdick/onedark.vim'
-    "Plug 'yianwillis/vimcdoc'
+    Plug 'yianwillis/vimcdoc'
     "Plug 'itchyny/lightline.vim'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
@@ -20,8 +20,10 @@ inoremap fj <Esc>
 inoremap ' ''<Esc>i
 inoremap " ""<Esc>i
 inoremap ( ()<Esc>i
+inoremap ) <Esc>la
 inoremap { {}<Esc>i<cr><Esc>O
 inoremap [ []<Esc>i
+inoremap ] <Esc>la
 nnoremap <silent> <F5> :call CodeRunner()<cr>
 nmap <silent> <F2> :call Set_it()<cr>
 noremap <silent> <F8> :NERDTreeFind<cr>	            "NERDTree %:h<cr>
@@ -30,8 +32,8 @@ noremap <silent> <C-F2> :!git status -s<cr>
 noremap <silent> <C-F3> :!git add %<cr>
 noremap <C-F4> :!git commit -m "
 noremap <silent> <C-F5> :Vista coc<cr>
-noremap <M-C> "+y "Yank to system clipboard("+)
-noremap <M-V> "+p "Paste from system clipboard("+)
+noremap <M-y> "+y "Yank to system clipboard("+)
+noremap <M-p> "+p "Paste from system clipboard("+)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gp <Plug>(coc-diagnostic-prev)
 "|--------------my maps------------------|
@@ -49,9 +51,10 @@ let &number=1
 syntax enable
 let &guifont="FiraCode Nerd Font:h15" "Suggest to use *.otf fonts
 let &background="dark"
-colo onedark
+colo gruvbox
 "set smartindent
 let &autoindent=1
+"let &lisp = 1 " lisp's indent
 let &termguicolors=1 "Just for neovim
 "let &cmdheight=1 " 见帮助(doc)，默认为1。
 let &softtabstop=4
@@ -82,6 +85,7 @@ function! CodeRunner()
 endfunc
 
 function! Set_it()
+    exe "cd %:h"
     exe "e ~/AppData/Local/nvim/init.vim"
 endfunc
 "|--------------my funcs------------------|
@@ -92,7 +96,7 @@ let &showtabline = 0   " Always display if 2
 let &showmode = 0	    " no default line
 let g:airline_section_b = '%{FugitiveStatusline()}'
 "let g:airline#extensions#ale#enabled = 1
-let g:airline_theme='onedark' "Must after colo
+let g:airline_theme='gruvbox' "Must after colo
 let g:airline#extensions#tabline#enabled = 0
 
 let g:airline_powerline_fonts=1 "基本主题，需要修改的话取消注释掉底下对应项目以覆盖
