@@ -16,8 +16,8 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'luochen1990/rainbow'
 call plug#end()
 "|--------------my maps------------------|
-"inoremap fj <Esc> "Now have coc-pair plugin
-"inoremap ' ''<Esc>i
+inoremap fj <Esc> 
+"inoremap ' ''<Esc>i    "Now have coc-pair plugin
 "inoremap " ""<Esc>i
 "inoremap ( ()<Esc>i
 "inoremap ) <Esc>la
@@ -49,7 +49,7 @@ let &encoding="utf-8"
 let &fileencodings="utf-8,gb2312"
 "set clipboard+=unnamedplus "总是启用系统剪贴板(Always use system clipboard),Maybe lower speed
 let &cursorline=1
-let &showmatch = 1 "just like lisp repl's bracket highlight
+let &showmatch = 0 "just like lisp repl's bracket highlight
 let g:rainbow_active = 1
 let &guifont="FiraCode Nerd Font:h15" "Suggest to use *.otf fonts
 let &number=1
