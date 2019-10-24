@@ -1,29 +1,29 @@
 call plug#begin('~\\vimfiles\\plugged')
     Plug 'scrooloose/nerdtree'
-    Plug 'icymind/NeoSolarized'
-    Plug 'morhetz/gruvbox' "Theme
-    Plug 'joshdick/onedark.vim'
     Plug 'yianwillis/vimcdoc'
-    "Plug 'itchyny/lightline.vim'
     Plug 'vim-airline/vim-airline'
+    "Plug 'itchyny/lightline.vim'
     Plug 'vim-airline/vim-airline-themes'
-    Plug 'liuchengxu/vista.vim'
     Plug 'tpope/vim-fugitive'
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'vim-python/python-syntax'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     "Plug 'dense-analysis/ale'
-    "Plug 'lervag/vimtex'
+    Plug 'liuchengxu/vista.vim'
+    Plug 'icymind/NeoSolarized' "Theme
+    Plug 'morhetz/gruvbox' 
+    Plug 'joshdick/onedark.vim'
+    Plug 'luochen1990/rainbow'
 call plug#end()
 "|--------------my maps------------------|
-inoremap fj <Esc>
-inoremap ' ''<Esc>i
-inoremap " ""<Esc>i
-inoremap ( ()<Esc>i
-inoremap ) <Esc>la
-inoremap { {}<Esc>i<cr><Esc>O
-inoremap [ []<Esc>i
-inoremap ] <Esc>la
+"inoremap fj <Esc> "Now have coc-pair plugin
+"inoremap ' ''<Esc>i
+"inoremap " ""<Esc>i
+"inoremap ( ()<Esc>i
+"inoremap ) <Esc>la
+"inoremap { {}<Esc>i<cr><Esc>O
+"inoremap [ []<Esc>i
+"inoremap ] <Esc>la
 nnoremap <silent> <F5> :call CodeRunner()<cr>
 nmap <silent> <F2> :call Set_it()<cr>
 noremap <silent> <F8> :NERDTreeFind<cr>	            "NERDTree %:h<cr>
@@ -43,15 +43,17 @@ autocmd TermOpen * startinsert
 "|--------------my hooks------------------|
 "
 "|--------------regular------------------|
+syntax enable
+colo gruvbox
 let &encoding="utf-8"
 let &fileencodings="utf-8,gb2312"
 "set clipboard+=unnamedplus "总是启用系统剪贴板(Always use system clipboard),Maybe lower speed
 let &cursorline=1
-let &number=1
-syntax enable
+let &showmatch = 1 "just like lisp repl's bracket highlight
+let g:rainbow_active = 1
 let &guifont="FiraCode Nerd Font:h15" "Suggest to use *.otf fonts
+let &number=1
 let &background="dark"
-colo gruvbox
 "set smartindent
 let &autoindent=1
 "let &lisp = 1 " lisp's indent
@@ -85,8 +87,8 @@ function! CodeRunner()
 endfunc
 
 function! Set_it()
-    exe "cd %:h"
     exe "e ~/AppData/Local/nvim/init.vim"
+    exe "cd %:h"
 endfunc
 "|--------------my funcs------------------|
 "
