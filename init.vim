@@ -24,16 +24,14 @@ inoremap fj <Esc>
 "inoremap { {}<Esc>i<cr><Esc>O
 "inoremap [ []<Esc>i
 "inoremap ] <Esc>la
-nnoremap <silent> <F5> :call CodeRunner()<cr>
 nmap <silent> <F2> :call Set_it()<cr>
+nnoremap <silent> <F5> :call CodeRunner()<cr>
+noremap <silent> <F6> :Vista coc<cr>
 noremap <silent> <F8> :NERDTreeFind<cr>	            "NERDTree %:h<cr>
 noremap <silent> <C-F1> :AirlineTheme random<cr>
 noremap <silent> <C-F2> :!git status -s<cr>
 noremap <silent> <C-F3> :!git add %<cr>
 noremap <C-F4> :!git commit -m "
-noremap <silent> <C-F5> :Vista coc<cr>
-noremap <M-y> "+y "Yank to system clipboard("+)
-noremap <M-p> "+p "Paste from system clipboard("+)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gp <Plug>(coc-diagnostic-prev)
 "|--------------my maps------------------|
