@@ -95,7 +95,7 @@ function! Runner()
     elseif &filetype == 'c'
         exe "te %:r.exe"
     elseif &filetype == 'java'
-        exe "te java %:r.class"
+        exe "te java %:r"
     endif
 endfunc
 
