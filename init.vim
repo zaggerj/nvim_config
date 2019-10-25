@@ -25,13 +25,14 @@ inoremap fj <Esc>
 "inoremap [ []<Esc>i
 "inoremap ] <Esc>la
 nmap <silent> <F2> :call Set_it()<cr>
-nnoremap <silent> <F5> :call CodeRunner()<cr>
+nnoremap <silent> <F5> :call Complier()<cr>
 noremap <silent> <F6> :Vista coc<cr>
 noremap <silent> <F8> :NERDTreeFind<cr>	            "NERDTree %:h<cr>
 noremap <silent> <C-F1> :AirlineTheme random<cr>
 noremap <silent> <C-F2> :!git status -s<cr>
 noremap <silent> <C-F3> :!git add %<cr>
 noremap <C-F4> :!git commit -m "
+nnoremap <silent> <C-F5> :call Runner()<cr>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gp <Plug>(coc-diagnostic-prev)
 "|--------------my maps------------------|
@@ -67,25 +68,36 @@ let &shiftwidth=4
 "|--------------regular------------------|
 "
 "|--------------my funcs------------------|
-function! CodeRunner()
+let &splitbelow=1
+function! Complier()
     exe "w"
+    exe "10sp" 
     if &filetype=='c'
-	exe "!clang -o %:r.exe %"
-	exe "te %:r.exe"
-    elseif &filetype=='python'
-	exe "te python %"
+	exe "te clang -o %:r.exe %"
     elseif &filetype=='cpp'
-	exe "!g++ -o %:r.exe %"
-	exe "te %:r.exe"
-    elseif &filetype=='scheme'
-        exe "!racket % -p sicp"
+	exe "te g++ -o %:r.exe %"
+    elseif &filetype == 'java'
+        exe "te javac %"
+    elseif &filetype == 'scheme'
+        exe "te racket % -p sicp"
+    elseif &filetype == 'python'
+	exe "te python %"
     else 
 	echo 'Do not support this type of file!'
     endif
 endfunc
 
+function! Runner()
+    exe "13sp"
+    if &filetype=='cpp'
+        exe "te %:p.exe"
+    elseif &filetype == 'c'
+        exe "te %:p.exe"
+    endif
+endfunc
+
 function! Set_it()
-    exe "e ~/AppData/Local/nvim/init.vim"
+    exe "sp ~/AppData/Local/nvim/init.vim"
     exe "cd %:h"
 endfunc
 "|--------------my funcs------------------|
