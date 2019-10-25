@@ -97,7 +97,6 @@ function! Runner()
     elseif &filetype == 'java'
         exe "te java %:r.class"
     endif
-    endif
 endfunc
 
 function! Set_it()
