@@ -68,7 +68,7 @@ let &shiftwidth=4
 "|--------------regular------------------|
 "
 "|--------------my funcs------------------|
-let &splitbelow=1
+let &splitbelow=1 "Open window below
 function! Complier()
     exe "w"
     exe "10sp" 
@@ -90,9 +90,9 @@ endfunc
 function! Runner()
     exe "13sp"
     if &filetype=='cpp'
-        exe "te %:p.exe"
+        exe "te %:r.exe"
     elseif &filetype == 'c'
-        exe "te %:p.exe"
+        exe "te %:r.exe"
     endif
 endfunc
 
