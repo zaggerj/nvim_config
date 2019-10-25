@@ -84,6 +84,7 @@ function! Complier()
 	exe "te python %"
     else 
 	echo 'Do not support this type of file!'
+        exe "q"
     endif
 endfunc
 
@@ -93,11 +94,14 @@ function! Runner()
         exe "te %:r.exe"
     elseif &filetype == 'c'
         exe "te %:r.exe"
+    elseif &filetype == 'java'
+        exe "te java %:r.class"
+    endif
     endif
 endfunc
 
 function! Set_it()
-    exe "sp ~/AppData/Local/nvim/init.vim"
+    exe "25sp ~/AppData/Local/nvim/init.vim"
     exe "cd %:h"
 endfunc
 "|--------------my funcs------------------|
