@@ -17,5 +17,6 @@
             }
         }
     },
-    "suggest.enablePreview": true
+    "suggest.enablePreview": true,
+    "java.errors.incompleteClasspath.severity": "ignore"
 }

@@ -72,6 +72,7 @@ let &splitbelow=1 "Open window below
 function! Complier()
     exe "w"
     exe "10sp" 
+    exe "cd %:h"    
     if &filetype=='c'
 	exe "te clang -o %:r.exe %"
     elseif &filetype=='cpp'
@@ -90,6 +91,7 @@ endfunc
 
 function! Runner()
     exe "13sp"
+    exe "cd %:h"
     if &filetype=='cpp'
         exe "te %:r.exe"
     elseif &filetype == 'c'
