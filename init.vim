@@ -3,6 +3,8 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'yianwillis/vimcdoc'
     Plug 'vim-airline/vim-airline'
     "Plug 'itchyny/lightline.vim'
+    Plug 'reasonml-editor/vim-reason-plus'
+    Plug 'HerringtonDarkholme/yats.vim'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'tpope/vim-fugitive'
     Plug 'octol/vim-cpp-enhanced-highlight'
@@ -39,6 +41,7 @@ nmap <silent> gp <Plug>(coc-diagnostic-prev)
 "
 "|--------------my hooks------------------|
 autocmd TermOpen * startinsert
+"autocmd BufRead,BufNewFile *.rkt if &ft == 'scheme' | set ft=racket | endif
 "|--------------my hooks------------------|
 "
 "|--------------regular------------------|
@@ -98,6 +101,8 @@ function! Runner()
         exe "te %:r.exe"
     elseif &filetype == 'java'
         exe "te java %:r"
+    else
+        exe "q"
     endif
 endfunc
 
