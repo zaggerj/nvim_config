@@ -3,8 +3,8 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'yianwillis/vimcdoc'
     Plug 'vim-airline/vim-airline'
     "Plug 'itchyny/lightline.vim'
-    Plug 'reasonml-editor/vim-reason-plus'
-    Plug 'HerringtonDarkholme/yats.vim'
+    "Plug 'reasonml-editor/vim-reason-plus'
+    "Plug 'HerringtonDarkholme/yats.vim'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'tpope/vim-fugitive'
     Plug 'octol/vim-cpp-enhanced-highlight'
@@ -42,6 +42,7 @@ nmap <silent> gp <Plug>(coc-diagnostic-prev)
 "|--------------my hooks------------------|
 autocmd TermOpen * startinsert
 "autocmd BufRead,BufNewFile *.rkt if &ft == 'scheme' | set ft=racket | endif
+autocmd BufRead,BufNewFile *.elm set ft=elm
 "|--------------my hooks------------------|
 "
 "|--------------regular------------------|
@@ -58,7 +59,7 @@ let &number=1
 let &background="dark"
 "set smartindent
 let &autoindent=1
-"let &lisp = 1 " lisp's indent
+let &lisp = 1 " lisp's indent
 let &termguicolors=1 "Just for neovim
 "let &cmdheight=1 " 见帮助(doc)，默认为1。
 let &softtabstop=4
@@ -86,6 +87,8 @@ function! Complier()
         exe "te racket % -p sicp"
     elseif &filetype == 'python'
 	exe "te python %"
+    elseif &filetype == 'scala'
+	exe "te scalac %"
     else 
 	echo 'Do not support this type of file!'
         exe "q"
@@ -94,13 +97,14 @@ endfunc
 
 function! Runner()
     exe "13sp"
-    exe "cd %:h"
     if &filetype=='cpp'
         exe "te %:r.exe"
     elseif &filetype == 'c'
         exe "te %:r.exe"
     elseif &filetype == 'java'
         exe "te java %:r"
+    elseif &filetype == 'scala'
+        exe "te scala %:r"
     else
         exe "q"
     endif
@@ -158,6 +162,6 @@ let g:cpp_experimental_template_highlight = 1
 
 let g:python_highlight_all = 1
 "|--------------highlight------------------|
-"|--------------tex------------------|
-
-"|--------------tex------------------|
+"|--------------Rainbow------------------|
+let g:rainbow_conf = {'guifgs': ['Red', 'Orange', 'Yellow', 'Green', 'Cyan', 'Blue', 'Purple']}
+"|--------------Rainbow------------------|
