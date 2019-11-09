@@ -50,7 +50,6 @@ autocmd BufRead,BufNewFile *.elm set ft=elm
 colo gruvbox
 let &background="dark"
 syntax enable
-let &syntax="cocsyn"
 let &encoding="utf-8"
 let &fileencodings="utf-8,gb2312"
 "set clipboard+=unnamedplus "总是启用系统剪贴板(Always use system clipboard),Maybe lower speed
@@ -168,3 +167,9 @@ let g:python_highlight_all = 1
 "|--------------Rainbow------------------|
 let g:rainbow_conf = {'guifgs': ['Red', 'Orange', 'Yellow', 'Green', 'Cyan', 'Blue', 'Purple']}
 "|--------------Rainbow------------------|
+"|--------------PopupMenu-----------------| After colo option
+hi Pmenu guifg=#ff8700 guibg=#585858 "Normal popup menu's color
+hi PmenuSel guifg=#0087ff guibg=#ffffaf "Selected item's color
+hi PmenuSbar guibg=#b2b2b2  "Scroll bar's color
+hi PmenuThumb guibg=#ffffaf "Scroll button's color.
+"|--------------PopupMenu-----------------|
