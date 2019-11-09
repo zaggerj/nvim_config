@@ -1,3 +1,4 @@
+"If you want to use vim build in popup menu :GuiPopupmenu 0
 call plug#begin('~\\vimfiles\\plugged')
     Plug 'scrooloose/nerdtree'
     Plug 'yianwillis/vimcdoc'
@@ -54,7 +55,7 @@ let &fileencodings="utf-8,gb2312"
 let &cursorline=1
 let &showmatch = 0 "just like lisp repl's bracket highlight
 let g:rainbow_active = 1
-let &guifont="FiraCode Nerd Font:h15" "Suggest to use *.otf fonts
+"let &guifont="FiraCode Nerd Font:h15" "Suggest to use *.otf fonts
 let &number=1
 let &background="dark"
 "set smartindent
