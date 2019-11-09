@@ -47,17 +47,19 @@ autocmd BufRead,BufNewFile *.elm set ft=elm
 "|--------------my hooks------------------|
 "
 "|--------------regular------------------|
-syntax enable
 colo gruvbox
+let &background="dark"
+syntax enable
+let &syntax="cocsyn"
 let &encoding="utf-8"
 let &fileencodings="utf-8,gb2312"
 "set clipboard+=unnamedplus "总是启用系统剪贴板(Always use system clipboard),Maybe lower speed
 let &cursorline=1
 let &showmatch = 0 "just like lisp repl's bracket highlight
 let g:rainbow_active = 1
-"let &guifont="FiraCode Nerd Font:h15" "Suggest to use *.otf fonts
+"let &guifont="FiraCode Nerd Font:h15" "In nvim-qt, you can make a file
+"'ginit.vim' and modify in it.
 let &number=1
-let &background="dark"
 "set smartindent
 let &autoindent=1
 let &lisp = 1 " lisp's indent
