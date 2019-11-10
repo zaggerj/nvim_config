@@ -130,12 +130,12 @@ endfunc
 "
 "|--------------airline------------------|
 let &laststatus = 2
-let &showtabline = 0   " Always display if 2
 let &showmode = 0	    " no default line
 let g:airline_section_b = '%{FugitiveStatusline()}'
 "let g:airline#extensions#ale#enabled = 1
 let g:airline_theme='gruvbox' "Must after colo
-let g:airline#extensions#tabline#enabled = 0
+let &showtabline = 1   " Always display if 2
+let g:airline#extensions#tabline#enabled = 1
 
 let g:airline_powerline_fonts=1 "基本主题，需要修改的话取消注释掉底下对应项目以覆盖
 "if !exists('g:airline_symbols')	
