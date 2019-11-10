@@ -1,4 +1,4 @@
-"If you want to use vim build in popup menu :GuiPopupmenu 0
+"With ginit.vim
 call plug#begin('~\\vimfiles\\plugged')
     Plug 'scrooloose/nerdtree'
     Plug 'yianwillis/vimcdoc'
@@ -6,6 +6,7 @@ call plug#begin('~\\vimfiles\\plugged')
     "Plug 'itchyny/lightline.vim'
     "Plug 'reasonml-editor/vim-reason-plus'
     "Plug 'HerringtonDarkholme/yats.vim'
+    Plug 'guns/xterm-color-table.vim'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'tpope/vim-fugitive'
     Plug 'octol/vim-cpp-enhanced-highlight'
@@ -62,7 +63,8 @@ let &number=1
 "set smartindent
 let &autoindent=1
 let &lisp = 1 " lisp's indent
-let &termguicolors=1 "Just for neovim
+let &termguicolors=1 
+let &t_Co=256
 "let &cmdheight=1 " 见帮助(doc)，默认为1。
 let &softtabstop=4
 let &expandtab = 1 "Don't use TABs
@@ -168,8 +170,9 @@ let g:python_highlight_all = 1
 let g:rainbow_conf = {'guifgs': ['Red', 'Orange', 'Yellow', 'Green', 'Cyan', 'Blue', 'Purple']}
 "|--------------Rainbow------------------|
 "|--------------PopupMenu-----------------| After colo option
-hi Pmenu guifg=#ff8700 guibg=#585858 "Normal popup menu's color
-hi PmenuSel guifg=#0087ff guibg=#ffffaf "Selected item's color
-hi PmenuSbar guibg=#b2b2b2  "Scroll bar's color
-hi PmenuThumb guibg=#ffffaf "Scroll button's color.
+"If do not use gruvbox, you can uncomment below
+hi Pmenu guifg=#dfaf00 "Normal popup menu's color
+hi PmenuSel guifg=#00afff guibg=#dfffaf "Selected item's color
+hi PmenuSbar guibg=#3a3a3a "Scroll bar's color
+hi PmenuThumb guibg=#ffffff "Scroll button's color.
 "|--------------PopupMenu-----------------|
