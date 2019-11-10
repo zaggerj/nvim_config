@@ -75,6 +75,14 @@ let &shiftwidth=4
 "set shellcmdflag=/c					 "Not /s/c or /s\ /c or /s\ /c\ ! Can be -c or -Command
 "|--------------regular------------------|
 "
+"|--------------PopupMenu-----------------| After the colo option
+"If you use gruvbox, do not set Pmenu guibg option
+hi Pmenu guifg=#dfaf00 "Normal popup menu's color
+hi PmenuSel guifg=#00afff guibg=#dfffaf "Selected item's color
+hi PmenuSbar guibg=#3a3a3a "Scroll bar's color
+hi PmenuThumb guibg=#ffffff "Scroll button's color.
+"|--------------PopupMenu-----------------|
+"
 "|--------------my funcs------------------|
 let &splitbelow=1 "Open window below
 function! Complier()
@@ -169,10 +177,3 @@ let g:python_highlight_all = 1
 "|--------------Rainbow------------------|
 let g:rainbow_conf = {'guifgs': ['Red', 'Orange', 'Yellow', 'Green', 'Cyan', 'Blue', 'Purple']}
 "|--------------Rainbow------------------|
-"|--------------PopupMenu-----------------| After colo option
-"If do not use gruvbox, you can uncomment below
-hi Pmenu guifg=#dfaf00 "Normal popup menu's color
-hi PmenuSel guifg=#00afff guibg=#dfffaf "Selected item's color
-hi PmenuSbar guibg=#3a3a3a "Scroll bar's color
-hi PmenuThumb guibg=#ffffff "Scroll button's color.
-"|--------------PopupMenu-----------------|
