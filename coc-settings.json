@@ -8,5 +8,6 @@
         }
     },
     "suggest.enablePreview": true,
-    "java.errors.incompleteClasspath.severity": "ignore"
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "suggest.noselect": false
 }

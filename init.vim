@@ -3,11 +3,12 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'scrooloose/nerdtree'
     Plug 'yianwillis/vimcdoc'
     Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'PProvost/vim-ps1'
     "Plug 'itchyny/lightline.vim'
     "Plug 'reasonml-editor/vim-reason-plus'
     "Plug 'HerringtonDarkholme/yats.vim'
     Plug 'guns/xterm-color-table.vim'
-    Plug 'vim-airline/vim-airline-themes'
     Plug 'tpope/vim-fugitive'
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'vim-python/python-syntax'
@@ -99,6 +100,8 @@ function! Complier()
         exe "te racket % -p sicp"
     elseif &filetype == 'python'
 	exe "te python %"
+    elseif &filetype == 'ps1'
+	exe "te powershell -c \"./%\""
     elseif &filetype == 'scala'
 	exe "te scalac %"
     else 
@@ -134,7 +137,7 @@ let &showmode = 0	    " no default line
 let g:airline_section_b = '%{FugitiveStatusline()}'
 "let g:airline#extensions#ale#enabled = 1
 let g:airline_theme='gruvbox' "Must after colo
-let &showtabline = 1   " Always display if 2
+let &showtabline = 1   " Always display if 2, turn off GuiTabline in ginit when use nvim-qt
 let g:airline#extensions#tabline#enabled = 1
 
 let g:airline_powerline_fonts=1 "基本主题，需要修改的话取消注释掉底下对应项目以覆盖
