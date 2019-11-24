@@ -56,10 +56,10 @@ let &encoding="utf-8"
 let &fileencodings="utf-8,gb2312"
 "set clipboard+=unnamedplus "总是启用系统剪贴板(Always use system clipboard),Maybe lower speed
 let &cursorline=1
-let &showmatch = 0 "just like lisp repl's bracket highlight
+let &showmatch = 1 "just like lisp repl's bracket highlight
 let g:rainbow_active = 1
 "let &guifont="FiraCode Nerd Font:h15" "In nvim-qt, you can make a file
-"'ginit.vim' and modify in it.
+"'ginit.vim' and modify this option in it.
 let &number=1
 "set smartindent
 let &autoindent=1
@@ -137,7 +137,7 @@ let &showmode = 0	    " no default line
 let g:airline_section_b = '%{FugitiveStatusline()}'
 "let g:airline#extensions#ale#enabled = 1
 let g:airline_theme='gruvbox' "Must after colo
-let &showtabline = 1   " Always display if 2, turn off GuiTabline in ginit when use nvim-qt
+let &showtabline = 1   " Always display if 2, turn off GuiTabline in ginit when using nvim-qt
 let g:airline#extensions#tabline#enabled = 1
 
 let g:airline_powerline_fonts=1 "基本主题，需要修改的话取消注释掉底下对应项目以覆盖
@@ -158,6 +158,7 @@ let g:airline_powerline_fonts=1 "基本主题，需要修改的话取消注释�
 "
 "|--------------Vista------------------|
 let g:vista_cursor_delay = 70
+let g:vista_sidebar_position = "vertical topleft"
 "|--------------Vista------------------|
 "
 "|--------------Coc-nvim-----------------|
