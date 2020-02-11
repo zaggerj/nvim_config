@@ -45,6 +45,8 @@ noremap <silent> <leader><F2> :!git status -s<cr>
 noremap <silent> <leader><F3> :!git add %<cr>
 noremap <silent> <leader><F4> :!git commit -m "
 noremap <silent> <leader>t :call Open_terminal()<cr>
+noremap <silent> <leader>I :PlugInstall<cr>
+noremap <silent> <leader>U :PlugUpdate<cr>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gp <Plug>(coc-diagnostic-prev)
 "
