@@ -6,7 +6,7 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'vim-airline/vim-airline-themes'
     Plug 'PProvost/vim-ps1'
     "Plug 'itchyny/lightline.vim'
-    "Plug 'reasonml-editor/vim-reason-plus'
+    Plug 'reasonml-editor/vim-reason-plus'
     "Plug 'HerringtonDarkholme/yats.vim'
     Plug 'guns/xterm-color-table.vim'
     Plug 'tpope/vim-fugitive'
@@ -56,16 +56,16 @@ let &encoding="utf-8"
 let &fileencodings="utf-8,gb2312"
 "set clipboard+=unnamedplus "总是启用系统剪贴板(Always use system clipboard),Maybe lower speed
 let &cursorline=1
-let &showmatch = 1 "just like lisp repl's bracket highlight
+let &showmatch = 1 "Just like lisp repl's bracket highlight
 let g:rainbow_active = 1
 "let &guifont="FiraCode Nerd Font:h15" "In nvim-qt, you can make a file
 "'ginit.vim' and modify this option in it.
 let &number=1
 "set smartindent
 let &autoindent=1
-let &lisp = 1 " lisp's indent
+"let &lisp = 1 " lisp's indent
 let &termguicolors=1 
-let &t_Co=256
+"let &t_Co=256
 "let &cmdheight=1 " 见帮助(doc)，默认为1。
 let &softtabstop=4
 let &expandtab = 1 "Don't use TABs
