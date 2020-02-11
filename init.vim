@@ -3,7 +3,7 @@
 call plug#begin('~\\vimfiles\\plugged')
     Plug 'Yggdroot/indentLine'
     Plug 'scrooloose/nerdtree'
-    Plug 'yianwillis/vimcdoc'
+    "Plug 'yianwillis/vimcdoc'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'PProvost/vim-ps1'
@@ -142,7 +142,7 @@ function! Open_terminal()
     exe "te"
 endfunction
 
-let CTab = {-> pumvisible() ? "\<C-n>" : "\<tab>"}
+let CTab = {-> pumvisible() ? "\<C-n>" : "\<tab>"} "lambda expr
 "
 " |>airline<|
 let &laststatus = 2
