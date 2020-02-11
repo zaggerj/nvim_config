@@ -61,7 +61,7 @@ let &background="dark"
 syntax enable
 let &encoding="utf-8"
 let &fileencodings="utf-8,gb2312"
-"set clipboard+=unnamedplus "总是启用系统剪贴板(Always use system clipboard),Maybe lower speed
+set clipboard+=unnamedplus "总是启用系统剪贴板(Always use system clipboard),Maybe lower speed
 let &cursorline=1
 let &showmatch = 1 "Just like lisp repl's bracket highlight
 let g:rainbow_active = 1
@@ -85,8 +85,10 @@ let &timeoutlen = 1500
 "
 " |>PopupMenu<| After the colo option
 "If you use gruvbox, do not set Pmenu guibg option
+set pumblend=10
+set winblend=30
 hi Pmenu guifg=#dfaf00 "Normal popup menu's color
-hi PmenuSel guifg=#00afff guibg=#dfffaf "Selected item's color
+hi PmenuSel guifg=#00afff guibg=#dfffaf blend=0 "Selected item's color
 hi PmenuSbar guibg=#3a3a3a "Scroll bar's color
 hi PmenuThumb guibg=#ffffff "Scroll button's color.
 "
