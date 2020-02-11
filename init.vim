@@ -1,5 +1,7 @@
 "With ginit.vim
+" |>pluggings<|
 call plug#begin('~\\vimfiles\\plugged')
+    Plug 'Yggdroot/indentLine'
     Plug 'scrooloose/nerdtree'
     Plug 'yianwillis/vimcdoc'
     Plug 'vim-airline/vim-airline'
@@ -20,8 +22,9 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'joshdick/onedark.vim'
     Plug 'luochen1990/rainbow'
 call plug#end()
-"|--------------my maps------------------|
-inoremap fj <Esc> 
+"
+" |>my maps<|
+let mapleader = " "
 "inoremap ' ''<Esc>i    "Now have coc-pair plugin
 "inoremap " ""<Esc>i
 "inoremap ( ()<Esc>i
@@ -29,26 +32,28 @@ inoremap fj <Esc>
 "inoremap { {}<Esc>i<cr><Esc>O
 "inoremap [ []<Esc>i
 "inoremap ] <Esc>la
-nmap <silent> <F2> :call Set_it()<cr>
-nnoremap <silent> <F5> :call Complier()<cr>
-noremap <silent> <F6> :Vista coc<cr>
-noremap <silent> <F8> :NERDTreeFind<cr>	            "NERDTree %:h<cr>
-noremap <silent> <C-F1> :AirlineTheme random<cr>
-noremap <silent> <C-F2> :!git status -s<cr>
-noremap <silent> <C-F3> :!git add %<cr>
-noremap <C-F4> :!git commit -m "
-nnoremap <silent> <C-F5> :call Runner()<cr>
+inoremap fj <Esc> 
+inoremap <expr><tab> CTab()
+tnoremap <Esc> <C-\><C-n>
+nmap <silent> <leader>s :call Set_it()<cr>
+nnoremap <silent> <leader>c :call Complier()<cr>
+nnoremap <silent> <leader>r :call Runner()<cr>
+noremap <silent> <leader>v :Vista coc<cr>
+noremap <silent> <leader>d :NERDTreeFind<cr>	            "NERDTree %:h<cr>
+noremap <silent> <leader><F1> :AirlineTheme random<cr>
+noremap <silent> <leader><F2> :!git status -s<cr>
+noremap <silent> <leader><F3> :!git add %<cr>
+noremap <silent> <leader><F4> :!git commit -m "
+noremap <silent> <leader>t :call Open_terminal()<cr>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gp <Plug>(coc-diagnostic-prev)
-"|--------------my maps------------------|
 "
-"|--------------my hooks------------------|
+" |>my hooks<|
 autocmd TermOpen * startinsert
 "autocmd BufRead,BufNewFile *.rkt if &ft == 'scheme' | set ft=racket | endif
 autocmd BufRead,BufNewFile *.elm set ft=elm
-"|--------------my hooks------------------|
 "
-"|--------------regular------------------|
+" |>regular<|
 colo gruvbox
 let &background="dark"
 syntax enable
@@ -63,28 +68,27 @@ let g:rainbow_active = 1
 let &number=1
 "set smartindent
 let &autoindent=1
-let &lisp = 1 " lisp's indent
+let &lisp = 0 " lisp's indent
 let &termguicolors=1 
 let &t_Co=256
 "let &cmdheight=1 " 见帮助(doc)，默认为1。
 let &softtabstop=4
 let &expandtab = 1 "Don't use TABs
 let &shiftwidth=4
+let &timeoutlen = 1500
 "let &autochroot=1 "auto change path to current path.
 "set shell=pwsh
 "set shellpipe=\| shellredir=> shellxquote=\(	 	 "Not '\' or '(' !!! Must setting the xquote not quote!!!
 "set shellcmdflag=/c					 "Not /s/c or /s\ /c or /s\ /c\ ! Can be -c or -Command
-"|--------------regular------------------|
 "
-"|--------------PopupMenu-----------------| After the colo option
+" |>PopupMenu<| After the colo option
 "If you use gruvbox, do not set Pmenu guibg option
 hi Pmenu guifg=#dfaf00 "Normal popup menu's color
 hi PmenuSel guifg=#00afff guibg=#dfffaf "Selected item's color
 hi PmenuSbar guibg=#3a3a3a "Scroll bar's color
 hi PmenuThumb guibg=#ffffff "Scroll button's color.
-"|--------------PopupMenu-----------------|
 "
-"|--------------my funcs------------------|
+" |>my funcs<|
 let &splitbelow=1 "Open window below
 function! Complier()
     exe "w"
@@ -129,9 +133,16 @@ function! Set_it()
     exe "25sp ~/AppData/Local/nvim/init.vim"
     exe "cd %:h"
 endfunc
-"|--------------my funcs------------------|
+
+function! Open_terminal()
+    exe "cd %:h"
+    exe "20sp"
+    exe "te"
+endfunction
+
+let CTab = {-> pumvisible() ? "\<C-n>" : "\<tab>"}
 "
-"|--------------airline------------------|
+" |>airline<|
 let &laststatus = 2
 let &showmode = 0	    " no default line
 let g:airline_section_b = '%{FugitiveStatusline()}'
@@ -154,29 +165,24 @@ let g:airline_powerline_fonts=1 "基本主题，需要修改的话取消注释�
 "let g:airline_symbols.maxlinenr = "\ue0a1"
 "let g:airline_symbols.dirty='⚡'
 "
-"|--------------airline------------------|
-"
-"|--------------Vista------------------|
+" |>vista<|
 let g:vista_cursor_delay = 70
-"|--------------Vista------------------|
 "
-"|--------------Coc-nvim-----------------|
+" |>coc-nvim<|
 let g:coc_enable_locationlist = 0
-"|--------------Coc-nvim------------------|
 
-"|--------------ale------------------|
+" |>ale<|
 "let g:ale_disable_lsp = 0
 "let g:ale_completion_enabled = 1
 "let &omnifunc="ale#completion#OmniFunc"
-"|--------------ale------------------|
-"|--------------highlight------------------|
+"
+" |>highlight<|
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
 let g:cpp_experimental_template_highlight = 1
 
 let g:python_highlight_all = 1
-"|--------------highlight------------------|
-"|--------------Rainbow------------------|
+"
+" |>rainbow<|
 let g:rainbow_conf = {'guifgs': ['Red', 'Orange', 'Yellow', 'Green', 'Cyan', 'Blue', 'Purple']}
-"|--------------Rainbow------------------|
