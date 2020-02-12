@@ -3,12 +3,12 @@
 call plug#begin('~\\vimfiles\\plugged')
     Plug 'Yggdroot/indentLine'
     Plug 'scrooloose/nerdtree'
-    Plug 'yianwillis/vimcdoc'
+    "Plug 'yianwillis/vimcdoc'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'PProvost/vim-ps1'
     "Plug 'itchyny/lightline.vim'
-    "Plug 'reasonml-editor/vim-reason-plus'
+    Plug 'reasonml-editor/vim-reason-plus'
     "Plug 'HerringtonDarkholme/yats.vim'
     Plug 'guns/xterm-color-table.vim'
     Plug 'tpope/vim-fugitive'
@@ -45,6 +45,8 @@ noremap <silent> <leader><F2> :!git status -s<cr>
 noremap <silent> <leader><F3> :!git add %<cr>
 noremap <silent> <leader><F4> :!git commit -m "
 noremap <silent> <leader>t :call Open_terminal()<cr>
+noremap <silent> <leader>I :PlugInstall<cr>
+noremap <silent> <leader>U :PlugUpdate<cr>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gp <Plug>(coc-diagnostic-prev)
 "
@@ -59,18 +61,18 @@ let &background="dark"
 syntax enable
 let &encoding="utf-8"
 let &fileencodings="utf-8,gb2312"
-"set clipboard+=unnamedplus "总是启用系统剪贴板(Always use system clipboard),Maybe lower speed
+set clipboard+=unnamedplus "总是启用系统剪贴板(Always use system clipboard),Maybe lower speed
 let &cursorline=1
-let &showmatch = 0 "just like lisp repl's bracket highlight
+let &showmatch = 1 "Just like lisp repl's bracket highlight
 let g:rainbow_active = 1
 "let &guifont="FiraCode Nerd Font:h15" "In nvim-qt, you can make a file
-"'ginit.vim' and modify in it.
+"'ginit.vim' and modify this option in it.
 let &number=1
 "set smartindent
 let &autoindent=1
 let &lisp = 0 " lisp's indent
 let &termguicolors=1 
-let &t_Co=256
+"let &t_Co=256
 "let &cmdheight=1 " 见帮助(doc)，默认为1。
 let &softtabstop=4
 let &expandtab = 1 "Don't use TABs
@@ -83,8 +85,10 @@ let &timeoutlen = 1500
 "
 " |>PopupMenu<| After the colo option
 "If you use gruvbox, do not set Pmenu guibg option
+set pumblend=10
+set winblend=30
 hi Pmenu guifg=#dfaf00 "Normal popup menu's color
-hi PmenuSel guifg=#00afff guibg=#dfffaf "Selected item's color
+hi PmenuSel guifg=#00afff guibg=#dfffaf blend=0 "Selected item's color
 hi PmenuSbar guibg=#3a3a3a "Scroll bar's color
 hi PmenuThumb guibg=#ffffff "Scroll button's color.
 "
@@ -155,7 +159,6 @@ function! Open_terminal()
     call PercentSplit(0.4, "sp")
     exe "te"
 endfunction
-
 "
 " |>airline<|
 let &laststatus = 2
@@ -163,7 +166,7 @@ let &showmode = 0	    " no default line
 let g:airline_section_b = '%{FugitiveStatusline()}'
 "let g:airline#extensions#ale#enabled = 1
 let g:airline_theme='gruvbox' "Must after colo
-let &showtabline = 1   " Always display if 2, turn off GuiTabline in ginit when use nvim-qt
+let &showtabline = 1   " Always display if 2, turn off GuiTabline in ginit when using nvim-qt
 let g:airline#extensions#tabline#enabled = 1
 
 let g:airline_powerline_fonts=1 "基本主题，需要修改的话取消注释掉底下对应项目以覆盖
@@ -182,6 +185,7 @@ let g:airline_powerline_fonts=1 "基本主题，需要修改的话取消注释�
 "
 " |>vista<|
 let g:vista_cursor_delay = 70
+let g:vista_sidebar_position = "vertical topleft"
 "
 " |>coc-nvim<|
 let g:coc_enable_locationlist = 0
