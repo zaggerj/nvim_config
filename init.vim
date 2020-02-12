@@ -151,7 +151,7 @@ function! Runner()
 endfunc
 
 function! Set_it()
-    exe float2nr(g:Spheight(0.8))."~/AppData/Local/nvim/init.vim"
+    exe float2nr(g:Spheight(0.8))."sp ~/AppData/Local/nvim/init.vim"
     exe "cd %:h"
 endfunc
 
