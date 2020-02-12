@@ -33,7 +33,7 @@ let mapleader = " "
 "inoremap [ []<Esc>i
 "inoremap ] <Esc>la
 inoremap fj <Esc> 
-inoremap <expr><tab> CTab()
+inoremap <expr><tab> g:CTab()
 tnoremap <Esc> <C-\><C-n>
 nmap <silent> <leader>s :call Set_it()<cr>
 nnoremap <silent> <leader>c :call Complier()<cr>
@@ -95,9 +95,25 @@ hi PmenuThumb guibg=#ffffff "Scroll button's color.
 "
 " |>my funcs<|
 let &splitbelow=1 "Open window below
+
+" Tab to complete
+let g:CTab = {-> pumvisible() ? "\<C-n>" : "\<tab>"}
+" Caclulator, you can also use winheight() and winwidth()
+let g:Spheight = {x -> nvim_win_get_height(0) * x}
+let g:Vspwidth = {x -> nvim_win_get_width(0) * x}
+
+function! PercentSplit(percent, action)
+    if a:action == "sp"
+        let l:temp = float2nr(g:Spheight(a:percent))
+    else
+        let l:temp = float2nr(g:Vspwidth(a:percent))
+    endif
+    exe l:temp.a:action
+endfunction
+
 function! Complier()
     exe "w"
-    exe "10sp" 
+    call PercentSplit(0.4, "sp")
     exe "cd %:h"    
     if &filetype=='c'
 	exe "te clang -o %:r.exe %"
@@ -120,7 +136,7 @@ function! Complier()
 endfunc
 
 function! Runner()
-    exe "13sp"
+    call PercentSplit(0.4, "sp")
     if &filetype=='cpp'
         exe "te %:r.exe"
     elseif &filetype == 'c'
@@ -135,17 +151,15 @@ function! Runner()
 endfunc
 
 function! Set_it()
-    exe "25sp ~/AppData/Local/nvim/init.vim"
+    exe float2nr(g:Spheight(0.8))."~/AppData/Local/nvim/init.vim"
     exe "cd %:h"
 endfunc
 
 function! Open_terminal()
     exe "cd %:h"
-    exe "20sp"
+    call PercentSplit(0.4, "sp")
     exe "te"
 endfunction
-
-let CTab = {-> pumvisible() ? "\<C-n>" : "\<tab>"} "lambda expr
 "
 " |>airline<|
 let &laststatus = 2
