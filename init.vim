@@ -83,12 +83,13 @@ let &timeoutlen = 1500
 "set shellpipe=\| shellredir=> shellxquote=\(	 	 "Not '\' or '(' !!! Must setting the xquote not quote!!!
 "set shellcmdflag=/c					 "Not /s/c or /s\ /c or /s\ /c\ ! Can be -c or -Command
 "
-" |>PopupMenu<| After the colo option
-"If you use gruvbox, do not set Pmenu guibg option
+" |>PopupMenu<| 
+" !After the colo option
+" If you use gruvbox, do not set other airline theme!
 set pumblend=10
 set winblend=30
 hi Pmenu guifg=#dfaf00 "Normal popup menu's color
-hi PmenuSel guifg=#00afff guibg=#dfffaf blend=0 "Selected item's color
+hi PmenuSel guifg=#00afff guibg=#dfffaf blend=0  "Selected item's color
 hi PmenuSbar guibg=#3a3a3a "Scroll bar's color
 hi PmenuThumb guibg=#ffffff "Scroll button's color.
 "
