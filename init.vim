@@ -156,7 +156,7 @@ endfunc
 function! Open_terminal()
     exe "cd %:h"
     call PercentSplit(0.4, "sp")
-    exe "te"
+    exe "te pwsh"
 endfunction
 "
 " |>airline<|
