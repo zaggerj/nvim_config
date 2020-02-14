@@ -24,28 +24,29 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'pangloss/vim-javascript'
 call plug#end()
 "
+"
 " |>my maps<|
 let mapleader = " "
 inoremap fj <Esc> 
 tnoremap fj <C-\><C-n>
 inoremap <expr><tab> g:CTab()
-nmap <silent> <C-h> <C-w><C-h>
-nmap <silent> <C-j> <C-w><C-j>
-nmap <silent> <C-k> <C-w><C-k>
-nmap <silent> <C-l> <C-w><C-l>
-nmap <silent> <leader>s :call Set_it()<cr>
-nmap <silent> <leader>c :call Complier()<cr>
-nmap <silent> <leader>r :call Runner()<cr>
-nmap <silent> <leader>v :Vista coc<cr>
-nmap <silent> <leader>d :NERDTreeFind<cr>	            "NERDTree %:h<cr>
-nmap <silent> <leader><F1> :AirlineTheme random<cr>
-nmap <silent> <leader><F2> :!git status -s<cr>
-nmap <silent> <leader><F3> :!git add %<cr>
-nmap <silent> <leader><F4> :!git commit -m "
-nmap <silent> <leader>t :call Open_terminal()<cr>
-nmap <silent> <leader>I :PlugInstall<cr>
-nmap <silent> <leader>U :PlugUpdate<cr>
-nmap <silent> <M-s> :execute "help ".expand("<cword>")<cr>
+noremap <silent> <C-h> <C-w><C-h>
+noremap <silent> <C-j> <C-w><C-j>
+noremap <silent> <C-k> <C-w><C-k>
+noremap <silent> <C-l> <C-w><C-l>
+nnoremap <silent> <leader>s :call Set_it()<cr>
+nnoremap <silent> <leader>c :call Complier()<cr>
+nnoremap <silent> <leader>r :call Runner()<cr>
+nnoremap <silent> <leader>v :Vista coc<cr>
+nnoremap <silent> <leader>d :NERDTreeFind<cr>	            "NERDTree %:h<cr>
+nnoremap <silent> <leader><F1> :AirlineTheme random<cr>
+nnoremap <silent> <leader><F2> :!git status -s<cr>
+nnoremap <silent> <leader><F3> :!git add %<cr>
+nnoremap <silent> <leader><F4> :!git commit -m "
+nnoremap <silent> <leader>t :call Open_terminal()<cr>
+nnoremap <silent> <leader>I :PlugInstall<cr>
+nnoremap <silent> <leader>U :PlugUpdate<cr>
+nnoremap <silent> <M-s> :execute "help ".expand("<cword>")<cr>
 noremap <silent> gd <Plug>(coc-definition)
 noremap <silent> gp <Plug>(coc-diagnostic-prev)
 "
