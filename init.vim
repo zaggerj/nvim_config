@@ -21,67 +21,58 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'morhetz/gruvbox' 
     Plug 'joshdick/onedark.vim'
     Plug 'luochen1990/rainbow'
+    Plug 'pangloss/vim-javascript'
 call plug#end()
 "
 " |>my maps<|
 let mapleader = " "
-"inoremap ' ''<Esc>i    "Now have coc-pair plugin
-"inoremap " ""<Esc>i
-"inoremap ( ()<Esc>i
-"inoremap ) <Esc>la
-"inoremap { {}<Esc>i<cr><Esc>O
-"inoremap [ []<Esc>i
-"inoremap ] <Esc>la
 inoremap fj <Esc> 
+tnoremap fj <C-\><C-n>
 inoremap <expr><tab> g:CTab()
-tnoremap <Esc> <C-\><C-n>
+nmap <silent> <C-h> <C-w><C-h>
+nmap <silent> <C-j> <C-w><C-j>
+nmap <silent> <C-k> <C-w><C-k>
+nmap <silent> <C-l> <C-w><C-l>
 nmap <silent> <leader>s :call Set_it()<cr>
-nnoremap <silent> <leader>c :call Complier()<cr>
-nnoremap <silent> <leader>r :call Runner()<cr>
-noremap <silent> <leader>v :Vista coc<cr>
-noremap <silent> <leader>d :NERDTreeFind<cr>	            "NERDTree %:h<cr>
-noremap <silent> <leader><F1> :AirlineTheme random<cr>
-noremap <silent> <leader><F2> :!git status -s<cr>
-noremap <silent> <leader><F3> :!git add %<cr>
-noremap <silent> <leader><F4> :!git commit -m "
-noremap <silent> <leader>t :call Open_terminal()<cr>
-noremap <silent> <leader>I :PlugInstall<cr>
-noremap <silent> <leader>U :PlugUpdate<cr>
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gp <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>c :call Complier()<cr>
+nmap <silent> <leader>r :call Runner()<cr>
+nmap <silent> <leader>v :Vista coc<cr>
+nmap <silent> <leader>d :NERDTreeFind<cr>	            "NERDTree %:h<cr>
+nmap <silent> <leader><F1> :AirlineTheme random<cr>
+nmap <silent> <leader><F2> :!git status -s<cr>
+nmap <silent> <leader><F3> :!git add %<cr>
+nmap <silent> <leader><F4> :!git commit -m "
+nmap <silent> <leader>t :call Open_terminal()<cr>
+nmap <silent> <leader>I :PlugInstall<cr>
+nmap <silent> <leader>U :PlugUpdate<cr>
+nmap <silent> <M-s> :execute "help ".expand("<cword>")<cr>
+noremap <silent> gd <Plug>(coc-definition)
+noremap <silent> gp <Plug>(coc-diagnostic-prev)
 "
 " |>my hooks<|
 autocmd TermOpen * startinsert
-"autocmd BufRead,BufNewFile *.rkt if &ft == 'scheme' | set ft=racket | endif
-autocmd BufRead,BufNewFile *.elm set ft=elm
 "
 " |>regular<|
 colo gruvbox
-let &background="dark"
+set background=dark
 syntax enable
-let &encoding="utf-8"
-let &fileencodings="utf-8,gb2312"
-set clipboard+=unnamedplus "总是启用系统剪贴板(Always use system clipboard),Maybe lower speed
-let &cursorline=1
-let &showmatch = 1 "Just like lisp repl's bracket highlight
+set fileencodings=utf-8,gb2312
+set clipboard+=unnamedplus
+set cursorline
+" Bracket jump like lisp
+set showmatch
 let g:rainbow_active = 1
-"let &guifont="FiraCode Nerd Font:h15" "In nvim-qt, you can make a file
-"'ginit.vim' and modify this option in it.
-let &number=1
+set number
 "set smartindent
-let &autoindent=1
-let &lisp = 0 " lisp's indent
-let &termguicolors=1 
-"let &t_Co=256
-"let &cmdheight=1 " 见帮助(doc)，默认为1。
-let &softtabstop=4
-let &expandtab = 1 "Don't use TABs
-let &shiftwidth=4
-let &timeoutlen = 1500
-"let &autochroot=1 "auto change path to current path.
-"set shell=pwsh
-"set shellpipe=\| shellredir=> shellxquote=\(	 	 "Not '\' or '(' !!! Must setting the xquote not quote!!!
-"set shellcmdflag=/c					 "Not /s/c or /s\ /c or /s\ /c\ ! Can be -c or -Command
+set autoindent
+set termguicolors
+"set cmdheight=1
+set softtabstop=4
+set expandtab
+set shiftwidth=4
+set timeoutlen=1500
+"Open window below
+set splitbelow
 "
 " |>PopupMenu<| 
 " !After the colo option
@@ -94,19 +85,26 @@ hi PmenuSbar guibg=#3a3a3a "Scroll bar's color
 hi PmenuThumb guibg=#ffffff "Scroll button's color.
 "
 " |>my funcs<|
-let &splitbelow=1 "Open window below
-
 " Tab to complete
 let g:CTab = {-> pumvisible() ? "\<C-n>" : "\<tab>"}
 " Caclulator, you can also use winheight() and winwidth()
-let g:Spheight = {x -> nvim_win_get_height(0) * x}
-let g:Vspwidth = {x -> nvim_win_get_width(0) * x}
+let g:Spheight = {x -> float2nr(nvim_win_get_height(0) * x)}
+let g:Vspwidth = {x -> float2nr(nvim_win_get_width(0) * x)}
+
+" Function to get current file path
+function! Get_current_path(...)
+    if a:0 == 0
+        return expand("%")
+    else
+        return expand("%:".a:1)
+    endif
+endfunction
 
 function! PercentSplit(percent, action)
     if a:action == "sp"
-        let l:temp = float2nr(g:Spheight(a:percent))
+        let l:temp = g:Spheight(a:percent)
     else
-        let l:temp = float2nr(g:Vspwidth(a:percent))
+        let l:temp = g:Vspwidth(a:percent)
     endif
     exe l:temp.a:action
 endfunction
@@ -151,7 +149,7 @@ function! Runner()
 endfunc
 
 function! Set_it()
-    exe float2nr(g:Spheight(0.8))."sp ~/AppData/Local/nvim/init.vim"
+    exe g:Spheight(0.8)."sp ~/AppData/Local/nvim/init.vim"
     exe "cd %:h"
 endfunc
 
@@ -163,14 +161,17 @@ endfunction
 "
 " |>airline<|
 let &laststatus = 2
-let &showmode = 0	    " no default line
+let &showmode = 0
 let g:airline_section_b = '%{FugitiveStatusline()}'
 "let g:airline#extensions#ale#enabled = 1
-let g:airline_theme='gruvbox' "Must after colo
-let &showtabline = 1   " Always display if 2, turn off GuiTabline in ginit when using nvim-qt
+"Must after colo
+let g:airline_theme='gruvbox'
+" Always display if 2, turn off GuiTabline in ginit when using nvim-qt
+let &showtabline = 1
 let g:airline#extensions#tabline#enabled = 1
 
-let g:airline_powerline_fonts=1 "基本主题，需要修改的话取消注释掉底下对应项目以覆盖
+let g:airline_powerline_fonts=1
+"基本主题，需要修改的话取消注释掉底下对应项目以覆盖
 "if !exists('g:airline_symbols')	
 "  let g:airline_symbols={}
 "endif
@@ -191,11 +192,6 @@ let g:vista_sidebar_position = "vertical topleft"
 " |>coc-nvim<|
 let g:coc_enable_locationlist = 0
 
-" |>ale<|
-"let g:ale_disable_lsp = 0
-"let g:ale_completion_enabled = 1
-"let &omnifunc="ale#completion#OmniFunc"
-"
 " |>highlight<|
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
