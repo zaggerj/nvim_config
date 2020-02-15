@@ -3,21 +3,17 @@
 call plug#begin('~\\vimfiles\\plugged')
     Plug 'Yggdroot/indentLine'
     Plug 'scrooloose/nerdtree'
-    "Plug 'yianwillis/vimcdoc'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'PProvost/vim-ps1'
-    "Plug 'itchyny/lightline.vim'
     Plug 'reasonml-editor/vim-reason-plus'
-    "Plug 'HerringtonDarkholme/yats.vim'
     Plug 'guns/xterm-color-table.vim'
     Plug 'tpope/vim-fugitive'
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'vim-python/python-syntax'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    "Plug 'dense-analysis/ale'
     Plug 'liuchengxu/vista.vim'
-    Plug 'icymind/NeoSolarized' "Theme
+    Plug 'icymind/NeoSolarized'
     Plug 'morhetz/gruvbox' 
     Plug 'joshdick/onedark.vim'
     Plug 'luochen1990/rainbow'
@@ -39,10 +35,9 @@ nnoremap <silent> <leader>c :call Complier()<cr>
 nnoremap <silent> <leader>r :call Runner()<cr>
 nnoremap <silent> <leader>v :Vista coc<cr>
 nnoremap <silent> <leader>d :NERDTreeFind<cr>	            "NERDTree %:h<cr>
-nnoremap <silent> <leader><F1> :AirlineTheme random<cr>
-nnoremap <silent> <leader><F2> :!git status -s<cr>
-nnoremap <silent> <leader><F3> :!git add %<cr>
-nnoremap <silent> <leader><F4> :!git commit -m "
+nnoremap <silent> <leader>gs :!git status -s<cr>
+nnoremap <silent> <leader>ga :!git add %<cr>
+nnoremap <silent> <leader>gc :!git commit -m "
 nnoremap <silent> <leader>t :call Open_terminal()<cr>
 nnoremap <silent> <leader>I :PlugInstall<cr>
 nnoremap <silent> <leader>U :PlugUpdate<cr>
@@ -54,8 +49,6 @@ noremap <silent> gp <Plug>(coc-diagnostic-prev)
 autocmd TermOpen * startinsert
 "
 " |>regular<|
-colo gruvbox
-set background=dark
 syntax enable
 set fileencodings=utf-8,gb2312
 set clipboard+=unnamedplus
@@ -75,15 +68,11 @@ set timeoutlen=1500
 "Open window below
 set splitbelow
 "
-" |>PopupMenu<| 
-" !After the colo option
-" If you use gruvbox, do not set other airline theme!
+" |>theme<| 
+colo gruvbox
+set background=dark
 set pumblend=10
 set winblend=30
-hi Pmenu guifg=#dfaf00 "Normal popup menu's color
-hi PmenuSel guifg=#00afff guibg=#dfffaf blend=0  "Selected item's color
-hi PmenuSbar guibg=#3a3a3a "Scroll bar's color
-hi PmenuThumb guibg=#ffffff "Scroll button's color.
 "
 " |>my funcs<|
 " Tab to complete
@@ -157,34 +146,19 @@ endfunc
 function! Open_terminal()
     exe "cd %:h"
     call PercentSplit(0.4, "sp")
-    exe "te pwsh"
+    exe "te powershell"
 endfunction
 "
 " |>airline<|
-let &laststatus = 2
-let &showmode = 0
+set laststatus=2
+set noshowmode
+set showtabline=2
 let g:airline_section_b = '%{FugitiveStatusline()}'
 "let g:airline#extensions#ale#enabled = 1
 "Must after colo
 let g:airline_theme='gruvbox'
-" Always display if 2, turn off GuiTabline in ginit when using nvim-qt
-let &showtabline = 1
 let g:airline#extensions#tabline#enabled = 1
-
 let g:airline_powerline_fonts=1
-"基本主题，需要修改的话取消注释掉底下对应项目以覆盖
-"if !exists('g:airline_symbols')	
-"  let g:airline_symbols={}
-"endif
-"let g:airline_left_sep = "\ue0bc"
-"let g:airline_left_alt_sep = "\ue0b8"
-"let g:airline_right_sep = "\ue0ba"
-"let g:airline_right_alt_sep = "\ue0cf"
-"let g:airline_symbols.branch = "\ue0a0"
-"let g:airline_symbols.readonly = "\ue0a2"
-"let g:airline_symbols.linenr = "\ue0a3"
-"let g:airline_symbols.maxlinenr = "\ue0a1"
-"let g:airline_symbols.dirty='⚡'
 "
 " |>vista<|
 let g:vista_cursor_delay = 70
