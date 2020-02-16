@@ -1,5 +1,5 @@
 "With ginit.vim
-" |>pluggings<|
+" |>Installed plugins<|
 call plug#begin('~\\vimfiles\\plugged')
     Plug 'Yggdroot/indentLine'
     Plug 'scrooloose/nerdtree'
@@ -37,15 +37,16 @@ nnoremap <silent> <leader>gc :!git commit -m "
 nnoremap <silent> <leader>t :call Open_terminal()<cr>
 nnoremap <silent> <leader>I :PlugInstall<cr>
 nnoremap <silent> <leader>U :PlugUpdate<cr>
-nnoremap <silent> <M-s> :execute "help ".expand("<cword>")<cr>
+nnoremap <silent> <C-s> :execute "help ".expand("<cword>")<cr>
 noremap <silent> gd <Plug>(coc-definition)
 noremap <silent> gp <Plug>(coc-diagnostic-prev)
 "
-" |>my hooks<|
+" |>my autocmd<|
 autocmd TermOpen * startinsert
 "
 " |>regular<|
 syntax enable
+set incsearch
 set fileencodings=utf-8,gb2312
 set clipboard+=unnamedplus
 set cursorline
@@ -64,7 +65,7 @@ set timeoutlen=1500
 set splitbelow
 "
 " |>theme<| 
-colo gruvbox
+colo onedark
 set background=dark
 set pumblend=10
 set winblend=30
@@ -144,11 +145,13 @@ function! Open_terminal()
     exe "te powershell"
 endfunction
 "
+"||>plugs<||
+"
 " |>airline<|
 set laststatus=2
 set noshowmode
 set showtabline=2
-let g:airline_theme='gruvbox'
+let g:airline_theme='onedark'
 let g:airline_section_b = '%{FugitiveStatusline()}'
 let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
