@@ -27,7 +27,7 @@ noremap <silent> <C-j> <C-w><C-j>
 noremap <silent> <C-k> <C-w><C-k>
 noremap <silent> <C-l> <C-w><C-l>
 nnoremap <silent> <leader>s :call Set_it()<cr>
-nnoremap <silent> <leader>c :call Complier()<cr>
+nnoremap <silent> <leader>c :call Compiler()<cr>
 nnoremap <silent> <leader>r :call Runner()<cr>
 nnoremap <silent> <leader>v :Vista coc<cr>
 nnoremap <silent> <leader>d :NERDTreeFind<cr>	            "NERDTree %:h<cr>
@@ -76,13 +76,26 @@ let g:CTab = {-> pumvisible() ? "\<C-n>" : "\<tab>"}
 " Caclulator, you can also use winheight() and winwidth()
 let g:Sp_height = {x -> float2nr(nvim_win_get_height(0) * x)}
 let g:Vsp_width = {x -> float2nr(nvim_win_get_width(0) * x)}
+"
+" Function to avoid re_chdir
+function! Ch_dir()
+    if getreg("%") == ""
+        exe "cd ~"
+    elseif expand("%:h") == "."
+        exe "cd %:h"
+    else
+        echom "No problem"
+    endif
+endfunction
 
-" Function to get current file path
+" Function to get current absolute file path
 function! Get_current_path(...)
     if a:0 == 0
-        return expand("%")
+        return expand("%:p")
+    elseif a:0 > 1
+        echom "Wrong argument"
     else
-        return expand("%:".a:1)
+        return expand("%".a:1)
     endif
 endfunction
 
@@ -95,10 +108,9 @@ function! PercentSplit(percent, action)
     exe l:temp.a:action
 endfunction
 
-function! Complier()
+function! Compiler()
     exe "w"
     call PercentSplit(0.4, "sp")
-    exe "cd %:h"    
     if &filetype=='c'
 	exe "te clang -o %:r.exe %"
     elseif &filetype=='cpp'
@@ -140,11 +152,6 @@ function! Set_it()
 endfunc
 
 function! Open_terminal()
-    if (expand("%") != "")
-        exe "cd %:h"
-    else
-        exe "cd ~"
-    endif
     call PercentSplit(0.4, "sp")
     exe "te powershell"
 endfunction
