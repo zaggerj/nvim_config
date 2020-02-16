@@ -140,7 +140,11 @@ function! Set_it()
 endfunc
 
 function! Open_terminal()
-    exe "cd %:h"
+    if (expand("%") != "")
+        exe "cd %:h"
+    else
+        exe "cd ~"
+    endif
     call PercentSplit(0.4, "sp")
     exe "te powershell"
 endfunction
