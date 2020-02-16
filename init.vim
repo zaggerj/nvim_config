@@ -34,7 +34,7 @@ nnoremap <silent> <leader>d :NERDTreeFind<cr>	            "NERDTree %:h<cr>
 nnoremap <silent> <leader>gs :!git status -s<cr>
 nnoremap <silent> <leader>ga :!git add %<cr>
 nnoremap <silent> <leader>gd :!git push<cr>
-nnoremap <leader>gc :!git commit -m "
+nnoremap <leader>gc :!git commit -a -m ""<left>
 nnoremap <silent> <leader>t :call Open_terminal()<cr>
 nnoremap <silent> <leader>I :PlugInstall<cr>
 nnoremap <silent> <leader>U :PlugUpdate<cr>
