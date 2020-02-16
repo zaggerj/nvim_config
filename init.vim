@@ -5,26 +5,22 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'scrooloose/nerdtree'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
-    Plug 'PProvost/vim-ps1'
-    Plug 'reasonml-editor/vim-reason-plus'
-    Plug 'guns/xterm-color-table.vim'
     Plug 'tpope/vim-fugitive'
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'vim-python/python-syntax'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'liuchengxu/vista.vim'
-    Plug 'icymind/NeoSolarized'
     Plug 'morhetz/gruvbox' 
     Plug 'joshdick/onedark.vim'
     Plug 'luochen1990/rainbow'
     Plug 'pangloss/vim-javascript'
 call plug#end()
 "
-"
 " |>my maps<|
 let mapleader = " "
 inoremap fj <Esc> 
 tnoremap fj <C-\><C-n>
+tnoremap <Esc> exit<cr>
 inoremap <expr><tab> g:CTab()
 noremap <silent> <C-h> <C-w><C-h>
 noremap <silent> <C-j> <C-w><C-j>
@@ -55,9 +51,8 @@ set clipboard+=unnamedplus
 set cursorline
 " Bracket jump like lisp
 set showmatch
-let g:rainbow_active = 1
 set number
-"set smartindent
+set smartindent
 set autoindent
 set termguicolors
 "set cmdheight=1
@@ -153,10 +148,9 @@ endfunction
 set laststatus=2
 set noshowmode
 set showtabline=2
-let g:airline_section_b = '%{FugitiveStatusline()}'
-"let g:airline#extensions#ale#enabled = 1
-"Must after colo
 let g:airline_theme='gruvbox'
+let g:airline_section_b = '%{FugitiveStatusline()}'
+let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
 "
@@ -176,4 +170,5 @@ let g:cpp_experimental_template_highlight = 1
 let g:python_highlight_all = 1
 "
 " |>rainbow<|
-let g:rainbow_conf = {'guifgs': ['Red', 'Orange', 'Yellow', 'Green', 'Cyan', 'Blue', 'Purple']}
+let g:rainbow_active = 1
+let g:rainbow_conf = {'guifgs': reverse(['Red', 'Orange', 'Yellow', 'Green', 'Cyan', 'Blue', 'Purple'])}

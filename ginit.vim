@@ -1,5 +1,5 @@
 if exists('g:GuiLoaded')
-    GuiFont FiraCode Nerd Font:h15
+    GuiFont Fira Code Retina:h15
     GuiPopupmenu 0
     GuiTabline 0
 endif
