@@ -175,3 +175,7 @@ let g:python_highlight_all = 1
 " |>rainbow<|
 let g:rainbow_active = 1
 let g:rainbow_conf = {'guifgs': reverse(['Red', 'Orange', 'Yellow', 'Green', 'Cyan', 'Blue', 'Purple'])}
+"
+" |>vim-plug<|
+let g:plug_timeout = 120
+let g:plug_retries = 3
