@@ -33,7 +33,8 @@ nnoremap <silent> <leader>v :Vista coc<cr>
 nnoremap <silent> <leader>d :NERDTreeFind<cr>	            "NERDTree %:h<cr>
 nnoremap <silent> <leader>gs :!git status -s<cr>
 nnoremap <silent> <leader>ga :!git add %<cr>
-nnoremap <silent> <leader>gc :!git commit -m "
+nnoremap <silent> <leader>gd :!git push<cr>
+nnoremap <leader>gc :!git commit -m "
 nnoremap <silent> <leader>t :call Open_terminal()<cr>
 nnoremap <silent> <leader>I :PlugInstall<cr>
 nnoremap <silent> <leader>U :PlugUpdate<cr>
@@ -44,18 +45,17 @@ noremap <silent> gp <Plug>(coc-diagnostic-prev)
 " |>my autocmd<|
 autocmd TermOpen * startinsert
 "
-" |>regular<|
+" |>options(universal)<|
 syntax enable
 set incsearch
 set fileencodings=utf-8,gb2312
 set clipboard+=unnamedplus
 set cursorline
-" Bracket jump like lisp
-set showmatch
+" Bracket jump like lisp's repl
+" set showmatch
 set number
 set smartindent
 set autoindent
-set termguicolors
 "set cmdheight=1
 set softtabstop=4
 set expandtab
@@ -65,6 +65,7 @@ set timeoutlen=1500
 set splitbelow
 "
 " |>theme<| 
+set termguicolors
 colo onedark
 set background=dark
 set pumblend=10
@@ -74,8 +75,8 @@ set winblend=30
 " Tab to complete
 let g:CTab = {-> pumvisible() ? "\<C-n>" : "\<tab>"}
 " Caclulator, you can also use winheight() and winwidth()
-let g:Spheight = {x -> float2nr(nvim_win_get_height(0) * x)}
-let g:Vspwidth = {x -> float2nr(nvim_win_get_width(0) * x)}
+let g:Sp_height = {x -> float2nr(nvim_win_get_height(0) * x)}
+let g:Vsp_width = {x -> float2nr(nvim_win_get_width(0) * x)}
 
 " Function to get current file path
 function! Get_current_path(...)
@@ -88,9 +89,9 @@ endfunction
 
 function! PercentSplit(percent, action)
     if a:action == "sp"
-        let l:temp = g:Spheight(a:percent)
+        let l:temp = g:Sp_height(a:percent)
     else
-        let l:temp = g:Vspwidth(a:percent)
+        let l:temp = g:Vsp_width(a:percent)
     endif
     exe l:temp.a:action
 endfunction
@@ -135,7 +136,7 @@ function! Runner()
 endfunc
 
 function! Set_it()
-    exe g:Spheight(0.8)."sp ~/AppData/Local/nvim/init.vim"
+    exe g:Sp_height(0.8)."sp ~/AppData/Local/nvim/init.vim"
     exe "cd %:h"
 endfunc
 
@@ -148,8 +149,8 @@ endfunction
 "||>plugs<||
 "
 " |>airline<|
-set laststatus=2
 set noshowmode
+set laststatus=2
 set showtabline=2
 let g:airline_theme='onedark'
 let g:airline_section_b = '%{FugitiveStatusline()}'
