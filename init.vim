@@ -40,6 +40,9 @@ nnoremap <silent> <leader>I :PlugInstall<cr>
 nnoremap <silent> <leader>U :PlugUpdate<cr>
 nnoremap <silent> <C-s> :execute "help ".expand("<cword>")<cr>
 noremap <silent> gd <Plug>(coc-definition)
+command Gs :!git status
+command Ga :!git add
+command Gcam :!git commit -a -m ""<left>
 "
 " |>my autocmd<|
 autocmd TermOpen * startinsert
