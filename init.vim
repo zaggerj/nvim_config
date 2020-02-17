@@ -42,7 +42,7 @@ nnoremap <silent> <C-s> :execute "help ".expand("<cword>")<cr>
 noremap <silent> gd <Plug>(coc-definition)
 command Gs :!git status
 command Ga :!git add
-command Gcam :!git commit -a -m ""<left>
+command Gcam :!git commit -a -m 
 "
 " |>my autocmd<|
 autocmd TermOpen * startinsert
