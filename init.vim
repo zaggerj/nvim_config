@@ -45,6 +45,7 @@ noremap <silent> gd <Plug>(coc-definition)
 autocmd TermOpen * startinsert
 "
 " |>options(universal)<|
+" `:options` for more information.
 syntax enable
 set incsearch
 set fileencodings=utf-8,gb2312
@@ -63,7 +64,7 @@ set splitbelow
 "
 " |>theme<| 
 set termguicolors
-colo onedark
+colo gruvbox
 set background=dark
 set pumblend=10
 set winblend=30
@@ -146,7 +147,7 @@ endfunction
 set noshowmode
 set laststatus=2
 set showtabline=2
-let g:airline_theme='onedark'
+let g:airline_theme='gruvbox'
 let g:airline_section_b = '%{FugitiveStatusline()}'
 let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
