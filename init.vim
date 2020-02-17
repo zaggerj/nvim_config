@@ -50,7 +50,6 @@ set incsearch
 set fileencodings=utf-8,gb2312
 set clipboard+=unnamedplus
 set cursorline
-" Bracket jump like lisp's repl
 " set showmatch
 set number
 set smartindent
@@ -60,7 +59,6 @@ set softtabstop=4
 set expandtab
 set shiftwidth=4
 set timeoutlen=1500
-"Open window below
 set splitbelow
 "
 " |>theme<| 
@@ -77,17 +75,6 @@ let g:CTab = {-> pumvisible() ? "\<C-n>" : "\<tab>"}
 let g:Sp_height = {x -> float2nr(nvim_win_get_height(0) * x)}
 let g:Vsp_width = {x -> float2nr(nvim_win_get_width(0) * x)}
 "
-" Function to avoid re_chdir
-function! Ch_dir()
-    if getreg("%") == ""
-        exe "cd ~"
-    elseif expand("%:h") == "."
-        exe "cd %:h"
-    else
-        echom "No problem"
-    endif
-endfunction
-
 " Function to get current absolute file path
 function! Get_current_path(...)
     if a:0 == 0
@@ -99,6 +86,7 @@ function! Get_current_path(...)
     endif
 endfunction
 
+" Split window in percent.
 function! PercentSplit(percent, action)
     if a:action == "sp"
         let l:temp = g:Sp_height(a:percent)
@@ -117,14 +105,12 @@ function! Compiler()
 	exe "te g++ -o %:r.exe %"
     elseif &filetype == 'java'
         exe "te javac %"
-    elseif &filetype == 'scheme'
-        exe "te racket % -p sicp"
+    elseif &filetype == 'javascript'
+        exe "te node %"
     elseif &filetype == 'python'
 	exe "te python %"
     elseif &filetype == 'ps1'
 	exe "te powershell -c \"./%\""
-    elseif &filetype == 'scala'
-	exe "te scalac %"
     else 
 	echo 'Do not support this type of file!'
         exe "q"
@@ -139,8 +125,6 @@ function! Runner()
         exe "te %:r.exe"
     elseif &filetype == 'java'
         exe "te java %:r"
-    elseif &filetype == 'scala'
-        exe "te scala %:r"
     else
         exe "q"
     endif
