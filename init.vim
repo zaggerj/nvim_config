@@ -45,7 +45,7 @@ noremap <silent> gd <Plug>(coc-definition)
 autocmd TermOpen * startinsert
 "
 " |>options(universal)<|
-" `:options` for more information.
+" `:options` for all available options.
 syntax enable
 set incsearch
 set fileencodings=utf-8,gb2312

@@ -1,5 +1,5 @@
 if exists('g:GuiLoaded')
-    GuiFont SauceCodePro NF:h14
+    GuiFont FiraCode Nerd Font:h14
     GuiPopupmenu 0
     GuiTabline 0
 endif
