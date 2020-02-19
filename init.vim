@@ -64,7 +64,7 @@ set splitbelow
 "
 " |>theme<| 
 set termguicolors
-colo gruvbox
+colo onedark
 set background=dark
 set pumblend=10
 set winblend=30
@@ -147,7 +147,7 @@ endfunction
 set noshowmode
 set laststatus=2
 set showtabline=2
-let g:airline_theme='gruvbox'
+let g:airline_theme='onedark'
 let g:airline_powerline_fonts = 0
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#coc#enabled = 1
