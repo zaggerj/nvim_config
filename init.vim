@@ -30,7 +30,7 @@ nnoremap <silent> <leader>s :call Set_it()<cr>
 nnoremap <silent> <leader>c :call Compiler()<cr>
 nnoremap <silent> <leader>r :call Runner()<cr>
 nnoremap <silent> <leader>v :Vista coc<cr>
-nnoremap <silent> <leader>d :NERDTreeFind<cr>	            "NERDTree %:h<cr>
+nnoremap <silent> <leader>d :NERDTreeFind<cr>
 nnoremap <silent> <leader>gs :!git status -s<cr>
 nnoremap <silent> <leader>ga :!git add %<cr>
 nnoremap <silent> <leader>gp :!git push<cr>
@@ -41,7 +41,7 @@ nnoremap <silent> <leader>U :PlugUpdate<cr>
 nnoremap <silent> <C-s> :execute "help ".expand("<cword>")<cr>
 noremap <silent> gd <Plug>(coc-definition)
 "
-" |>my autocmd<|
+    " |>my autocmd<|
 autocmd TermOpen * startinsert
 autocmd BufNewFile,BufRead *.js set tabstop=2 | set shiftwidth=2
 "
@@ -102,19 +102,19 @@ function! Compiler()
     exe "w"
     call PercentSplit(0.4, "sp")
     if &filetype=='c'
-	exe "te clang -o %:r.exe %"
+        exe "te clang -o %:r.exe %"
     elseif &filetype=='cpp'
-	exe "te g++ -o %:r.exe %"
+        exe "te g++ -o %:r.exe %"
     elseif &filetype == 'java'
         exe "te javac %"
     elseif &filetype == 'javascript'
         exe "te node %"
     elseif &filetype == 'python'
-	exe "te python %"
+        exe "te python %"
     elseif &filetype == 'ps1'
-	exe "te powershell -c \"./%\""
+        exe "te powershell -c \"./%\""
     else 
-	echo 'Do not support this type of file!'
+        echo 'Do not support this type of file!'
         exe "q"
     endif
 endfunc
