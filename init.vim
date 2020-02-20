@@ -43,7 +43,7 @@ noremap <silent> gd <Plug>(coc-definition)
 "
     " |>my autocmd<|
 autocmd TermOpen * startinsert
-autocmd BufNewFile,BufRead *.js set tabstop=2 | set shiftwidth=2
+autocmd BufNewFile,BufRead *.js set tabstop=2 | set shiftwidth=2 | set expandtab
 "
 " |>options(universal)<|
 " `:options` for all available options.
@@ -57,8 +57,8 @@ set number
 set smartindent
 set autoindent
 "set cmdheight=1
-set expandtab
-set tabstop=4
+set noexpandtab
+set softtabstop=4
 set shiftwidth=4
 set timeoutlen=1500
 set splitbelow
