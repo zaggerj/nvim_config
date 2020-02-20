@@ -107,12 +107,6 @@ function! Compiler()
         exe "te g++ -o %:r.exe %"
     elseif &filetype == 'java'
         exe "te javac %"
-    elseif &filetype == 'javascript'
-        exe "te node %"
-    elseif &filetype == 'python'
-        exe "te python %"
-    elseif &filetype == 'ps1'
-        exe "te powershell -c \"./%\""
     else 
         echo 'Do not support this type of file!'
         exe "q"
@@ -127,6 +121,12 @@ function! Runner()
         exe "te %:r.exe"
     elseif &filetype == 'java'
         exe "te java %:r"
+    elseif &filetype == 'javascript'
+        exe "te node %"
+    elseif &filetype == 'python'
+        exe "te python %"
+    elseif &filetype == 'ps1'
+        exe "te powershell -c \"./%\""
     else
         exe "q"
     endif
