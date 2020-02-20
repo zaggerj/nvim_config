@@ -114,6 +114,7 @@ function! Compiler()
 endfunc
 
 function! Runner()
+    write
     call PercentSplit(0.4, "sp")
     if &filetype=='cpp'
         exe "te %:r.exe"
