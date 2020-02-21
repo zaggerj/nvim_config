@@ -11,6 +11,7 @@
     "java.errors.incompleteClasspath.severity": "ignore",
     "suggest.noselect": true,
     "java.configuration.updateBuildConfiguration": "interactive",
-    "java.jdt.ls.home": "F:/JDT/lang"
+    "java.jdt.ls.home": "F:/JDT/lang",
+    "tsserver.enableJavascript": true
 }
 

@@ -95,6 +95,7 @@ function! PercentSplit(percent, action)
     else
         let l:temp = g:Vsp_width(a:percent)
     endif
+    " Nsp/vsp
     exe l:temp.a:action
 endfunction
 
@@ -142,6 +143,7 @@ function! Open_terminal()
     call PercentSplit(0.4, "sp")
     exe "te powershell"
 endfunction
+"
 "
 "||>plugs<||
 "
