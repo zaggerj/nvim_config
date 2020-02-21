@@ -77,7 +77,7 @@ let g:CTab = {-> pumvisible() ? "\<C-n>" : "\<tab>"}
 let g:Sp_height = {x -> float2nr(nvim_win_get_height(0) * x)}
 let g:Vsp_width = {x -> float2nr(nvim_win_get_width(0) * x)}
 "
-" Function to get current absolute file path
+" Function to get current absolute file path, also see fnamemodify()
 function! Get_current_path(...)
     if a:0 == 0
         return expand("%:p")
