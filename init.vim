@@ -19,9 +19,11 @@ call plug#end()
 " |>my maps<|
 let mapleader = " "
 inoremap fj <Esc> 
+inoremap <expr><tab> g:CTab()
+
 tnoremap fj <C-\><C-n>
 tnoremap <Esc> exit<cr>
-inoremap <expr><tab> g:CTab()
+
 noremap <silent> <A-h> <C-w>h
 noremap <silent> <A-j> <C-w>j
 noremap <silent> <A-k> <C-w>k
@@ -30,6 +32,7 @@ noremap <silent> <A-H> <C-w>H
 noremap <silent> <A-J> <C-w>J
 noremap <silent> <A-K> <C-w>K
 noremap <silent> <A-L> <C-w>L
+
 nnoremap <silent> <leader>s :call Set_it()<cr>
 nnoremap <silent> <leader>c :call Compiler()<cr>
 nnoremap <silent> <leader>r :call Runner()<cr>
