@@ -22,10 +22,14 @@ inoremap fj <Esc>
 tnoremap fj <C-\><C-n>
 tnoremap <Esc> exit<cr>
 inoremap <expr><tab> g:CTab()
-noremap <silent> <C-h> <C-w><C-h>
-noremap <silent> <C-j> <C-w><C-j>
-noremap <silent> <C-k> <C-w><C-k>
-noremap <silent> <C-l> <C-w><C-l>
+noremap <silent> <A-h> <C-w><C-h>
+noremap <silent> <A-j> <C-w><C-j>
+noremap <silent> <A-k> <C-w><C-k>
+noremap <silent> <A-l> <C-w><C-l>
+noremap <silent> <A-H> <C-w>H
+noremap <silent> <A-J> <C-w>J
+noremap <silent> <A-K> <C-w>K
+noremap <silent> <A-L> <C-w>L
 nnoremap <silent> <leader>s :call Set_it()<cr>
 nnoremap <silent> <leader>c :call Compiler()<cr>
 nnoremap <silent> <leader>r :call Runner()<cr>
@@ -50,7 +54,6 @@ autocmd BufNewFile,BufRead *.js set tabstop=2 | set shiftwidth=2
 syntax enable
 set incsearch
 set fileencodings=utf-8,gb2312
-set clipboard+=unnamedplus
 set cursorline
 " set showmatch
 set number
@@ -100,12 +103,13 @@ function! PercentSplit(percent, action)
 endfunction
 
 function! Compiler()
-    exe "w"
+    exe "wa"
     call PercentSplit(0.4, "sp")
     if &filetype=='c'
         exe "te clang -o %:r.exe %"
     elseif &filetype=='cpp'
-        exe "te g++ -o %:r.exe %"
+        "exe "te g++ -o %:r.exe %"
+        exe "te cp.bat"
     elseif &filetype == 'java'
         exe "te javac %"
     else 
@@ -118,7 +122,8 @@ function! Runner()
     write
     call PercentSplit(0.4, "sp")
     if &filetype=='cpp'
-        exe "te %:r.exe"
+        "exe "te %:r.exe"
+        exe "te cp.bat"
     elseif &filetype == 'c'
         exe "te %:r.exe"
     elseif &filetype == 'java'
