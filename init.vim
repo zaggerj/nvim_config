@@ -22,10 +22,10 @@ inoremap fj <Esc>
 tnoremap fj <C-\><C-n>
 tnoremap <Esc> exit<cr>
 inoremap <expr><tab> g:CTab()
-noremap <silent> <A-h> <C-w><C-h>
-noremap <silent> <A-j> <C-w><C-j>
-noremap <silent> <A-k> <C-w><C-k>
-noremap <silent> <A-l> <C-w><C-l>
+noremap <silent> <A-h> <C-w>h
+noremap <silent> <A-j> <C-w>j
+noremap <silent> <A-k> <C-w>k
+noremap <silent> <A-l> <C-w>l
 noremap <silent> <A-H> <C-w>H
 noremap <silent> <A-J> <C-w>J
 noremap <silent> <A-K> <C-w>K
