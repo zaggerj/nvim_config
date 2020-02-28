@@ -111,8 +111,7 @@ function! Compiler()
     if &filetype=='c'
         exe "te clang -o %:r.exe %"
     elseif &filetype=='cpp'
-        "exe "te g++ -o %:r.exe %"
-        exe "te cp.bat"
+        exe "te g++ -o %:r.exe %"
     elseif &filetype == 'java'
         exe "te javac %"
     else 
@@ -126,7 +125,6 @@ function! Runner()
     call PercentSplit(0.4, "sp")
     if &filetype=='cpp'
         exe "te %:r.exe"
-        "exe "te cp.bat"
     elseif &filetype == 'c'
         exe "te %:r.exe"
     elseif &filetype == 'java'
