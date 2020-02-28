@@ -125,8 +125,8 @@ function! Runner()
     write
     call PercentSplit(0.4, "sp")
     if &filetype=='cpp'
-        "exe "te %:r.exe"
-        exe "te cp.bat"
+        exe "te %:r.exe"
+        "exe "te cp.bat"
     elseif &filetype == 'c'
         exe "te %:r.exe"
     elseif &filetype == 'java'
