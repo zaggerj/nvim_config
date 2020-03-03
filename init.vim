@@ -48,10 +48,11 @@ nnoremap <silent> <leader>I :PlugInstall<cr>
 nnoremap <silent> <leader>U :PlugUpdate<cr>
 nnoremap <silent> <C-s> :execute "help ".expand("<cword>")<cr>
 noremap <silent> gd <Plug>(coc-definition)
+let g:user_emmet_leader_key = '<M-s>'
 "
 " |>my autocmd<|
 autocmd TermOpen * startinsert
-autocmd BufNewFile,BufRead *.js set tabstop=2 | set shiftwidth=2 
+autocmd BufNewFile,BufRead *.js,*.html set tabstop=2 | set shiftwidth=2 
 "
 " |>options(universal)<|
 " `:options` for all available options.
@@ -181,7 +182,7 @@ let g:python_highlight_all = 1
 "
 " |>rainbow<|
 let g:rainbow_active = 1
-let g:rainbow_conf = {'guifgs': reverse(['Red', 'Orange', 'Yellow', 'Green', 'Cyan', 'Blue', 'Purple'])}
+let g:rainbow_conf = {'guifgs': reverse(['Red', 'Orange', 'Yellow', 'Green', 'Cyan', 'Lightblue', 'Purple'])}
 "
 " |>vim-plug<|
 let g:plug_timeout = 120
