@@ -14,6 +14,7 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'joshdick/onedark.vim'
     Plug 'luochen1990/rainbow'
     Plug 'pangloss/vim-javascript'
+    Plug 'mattn/emmet-vim'
 call plug#end()
 "
 " |>my maps<|
