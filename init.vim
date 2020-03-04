@@ -48,7 +48,7 @@ nnoremap <silent> <leader>I :PlugInstall<cr>
 nnoremap <silent> <leader>U :PlugUpdate<cr>
 nnoremap <silent> <C-s> :execute "help ".expand("<cword>")<cr>
 noremap <silent> gd <Plug>(coc-definition)
-let g:user_emmet_leader_key = '<M-s>'
+let g:user_emmet_leader_key = '<M-f>'
 "
 " |>my autocmd<|
 autocmd TermOpen * startinsert
