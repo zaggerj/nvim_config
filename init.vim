@@ -25,7 +25,7 @@ inoremap <expr><tab> g:CTab()
 tnoremap fj <C-\><C-n>
 tnoremap <Esc> exit<cr>
 
-noremap <silent> <a-h> <C-w>h
+noremap <silent> <A-h> <C-w>h
 noremap <silent> <A-j> <C-w>j
 noremap <silent> <A-k> <C-w>k
 noremap <silent> <A-l> <C-w>l
