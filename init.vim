@@ -25,7 +25,7 @@ inoremap <expr><tab> g:CTab()
 tnoremap fj <C-\><C-n>
 tnoremap <Esc> exit<cr>
 
-noremap <silent> <A-h> <C-w>h
+noremap <silent> <a-h> <C-w>h
 noremap <silent> <A-j> <C-w>j
 noremap <silent> <A-k> <C-w>k
 noremap <silent> <A-l> <C-w>l
@@ -48,7 +48,7 @@ nnoremap <silent> <leader>I :PlugInstall<cr>
 nnoremap <silent> <leader>U :PlugUpdate<cr>
 nnoremap <silent> <C-s> :execute "help ".expand("<cword>")<cr>
 noremap <silent> gd <Plug>(coc-definition)
-let g:user_emmet_leader_key = '<A-m>'
+let g:user_emmet_leader_key = '<M-m>'
 "
 " |>my autocmd<|
 autocmd TermOpen * startinsert
@@ -137,6 +137,8 @@ function! Runner()
         exe "te python %"
     elseif &filetype == 'ps1'
         exe "te powershell -c \"./%\""
+    elseif &filetype == 'html'
+        exe "te %"
     else
         exe "q"
     endif
