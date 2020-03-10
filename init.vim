@@ -6,21 +6,26 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'tpope/vim-fugitive'
-    Plug 'octol/vim-cpp-enhanced-highlight'
-    Plug 'vim-python/python-syntax'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'liuchengxu/vista.vim'
+    "themes
     Plug 'morhetz/gruvbox' 
     Plug 'joshdick/onedark.vim'
     Plug 'luochen1990/rainbow'
+    "syntax
     Plug 'pangloss/vim-javascript'
+    Plug 'octol/vim-cpp-enhanced-highlight'
+    Plug 'vim-python/python-syntax'
     Plug 'mattn/emmet-vim'
+    "clojure
+    Plug 'guns/vim-clojure-static'
+    Plug 'tpope/vim-fireplace'
 call plug#end()
 "
 " |>my maps<|
 let mapleader = " "
 inoremap fj <Esc> 
-inoremap <expr><tab> g:CTab()
+inoremap <tab> <C-R>=CTab()<cr>
 
 tnoremap fj <C-\><C-n>
 tnoremap <Esc> exit<cr>
@@ -48,6 +53,7 @@ nnoremap <silent> <leader>I :PlugInstall<cr>
 nnoremap <silent> <leader>U :PlugUpdate<cr>
 nnoremap <silent> <C-s> :execute "help ".expand("<cword>")<cr>
 noremap <silent> gd <Plug>(coc-definition)
+"Plug's maps
 let g:user_emmet_leader_key = '<M-m>'
 "
 " |>my autocmd<|
@@ -79,12 +85,23 @@ set pumblend=10
 set winblend=30
 "
 " |>my funcs<|
-" Tab to complete
-let g:CTab = {-> pumvisible() ? "\<C-n>" : "\<tab>"}
 " Caclulator, you can also use winheight() and winwidth()
 let g:Sp_height = {x -> float2nr(nvim_win_get_height(0) * x)}
 let g:Vsp_width = {x -> float2nr(nvim_win_get_width(0) * x)}
 "
+" Tab to complete
+function! CTab()
+    if pumvisible()
+        return "\<C-N>"
+    "如果光标所在处的前两个字符组成的字符串中不包含word, 则返回<Tab>,
+    "相比于整行匹配效率更高.
+    elseif strlen(matchstr(strpart(getline('.'), col('.') - 3, 2), '\w'))==0
+        return "\<tab>"
+    else
+        return "\<C-X>\<C-O>"
+    endif
+endfunction
+
 " Function to get current absolute file path, also see fnamemodify()
 function! Get_current_path(...)
     if a:0 == 0
@@ -123,24 +140,26 @@ function! Compiler()
 endfunc
 
 function! Runner()
-    write
-    call PercentSplit(0.4, "sp")
-    if &filetype=='cpp'
-        exe "te %:r.exe"
-    elseif &filetype == 'c'
-        exe "te %:r.exe"
-    elseif &filetype == 'java'
-        exe "te java %:r"
-    elseif &filetype == 'javascript'
-        exe "te node %"
-    elseif &filetype == 'python'
-        exe "te python %"
-    elseif &filetype == 'ps1'
-        exe "te powershell -c \"./%\""
-    elseif &filetype == 'html'
-        exe "te %"
+    if &filetype == 'clojure'
+        exe "Eval"
     else
-        exe "q"
+        write
+        call PercentSplit(0.4, "sp")
+        if &filetype=='cpp'|| &filetype=='c'
+            exe "te %:r.exe"
+        elseif &filetype == 'java'
+            exe "te java %:r"
+        elseif &filetype == 'javascript'
+            exe "te node %"
+        elseif &filetype == 'python'
+            exe "te python %"
+        elseif &filetype == 'ps1'
+            exe "te powershell -c \"./%\""
+        elseif &filetype == 'html'
+            exe "te %"
+        else
+            quit
+        endif
     endif
 endfunc
 
