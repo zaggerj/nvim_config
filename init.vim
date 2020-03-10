@@ -94,9 +94,9 @@ function! CTab()
     "有弹出菜单则进入选择模式.
     if pumvisible()
         return "\<C-N>"
-    "如果光标所在处的前两个字符组成的字符串中包含word, 则尝试omni补全,
-    "相比于整行匹配效率更高.
-    elseif match(strpart(getline('.'), col('.') - 3, 2), '\w') != -1
+    " 如果光标所在处的前两个字符组成的字符串中包含word, 则尝试omni补全,
+    " 相比于整行匹配效率更高.
+    elseif match(strpart(getline('.'), col('.') - 3, 2), '\w') != -1 && &omnifunc != ""
         return "\<C-X>\<C-O>"
     else
         return "\<tab>"
