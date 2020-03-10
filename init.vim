@@ -93,12 +93,12 @@ let g:Vsp_width = {x -> float2nr(nvim_win_get_width(0) * x)}
 function! CTab()
     if pumvisible()
         return "\<C-N>"
-    "如果光标所在处的前两个字符组成的字符串中不包含word, 则返回<Tab>,
+    "如果光标所在处的前两个字符组成的字符串中包含word, 则尝试omni补全,
     "相比于整行匹配效率更高.
-    elseif strlen(matchstr(strpart(getline('.'), col('.') - 3, 2), "[\w({]{1,}"))==0
-        return "\<tab>"
-    else
+    elseif match(strpart(getline('.'), col('.') - 3, 2), '\w') != -1
         return "\<C-X>\<C-O>"
+    else
+        return "\<tab>"
     endif
 endfunction
 
