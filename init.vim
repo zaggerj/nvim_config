@@ -91,6 +91,7 @@ let g:Vsp_width = {x -> float2nr(nvim_win_get_width(0) * x)}
 "
 " Tab to complete
 function! CTab()
+    "有弹出菜单则进入选择模式.
     if pumvisible()
         return "\<C-N>"
     "如果光标所在处的前两个字符组成的字符串中包含word, 则尝试omni补全,
