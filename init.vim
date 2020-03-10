@@ -25,7 +25,7 @@ call plug#end()
 " |>my maps<|
 let mapleader = " "
 inoremap fj <Esc> 
-inoremap <tab> <C-R>=CTab()<cr>
+inoremap <silent><tab> <C-R>=CTab()<cr>
 
 tnoremap fj <C-\><C-n>
 tnoremap <Esc> exit<cr>
@@ -95,7 +95,7 @@ function! CTab()
         return "\<C-N>"
     "如果光标所在处的前两个字符组成的字符串中不包含word, 则返回<Tab>,
     "相比于整行匹配效率更高.
-    elseif strlen(matchstr(strpart(getline('.'), col('.') - 3, 2), '\w'))==0
+    elseif strlen(matchstr(strpart(getline('.'), col('.') - 3, 2), "[\w({]{1,}"))==0
         return "\<tab>"
     else
         return "\<C-X>\<C-O>"
