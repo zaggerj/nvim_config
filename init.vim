@@ -143,6 +143,9 @@ endfunc
 function! Runner()
     if &filetype == 'clojure'
         exe "Eval"
+    elseif &filetype == 'html'
+        write
+        exe "!%"
     else
         write
         call PercentSplit(0.4, "sp")
@@ -156,8 +159,6 @@ function! Runner()
             exe "te python %"
         elseif &filetype == 'ps1'
             exe "te powershell -c \"./%\""
-        elseif &filetype == 'html'
-            exe "te %"
         else
             quit
         endif
