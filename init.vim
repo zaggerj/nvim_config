@@ -39,9 +39,9 @@ noremap <silent> <A-J> <C-w>J
 noremap <silent> <A-K> <C-w>K
 noremap <silent> <A-L> <C-w>L
 
+noremap <silent> <leader>c :call Compiler()<cr>
+noremap <silent> <leader>r :call Runner()<cr>
 nnoremap <silent> <leader>s :call Set_it()<cr>
-nnoremap <silent> <leader>c :call Compiler()<cr>
-nnoremap <silent> <leader>r :call Runner()<cr>
 nnoremap <silent> <leader>v :Vista coc<cr>
 nnoremap <silent> <leader>d :NERDTreeFind<cr>
 nnoremap <silent> <leader>gs :!git status -s<cr>
