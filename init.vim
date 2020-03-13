@@ -1,27 +1,28 @@
 "With ginit.vim
 " |>Installed plugins<|
 call plug#begin('~\\vimfiles\\plugged')
-    Plug 'Yggdroot/indentLine'
-    Plug 'luochen1990/rainbow'
-    Plug 'scrooloose/nerdtree'
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
+    " Git
     Plug 'tpope/vim-fugitive'
+    " Language cilent/support
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'liuchengxu/vista.vim'
-    "themes
+    Plug 'tpope/vim-fireplace'
+    " Themes
     Plug 'morhetz/gruvbox' 
     Plug 'crusoexia/vim-monokai' 
     Plug 'joshdick/onedark.vim'
-    Plug 'jacoborus/tender.vim'
-    "syntax
+    Plug 'vim-airline/vim-airline-themes'
+    " Syntax
     Plug 'pangloss/vim-javascript'
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'vim-python/python-syntax'
-    Plug 'mattn/emmet-vim'
-    "clojure
     Plug 'guns/vim-clojure-static'
-    Plug 'tpope/vim-fireplace'
+    " Edit enhancement
+    Plug 'Yggdroot/indentLine'
+    Plug 'scrooloose/nerdtree'
+    Plug 'vim-airline/vim-airline'
+    Plug 'luochen1990/rainbow'
+    Plug 'mattn/emmet-vim'
 call plug#end()
 "
 " |>my maps<|
