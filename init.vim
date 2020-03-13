@@ -13,6 +13,7 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'morhetz/gruvbox' 
     Plug 'crusoexia/vim-monokai' 
     Plug 'joshdick/onedark.vim'
+    Plug 'jacoborus/tender.vim'
     "syntax
     Plug 'pangloss/vim-javascript'
     Plug 'octol/vim-cpp-enhanced-highlight'
@@ -183,7 +184,7 @@ endfunction
 set noshowmode
 set laststatus=2
 set showtabline=2
-let g:airline_theme='monokai'
+let g:airline_theme='molokai'
 let g:airline_powerline_fonts = 0
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#coc#enabled = 1
