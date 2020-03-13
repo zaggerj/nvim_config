@@ -2,6 +2,7 @@
 " |>Installed plugins<|
 call plug#begin('~\\vimfiles\\plugged')
     Plug 'Yggdroot/indentLine'
+    Plug 'luochen1990/rainbow'
     Plug 'scrooloose/nerdtree'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
@@ -10,8 +11,8 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'liuchengxu/vista.vim'
     "themes
     Plug 'morhetz/gruvbox' 
+    Plug 'crusoexia/vim-monokai' 
     Plug 'joshdick/onedark.vim'
-    Plug 'luochen1990/rainbow'
     "syntax
     Plug 'pangloss/vim-javascript'
     Plug 'octol/vim-cpp-enhanced-highlight'
@@ -79,7 +80,7 @@ set splitbelow
 "
 " |>theme<| 
 set termguicolors
-colo onedark
+colo monokai
 set background=dark
 set pumblend=10
 set winblend=30
@@ -182,7 +183,7 @@ endfunction
 set noshowmode
 set laststatus=2
 set showtabline=2
-let g:airline_theme='onedark'
+let g:airline_theme='monokai'
 let g:airline_powerline_fonts = 0
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#coc#enabled = 1
