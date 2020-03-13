@@ -1,27 +1,28 @@
 "With ginit.vim
 " |>Installed plugins<|
 call plug#begin('~\\vimfiles\\plugged')
-    Plug 'Yggdroot/indentLine'
-    Plug 'luochen1990/rainbow'
-    Plug 'scrooloose/nerdtree'
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
+    " Git
     Plug 'tpope/vim-fugitive'
+    " Language cilent/support
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'liuchengxu/vista.vim'
-    "themes
+    Plug 'tpope/vim-fireplace'
+    " Themes
     Plug 'morhetz/gruvbox' 
     Plug 'crusoexia/vim-monokai' 
     Plug 'joshdick/onedark.vim'
-    Plug 'jacoborus/tender.vim'
-    "syntax
+    Plug 'vim-airline/vim-airline-themes'
+    " Syntax
     Plug 'pangloss/vim-javascript'
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'vim-python/python-syntax'
-    Plug 'mattn/emmet-vim'
-    "clojure
     Plug 'guns/vim-clojure-static'
-    Plug 'tpope/vim-fireplace'
+    " Edit enhancement
+    Plug 'Yggdroot/indentLine'
+    Plug 'scrooloose/nerdtree'
+    Plug 'vim-airline/vim-airline'
+    Plug 'luochen1990/rainbow'
+    Plug 'mattn/emmet-vim'
 call plug#end()
 "
 " |>my maps<|
@@ -46,16 +47,15 @@ noremap <silent> <leader>r :call Runner()<cr>
 nnoremap <silent> <leader>s :call Set_it()<cr>
 nnoremap <silent> <leader>v :Vista coc<cr>
 nnoremap <silent> <leader>d :NERDTreeFind<cr>
-nnoremap <silent> <leader>gs :!git status -s<cr>
-nnoremap <silent> <leader>ga :!git add %<cr>
-nnoremap <silent> <leader>gp :!git push<cr>
-nnoremap <leader>gc :!git commit -a -m ""<left>
+nnoremap <silent> <leader>gs :G<cr>
+nnoremap <silent> <leader>gp :Git push<cr>
+nnoremap <silent> <leader>gl :Gllog<cr>
 nnoremap <silent> <leader>t :call Open_terminal()<cr>
 nnoremap <silent> <leader>I :PlugInstall<cr>
 nnoremap <silent> <leader>U :PlugUpdate<cr>
 nnoremap <silent> <C-s> :execute "help ".expand("<cword>")<cr>
 noremap <silent> gd <Plug>(coc-definition)
-"Plug's maps
+" Plug's maps
 let g:user_emmet_leader_key = '<M-m>'
 "
 " |>my autocmd<|
