@@ -48,8 +48,8 @@ nnoremap <silent> <leader>s :call Set_it()<cr>
 nnoremap <silent> <leader>v :Vista coc<cr>
 nnoremap <silent> <leader>d :NERDTreeFind<cr>
 nnoremap <silent> <leader>gs :G<cr>
-nnoremap <silent> <leader>gp :Git push<cr>
-nnoremap <silent> <leader>gl :Gllog<cr>
+nnoremap <silent> <leader>gp :Gpush<cr>
+nnoremap <silent> <leader>gl :Gclog<cr>
 nnoremap <silent> <leader>t :call Open_terminal()<cr>
 nnoremap <silent> <leader>I :PlugInstall<cr>
 nnoremap <silent> <leader>U :PlugUpdate<cr>
