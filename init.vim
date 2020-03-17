@@ -94,13 +94,18 @@ let g:Vsp_width = {x -> float2nr(nvim_win_get_width(0) * x)}
 "
 " Tab to complete
 function! CTab()
-    "有弹出菜单则进入选择模式.
+    " 优先考虑有弹出菜单的情况，否则<tab>将不会进行菜单选择。.
     if pumvisible()
         return "\<C-N>"
-    " 如果光标所在处的前两个字符组成的字符串中包含word, 则尝试omni补全,
-    " 相比于整行匹配效率更高.
-    elseif match(strpart(getline('.'), col('.') - 3, 2), '\w') != -1 && &omnifunc != ""
+    " 如果光标所在处的前三个字符组成的字符串中包含word, 则尝试omni补全,
+    " 相比于整行正则匹配效率更高.
+    elseif match(strpart(getline('.'), col('.') - 4, 3), '\w') != -1 
+    " 如果没有设置 omnifunc 函数，则尝试关键字补全
+      if &omnifunc != "" 
         return "\<C-X>\<C-O>"
+      else
+        return "\<C-X>\<C-N>"
+      endif
     else
         return "\<tab>"
     endif
