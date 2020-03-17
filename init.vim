@@ -14,6 +14,7 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'vim-airline/vim-airline-themes'
     " Syntax
     Plug 'pangloss/vim-javascript'
+    Plug 'HerringtonDarkholme/yats.vim'
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'vim-python/python-syntax'
     Plug 'guns/vim-clojure-static'
