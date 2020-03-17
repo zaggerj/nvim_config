@@ -137,6 +137,8 @@ function! Compiler()
         exe "te g++ -o %:r.exe %"
     elseif &filetype == 'java'
         exe "te javac %"
+    elseif &filetype == 'typescript'
+        exe "te tsc %"
     else 
         echo 'Do not support this type of file!'
         exe "q"
@@ -158,6 +160,8 @@ function! Runner()
             exe "te java %:r"
         elseif &filetype == 'javascript'
             exe "te node %"
+        elseif &filetype == 'typescript'
+            exe "te node %<.js"
         elseif &filetype == 'python'
             exe "te python %"
         elseif &filetype == 'ps1'
