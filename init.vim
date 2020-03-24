@@ -93,21 +93,31 @@ let g:Sp_height = {x -> float2nr(nvim_win_get_height(0) * x)}
 let g:Vsp_width = {x -> float2nr(nvim_win_get_width(0) * x)}
 "
 " Tab to complete
-function! CTab()
+    function! CTab()
     " 优先考虑有弹出菜单的情况，否则<tab>将不会进行菜单选择。.
     if pumvisible()
         return "\<C-N>"
-    " 如果光标所在处的前三个字符组成的字符串中包含word, 则尝试omni补全,
-    " 相比于整行正则匹配效率更高.
-    elseif match(strpart(getline('.'), col('.') - 4, 3), '\w') != -1 
-    " 如果没有设置 omnifunc 函数，则尝试关键字补全
-      if &omnifunc != "" 
-        return "\<C-X>\<C-O>"
-      else
-        return "\<C-X>\<C-N>"
-      endif
     else
-        return "\<tab>"
+        " 获取光标所在处的前五个字符, 相比于整行正则匹配效率更高.
+        let matchL = strpart(getline('.'), col('.') - 6, 5) 
+        " -1代表无匹配
+        " 匹配路径
+        let isPath = match(matchL, '\/\|\') 
+        " 匹配是否有字符
+        let isNormal = match(matchL, '\w') 
+        " 没有字符就TAB
+        if isNormal == -1
+            return "\<tab>"
+        elseif isPath != -1
+            return "\<C-X>\<C-F>"
+        elseif isNormal != -1 
+            " 如果没有设置 omnifunc 函数，则尝试关键字补全
+            if &omnifunc == "" 
+                return "\<C-X>\<C-N>"
+            else
+                return "\<C-X>\<C-O>"
+            endif
+        endif
     endif
 endfunction
 
