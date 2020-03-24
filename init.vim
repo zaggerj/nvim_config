@@ -100,12 +100,11 @@ let g:Vsp_width = {x -> float2nr(nvim_win_get_width(0) * x)}
     else
         " 获取光标前四个字符, 相比于整行正则匹配效率更高.
         let matchL = strpart(getline('.'), col('.') - 5, 4) 
-        " -1代表无匹配
         " 匹配路径
         let isPath = match(matchL, '\/\|\') 
         " 匹配是否有字符
         let isNormal = match(matchL, '\w') 
-        " 没有字符就TAB
+        " -1代表无匹配, 没有字符就TAB
         if isNormal == -1
             return "\<tab>"
         elseif isPath != -1
