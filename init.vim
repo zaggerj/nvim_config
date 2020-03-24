@@ -93,7 +93,7 @@ let g:Sp_height = {x -> float2nr(nvim_win_get_height(0) * x)}
 let g:Vsp_width = {x -> float2nr(nvim_win_get_width(0) * x)}
 "
 " Tab to complete
-    function! CTab()
+function! CTab()
     " 优先考虑有弹出菜单的情况，否则<tab>将不会进行菜单选择。.
     if pumvisible()
         return "\<C-N>"
