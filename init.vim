@@ -98,8 +98,8 @@ let g:Vsp_width = {x -> float2nr(nvim_win_get_width(0) * x)}
     if pumvisible()
         return "\<C-N>"
     else
-        " 获取光标所在处的前五个字符, 相比于整行正则匹配效率更高.
-        let matchL = strpart(getline('.'), col('.') - 6, 5) 
+        " 获取光标前四个字符, 相比于整行正则匹配效率更高.
+        let matchL = strpart(getline('.'), col('.') - 5, 4) 
         " -1代表无匹配
         " 匹配路径
         let isPath = match(matchL, '\/\|\') 
