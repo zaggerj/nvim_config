@@ -28,13 +28,14 @@ call plug#begin('~\\vimfiles\\plugged')
 call plug#end()
 "
 " |>my maps<|
+" first-class maps
 let mapleader = " "
 inoremap fj <Esc> 
 inoremap <silent><tab> <C-R>=CTab()<cr>
-
+" terminal control
 tnoremap fj <C-\><C-n>
 tnoremap <Esc> exit<cr>
-
+" window jump
 noremap <silent> <A-h> <C-w>h
 noremap <silent> <A-j> <C-w>j
 noremap <silent> <A-k> <C-w>k
@@ -43,24 +44,32 @@ noremap <silent> <A-H> <C-w>H
 noremap <silent> <A-J> <C-w>J
 noremap <silent> <A-K> <C-w>K
 noremap <silent> <A-L> <C-w>L
-
+" my functions
 noremap <silent> <leader>c :call Compiler()<cr>
 noremap <silent> <leader>r :call Runner()<cr>
 nnoremap <silent> <leader>s :call Set_it()<cr>
+nnoremap <silent> <leader>t :call Open_terminal()<cr>
+nnoremap <silent> <C-s> :execute "help ".expand("<cword>")<cr>
+" single map plugins 
 nnoremap <silent> <leader>v :Vista coc<cr>
 nnoremap <silent> <leader>d :NERDTreeFind<cr>
+" fugitive
 nnoremap <silent> <leader>gs :G<cr>
 nnoremap <silent> <leader>gp :Gpush<cr>
 nnoremap <silent> <leader>gl :Gclog<cr>
-nnoremap <silent> <leader>t :call Open_terminal()<cr>
+" vim-plug
 nnoremap <silent> <leader>I :PlugInstall<cr>
 nnoremap <silent> <leader>U :PlugUpdate<cr>
-nnoremap <silent> <C-s> :execute "help ".expand("<cword>")<cr>
-noremap <silent> gd <Plug>(coc-definition)
-" Plug's maps
+" coc maps(IDE features)
+nmap <silent> <leader>id <Plug>(coc-definition)
+nmap <silent> <leader>in <Plug>(coc-diagnostic-next-error)
+nmap <silent> <leader>ip <Plug>(coc-diagnostic-prev-error)
+nmap <silent> <leader>if <Plug>(coc-format)
+nmap <silent> <leader>ia <Plug>(coc-codeaction)
+" emmet
 let g:user_emmet_leader_key = '<M-m>'
 "
-" |>my autocmd<|
+" |>autocmd<|
 autocmd TermOpen * startinsert
 autocmd BufNewFile,BufRead *.js,*.html set tabstop=2 | set shiftwidth=2 
 "
@@ -198,9 +207,6 @@ function! Open_terminal()
     exe "te powershell"
 endfunction
 "
-"
-"||>plugs<||
-"
 " |>airline<|
 set noshowmode
 set laststatus=2
@@ -212,7 +218,7 @@ let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 "
 " |>vista<|
-let g:vista_cursor_delay = 70
+let g:vista_cursor_delay = 60
 let g:vista_sidebar_position = "vertical topleft"
 "
 " |>coc-nvim<|
