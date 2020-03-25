@@ -24,6 +24,7 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'luochen1990/rainbow'
     Plug 'mattn/emmet-vim'
+    Plug 'jiangmiao/auto-pairs'
 call plug#end()
 "
 " |>my maps<|
@@ -65,6 +66,7 @@ autocmd BufNewFile,BufRead *.js,*.html set tabstop=2 | set shiftwidth=2
 "
 " |>options(universal)<|
 " `:options` for all available options.
+filetype plugin indent on
 syntax enable
 set incsearch
 set fileencodings=utf-8,gb2312
@@ -229,5 +231,5 @@ let g:rainbow_active = 1
 let g:rainbow_conf = {'guifgs': reverse(['Red', 'Orange', 'Yellow', 'Green', 'Cyan', 'Lightblue', 'Purple'])}
 "
 " |>vim-plug<|
-let g:plug_timeout = 120
-let g:plug_retries = 3
+let g:plug_timeout = 180
+let g:plug_retries = 5
