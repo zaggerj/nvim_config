@@ -45,28 +45,28 @@ noremap <silent> <A-J> <C-w>J
 noremap <silent> <A-K> <C-w>K
 noremap <silent> <A-L> <C-w>L
 " my functions
-noremap <silent> <leader>c :call Compiler()<cr>
-noremap <silent> <leader>r :call Runner()<cr>
-nnoremap <silent> <leader>s :call Set_it()<cr>
-nnoremap <silent> <leader>t :call Open_terminal()<cr>
-nnoremap <silent> <C-s> :execute "help ".expand("<cword>")<cr>
+noremap <silent> <Leader>fc :call Compiler()<cr>
+noremap <silent> <Leader>fr :call Runner()<cr>
+nnoremap <silent> <Leader>fs :call Set_it()<cr>
+nnoremap <silent> <Leader>ft :call Open_terminal()<cr>
 " single map plugins 
-nnoremap <silent> <leader>v :Vista coc<cr>
-nnoremap <silent> <leader>d :NERDTreeFind<cr>
+nnoremap <silent> <Leader>pv :Vista coc<cr>
+nnoremap <silent> <Leader>pd :NERDTreeFind<cr>
 " fugitive
-nnoremap <silent> <leader>gs :G<cr>
-nnoremap <silent> <leader>gps :Gpush<cr>
-nnoremap <silent> <leader>gpl :Gpull<cr>
-nnoremap <silent> <leader>gl :Gclog<cr>
+nnoremap <silent> <Leader>gs :G<cr>
+nnoremap <silent> <Leader>gps :Gpush<cr>
+nnoremap <silent> <Leader>gpl :Gpull<cr>
+nnoremap <silent> <Leader>gl :Gclog<cr>
 " vim-plug
-nnoremap <silent> <leader>I :PlugInstall<cr>
-nnoremap <silent> <leader>U :PlugUpdate<cr>
+nnoremap <silent> <Leader>I :PlugInstall<cr>
+nnoremap <silent> <Leader>U :PlugUpdate<cr>
 " coc maps(IDE features)
-nmap <silent> <leader>ia <Plug>(coc-codeaction)
-nmap <silent> <leader>id <Plug>(coc-definition)
-nmap <silent> <leader>if <Plug>(coc-format)
-nmap <silent> <leader>in <Plug>(coc-diagnostic-next-error)
-nmap <silent> <leader>ip <Plug>(coc-diagnostic-prev-error)
+nmap <silent> <Leader>ia <Plug>(coc-codeaction)
+nmap <silent> <Leader>id <Plug>(coc-definition)
+nmap <silent> <Leader>if <Plug>(coc-format)
+nmap <silent> <Leader>il :CocList<cr>
+nmap <silent> <Leader>in <Plug>(coc-diagnostic-next-error)
+nmap <silent> <Leader>ip <Plug>(coc-diagnostic-prev-error)
 " emmet
 let g:user_emmet_leader_key = '<M-m>'
 "
