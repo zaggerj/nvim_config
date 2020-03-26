@@ -3,10 +3,17 @@
 call plug#begin('~\\vimfiles\\plugged')
     " Git
     Plug 'tpope/vim-fugitive'
-    " Language cilent/support
+    " Language support
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'liuchengxu/vista.vim'
     Plug 'tpope/vim-fireplace'
+    Plug 'mattn/emmet-vim'
+    " Editor enhancement
+    Plug 'Yggdroot/indentLine'
+    Plug 'scrooloose/nerdtree'
+    Plug 'vim-airline/vim-airline'
+    Plug 'luochen1990/rainbow'
+    Plug 'jiangmiao/auto-pairs'
     " Themes
     Plug 'morhetz/gruvbox' 
     Plug 'crusoexia/vim-monokai' 
@@ -18,13 +25,6 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'vim-python/python-syntax'
     Plug 'guns/vim-clojure-static'
-    " Edit enhancement
-    Plug 'Yggdroot/indentLine'
-    Plug 'scrooloose/nerdtree'
-    Plug 'vim-airline/vim-airline'
-    Plug 'luochen1990/rainbow'
-    Plug 'mattn/emmet-vim'
-    Plug 'jiangmiao/auto-pairs'
 call plug#end()
 "
 " |>my maps<|
