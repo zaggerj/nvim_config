@@ -55,17 +55,18 @@ nnoremap <silent> <leader>v :Vista coc<cr>
 nnoremap <silent> <leader>d :NERDTreeFind<cr>
 " fugitive
 nnoremap <silent> <leader>gs :G<cr>
-nnoremap <silent> <leader>gp :Gpush<cr>
+nnoremap <silent> <leader>gps :Gpush<cr>
+nnoremap <silent> <leader>gpl :Gpull<cr>
 nnoremap <silent> <leader>gl :Gclog<cr>
 " vim-plug
 nnoremap <silent> <leader>I :PlugInstall<cr>
 nnoremap <silent> <leader>U :PlugUpdate<cr>
 " coc maps(IDE features)
+nmap <silent> <leader>ia <Plug>(coc-codeaction)
 nmap <silent> <leader>id <Plug>(coc-definition)
+nmap <silent> <leader>if <Plug>(coc-format)
 nmap <silent> <leader>in <Plug>(coc-diagnostic-next-error)
 nmap <silent> <leader>ip <Plug>(coc-diagnostic-prev-error)
-nmap <silent> <leader>if <Plug>(coc-format)
-nmap <silent> <leader>ia <Plug>(coc-codeaction)
 " emmet
 let g:user_emmet_leader_key = '<M-m>'
 "
@@ -91,7 +92,7 @@ set shiftwidth=4
 set timeoutlen=1500
 set splitbelow
 "
-" |>theme<| 
+" |>theme<|
 set termguicolors
 colo monokai
 set background=dark
