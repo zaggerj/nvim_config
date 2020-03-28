@@ -162,6 +162,8 @@ function! Compiler()
         exe "te clang -o %:r.exe %"
     elseif &filetype=='cpp'
         exe "te g++ -o %:r.exe %"
+    elseif &filetype=='java'
+        exe "javac %:r"
     elseif &filetype == 'typescript'
         exe "te tsc %"
     else 
@@ -183,6 +185,8 @@ function! Runner()
             exe "te %:r.exe"
         elseif &filetype == 'javascript'
             exe "te node %"
+        elseif &filetype == 'java'
+            exe "te java %:r"
         elseif &filetype == 'typescript'
             exe "te node %<.js"
         elseif &filetype == 'python'
