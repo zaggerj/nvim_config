@@ -61,13 +61,14 @@ nnoremap <silent> <Leader>gl :Gclog<cr>
 " vim-plug
 nnoremap <silent> <Leader>I :PlugInstall<cr>
 nnoremap <silent> <Leader>U :PlugUpdate<cr>
-" coc maps(IDE features)
-nmap <silent> <Leader>ia <Plug>(coc-codeaction)
-nmap <silent> <Leader>id <Plug>(coc-definition)
-nmap <silent> <Leader>if <Plug>(coc-format)
-nmap <silent> <Leader>il :CocList<cr>
-nmap <silent> <Leader>in <Plug>(coc-diagnostic-next-error)
-nmap <silent> <Leader>ip <Plug>(coc-diagnostic-prev-error)
+" coc maps
+nmap <silent> <Leader>ca <Plug>(coc-codeaction)
+nmap <silent> <Leader>cd <Plug>(coc-definition)
+nmap <silent> <Leader>cf <Plug>(coc-format)
+nmap <silent> <Leader>cl :CocList<cr>
+nmap <silent> <Leader>cn <Plug>(coc-diagnostic-next-error)
+nmap <silent> <Leader>cp <Plug>(coc-diagnostic-prev-error)
+nnoremap <silent> <Leader>cc :CocConfig<cr>
 " emmet
 let g:user_emmet_leader_key = '<M-m>'
 "
