@@ -7,7 +7,7 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'liuchengxu/vista.vim'
     Plug 'tpope/vim-fireplace'
-    Plug 'fatih/vim-go',
+    Plug 'fatih/vim-go'
     Plug 'mattn/emmet-vim'
     " Editor enhancement
     Plug 'Yggdroot/indentLine'
