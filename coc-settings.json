@@ -22,8 +22,12 @@
         "golang": {
             "command": "gopls",
             "rootPatterns": [
+<<<<<<< HEAD
                 "go.mod",
                 ".git/"
+=======
+                "go.mod"
+>>>>>>> a8abf85d616eec579c5dadac0fd00d4701765246
             ],
             "disableWorkspaceFolders": true,
             "filetypes": [
