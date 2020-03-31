@@ -6,8 +6,6 @@ call plug#begin('~\\vimfiles\\plugged')
     " Language support
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'liuchengxu/vista.vim'
-    Plug 'tpope/vim-fireplace'
-    Plug 'fatih/vim-go'
     Plug 'mattn/emmet-vim'
     " Editor enhancement
     Plug 'Yggdroot/indentLine'
@@ -26,7 +24,6 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'HerringtonDarkholme/yats.vim'
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'vim-python/python-syntax'
-    Plug 'guns/vim-clojure-static'
 call plug#end()
 "
 " |>my maps<|
@@ -162,8 +159,6 @@ function! Compiler()
     call PercentSplit(0.4, "sp")
     if &filetype=='c'
         exe "te clang -o %:r.exe %"
-    elseif &filetype=='go'
-        exe "te go build %"
     elseif &filetype=='cpp'
         exe "te g++ -o %:r.exe %"
     elseif &filetype=='java'
@@ -177,9 +172,7 @@ function! Compiler()
 endfunc
 
 function! Runner()
-    if &filetype == 'clojure'
-        exe "Eval"
-    elseif &filetype == 'html'
+    if &filetype == 'html'
         write
         exe "!%"
     else
@@ -195,12 +188,7 @@ function! Runner()
             exe "te node %<.js"
         elseif &filetype == 'python'
             exe "te python %"
-        elseif &filetype=='go'
-            if findfile(expand("%:r").".exe", "**1") != ""
                 exe "te %:r.exe"
-            else
-                exe "te go run %"
-            endif
         elseif &filetype == 'ps1'
             exe "te powershell -c \"./%\""
         else
@@ -237,12 +225,21 @@ let g:vista_sidebar_position = "vertical topleft"
 let g:coc_enable_locationlist = 0
 
 " |>highlight<|
+" cpp
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
 let g:cpp_experimental_template_highlight = 1
-
+" puthon
 let g:python_highlight_all = 1
+" go
+let g:go_highlight_operators = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_variable_assignments = 1
+let g:go_highlight_variable_declarations = 1
 "
 " |>rainbow<|
 let g:rainbow_active = 1
