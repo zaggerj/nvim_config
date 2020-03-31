@@ -6,8 +6,6 @@ call plug#begin('~\\vimfiles\\plugged')
     " Language support
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'liuchengxu/vista.vim'
-    Plug 'tpope/vim-fireplace'
-    Plug 'fatih/vim-go'
     Plug 'mattn/emmet-vim'
     " Editor enhancement
     Plug 'Yggdroot/indentLine'
@@ -26,7 +24,6 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'HerringtonDarkholme/yats.vim'
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'vim-python/python-syntax'
-    Plug 'guns/vim-clojure-static'
 call plug#end()
 "
 " |>my maps<|
@@ -42,10 +39,10 @@ noremap <silent> <A-h> <C-w>h
 noremap <silent> <A-j> <C-w>j
 noremap <silent> <A-k> <C-w>k
 noremap <silent> <A-l> <C-w>l
-noremap <silent> <A-H> <C-w>H
-noremap <silent> <A-J> <C-w>J
-noremap <silent> <A-K> <C-w>K
-noremap <silent> <A-L> <C-w>L
+noremap <silent> <A-S-h> <C-w>H
+noremap <silent> <A-S-j> <C-w>J
+noremap <silent> <A-S-k> <C-w>K
+noremap <silent> <A-S-l> <C-w>L
 " my functions
 noremap <silent> <Leader>fc :call Compiler()<cr>
 noremap <silent> <Leader>fr :call Runner()<cr>
@@ -162,8 +159,6 @@ function! Compiler()
     call PercentSplit(0.4, "sp")
     if &filetype=='c'
         exe "te clang -o %:r.exe %"
-    elseif &filetype=='go'
-        exe "te go build %"
     elseif &filetype=='cpp'
         exe "te g++ -o %:r.exe %"
     elseif &filetype=='java'
@@ -177,9 +172,7 @@ function! Compiler()
 endfunc
 
 function! Runner()
-    if &filetype == 'clojure'
-        exe "Eval"
-    elseif &filetype == 'html'
+    if &filetype == 'html'
         write
         exe "!%"
     else
@@ -193,14 +186,10 @@ function! Runner()
             exe "te java %:r"
         elseif &filetype == 'typescript'
             exe "te node %<.js"
+        elseif &filetype == 'cs'
+            exe "dotner run"
         elseif &filetype == 'python'
             exe "te python %"
-        elseif &filetype=='go'
-            if findfile(expand("%:r").".exe", "**1") != ""
-                exe "te %:r.exe"
-            else
-                exe "te go run %"
-            endif
         elseif &filetype == 'ps1'
             exe "te powershell -c \"./%\""
         else
@@ -234,14 +223,15 @@ let g:vista_cursor_delay = 60
 let g:vista_sidebar_position = "vertical topleft"
 "
 " |>coc-nvim<|
-let g:coc_enable_locationlist = 0
+let g:coc_enable_locationlist = 1
 
 " |>highlight<|
+" cpp
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
 let g:cpp_experimental_template_highlight = 1
-
+" python
 let g:python_highlight_all = 1
 "
 " |>rainbow<|

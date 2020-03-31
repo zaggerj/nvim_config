@@ -32,7 +32,21 @@
             "initializationOptions": {
                 "usePlaceholders": true
             }
-        }
+        },
+//        "omnisharp": {
+//            "command": "F:\\Roslyn\\2020-04-01-17-32-17-download-omnisharp-win-x64\\OmniSharp.exe",
+//            "args": [
+//                "-lsp"
+//            ],
+//            "rootPatterns": [
+//                ".git/",
+//                ".csproj"
+//            ],
+//            "filetypes": [
+//                "cs"
+//            ],
+//            "settings": {}
+//        }
     },
     "suggest.enablePreview": true,
     "java.errors.incompleteClasspath.severity": "ignore",
