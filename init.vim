@@ -187,7 +187,7 @@ function! Runner()
         elseif &filetype == 'typescript'
             exe "te node %<.js"
         elseif &filetype == 'cs'
-            exe "dotner run"
+            exe "te dotnet run"
         elseif &filetype == 'python'
             exe "te python %"
         elseif &filetype == 'ps1'
