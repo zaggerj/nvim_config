@@ -43,6 +43,11 @@ noremap <silent> <A-S-h> <C-w>H
 noremap <silent> <A-S-j> <C-w>J
 noremap <silent> <A-S-k> <C-w>K
 noremap <silent> <A-S-l> <C-w>L
+" buffer jump & tab jump
+noremap <silent> <C-Left> :bp<cr>
+noremap <silent> <C-Right> :bn<cr>
+noremap <silent> <C-S-Left> :tabp<cr>
+noremap <silent> <C-S-Right> :tabn<cr>
 " my functions
 noremap <silent> <Leader>fc :call Compiler()<cr>
 noremap <silent> <Leader>fr :call Runner()<cr>
@@ -64,8 +69,8 @@ nmap <silent> <Leader>ca <Plug>(coc-codeaction)
 nmap <silent> <Leader>cd <Plug>(coc-definition)
 nmap <silent> <Leader>cf <Plug>(coc-format)
 nmap <silent> <Leader>cl :CocList<cr>
-nmap <silent> <C-Left> <Plug>(coc-diagnostic-next-error)
-nmap <silent> <C-Right> <Plug>(coc-diagnostic-prev-error)
+nmap <silent> <C-Up> <Plug>(coc-diagnostic-prev-error)
+nmap <silent> <C-Down> <Plug>(coc-diagnostic-next-error)
 nnoremap <silent> <Leader>cc :CocConfig<cr>
 " emmet
 let g:user_emmet_leader_key = '<M-m>'
