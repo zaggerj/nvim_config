@@ -30,7 +30,8 @@ call plug#end()
 " first-class maps
 let mapleader = " "
 inoremap fj <Esc> 
-inoremap <silent><tab> <C-R>=CTab()<cr>
+" or <C-R>=
+inoremap <silent><expr> <tab> CTab()
 " terminal control
 tnoremap fj <C-\><C-n>
 tnoremap <Esc> exit<cr>
@@ -72,12 +73,10 @@ nmap <silent> <Leader>cl :CocList<cr>
 nmap <silent> <C-Up> <Plug>(coc-diagnostic-prev-error)
 nmap <silent> <C-Down> <Plug>(coc-diagnostic-next-error)
 nnoremap <silent> <Leader>cc :CocConfig<cr>
-" emmet
-let g:user_emmet_leader_key = '<M-m>'
 "
 " |>autocmd<|
 autocmd TermOpen * startinsert
-autocmd BufNewFile,BufRead *.js,*.html set tabstop=2 | set shiftwidth=2 
+autocmd BufNewFile,BufRead *.js,*.html set tabstop=2 | set shiftwidth=2 | imap <silent> <S-Tab> <plug>(emmet-expand-abbr)
 "
 " |>options(universal)<|
 " `:options` for all available options.
@@ -124,17 +123,20 @@ function! CTab()
         " -1代表无匹配, 没有字符就TAB
         if isNormal == -1
             return "\<tab>"
+        " 有字符则按照以下顺序尝试： filepath -> omnifunc.
+        " 文件路径补全
         elseif isPath != -1
             return "\<C-X>\<C-F>"
+        " 尝试omni补全
         elseif isNormal != -1 
             " 如果没有设置 omnifunc 函数，则尝试关键字补全
             if &omnifunc == "" 
                 return "\<C-X>\<C-N>"
             else
                 return "\<C-X>\<C-O>"
-            endif
         endif
     endif
+endif
 endfunction
 
 " Function to get current absolute file path, also see fnamemodify()
