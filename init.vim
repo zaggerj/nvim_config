@@ -49,6 +49,7 @@ noremap <silent> <C-Left> :bp<cr>
 noremap <silent> <C-Right> :bn<cr>
 noremap <silent> <C-S-Left> :tabp<cr>
 noremap <silent> <C-S-Right> :tabn<cr>
+noremap <silent> <leader><left> :bdelete<cr>
 " my functions
 noremap <silent> <Leader>fc :call Compiler()<cr>
 noremap <silent> <Leader>fr :call Runner()<cr>
@@ -170,7 +171,7 @@ function! Compiler()
     elseif &filetype=='cpp'
         exe "te g++ -o %:r.exe %"
     elseif &filetype=='java'
-        exe "javac %:r"
+        exe "te javac %"
     elseif &filetype == 'typescript'
         exe "te tsc %"
     else 
