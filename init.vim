@@ -76,7 +76,8 @@ nnoremap <silent> <Leader>cc :CocConfig<cr>
 "
 " |>autocmd<|
 autocmd TermOpen * startinsert
-autocmd BufNewFile,BufRead *.js,*.html set tabstop=2 | set shiftwidth=2 | imap <silent> <S-Tab> <plug>(emmet-expand-abbr)
+autocmd BufNewFile,BufRead *.js,*.html set tabstop=2 | set shiftwidth=2
+autocmd BufNewFile,BufRead *.css,*.html imap <silent> <S-Tab> <plug>(emmet-expand-abbr)
 "
 " |>options(universal)<|
 " `:options` for all available options.
@@ -134,9 +135,9 @@ function! CTab()
                 return "\<C-X>\<C-N>"
             else
                 return "\<C-X>\<C-O>"
+            endif
         endif
     endif
-endif
 endfunction
 
 " Function to get current absolute file path, also see fnamemodify()
