@@ -24,6 +24,7 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'HerringtonDarkholme/yats.vim'
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'vim-python/python-syntax'
+    Plug 'uiiaoo/java-syntax.vim'
 call plug#end()
 "
 " |>my maps<|
