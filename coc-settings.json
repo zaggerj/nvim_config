@@ -28,11 +28,9 @@
     },
     "suggest.enablePreview": true,
     "suggest.noselect": true,
-    "eslint.enable": true,
-    "java.maven.downloadSources": false,
     "java.configuration.updateBuildConfiguration": "interactive",
     "java.import.maven.enabled": true,
-    "java.jdt.ls.home": "F:/JDT/lang",
     "java.errors.incompleteClasspath.severity": "ignore",
+    "java.jdt.ls.home": "F:/JDT/lang",
     "java.configuration.maven.userSettings": "C:/Users/peruser/.m2/settings.xml"
 }
