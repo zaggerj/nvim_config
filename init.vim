@@ -3,7 +3,7 @@
 call plug#begin('~\\vimfiles\\plugged')
     " Git
     Plug 'tpope/vim-fugitive'
-    " Language support
+    " IDE support
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'liuchengxu/vista.vim'
     Plug 'mattn/emmet-vim'
