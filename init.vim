@@ -14,6 +14,7 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'luochen1990/rainbow'
     Plug 'jiangmiao/auto-pairs'
     Plug 'tpope/vim-surround'
+    Plug 'SirVer/ultisnips'
     " Themes
     Plug 'morhetz/gruvbox' 
     Plug 'crusoexia/vim-monokai' 
@@ -25,6 +26,7 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'vim-python/python-syntax'
     Plug 'uiiaoo/java-syntax.vim'
+    Plug 'MaxMEllon/vim-jsx-pretty'
 call plug#end()
 "
 " |>my maps<|
@@ -75,11 +77,13 @@ nmap <silent> <Leader>cl :CocList<cr>
 nmap <silent> <C-Up> <Plug>(coc-diagnostic-prev-error)
 nmap <silent> <C-Down> <Plug>(coc-diagnostic-next-error)
 nnoremap <silent> <Leader>cc :CocConfig<cr>
+" ultisnips
+let g:UltiSnipsExpandTrigger="<A-CR>"
 "
 " |>autocmd<|
 autocmd TermOpen * startinsert
 autocmd BufNewFile,BufRead *.js,*.html set tabstop=2 | set shiftwidth=2
-autocmd BufNewFile,BufRead *.css,*.html imap <silent> <S-Tab> <plug>(emmet-expand-abbr)
+autocmd BufNewFile,BufRead *.css,*.html,*.jsx imap <silent> <S-Tab> <plug>(emmet-expand-abbr)
 "
 " |>options(universal)<|
 " `:options` for all available options.
@@ -90,7 +94,6 @@ set fileencodings=utf-8,gb2312
 set cursorline
 " set showmatch
 set number
-set smartindent
 set autoindent
 "set cmdheight=1
 set expandtab
@@ -249,3 +252,6 @@ let g:rainbow_conf = {'guifgs': reverse(['Red', 'Orange', 'Yellow', 'Green', 'Cy
 " |>vim-plug<|
 let g:plug_timeout = 180
 let g:plug_retries = 5
+"
+" |>ultisnips<|
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "my_snippets"]
