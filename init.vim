@@ -70,6 +70,7 @@ nnoremap <silent> <Leader>gl :Gclog<cr>
 nnoremap <silent> <Leader>pi :PlugInstall<cr>
 nnoremap <silent> <Leader>pu :PlugUpdate<cr>
 " coc maps
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 nmap <silent> <Leader>ca <Plug>(coc-codeaction)
 nmap <silent> <Leader>cd <Plug>(coc-definition)
 nmap <silent> <Leader>cf <Plug>(coc-format)
@@ -78,7 +79,7 @@ nmap <silent> <C-Up> <Plug>(coc-diagnostic-prev-error)
 nmap <silent> <C-Down> <Plug>(coc-diagnostic-next-error)
 nnoremap <silent> <Leader>cc :CocConfig<cr>
 " ultisnips
-let g:UltiSnipsExpandTrigger="<A-CR>"
+let g:UltiSnipsExpandTrigger="<C-tab>"
 "
 " |>autocmd<|
 autocmd TermOpen * startinsert
