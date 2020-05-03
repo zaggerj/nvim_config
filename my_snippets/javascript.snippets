@@ -1,16 +1,23 @@
-snippet fn "gen function"
+snippet fn "gen function" bA
 function ${1:name} (${2:args}) {
 	$0
 }
 endsnippet
 
-snippet rcl "react class gen"
-class ${1:name}{
-	constructor(${2:vars}){
+snippet ccp "react component gen" bA
+class ${1:name} extends Component{
+	constructor(${2:props}){
+		super(props)
 		$3
 	}
 	render($4){
 		$0
 	}
+}
+endsnippet
+
+snippet ift "if ... then" bA
+if (${1:statement}){
+	$0
 }
 endsnippet

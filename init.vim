@@ -84,7 +84,7 @@ let g:UltiSnipsExpandTrigger="<C-tab>"
 " |>autocmd<|
 autocmd TermOpen * startinsert
 autocmd BufNewFile,BufRead *.js,*.html set tabstop=2 | set shiftwidth=2
-autocmd BufNewFile,BufRead *.css,*.html,*.jsx imap <silent> <S-Tab> <plug>(emmet-expand-abbr)
+autocmd BufNewFile,BufRead *.css,*.html,*.jsx,*.js imap <silent> <S-Tab> <plug>(emmet-expand-abbr)
 "
 " |>options(universal)<|
 " `:options` for all available options.
