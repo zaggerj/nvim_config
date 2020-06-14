@@ -31,6 +31,6 @@
     "java.configuration.updateBuildConfiguration": "interactive",
     "java.import.maven.enabled": true,
     "java.errors.incompleteClasspath.severity": "ignore",
-    "java.jdt.ls.home": "F:/JDT",
-    "java.configuration.maven.userSettings": "C:/Users/peruser/.m2/settings.xml"
+    //"java.jdt.ls.home": "F:/JDT",
+    //"java.configuration.maven.userSettings": "C:/Users/peruser/.m2/settings.xml"
 }
