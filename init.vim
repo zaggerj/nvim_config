@@ -257,3 +257,5 @@ let g:plug_retries = 5
 "
 " |>ultisnips<|
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "my_snippets"]
+" |>vimwiki<|
+let g:vimwiki_list = [{'path': 'C:\Personal\\GIT\NoteBooks\\vimwiki\\sources', 'path_html': 'C:\Personal\\GIT\NoteBooks\\vimwiki\\html'}]
