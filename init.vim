@@ -15,6 +15,7 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'jiangmiao/auto-pairs'
     Plug 'tpope/vim-surround'
     Plug 'SirVer/ultisnips'
+    Plug 'vimwiki/vimwiki'
     " Themes
     Plug 'morhetz/gruvbox' 
     Plug 'crusoexia/vim-monokai' 
@@ -70,6 +71,7 @@ nnoremap <silent> <Leader>gl :Gclog<cr>
 nnoremap <silent> <Leader>pi :PlugInstall<cr>
 nnoremap <silent> <Leader>pu :PlugUpdate<cr>
 " coc maps
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 nmap <silent> <Leader>ca <Plug>(coc-codeaction)
 nmap <silent> <Leader>cd <Plug>(coc-definition)
 nmap <silent> <Leader>cf <Plug>(coc-format)
@@ -78,12 +80,12 @@ nmap <silent> <C-Up> <Plug>(coc-diagnostic-prev-error)
 nmap <silent> <C-Down> <Plug>(coc-diagnostic-next-error)
 nnoremap <silent> <Leader>cc :CocConfig<cr>
 " ultisnips
-let g:UltiSnipsExpandTrigger="<A-CR>"
+let g:UltiSnipsExpandTrigger="<C-tab>"
 "
 " |>autocmd<|
 autocmd TermOpen * startinsert
 autocmd BufNewFile,BufRead *.js,*.html set tabstop=2 | set shiftwidth=2
-autocmd BufNewFile,BufRead *.css,*.html,*.jsx imap <silent> <S-Tab> <plug>(emmet-expand-abbr)
+autocmd BufNewFile,BufRead *.css,*.html,*.jsx,*.js imap <silent> <S-Tab> <plug>(emmet-expand-abbr)
 "
 " |>options(universal)<|
 " `:options` for all available options.
