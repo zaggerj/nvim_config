@@ -103,6 +103,7 @@ set tabstop=4
 set shiftwidth=4
 set timeoutlen=1500
 set splitbelow
+set ignorecase=on
 "
 " |>theme<|
 set termguicolors
