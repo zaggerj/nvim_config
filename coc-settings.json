@@ -18,12 +18,6 @@
                 "objc",
                 "objcpp"
             ]
-        },
-        "kotlin": {
-            "command": "F:\\KotlinLS\\server\\bin\\kotlin-language-server.bat",
-            "filetypes": [
-                "kotlin"
-            ]
         }
     },
     "suggest.enablePreview": true,

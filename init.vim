@@ -84,8 +84,9 @@ let g:UltiSnipsExpandTrigger="<C-tab>"
 "
 " |>autocmd<|
 autocmd TermOpen * startinsert
-autocmd BufNewFile,BufRead *.js,*.html set tabstop=2 | set shiftwidth=2
+autocmd FileType *.js,*.html set tabstop=2 | set shiftwidth=2
 autocmd BufNewFile,BufRead *.css,*.html,*.jsx,*.js imap <silent> <S-Tab> <plug>(emmet-expand-abbr)
+autocmd FileType vimwiki set insertmode | set mouse=i
 "
 " |>options(universal)<|
 " `:options` for all available options.
@@ -108,7 +109,7 @@ set ignorecase
 " |>theme<|
 set termguicolors
 colo gruvbox
-set background=light
+set background=dark
 set pumblend=10
 set winblend=30
 "
@@ -166,7 +167,7 @@ function! PercentSplit(percent, action)
     else
         let l:temp = g:Vsp_width(a:percent)
     endif
-    " Nsp/vsp
+    " [N]sp/vsp
     exe l:temp.a:action
 endfunction
 
@@ -259,4 +260,4 @@ let g:plug_retries = 5
 " |>ultisnips<|
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "my_snippets"]
 " |>vimwiki<|
-let g:vimwiki_list = [{'path': 'C:\Personal\\GIT\NoteBooks\\vimwiki\\sources', 'path_html': 'C:\Personal\\GIT\NoteBooks\\vimwiki\\html'}]
+"let g:vimwiki_list = [{'path': 'C:\Personal\\GIT\NoteBooks\\vimwiki\\sources', 'path_html': 'C:\Personal\\GIT\NoteBooks\\vimwiki\\html'}]
