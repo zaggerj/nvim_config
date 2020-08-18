@@ -92,6 +92,7 @@ autocmd FileType vimwiki set mouse=iv
 " `:options` for all available options.
 filetype plugin indent on
 syntax enable
+set mouse=nv
 set incsearch
 set fileencodings=utf-8,gb2312
 set cursorline
