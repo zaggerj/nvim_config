@@ -1,5 +1,9 @@
 # 更新描述
 
+> 2020/8/18
+
+添加vimwiki下的鼠标支持。
+
 > 2020/3/1
 
 更新补全搭配方式，采用msys2->Mingw-w64-clang, clang-tools-extra->clangd进行补全。
