@@ -31,12 +31,12 @@ call plug#begin('~\\vimfiles\\plugged')
 call plug#end()
 "
 " |>my maps<|
-" first-class maps
+" native replacing maps
 let mapleader = " "
 inoremap fj <Esc> 
 nnoremap \ :
-" or <C-R>=
-inoremap <silent><expr> <tab> CTab()
+nnoremap / /\v
+nnoremap ? ?\v
 " terminal control
 tnoremap fj <C-\><C-n>
 tnoremap <Esc> exit<cr>
@@ -56,11 +56,13 @@ noremap <silent> <C-S-Left> :tabp<cr>
 noremap <silent> <C-S-Right> :tabn<cr>
 noremap <silent> <leader><left> :bdelete<cr>
 " my functions
+" or <C-R>=
+inoremap <silent><expr> <tab> CTab()
 noremap <silent> <Leader>fc :call Compiler()<cr>
 noremap <silent> <Leader>fr :call Runner()<cr>
 nnoremap <silent> <Leader>fs :call Set_it()<cr>
 nnoremap <silent> <Leader>ft :call Open_terminal()<cr>
-" single map plugins 
+" single plugin maps
 nnoremap <silent> <Leader>pv :Vista coc<cr>
 nnoremap <silent> <Leader>pd :NERDTreeFind<cr>
 " fugitive
@@ -95,7 +97,6 @@ filetype plugin indent on
 syntax enable
 set grepprg=rg\ --vimgrep
 set mouse=nv
-set incsearch
 set fileencodings=utf-8,gb2312
 set cursorline
 " set showmatch
