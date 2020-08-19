@@ -34,6 +34,7 @@ call plug#end()
 " first-class maps
 let mapleader = " "
 inoremap fj <Esc> 
+nnoremap \ :
 " or <C-R>=
 inoremap <silent><expr> <tab> CTab()
 " terminal control
