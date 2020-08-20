@@ -17,7 +17,8 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'SirVer/ultisnips'
     Plug 'vimwiki/vimwiki'
     " Themes
-    Plug 'morhetz/gruvbox' 
+    Plug 'kristijanhusak/vim-hybrid-material'
+    "Plug 'morhetz/gruvbox' 
     "Plug 'crusoexia/vim-monokai' 
     "Plug 'joshdick/onedark.vim'
     Plug 'vim-airline/vim-airline-themes'
@@ -95,6 +96,7 @@ autocmd FileType vimwiki set mouse=iv
 " `:options` for all available options.
 filetype plugin indent on
 syntax enable
+set title
 set grepprg=rg\ --vimgrep
 set mouse=nv
 set fileencodings=utf-8,gb2312
@@ -112,8 +114,8 @@ set ignorecase
 "
 " |>theme<|
 set termguicolors
-colo gruvbox
-set background=dark
+colo hybrid_material
+set background=light
 set pumblend=10
 set winblend=30
 "
@@ -231,7 +233,7 @@ endfunction
 set noshowmode
 set laststatus=2
 set showtabline=2
-let g:airline_theme='gruvbox'
+let g:airline_theme = 'hybrid'
 let g:airline_powerline_fonts = 0
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#coc#enabled = 1
@@ -240,6 +242,7 @@ let g:airline#extensions#tabline#enabled = 1
 " |>vista<|
 let g:vista_cursor_delay = 60
 let g:vista_sidebar_position = "vertical topleft"
+let g:vista_default_executive = "coc"
 "
 " |>coc-nvim<|
 let g:coc_enable_locationlist = 1
