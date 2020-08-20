@@ -17,7 +17,8 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'SirVer/ultisnips'
     Plug 'vimwiki/vimwiki'
     " Themes
-    Plug 'kristijanhusak/vim-hybrid-material'
+    Plug 'sainnhe/forest-night'
+    "Plug 'kristijanhusak/vim-hybrid-material'
     "Plug 'morhetz/gruvbox' 
     "Plug 'crusoexia/vim-monokai' 
     "Plug 'joshdick/onedark.vim'
@@ -114,8 +115,10 @@ set ignorecase
 "
 " |>theme<|
 set termguicolors
-colo hybrid_material
-set background=light
+let g:forest_night_disable_italic_comment = 0
+let g:forest_night_enable_italic = 0
+colo forest-night
+set background=dark
 set pumblend=10
 set winblend=30
 "
@@ -233,7 +236,7 @@ endfunction
 set noshowmode
 set laststatus=2
 set showtabline=2
-let g:airline_theme = 'hybrid'
+let g:airline_theme = 'forest_night'
 let g:airline_powerline_fonts = 0
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#coc#enabled = 1
