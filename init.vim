@@ -18,8 +18,8 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'vimwiki/vimwiki'
     " Themes
     Plug 'morhetz/gruvbox' 
-    Plug 'crusoexia/vim-monokai' 
-    Plug 'joshdick/onedark.vim'
+    "Plug 'crusoexia/vim-monokai' 
+    "Plug 'joshdick/onedark.vim'
     Plug 'vim-airline/vim-airline-themes'
     " Syntax
     Plug 'pangloss/vim-javascript'
