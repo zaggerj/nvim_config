@@ -28,8 +28,8 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'HerringtonDarkholme/yats.vim'
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'vim-python/python-syntax'
-    Plug 'uiiaoo/java-syntax.vim'
-    Plug 'MaxMEllon/vim-jsx-pretty'
+    "Plug 'uiiaoo/java-syntax.vim'
+    "Plug 'MaxMEllon/vim-jsx-pretty'
 call plug#end()
 "
 " |>my maps<|
@@ -189,8 +189,6 @@ function! Compiler()
         exe "te g++ -o %:r.exe %"
     elseif &filetype=='java'
         exe "te javac %"
-    elseif &filetype == 'typescript'
-        exe "te tsc %"
     else 
         echo 'Do not support this type of file!'
         exe "q"
