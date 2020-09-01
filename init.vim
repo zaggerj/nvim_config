@@ -36,6 +36,7 @@ call plug#end()
 " native replacing maps
 let mapleader = " "
 inoremap fj <Esc> 
+inoremap <C-v> <C-R>+
 nnoremap \ :
 nnoremap / /\v
 nnoremap ? ?\v
