@@ -90,8 +90,8 @@ let g:UltiSnipsExpandTrigger="<C-tab>"
 "
 " |>autocmd<|
 autocmd TermOpen * startinsert
-autocmd FileType *.js,*.html set tabstop=2 | set shiftwidth=2
-autocmd BufNewFile,BufRead *.css,*.html,*.jsx,*.js imap <silent> <S-Tab> <plug>(emmet-expand-abbr)
+autocmd FileType javascript,html set tabstop=2 | set shiftwidth=2
+autocmd FileType css,html,jsx,javascript,typescript imap <silent> <S-Tab> <plug>(emmet-expand-abbr)
 autocmd FileType vimwiki set mouse=iv
 "
 " |>options(universal)<|
