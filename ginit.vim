@@ -1,5 +1,5 @@
 if exists('g:GuiLoaded')
-    GuiFont! Cascadia Code:h15
+    GuiFont! FiraCode NF:h15
     GuiPopupmenu 0
     GuiTabline 0
 endif
