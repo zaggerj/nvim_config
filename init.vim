@@ -28,7 +28,7 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'HerringtonDarkholme/yats.vim'
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'vim-python/python-syntax'
-    "Plug 'uiiaoo/java-syntax.vim'
+    Plug 'uiiaoo/java-syntax.vim'
     "Plug 'MaxMEllon/vim-jsx-pretty'
 call plug#end()
 "
@@ -106,7 +106,7 @@ set cursorline
 " set showmatch
 set number
 set autoindent
-"set cmdheight=1
+set cmdheight=2
 set expandtab
 set tabstop=4
 set shiftwidth=4
@@ -189,7 +189,7 @@ function! Compiler()
     elseif &filetype=='cpp'
         exe "te g++ -o %:r.exe %"
     elseif &filetype=='java'
-        exe "te javac %"
+        exe "te javac -encoding utf-8 %"
     else 
         echo 'Do not support this type of file!'
         exe "q"
@@ -247,6 +247,7 @@ let g:vista_sidebar_position = "vertical topleft"
 let g:vista_default_executive = "coc"
 "
 " |>coc-nvim<|
+set hidden
 let g:coc_enable_locationlist = 1
 
 " |>highlight<|
