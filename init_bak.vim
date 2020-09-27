@@ -14,6 +14,7 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'luochen1990/rainbow'
     Plug 'jiangmiao/auto-pairs'
     Plug 'tpope/vim-surround'
+    "Plug 'SirVer/ultisnips'
     Plug 'vimwiki/vimwiki'
     " Themes
     Plug 'sainnhe/forest-night'
@@ -30,8 +31,18 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'uiiaoo/java-syntax.vim'
     "Plug 'MaxMEllon/vim-jsx-pretty'
 call plug#end()
+
+" |>native<|
 "
-" |>my maps<|
+"   |>themes<|
+set termguicolors
+let g:forest_night_disable_italic_comment = 0
+let g:forest_night_enable_italic = 0
+colo forest-night
+set background=dark
+set pumblend=10
+set winblend=30
+"   |>maps<|
 " native replacing maps
 let mapleader = " "
 inoremap fj <Esc> 
@@ -64,42 +75,11 @@ noremap <silent> <Leader>fc :call Compiler()<cr>
 noremap <silent> <Leader>fr :call Runner()<cr>
 nnoremap <silent> <Leader>fs :call Set_it()<cr>
 nnoremap <silent> <Leader>ft :call Open_terminal()<cr>
-" single plugin maps
-nnoremap <silent> <Leader>pv :Vista coc<cr>
-nnoremap <silent> <Leader>pd :NERDTreeFind<cr>
-" fugitive
-nnoremap <silent> <Leader>gs :G<cr>
-nnoremap <silent> <Leader>gps :Gpush<cr>
-nnoremap <silent> <Leader>gpl :Gpull<cr>
-nnoremap <silent> <Leader>gl :Gclog<cr>
-" vim-plug
-nnoremap <silent> <Leader>pi :PlugInstall<cr>
-nnoremap <silent> <Leader>pu :PlugUpdate<cr>
-nnoremap <silent> <Leader>pc :PlugClean<cr>
-" coc maps
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-nmap <Leader>ci :CocInstall 
-nmap <Leader>cu :CocUninstall 
-nmap <silent> <Leader>ca <Plug>(coc-codeaction)
-nmap <silent> <Leader>cd <Plug>(coc-definition)
-nmap <silent> <Leader>cf <Plug>(coc-format)
-nmap <silent> <Leader>cr <Plug>(coc-refactor)
-nmap <silent> <Leader>cl :CocList<cr>
-nnoremap <silent> <Leader>cc :CocConfig<cr>
-nmap <silent> <C-Up> <Plug>(coc-diagnostic-prev-error)
-nmap <silent> <C-Down> <Plug>(coc-diagnostic-next-error)
-"
-" |>autocmd<|
+"   |>autocmds<|
 autocmd TermOpen * startinsert
 autocmd FileType javascript,html set tabstop=2 | set shiftwidth=2
 autocmd FileType css,html,jsx,javascript,typescript imap <silent> <S-Tab> <plug>(emmet-expand-abbr)
-autocmd FileType vimwiki set mouse=iv
-"
-" |>coc.nvim<|
-autocmd CursorHold * silent call CocActionAsync('highlight')
-"
-" |>options(native)<|
-" `:options` for all available options.
+"   |>options<|
 filetype plugin indent on
 syntax enable
 set title
@@ -110,64 +90,14 @@ set cursorline
 " set showmatch
 set number
 set autoindent
+set cmdheight=2
 set expandtab
 set tabstop=4
 set shiftwidth=4
 set timeoutlen=1500
 set splitbelow
 set ignorecase
-"
-" |>theme<|
-set termguicolors
-let g:forest_night_disable_italic_comment = 0
-let g:forest_night_enable_italic = 0
-colo forest-night
-set background=dark
-set pumblend=10
-set winblend=30
-"
-" |>airline<|
-set noshowmode
-set laststatus=2
-set showtabline=2
-let g:airline_theme = 'forest_night'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#coc#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-"
-" |>vista<|
-let g:vista_cursor_delay = 60
-let g:vista_sidebar_position = "vertical topleft"
-let g:vista_default_executive = "coc"
-"
-" |>coc-nvim<|
-set cmdheight=2
-set updatetime=300
-set shortmess+=c
-"
-" |>highlight<|
-" cpp
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
-let g:cpp_experimental_template_highlight = 1
-" python
-let g:python_highlight_all = 1
-"
-" |>rainbow<|
-let g:rainbow_active = 1
-let g:rainbow_conf = {'guifgs': reverse(['Red', 'Orange', 'Yellow', 'Green', 'Cyan', 'Lightblue', 'Purple'])}
-"
-" |>vim-plug<|
-let g:plug_timeout = 180
-let g:plug_retries = 5
-"
-" |>vimwiki<|
-"let g:vimwiki_list = [{'path': 'C:\Personal\\GIT\NoteBooks\\vimwiki\\sources', 'path_html': 'C:\Personal\\GIT\NoteBooks\\vimwiki\\html'}]
-" 
-" |>functions<|
-"
+"   |>functions<|
 " Caclulator, you can also use winheight() and winwidth()
 let g:Sp_height = {x -> float2nr(nvim_win_get_height(0) * x)}
 let g:Vsp_width = {x -> float2nr(nvim_win_get_width(0) * x)}
@@ -274,3 +204,44 @@ function! Open_terminal()
     call PercentSplit(0.4, "sp")
     exe "te powershell"
 endfunction
+
+" |>Plugins<|
+"
+"   |>airline<|
+"       |>options<|
+set noshowmode
+set laststatus=2
+set showtabline=2
+let g:airline_theme = 'forest_night'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+"   |>vista<|
+"       |>maps<|
+nnoremap <silent> <Leader>pv :Vista coc<cr>
+"       |>options<|
+let g:vista_cursor_delay = 60
+let g:vista_sidebar_position = "vertical topleft"
+let g:vista_default_executive = "coc"
+"   |>coc.nvim<|
+"       |>maps<|
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+nmap <silent> <Leader>ca <Plug>(coc-codeaction)
+nmap <silent> <Leader>cd <Plug>(coc-definition)
+nmap <silent> <Leader>cf <Plug>(coc-format)
+nmap <silent> <Leader>cr <Plug>(coc-refactor)
+nmap <silent> <Leader>cl :CocList<cr>
+nmap <silent> <C-Up> <Plug>(coc-diagnostic-prev-error)
+nmap <silent> <C-Down> <Plug>(coc-diagnostic-next-error)
+nnoremap <silent> <Leader>cc :CocConfig<cr>
+"       |>options<|
+set hidden
+"   |>vim-plug<|
+"       |>maps<|
+nnoremap <silent> <Leader>pi :PlugInstall<cr>
+nnoremap <silent> <Leader>pu :PlugUpdate<cr>
+"       |>options<|
+let g:plug_timeout = 180
+"   |><|
+let g:plug_retries = 5
