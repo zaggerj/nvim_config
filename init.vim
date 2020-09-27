@@ -141,8 +141,8 @@ let g:vista_cursor_delay = 60
 let g:vista_sidebar_position = "vertical topleft"
 let g:vista_default_executive = "coc"
 "
-" |>coc-nvim<|
-set cmdheight=2
+" |>coc.nvim<|
+set cmdheight=1
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
