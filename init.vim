@@ -66,7 +66,7 @@ nnoremap <silent> <Leader>fs :call Set_it()<cr>
 nnoremap <silent> <Leader>ft :call Open_terminal()<cr>
 " single plugin maps
 nnoremap <silent> <Leader>pv :Vista coc<cr>
-nnoremap <silent> <Leader>pd :NERDTreeFind<cr>
+nnoremap <silent> <Leader>pd :NERDTree<cr>
 " fugitive
 nnoremap <silent> <Leader>gs :G<cr>
 nnoremap <silent> <Leader>gps :Gpush<cr>
@@ -77,15 +77,15 @@ nnoremap <silent> <Leader>pi :PlugInstall<cr>
 nnoremap <silent> <Leader>pu :PlugUpdate<cr>
 nnoremap <silent> <Leader>pc :PlugClean<cr>
 " coc maps
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 nmap <Leader>ci :CocInstall 
 nmap <Leader>cu :CocUninstall 
+nmap <silent> <Leader>cl :CocList<cr>
+nnoremap <silent> <Leader>cc :CocConfig<cr>
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 nmap <silent> <Leader>ca <Plug>(coc-codeaction)
 nmap <silent> <Leader>cd <Plug>(coc-definition)
 nmap <silent> <Leader>cf <Plug>(coc-format)
 nmap <silent> <Leader>cr <Plug>(coc-refactor)
-nmap <silent> <Leader>cl :CocList<cr>
-nnoremap <silent> <Leader>cc :CocConfig<cr>
 nmap <silent> <C-Up> <Plug>(coc-diagnostic-prev-error)
 nmap <silent> <C-Down> <Plug>(coc-diagnostic-next-error)
 "
@@ -97,7 +97,7 @@ autocmd FileType vimwiki set mouse=iv
 " |>coc.nvim<|
 autocmd CursorHold * silent call CocActionAsync('highlight')
 "
-" |>options(native)<|
+" |>options(native & plugin)<|
 " `:options` for all available options.
 filetype plugin indent on
 syntax enable
@@ -145,8 +145,9 @@ let g:vista_default_executive = "coc"
 set cmdheight=2
 set updatetime=300
 set shortmess+=c
+set signcolumn=yes
 "
-" |>highlight<|
+" |>highlights<|
 " cpp
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
