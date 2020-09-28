@@ -89,6 +89,8 @@ nmap <silent> <Leader>cr <Plug>(coc-rename)
 nmap <silent> <C-Up> <Plug>(coc-diagnostic-prev-error)
 nmap <silent> <C-Down> <Plug>(coc-diagnostic-next-error)
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+nnoremap <expr><C-f> coc#util#has_float() ? coc#util#float_scroll(1) : "\<C-f>"
+nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
 "
 " |>autocmd<|
 autocmd TermOpen * startinsert
