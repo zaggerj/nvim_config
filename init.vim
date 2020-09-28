@@ -67,16 +67,16 @@ nnoremap <silent> <Leader>ft :call Open_terminal()<cr>
 " single plugin maps
 nnoremap <silent> <Leader>pv :Vista coc<cr>
 nnoremap <silent> <Leader>pd :NERDTree<cr>
-" fugitive
+" (fugitive)
 nnoremap <silent> <Leader>gs :G<cr>
 nnoremap <silent> <Leader>gps :Gpush<cr>
 nnoremap <silent> <Leader>gpl :Gpull<cr>
 nnoremap <silent> <Leader>gl :Gclog<cr>
-" vim-plug
+" (vim-plug)
 nnoremap <silent> <Leader>pi :PlugInstall<cr>
 nnoremap <silent> <Leader>pu :PlugUpdate<cr>
 nnoremap <silent> <Leader>pc :PlugClean<cr>
-" coc maps
+" (coc)
 nmap <Leader>ci :CocInstall 
 nmap <Leader>cu :CocUninstall 
 nmap <silent> <Leader>cl :CocList<cr>
@@ -94,7 +94,7 @@ autocmd TermOpen * startinsert
 autocmd FileType javascript,html set tabstop=2 | set shiftwidth=2
 autocmd FileType css,html,jsx,javascript,typescript imap <silent> <S-Tab> <plug>(emmet-expand-abbr)
 autocmd FileType vimwiki set mouse=iv
-" |>coc.nvim<|
+" (coc)
 autocmd CursorHold * silent call CocActionAsync('highlight')
 "
 " |>options(native & plugin)<|
@@ -126,7 +126,7 @@ set background=dark
 set pumblend=10
 set winblend=30
 "
-" |>airline<|
+" (airline)
 set noshowmode
 set laststatus=2
 set showtabline=2
@@ -136,35 +136,35 @@ let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 "
-" |>vista<|
+" (vista)
 let g:vista_cursor_delay = 60
 let g:vista_sidebar_position = "vertical topleft"
 let g:vista_default_executive = "coc"
 "
-" |>coc.nvim<|
+" (coc)
 set cmdheight=1
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
 "
 " |>highlights<|
-" cpp
+" (cpp)
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
 let g:cpp_experimental_template_highlight = 1
-" python
+" (python)
 let g:python_highlight_all = 1
 "
-" |>rainbow<|
+" (rainbow)
 let g:rainbow_active = 1
 let g:rainbow_conf = {'guifgs': reverse(['Red', 'Orange', 'Yellow', 'Green', 'Cyan', 'Lightblue', 'Purple'])}
 "
-" |>vim-plug<|
+" (vim-plug)
 let g:plug_timeout = 180
 let g:plug_retries = 5
 "
-" |>vimwiki<|
+" (vimwiki)
 "let g:vimwiki_list = [{'path': 'C:\Personal\\GIT\NoteBooks\\vimwiki\\sources', 'path_html': 'C:\Personal\\GIT\NoteBooks\\vimwiki\\html'}]
 " 
 " |>functions<|
