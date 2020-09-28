@@ -95,8 +95,6 @@ autocmd TermOpen * startinsert
 autocmd FileType javascript,html set tabstop=2 | set shiftwidth=2
 autocmd FileType css,html,jsx,javascript,typescript imap <silent> <S-Tab> <plug>(emmet-expand-abbr)
 autocmd FileType vimwiki set mouse=iv
-" (coc)
-autocmd BufWrite *.go :call CocActionAsync('organizeImport')
 "
 " |>options(native & plugin)<|
 " `:options` for all available options.
