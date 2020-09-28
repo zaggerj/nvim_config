@@ -24,5 +24,6 @@
     "suggest.noselect": true,
     "java.configuration.updateBuildConfiguration": "interactive",
     "java.import.maven.enabled": true,
-    "java.errors.incompleteClasspath.severity": "ignore"
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "go.goplsPath": "C:\\Users\\11571\\go\\bin\\gopls.exe"
 }

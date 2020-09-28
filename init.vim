@@ -77,17 +77,18 @@ nnoremap <silent> <Leader>pi :PlugInstall<cr>
 nnoremap <silent> <Leader>pu :PlugUpdate<cr>
 nnoremap <silent> <Leader>pc :PlugClean<cr>
 " (coc)
+nnoremap <silent> gh :call CocActionAsync('doHover')<cr>
 nmap <Leader>ci :CocInstall 
 nmap <Leader>cu :CocUninstall 
 nmap <silent> <Leader>cl :CocList<cr>
 nnoremap <silent> <Leader>cc :CocConfig<cr>
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 nmap <silent> <Leader>ca <Plug>(coc-codeaction)
 nmap <silent> <Leader>cd <Plug>(coc-definition)
 nmap <silent> <Leader>cf <Plug>(coc-format)
-nmap <silent> <Leader>cr <Plug>(coc-refactor)
+nmap <silent> <Leader>cr <Plug>(coc-rename)
 nmap <silent> <C-Up> <Plug>(coc-diagnostic-prev-error)
 nmap <silent> <C-Down> <Plug>(coc-diagnostic-next-error)
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 "
 " |>autocmd<|
 autocmd TermOpen * startinsert
@@ -95,7 +96,7 @@ autocmd FileType javascript,html set tabstop=2 | set shiftwidth=2
 autocmd FileType css,html,jsx,javascript,typescript imap <silent> <S-Tab> <plug>(emmet-expand-abbr)
 autocmd FileType vimwiki set mouse=iv
 " (coc)
-autocmd CursorHold * silent call CocActionAsync('highlight')
+autocmd BufWrite *.go :call CocActionAsync('organizeImport')
 "
 " |>options(native & plugin)<|
 " `:options` for all available options.
@@ -143,7 +144,7 @@ let g:vista_default_executive = "coc"
 "
 " (coc)
 set cmdheight=1
-set updatetime=300
+set updatetime=500
 set shortmess+=c
 set signcolumn=yes
 "
@@ -235,6 +236,8 @@ function! Compiler()
         exe "te g++ -o %:r.exe %"
     elseif &filetype=='java'
         exe "te javac -encoding utf-8 %"
+    elseif &filetype=='go'
+        exe "go build"
     else 
         echo 'Do not support this type of file!'
         exe "q"
@@ -260,6 +263,8 @@ function! Runner()
             exe "te python %"
         elseif &filetype == 'ps1'
             exe "te powershell -c \"./%\""
+        elseif &filetype == 'go'
+            exe "go run %"
         else
             quit
         endif
