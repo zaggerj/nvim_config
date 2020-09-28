@@ -264,7 +264,7 @@ function! Runner()
         elseif &filetype == 'ps1'
             exe "te powershell -c \"./%\""
         elseif &filetype == 'go'
-            exe "go run %"
+            exe "te go run %"
         else
             quit
         endif
