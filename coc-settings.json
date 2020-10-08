@@ -1,29 +1,36 @@
 {
-    "languageserver": {
-        "clangd": {
-            "command": "clangd",
-            "args": [
-                "--background-index"
-            ],
-            "rootPatterns": [
-                "compile_flags.txt",
-                "compile_commands.json",
-                ".vim/",
-                ".git/",
-                ".hg/"
-            ],
-            "filetypes": [
-                "c",
-                "cpp",
-                "objc",
-                "objcpp"
-            ]
-        }
-    },
-    "suggest.enablePreview": true,
-    "suggest.noselect": true,
-    "java.configuration.updateBuildConfiguration": "interactive",
-    "java.import.maven.enabled": true,
-    "java.errors.incompleteClasspath.severity": "ignore",
-    "go.goplsPath": "C:\\Users\\11571\\go\\bin\\gopls.exe"
+  "languageserver": {
+    "clangd": {
+      "command": "clangd",
+      "args": [
+        "--background-index"
+      ],
+      "rootPatterns": [
+        "compile_flags.txt",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "filetypes": [
+        "c",
+        "cpp",
+        "objc",
+        "objcpp"
+      ]
+    }
+  },
+  "suggest.enablePreview": true,
+  "suggest.noselect": true,
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "java.import.maven.enabled": true,
+  "java.errors.incompleteClasspath.severity": "ignore",
+  "html.filetypes": [
+    "html",
+    "vue",
+    "handlebars",
+    "template"
+  ],
+  "html.format.indentHandlebars":true,
+  "vetur.format.enable": true
 }

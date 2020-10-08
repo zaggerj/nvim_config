@@ -24,6 +24,7 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'vim-airline/vim-airline-themes'
     " Syntax
     Plug 'pangloss/vim-javascript'
+    Plug 'posva/vim-vue'
     Plug 'HerringtonDarkholme/yats.vim'
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'vim-python/python-syntax'
@@ -94,14 +95,15 @@ nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
 "
 " |>autocmd<|
 autocmd TermOpen * startinsert
-autocmd FileType javascript,html set tabstop=2 | set shiftwidth=2
-autocmd FileType css,html,jsx,javascript,typescript imap <silent> <S-Tab> <plug>(emmet-expand-abbr)
+autocmd FileType javascript,html,vue set tabstop=2 | set shiftwidth=2
+autocmd FileType css,html,jsx,javascript,typescript,vue imap <silent> <S-Tab> <plug>(emmet-expand-abbr)
 autocmd FileType vimwiki set mouse=iv
 "
 " |>options(native & plugin)<|
 " `:options` for all available options.
 filetype plugin indent on
 syntax enable
+set nowrap
 set title
 set grepprg=rg\ --vimgrep
 set mouse=nv
@@ -154,6 +156,7 @@ let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
 let g:cpp_experimental_template_highlight = 1
+"
 " (python)
 let g:python_highlight_all = 1
 "
