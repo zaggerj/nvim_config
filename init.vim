@@ -95,7 +95,7 @@ nnoremap <expr><C-b> coc#util#has_float() ? coc#util#float_scroll(0) : "\<C-b>"
 "
 " |>autocmd<|
 autocmd TermOpen * startinsert
-autocmd FileType javascript,html,vue set tabstop=2 | set shiftwidth=2
+autocmd FileType javascript,html,vue,javascriptreact set tabstop=2 | set shiftwidth=2
 autocmd FileType css,html,jsx,javascript,typescript,vue imap <silent> <S-Tab> <plug>(emmet-expand-abbr)
 autocmd FileType vimwiki set mouse=iv
 "
@@ -141,7 +141,7 @@ let g:airline#extensions#tabline#enabled = 1
 "
 " (vista)
 let g:vista_cursor_delay = 60
-let g:vista_sidebar_position = "vertical topleft"
+let g:vista_sidebar_position = "vertical botright"
 let g:vista_default_executive = "coc"
 "
 " (coc)

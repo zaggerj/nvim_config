@@ -20,6 +20,7 @@
       ]
     }
   },
+  "python.jediEnabled":false,
   "suggest.enablePreview": true,
   "suggest.noselect": true,
   "java.configuration.updateBuildConfiguration": "interactive",
@@ -32,5 +33,6 @@
     "template"
   ],
   "html.format.indentHandlebars":true,
-  "vetur.format.enable": true
+  "vetur.format.enable": true,
+  "javascript.suggest.autoImports":true
 }
