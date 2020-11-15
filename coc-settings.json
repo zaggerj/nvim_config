@@ -1,39 +1,53 @@
 {
-  "languageserver": {
-    "clangd": {
-      "command": "clangd",
-      "args": [
-        "--background-index"
-      ],
-      "rootPatterns": [
-        "compile_flags.txt",
-        "compile_commands.json",
-        ".vim/",
-        ".git/",
-        ".hg/"
-      ],
-      "filetypes": [
-        "c",
-        "cpp",
-        "objc",
-        "objcpp"
-      ]
-    }
-  },
-  "python.jediEnabled":false,
-  "suggest.enablePreview": true,
-  "suggest.noselect": true,
-  "java.configuration.updateBuildConfiguration": "interactive",
-  "java.import.maven.enabled": true,
-  "java.configuration.maven.userSettings": "/Users/11571/.m2/settings.xml",
-  "java.errors.incompleteClasspath.severity": "ignore",
-  "html.filetypes": [
-    "html",
-    "vue",
-    "handlebars",
-    "template"
-  ],
-  "html.format.indentHandlebars":true,
-  "vetur.format.enable": true,
-  "javascript.suggest.autoImports":true
+    "languageserver": {
+        "clangd": {
+            "command": "clangd",
+            "args": [
+                "--background-index"
+            ],
+            "rootPatterns": [
+                "compile_flags.txt",
+                "compile_commands.json",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ],
+            "filetypes": [
+                "c",
+                "cpp",
+                "objc",
+                "objcpp"
+            ]
+        },
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": [
+                "go.mod"
+            ],
+            "disableWorkspaceFolders": true,
+            "filetypes": [
+                "go"
+            ],
+            "initializationOptions": {
+                "usePlaceholders": true
+            }
+        }
+    },
+    "python.jediEnabled": false,
+    "pyright.disableCompletion": true,
+    "suggest.enablePreview": true,
+    "suggest.noselect": true,
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.import.maven.enabled": true,
+    "java.configuration.maven.userSettings": "/Users/11571/.m2/settings.xml",
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "html.filetypes": [
+        "html",
+        "vue",
+        "handlebars",
+        "template"
+    ],
+    "html.format.indentHandlebars": true,
+    "vetur.format.enable": true,
+    "javascript.suggest.autoImports": true
 }

@@ -7,6 +7,7 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'liuchengxu/vista.vim'
     Plug 'mattn/emmet-vim'
+    Plug 'fatih/vim-go'
     " Editor enhancement
     Plug 'Yggdroot/indentLine'
     Plug 'scrooloose/nerdtree'
@@ -168,6 +169,20 @@ let g:rainbow_conf = {'guifgs': reverse(['Red', 'Orange', 'Yellow', 'Green', 'Cy
 let g:plug_timeout = 180
 let g:plug_retries = 5
 "
+" (vim-go)
+let g:go_term_mode = "vsplit"
+let g:go_term_enabled = 1
+let g:go_code_completion_enabled = 0
+let g:go_snippet_engine = "ultisnips"
+
+let g:go_highlight_extra_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+"
 " (vimwiki)
 "let g:vimwiki_list = [{'path': 'C:\Personal\\GIT\NoteBooks\\vimwiki\\sources', 'path_html': 'C:\Personal\\GIT\NoteBooks\\vimwiki\\html'}]
 " 
@@ -179,107 +194,108 @@ let g:Vsp_width = {x -> float2nr(nvim_win_get_width(0) * x)}
 "
 " Tab to complete
 function! CTab()
-    " 优先考虑有弹出菜单的情况，否则<tab>将不会进行菜单选择。.
-    if pumvisible()
-        return "\<C-N>"
-    else
-        " 获取光标前四个字符, 相比于整行正则匹配效率更高.
-        let matchL = strpart(getline('.'), col('.') - 5, 4) 
-        " 匹配路径
-        let isPath = match(matchL, '/\|\\') 
-        " 匹配是否有字符
-        let isNormal = match(matchL, '\w') 
-        " -1代表无匹配, 没有字符就TAB
-        if isNormal == -1
-            return "\<tab>"
-        " 有字符则按照以下顺序尝试： filepath -> omnifunc.
-        " 文件路径补全
-        elseif isPath != -1
-            return "\<C-X>\<C-F>"
-        " 尝试omni补全
-        elseif isNormal != -1 
-            " 如果没有设置 omnifunc 函数，则尝试关键字补全
-            if &omnifunc == "" 
-                return "\<C-X>\<C-N>"
-            else
-                return "\<C-X>\<C-O>"
-            endif
-        endif
+  " 优先考虑有弹出菜单的情况，否则<tab>将不会进行菜单选择。.
+  if pumvisible()
+    return "\<C-N>"
+  else
+    " 获取光标前四个字符, 相比于整行正则匹配效率更高.
+    let matchL = strpart(getline('.'), col('.') - 5, 4) 
+    " 匹配路径
+    let isPath = match(matchL, '/\|\\') 
+    " 匹配是否有字符
+    let isNormal = match(matchL, '\w') 
+    " -1代表无匹配, 没有字符就TAB
+    if isNormal == -1
+      return "\<tab>"
+      " 有字符则按照以下顺序尝试： filepath -> omnifunc.
+      " 文件路径补全
+    elseif isPath != -1
+      return "\<C-X>\<C-F>"
+      " 尝试omni补全
+    elseif isNormal != -1 
+      " 如果没有设置 omnifunc 函数，则尝试关键字补全
+      if &omnifunc == "" 
+        return "\<C-X>\<C-N>"
+      else
+        return "\<C-X>\<C-O>"
+      endif
     endif
+  endif
 endfunction
 
 " Function to get current absolute file path, also see fnamemodify()
 function! Get_current_path(...)
-    if a:0 == 0
-        return expand("%:p")
-    elseif a:0 > 1
-        echom "Wrong argument"
-    else
-        return expand("%".a:1)
-    endif
+  if a:0 == 0
+    return expand("%:p")
+  elseif a:0 > 1
+    echom "Wrong argument"
+  else
+    return expand("%".a:1)
+  endif
 endfunction
 
 " Split window in percent.
 function! PercentSplit(percent, action)
-    if a:action == "sp"
-        let l:temp = g:Sp_height(a:percent)
-    else
-        let l:temp = g:Vsp_width(a:percent)
-    endif
-    " [N]sp/vsp
-    exe l:temp.a:action
+  if a:action == "sp"
+    let l:temp = g:Sp_height(a:percent)
+  else
+    let l:temp = g:Vsp_width(a:percent)
+  endif
+  " [N]sp/vsp
+  exe l:temp.a:action
 endfunction
 
 function! Compiler()
-    exe "wa"
-    call PercentSplit(0.4, "sp")
-    if &filetype=='c'
-        exe "te clang -o %:r.exe %"
-    elseif &filetype=='cpp'
-        exe "te g++ -o %:r.exe %"
-    elseif &filetype=='java'
-        exe "te javac -encoding utf-8 %"
-    elseif &filetype=='go'
-        exe "go build"
-    else 
-        echo 'Do not support this type of file!'
-        exe "q"
-    endif
+  exe "wa"
+  call PercentSplit(0.4, "sp")
+  if &filetype=='c'
+    exe "te clang -o %:r.exe %"
+  elseif &filetype=='cpp'
+    exe "te g++ -o %:r.exe %"
+  elseif &filetype=='java'
+    exe "te javac -encoding utf-8 %"
+  elseif &filetype=='go'
+    exe "go build"
+  else 
+    echo 'Do not support this type of file!'
+    exe "q"
+  endif
 endfunc
 
 function! Runner()
-    if &filetype == 'html'
-        write
-        exe "!%"
+  if &filetype == 'html'
+    write
+    exe "!%"
+  elseif &filetype == 'go'
+    write
+    exe ":GoRun %"
+  else
+    write
+    call PercentSplit(0.4, "sp")
+    if &filetype=='cpp'|| &filetype=='c'
+      exe "te %:r.exe"
+    elseif &filetype == 'javascript'
+      exe "te node %"
+    elseif &filetype == 'java'
+      exe "te java %:r"
+    elseif &filetype == 'typescript'
+      exe "te node %<.js"
+    elseif &filetype == 'python'
+      exe "te python %"
+    elseif &filetype == 'ps1'
+      exe "te powershell -c \"./%\""
     else
-        write
-        call PercentSplit(0.4, "sp")
-        if &filetype=='cpp'|| &filetype=='c'
-            exe "te %:r.exe"
-        elseif &filetype == 'javascript'
-            exe "te node %"
-        elseif &filetype == 'java'
-            exe "te java %:r"
-        elseif &filetype == 'typescript'
-            exe "te node %<.js"
-        elseif &filetype == 'python'
-            exe "te python %"
-        elseif &filetype == 'ps1'
-            exe "te powershell -c \"./%\""
-        elseif &filetype == 'go'
-            exe "te go run %"
-        else
-            quit
-        endif
+      quit
     endif
+  endif
 endfunc
 
 function! Set_it()
-    exe g:Sp_height(0.8)."sp ~/AppData/Local/nvim/init.vim"
-    exe "cd %:h"
+  exe g:Sp_height(0.8)."sp ~/AppData/Local/nvim/init.vim"
+  exe "cd %:h"
 endfunc
 
 function! Open_terminal()
-    call PercentSplit(0.4, "sp")
-    exe "te powershell"
+  call PercentSplit(0.4, "sp")
+  exe "te powershell"
 endfunction
