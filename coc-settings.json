@@ -33,7 +33,7 @@
             }
         }
     },
-    "python.jediEnabled": false,
+    "python.jediEnabled": true,
     "pyright.disableCompletion": true,
     "suggest.enablePreview": true,
     "suggest.noselect": true,

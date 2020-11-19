@@ -124,14 +124,15 @@ set ignorecase
 " |>theme<|
 set termguicolors
 let g:forest_night_disable_italic_comment = 0
-let g:forest_night_enable_italic = 0
+let g:forest_night_enable_italic = 1
 colo forest-night
 set background=dark
 set pumblend=10
 set winblend=30
 "
 " (airline)
-set noshowmode
+" Fix! Do not uncomment this
+"set noshowmode
 set laststatus=2
 set showtabline=2
 let g:airline_theme = 'forest_night'
