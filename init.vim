@@ -18,7 +18,7 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'vimwiki/vimwiki'
     " Themes
     Plug 'sainnhe/forest-night'
-    "Plug 'kristijanhusak/vim-hybrid-material'
+    Plug 'kristijanhusak/vim-hybrid-material'
     "Plug 'morhetz/gruvbox' 
     "Plug 'crusoexia/vim-monokai' 
     "Plug 'joshdick/onedark.vim'
@@ -66,6 +66,7 @@ noremap <silent> <Leader>fc :call Compiler()<cr>
 noremap <silent> <Leader>fr :call Runner()<cr>
 nnoremap <silent> <Leader>fs :call Set_it()<cr>
 nnoremap <silent> <Leader>ft :call Open_terminal()<cr>
+nnoremap <silent> <Leader>fh :cd %:h<cr>
 " single plugin maps
 nnoremap <silent> <Leader>pv :Vista coc<cr>
 nnoremap <silent> <Leader>pd :NERDTree<cr>
@@ -120,6 +121,7 @@ set shiftwidth=4
 set timeoutlen=1500
 set splitbelow
 set ignorecase
+set hidden
 "
 " |>theme<|
 set termguicolors
@@ -171,10 +173,9 @@ let g:plug_timeout = 180
 let g:plug_retries = 5
 "
 " (vim-go)
-let g:go_term_mode = "vsplit"
+let g:go_term_mode = "split"
 let g:go_term_enabled = 1
 let g:go_code_completion_enabled = 0
-let g:go_snippet_engine = "ultisnips"
 
 let g:go_highlight_extra_types = 1
 let g:go_highlight_operators = 1

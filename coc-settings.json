@@ -18,21 +18,12 @@
                 "objc",
                 "objcpp"
             ]
-        },
-        "golang": {
-            "command": "gopls",
-            "rootPatterns": [
-                "go.mod"
-            ],
-            "disableWorkspaceFolders": true,
-            "filetypes": [
-                "go"
-            ],
-            "initializationOptions": {
-                "usePlaceholders": true
-            }
         }
     },
+    "snippets.ultisnips.directories": [
+        "UltiSnips",
+        "gosnippets/UltiSnips"
+    ],
     "python.jediEnabled": true,
     "pyright.disableCompletion": true,
     "python.analysis.autoImportCompletions": true,
