@@ -31,7 +31,7 @@
     "suggest.noselect": true,
     "java.configuration.updateBuildConfiguration": "interactive",
     "java.import.maven.enabled": true,
-    "java.configuration.maven.userSettings": "/Users/11571/.m2/settings.xml",
+    "java.configuration.maven.userSettings": "~/11571/.m2/settings.xml",
     "java.errors.incompleteClasspath.severity": "ignore",
     "html.filetypes": [
         "html",
