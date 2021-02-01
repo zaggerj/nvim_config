@@ -24,9 +24,9 @@
         "UltiSnips",
         "gosnippets/UltiSnips"
     ],
-    "python.jediEnabled": true,
-    "pyright.disableCompletion": true,
-    "python.analysis.autoImportCompletions": true,
+    //"python.jediEnabled": true,
+    //"pyright.disableCompletion": true,
+    //"python.analysis.autoImportCompletions": true,
     "suggest.enablePreview": true,
     "suggest.noselect": true,
     "java.configuration.updateBuildConfiguration": "interactive",

@@ -69,7 +69,7 @@ nnoremap <silent> <Leader>ft :call Open_terminal()<cr>
 nnoremap <silent> <Leader>fh :cd %:h<cr>
 " single plugin maps
 nnoremap <silent> <Leader>pv :Vista coc<cr>
-nnoremap <silent> <Leader>pd :NERDTree<cr>
+nnoremap <silent> <Leader>pd :NERDTreeFocus<cr>
 " (fugitive)
 nnoremap <silent> <Leader>gs :G<cr>
 nnoremap <silent> <Leader>gps :Gpush<cr>
