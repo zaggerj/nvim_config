@@ -30,6 +30,7 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'vim-python/python-syntax'
     Plug 'uiiaoo/java-syntax.vim'
+    Plug 'rust-lang/rust.vim'
     "Plug 'MaxMEllon/vim-jsx-pretty'
 call plug#end()
 "
@@ -186,6 +187,9 @@ let g:go_highlight_function_parameters = 1
 let g:go_highlight_function_calls = 1
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
+"
+" (rust)
+let g:rustfmt_autosave = 1
 "
 " (vimwiki)
 "let g:vimwiki_list = [{'path': 'C:\Personal\\GIT\NoteBooks\\vimwiki\\sources', 'path_html': 'C:\Personal\\GIT\NoteBooks\\vimwiki\\html'}]
