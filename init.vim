@@ -73,8 +73,8 @@ nnoremap <silent> <Leader>pv :Vista coc<cr>
 nnoremap <silent> <Leader>pd :NERDTreeFocus<cr>
 " (fugitive)
 nnoremap <silent> <Leader>gs :G<cr>
-nnoremap <silent> <Leader>gps :Gpush<cr>
-nnoremap <silent> <Leader>gpl :Gpull<cr>
+nnoremap <silent> <Leader>gps :Git push<cr>
+nnoremap <silent> <Leader>gpl :Git pull<cr>
 nnoremap <silent> <Leader>gl :Gclog<cr>
 " (vim-plug)
 nnoremap <silent> <Leader>pi :PlugInstall<cr>
