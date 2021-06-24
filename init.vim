@@ -63,6 +63,7 @@ noremap <silent> <leader><left> :bdelete<cr>
 " my functions
 " or <C-R>=
 inoremap <silent><expr> <tab> CTab()
+inoremap <silent><expr> itm strftime("%c")
 noremap <silent> <Leader>fc :call Compiler()<cr>
 noremap <silent> <Leader>fr :call Runner()<cr>
 nnoremap <silent> <Leader>fs :call Set_it()<cr>
