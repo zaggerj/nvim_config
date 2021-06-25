@@ -129,7 +129,7 @@ set hidden
 set termguicolors
 let g:forest_night_disable_italic_comment = 0
 let g:forest_night_enable_italic = 1
-colo forest-night
+colo everforest
 set background=dark
 set pumblend=10
 set winblend=30
@@ -139,7 +139,7 @@ set winblend=30
 "set noshowmode
 set laststatus=2
 set showtabline=2
-let g:airline_theme = 'forest_night'
+let g:airline_theme = 'everforest'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#coc#enabled = 1
