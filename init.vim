@@ -1,7 +1,7 @@
 "With ginit.vim
 " |>Installed plugins<|
 call plug#begin('~\\vimfiles\\plugged')
-    " Git
+    " Toolset
     Plug 'tpope/vim-fugitive'
     " IDE support
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -42,6 +42,7 @@ inoremap <C-v> <C-R>+
 nnoremap \ :
 nnoremap / /\v
 nnoremap ? ?\v
+nmap <leader>n :noh<cr>
 " terminal control
 tnoremap fj <C-\><C-n>
 tnoremap <Esc> exit<cr>
@@ -193,6 +194,7 @@ let g:go_highlight_fields = 1
 let g:rustfmt_autosave = 1
 "
 " (vimwiki)
+let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
 "let g:vimwiki_list = [{'path': 'C:\Personal\\GIT\NoteBooks\\vimwiki\\sources', 'path_html': 'C:\Personal\\GIT\NoteBooks\\vimwiki\\html'}]
 " 
 " |>functions<|
