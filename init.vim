@@ -42,7 +42,7 @@ inoremap <C-v> <C-R>+
 nnoremap \ :
 nnoremap / /\v
 nnoremap ? ?\v
-nmap <leader>n :noh<cr>
+nmap <silent> <leader>n :noh<cr>
 " terminal control
 tnoremap fj <C-\><C-n>
 tnoremap <Esc> exit<cr>
@@ -72,7 +72,7 @@ nnoremap <silent> <Leader>ft :call Open_terminal()<cr>
 nnoremap <silent> <Leader>fh :cd %:h<cr>
 " single plugin maps
 nnoremap <silent> <Leader>pv :Vista coc<cr>
-nnoremap <silent> <Leader>pd :NERDTreeToggle<cr>
+nnoremap <silent> <Leader>pd :NERDTreeToggle .<cr>
 " (fugitive)
 nnoremap <silent> <Leader>gs :G<cr>
 nnoremap <silent> <Leader>gps :Git push<cr>
