@@ -27,9 +27,10 @@ let g:plug_retries = 5
 " (vim-go)
 let g:go_term_mode = "split"
 let g:go_term_enabled = 1
+" 使用 coc 补全
 let g:go_code_completion_enabled = 0
 let g:go_imports_autosave = 1
-let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave = 0
 
 " (rust)
 let g:rustfmt_autosave = 1
@@ -41,7 +42,3 @@ let g:indentLine_fileTypeExclude = ['go', 'coc-explorer']
 " (vimwiki)
 let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
 "let g:vimwiki_list = [{'path': 'C:\Personal\\GIT\NoteBooks\\vimwiki\\sources', 'path_html': 'C:\Personal\\GIT\NoteBooks\\vimwiki\\html'}]
-
-" (neovide)
-"let &guifont = "FiraCode NF:h14"
-

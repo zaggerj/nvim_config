@@ -35,7 +35,7 @@ nnoremap <silent> <Leader>ft :call Open_terminal()<cr>
 nnoremap <silent> <Leader>fh :cd %:h<cr>
 " single plugin maps
 nnoremap <silent> <Leader>pv :Vista coc<cr>
-nnoremap <silent> <Leader>pd :NERDTreeToggle .<cr>
+nnoremap <silent> <Leader>pd :NERDTree .<cr>
 " (fugitive)
 nnoremap <silent> <Leader>gs :G<cr>
 nnoremap <silent> <Leader>gps :Git push<cr>
@@ -60,4 +60,3 @@ nmap <silent> <C-Down> <Plug>(coc-diagnostic-next-error)
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-"

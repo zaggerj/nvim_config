@@ -1,5 +1,4 @@
 "With ginit.vim
-" |>Installed plugins<|
 call plug#begin('~\\vimfiles\\plugged')
     " Toolset
     Plug 'tpope/vim-fugitive'
@@ -34,26 +33,11 @@ call plug#begin('~\\vimfiles\\plugged')
     "Plug 'MaxMEllon/vim-jsx-pretty'
 call plug#end()
 
-" |>options(native & plugin)<|
-" `:options` for all available options.
-filetype plugin indent on
-syntax enable
-set nowrap
-set title
-set grepprg=rg\ --vimgrep
-set mouse=nv
-set fileencodings=utf-8,gb2312
-set cursorline
-" set showmatch
-set number
-set autoindent
-set smartindent
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set timeoutlen=1500
-set splitbelow
-set ignorecase
-set hidden
+" 顺序可能不重要，但这保留了拆分前的顺序
+runtime mysettings/ui.vim
+runtime mysettings/maps.vim
+runtime mysettings/autocmds.vim
+runtime mysettings/basic.vim
+runtime mysettings/plugins.vim
+runtime mysettings/functions.vim
 
-runtime! settings/**/*.vim
