@@ -112,3 +112,14 @@ function! Open_terminal()
     call PercentSplit(0.4, "sp")
     exe "te powershell"
 endf
+
+" 打开 quickfix 或者 locallist
+function! Open_fix()
+    if len(getqflist())
+        copen
+    elseif len(getloclist(0)) 
+        lopen
+    else
+        echo 'Neither quickfix or locallist has any sources!'
+    endif
+endfunction

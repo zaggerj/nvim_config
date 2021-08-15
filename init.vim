@@ -1,5 +1,6 @@
 "With ginit.vim
-call plug#begin('~\\vimfiles\\plugged')
+" 必须要放在开头，否则插件不会在配置前加载
+call plug#begin('~\vimfiles\plugged')
     " Toolset
     Plug 'tpope/vim-fugitive'
     " IDE support
@@ -8,6 +9,8 @@ call plug#begin('~\\vimfiles\\plugged')
     Plug 'mattn/emmet-vim'
     Plug 'fatih/vim-go'
     " Editor enhancement
+    "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    "Plug 'junegunn/fzf.vim'
     Plug 'Yggdroot/indentLine'
     Plug 'scrooloose/nerdtree'
     Plug 'vim-airline/vim-airline'
@@ -40,4 +43,3 @@ runtime mysettings/autocmds.vim
 runtime mysettings/basic.vim
 runtime mysettings/plugins.vim
 runtime mysettings/functions.vim
-

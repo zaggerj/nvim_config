@@ -5,10 +5,10 @@ nnoremap \ :
 nnoremap / /\v
 nnoremap ? ?\v
 nmap <silent> <leader>n :noh<cr>
-" terminal control
+" (terminal control)
 tnoremap fj <C-\><C-n>
 tnoremap <Esc> exit<cr>
-" window jump
+" (window jump)
 noremap <silent> <A-h> <C-w>h
 noremap <silent> <A-j> <C-w>j
 noremap <silent> <A-k> <C-w>k
@@ -17,23 +17,24 @@ noremap <silent> <A-S-h> <C-w>H
 noremap <silent> <A-S-j> <C-w>J
 noremap <silent> <A-S-k> <C-w>K
 noremap <silent> <A-S-l> <C-w>L
-" buffer jump & tab jump
+" (buffer jump & tab jump)
 noremap <silent> <C-Left> :bp<cr>
 noremap <silent> <C-Right> :bn<cr>
 noremap <silent> <C-S-Left> :tabp<cr>
 noremap <silent> <C-S-Right> :tabn<cr>
 noremap <silent> <leader><left> :bdelete<cr>
-" my functions
+" (my)
 " or <C-R>=
 inoremap <silent><expr> <tab> CTab()
 inoremap <silent><expr> _tm strftime("%c")
+nnoremap <silent> <Leader>fo :call Open_fix()<cr>
 noremap <silent> <Leader>fc :call Compiler()<cr>
 noremap <silent> <Leader>fr :call Runner()<cr>
 nnoremap <silent> <Leader>fs :call Set_it()<cr>
 nnoremap <silent> <Leader>fd :exe "e expand('<sfile>:p:h')".'\pack\my\start\myplugin\plugin\one.vim'<cr>
 nnoremap <silent> <Leader>ft :call Open_terminal()<cr>
 nnoremap <silent> <Leader>fh :cd %:h<cr>
-" single plugin maps
+" (single plugin maps)
 nnoremap <silent> <Leader>pv :Vista coc<cr>
 nnoremap <silent> <Leader>pd :NERDTree .<cr>
 " (fugitive)
