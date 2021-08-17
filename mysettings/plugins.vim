@@ -1,14 +1,3 @@
-" (airline)
-" Fix! Do not uncomment this
-"set noshowmode
-set laststatus=2
-set showtabline=2
-let g:airline_theme = 'everforest'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#coc#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-
 " (vista)
 let g:vista_cursor_delay = 60
 let g:vista_sidebar_position = "vertical botright"
@@ -38,7 +27,27 @@ let g:rustfmt_autosave = 1
 " (indentLine)
 " 排除一些不能正常工作的文件
 let g:indentLine_fileTypeExclude = ['go', 'coc-explorer']
+" 避免和 vimwiki 的高亮冲突
+let g:indentLine_concealcursor = ''
 
 " (vimwiki)
 let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
 "let g:vimwiki_list = [{'path': 'C:\Personal\\GIT\NoteBooks\\vimwiki\\sources', 'path_html': 'C:\Personal\\GIT\NoteBooks\\vimwiki\\html'}]
+
+" (leaderF)
+let g:Lf_WindowPosition = 'bottom'
+let g:Lf_WindowHeight = 0.3
+let g:Lf_ShortcutF = '<Leader>lf'
+let g:Lf_ShortcutB = '<Leader>lb'
+let g:Lf_WildIgnore = {
+            \ 'dir': ['.svn','.git','.hg'],
+            \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+            \}
+let g:Lf_RgConfig = [
+            \ "--type-add web:*.{html,css,js}*",
+            \ "--glob=!git/*",
+            \ "--hidden"
+            \ ]
+"let g:Lf_DisableStl = 1
+let g:Lf_StlSeparator = { 'left': '', 'right': '' }
+let g:Lf_ExternalCommand = 'fd "%s" --type f'

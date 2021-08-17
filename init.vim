@@ -11,6 +11,7 @@ call plug#begin('~\vimfiles\plugged')
     " Editor enhancement
     "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     "Plug 'junegunn/fzf.vim'
+    Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
     Plug 'Yggdroot/indentLine'
     Plug 'scrooloose/nerdtree'
     Plug 'vim-airline/vim-airline'
@@ -20,7 +21,7 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'vimwiki/vimwiki'
     " Themes
     Plug 'sainnhe/forest-night'
-    Plug 'kristijanhusak/vim-hybrid-material'
+    "Plug 'kristijanhusak/vim-hybrid-material'
     "Plug 'morhetz/gruvbox' 
     "Plug 'crusoexia/vim-monokai' 
     "Plug 'joshdick/onedark.vim'
@@ -36,10 +37,10 @@ call plug#begin('~\vimfiles\plugged')
     "Plug 'MaxMEllon/vim-jsx-pretty'
 call plug#end()
 
-" 顺序可能不重要，但这保留了拆分前的顺序
+" 自定义函数被配置依赖，需要优先加载
+runtime mysettings/functions.vim
 runtime mysettings/ui.vim
 runtime mysettings/maps.vim
 runtime mysettings/autocmds.vim
 runtime mysettings/basic.vim
 runtime mysettings/plugins.vim
-runtime mysettings/functions.vim

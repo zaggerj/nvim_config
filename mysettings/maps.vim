@@ -61,3 +61,9 @@ nmap <silent> <C-Down> <Plug>(coc-diagnostic-next-error)
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+" (leaderF)
+" 这只包括一部分键位，另见 mysettings/plugins.vim
+map <Leader>lg <Plug>LeaderfRgPrompt
+noremap <silent> <Leader>lr :LeaderfMru<cr>
+noremap <silent> <Leader>l/ :LeaderfHistorySearch<cr>
+noremap <silent> <Leader>l: :LeaderfHistoryCmd<cr>
