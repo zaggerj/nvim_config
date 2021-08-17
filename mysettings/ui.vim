@@ -1,12 +1,31 @@
 " 配置 colorscheme 和 syntax highlight
 " 务必确保 highlight 在 colorscheme 之后进行设置，否则会导致高亮不正确
+" (theme)
 set termguicolors
+colo everforest
 let g:forest_night_disable_italic_comment = 0
 let g:forest_night_enable_italic = 1
-colo everforest
-set background=dark
 set pumblend=10
 set winblend=30
+
+" 根据时间自动调整主题
+let s:now = str2nr(strftime("%H"))
+if s:now > 7 && s:now < 23
+    set background=light
+else
+    set background=dark
+endif
+
+" (airline)
+" Fix! Do not uncomment this
+"set noshowmode
+set laststatus=2
+set showtabline=2
+let g:airline_theme = 'everforest'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 
 " (rainbow)
 " 确保在 colo 之后

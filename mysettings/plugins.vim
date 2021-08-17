@@ -1,14 +1,3 @@
-" (airline)
-" Fix! Do not uncomment this
-"set noshowmode
-set laststatus=2
-set showtabline=2
-let g:airline_theme = 'everforest'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#coc#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-
 " (vista)
 let g:vista_cursor_delay = 60
 let g:vista_sidebar_position = "vertical botright"
@@ -44,7 +33,7 @@ let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
 "let g:vimwiki_list = [{'path': 'C:\Personal\\GIT\NoteBooks\\vimwiki\\sources', 'path_html': 'C:\Personal\\GIT\NoteBooks\\vimwiki\\html'}]
 
 " (leaderF)
-let g:Lf_WindowPosition = 'popup'
+let g:Lf_WindowPosition = 'bottom'
 let g:Lf_ShortcutF = '<Leader>lf'
 let g:Lf_ShortcutB = '<Leader>lb'
 let g:Lf_WildIgnore = {
@@ -58,4 +47,4 @@ let g:Lf_RgConfig = [
             \ ]
 "let g:Lf_DisableStl = 1
 let g:Lf_StlSeparator = { 'left': '', 'right': '' }
-let g:Lf_ExternalCommand = 'fd "%s" --type f'           " On MacOSX/Linux
+let g:Lf_ExternalCommand = 'fd "%s" --type f'
