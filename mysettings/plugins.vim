@@ -32,7 +32,6 @@ let g:indentLine_concealcursor = ''
 
 " (vimwiki)
 let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
-"let g:vimwiki_list = [{'path': 'C:\Personal\\GIT\NoteBooks\\vimwiki\\sources', 'path_html': 'C:\Personal\\GIT\NoteBooks\\vimwiki\\html'}]
 
 " (leaderF)
 let g:Lf_WindowPosition = 'bottom'
