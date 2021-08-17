@@ -27,6 +27,8 @@ let g:rustfmt_autosave = 1
 " (indentLine)
 " 排除一些不能正常工作的文件
 let g:indentLine_fileTypeExclude = ['go', 'coc-explorer']
+" 避免和 vimwiki 的高亮冲突
+let g:indentLine_concealcursor = ''
 
 " (vimwiki)
 let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
