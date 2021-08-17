@@ -10,7 +10,7 @@ set winblend=30
 
 " 根据时间自动调整主题
 let s:now = str2nr(strftime("%H"))
-if s:now > 7 && s:now < 23
+if s:now > 7 && s:now < 19
     set background=light
 else
     set background=dark
