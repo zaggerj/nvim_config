@@ -98,8 +98,9 @@ function! Runner()
     endif
 endf
 
+" Neovim 专属
 function! Set_it()
-    exe g:Sp_height(0.8)."sp ~/AppData/Local/nvim/init.vim"
+    exe g:Sp_height(0.8)."sp ".stdpath("config")."/init.vim"
     exe "cd %:h"
 endf
 
