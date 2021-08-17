@@ -21,7 +21,7 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'vimwiki/vimwiki'
     " Themes
     Plug 'sainnhe/forest-night'
-    Plug 'kristijanhusak/vim-hybrid-material'
+    "Plug 'kristijanhusak/vim-hybrid-material'
     "Plug 'morhetz/gruvbox' 
     "Plug 'crusoexia/vim-monokai' 
     "Plug 'joshdick/onedark.vim'

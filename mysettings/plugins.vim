@@ -34,6 +34,7 @@ let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
 
 " (leaderF)
 let g:Lf_WindowPosition = 'bottom'
+let g:Lf_WindowHeight = 0.3
 let g:Lf_ShortcutF = '<Leader>lf'
 let g:Lf_ShortcutB = '<Leader>lb'
 let g:Lf_WildIgnore = {

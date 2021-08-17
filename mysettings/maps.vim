@@ -63,5 +63,7 @@ nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<
 nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 " (leaderF)
 " 这只包括一部分键位，另见 mysettings/plugins.vim
-nnoremap <silent> <Leader>lr :LeaderfMru<cr>
 map <Leader>lg <Plug>LeaderfRgPrompt
+noremap <silent> <Leader>lr :LeaderfMru<cr>
+noremap <silent> <Leader>l/ :LeaderfHistorySearch<cr>
+noremap <silent> <Leader>l: :LeaderfHistoryCmd<cr>
