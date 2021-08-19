@@ -111,7 +111,7 @@ endf
 
 function! Open_terminal()
     call PercentSplit(0.4, "sp")
-    exe "te powershell"
+    exe "te pwsh"
 endf
 
 " 打开 quickfix 或者 locallist
