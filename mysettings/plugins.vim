@@ -38,9 +38,10 @@ let g:Lf_WindowPosition = 'popup'
 let g:Lf_WindowHeight = 0.3
 let g:Lf_ShortcutF = '<Leader>lf'
 let g:Lf_ShortcutB = '<Leader>lb'
+let g:Lf_RootMarkers = ['.git', '.hg', '.svn', '.mod', 'go.mod']
 let g:Lf_WildIgnore = {
-            \ 'dir': ['.svn','.git','.hg'],
-            \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+            \ 'dir': ['.svn','.git','.hg', 'node_modules'],
+            \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]','*.sum']
             \}
 let g:Lf_RgConfig = [
             \ "--type-add web:*.{html,css,js}*",
