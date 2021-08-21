@@ -7,7 +7,7 @@ let g:vista_default_executive = "coc"
 set cmdheight=1
 set updatetime=500
 set shortmess+=c
-set signcolumn=yes
+set signcolumn=number
 
 " (vim-plug)
 let g:plug_timeout = 180
@@ -34,7 +34,7 @@ let g:indentLine_concealcursor = ''
 let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
 
 " (leaderF)
-let g:Lf_WindowPosition = 'bottom'
+let g:Lf_WindowPosition = 'popup'
 let g:Lf_WindowHeight = 0.3
 let g:Lf_ShortcutF = '<Leader>lf'
 let g:Lf_ShortcutB = '<Leader>lb'

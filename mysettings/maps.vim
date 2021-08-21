@@ -58,9 +58,10 @@ nmap <silent> <Leader>cf <Plug>(coc-format)
 nmap <silent> <Leader>cr <Plug>(coc-rename)
 nmap <silent> <C-Up> <Plug>(coc-diagnostic-prev-error)
 nmap <silent> <C-Down> <Plug>(coc-diagnostic-next-error)
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+            \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " (leaderF)
 " 这只包括一部分键位，另见 mysettings/plugins.vim
 map <Leader>lg <Plug>LeaderfRgPrompt
