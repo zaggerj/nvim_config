@@ -24,6 +24,8 @@
         "UltiSnips",
         "gosnippets/UltiSnips"
     ],
+    "diagnostic.errorSign":"🙄",
+    "diagnostic.warningSign":"🤔",
     //"python.jediEnabled": true,
     //"pyright.disableCompletion": true,
     //"python.analysis.autoImportCompletions": true,
@@ -37,7 +39,8 @@
         "html",
         "vue",
         "handlebars",
-        "template"
+        "template",
+        "jsx"
     ],
     "html.format.indentHandlebars": true,
     "vetur.format.enable": true,

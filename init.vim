@@ -11,12 +11,12 @@ call plug#begin('~\vimfiles\plugged')
     " Editor enhancement
     "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     "Plug 'junegunn/fzf.vim'
-    Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+    "Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+    Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
     Plug 'Yggdroot/indentLine'
     Plug 'scrooloose/nerdtree'
     Plug 'vim-airline/vim-airline'
     Plug 'luochen1990/rainbow'
-    Plug 'jiangmiao/auto-pairs'
     Plug 'tpope/vim-surround'
     Plug 'vimwiki/vimwiki'
     " Themes

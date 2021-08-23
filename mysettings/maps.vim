@@ -31,7 +31,7 @@ nnoremap <silent> <Leader>fo :call Open_fix()<cr>
 noremap <silent> <Leader>fc :call Compiler()<cr>
 noremap <silent> <Leader>fr :call Runner()<cr>
 nnoremap <silent> <Leader>fs :call Set_it()<cr>
-nnoremap <silent> <Leader>fd :exe "e expand('<sfile>:p:h')".'\pack\my\start\myplugin\plugin\one.vim'<cr>
+nnoremap <silent> <Leader>fd :exe "e expand('<sfile>:p:h')"."\pack\my\start\myplugin\plugin\one.vim"<cr>
 nnoremap <silent> <Leader>ft :call Open_terminal()<cr>
 nnoremap <silent> <Leader>fh :cd %:h<cr>
 " (single plugin maps)
@@ -62,9 +62,11 @@ nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<
 nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
             \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-" (leaderF)
+" (leaderF && clap)
 " 这只包括一部分键位，另见 mysettings/plugins.vim
-map <Leader>lg <Plug>LeaderfRgPrompt
-noremap <silent> <Leader>lr :LeaderfMru<cr>
-noremap <silent> <Leader>l/ :LeaderfHistorySearch<cr>
-noremap <silent> <Leader>l: :LeaderfHistoryCmd<cr>
+noremap <silent> <Leader>lf :Clap files<cr>
+noremap <silent> <Leader>lg :Clap grep2<cr>
+noremap <silent> <Leader>lb :Clap buffers<cr>
+noremap <silent> <Leader>lr :Clap recent_files<cr>
+noremap <silent> <Leader>l/ :Clap hist/<cr>
+noremap <silent> <Leader>l: :Clap hist:<cr>

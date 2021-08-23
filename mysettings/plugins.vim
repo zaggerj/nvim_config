@@ -33,21 +33,4 @@ let g:indentLine_concealcursor = ''
 " (vimwiki)
 let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
 
-" (leaderF)
-let g:Lf_WindowPosition = 'popup'
-let g:Lf_WindowHeight = 0.3
-let g:Lf_ShortcutF = '<Leader>lf'
-let g:Lf_ShortcutB = '<Leader>lb'
-let g:Lf_RootMarkers = ['.git', '.hg', '.svn', '.mod', 'go.mod']
-let g:Lf_WildIgnore = {
-            \ 'dir': ['.svn','.git','.hg', 'node_modules'],
-            \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]','*.sum']
-            \}
-let g:Lf_RgConfig = [
-            \ "--type-add web:*.{html,css,js}*",
-            \ "--glob=!git/*",
-            \ "--hidden"
-            \ ]
-"let g:Lf_DisableStl = 1
-let g:Lf_StlSeparator = { 'left': '', 'right': '' }
-let g:Lf_ExternalCommand = 'fd "%s" --type f'
+" ( vim-clap )
