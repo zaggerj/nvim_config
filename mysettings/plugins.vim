@@ -38,6 +38,6 @@ let g:clap_enable_icon = 1
 let g:clap_provider_grep_enable_icon = 1
 let g:clap_enable_background_shadow = v:false
 let g:clap_forerunner_status_sign = { 'running': '省', 'done': '', 'using_cache': ''}
-let g:clap_prompt_format = ' %spinner% %forerunner_status% %provider_id% > '
+let g:clap_prompt_format = ' %spinner% %provider_id% %forerunner_status% > '
 let g:clap_layout = { 'relative': 'editor' }
 let g:clap_layout = { 'width': '90%', 'col': '5%' }
