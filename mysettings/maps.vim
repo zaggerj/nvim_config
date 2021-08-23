@@ -63,9 +63,9 @@ nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
             \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " (leaderF && clap)
-" 这只包括一部分键位，另见 mysettings/plugins.vim
 noremap <silent> <Leader>lf :Clap files<cr>
-noremap <silent> <Leader>lg :Clap grep2<cr>
+" 当前 grep2 结果显示不全
+noremap <silent> <Leader>lg :Clap grep<cr>
 noremap <silent> <Leader>lb :Clap buffers<cr>
 noremap <silent> <Leader>lr :Clap recent_files<cr>
 noremap <silent> <Leader>l/ :Clap hist/<cr>

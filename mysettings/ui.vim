@@ -6,7 +6,7 @@ colo everforest
 let g:forest_night_disable_italic_comment = 0
 let g:forest_night_enable_italic = 1
 set pumblend=10
-set winblend=30
+set winblend=0
 
 " 根据时间自动调整主题
 let s:now = str2nr(strftime("%H"))
@@ -17,7 +17,7 @@ else
 endif
 
 " (airline)
-" Fix! Do not uncomment this
+" Fix! Do not uncomment this or `a` will laggy
 "set noshowmode
 set laststatus=2
 set showtabline=2

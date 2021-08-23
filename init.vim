@@ -20,10 +20,11 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'tpope/vim-surround'
     Plug 'vimwiki/vimwiki'
     " Themes
+    Plug 'ryanoasis/vim-devicons'
     Plug 'sainnhe/forest-night'
     "Plug 'kristijanhusak/vim-hybrid-material'
     "Plug 'morhetz/gruvbox' 
-    "Plug 'crusoexia/vim-monokai' 
+    Plug 'crusoexia/vim-monokai' 
     "Plug 'joshdick/onedark.vim'
     Plug 'vim-airline/vim-airline-themes'
     " Syntax

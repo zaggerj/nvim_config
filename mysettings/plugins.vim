@@ -4,8 +4,7 @@ let g:vista_sidebar_position = "vertical botright"
 let g:vista_default_executive = "coc"
 
 " (coc)
-set cmdheight=1
-set updatetime=500
+"set updatetime=500
 set shortmess+=c
 set signcolumn=number
 
@@ -34,3 +33,11 @@ let g:indentLine_concealcursor = ''
 let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
 
 " ( vim-clap )
+let g:clap_open_preview = "never"
+let g:clap_enable_icon = 1
+let g:clap_provider_grep_enable_icon = 1
+let g:clap_enable_background_shadow = v:false
+let g:clap_forerunner_status_sign = { 'running': '省', 'done': '', 'using_cache': ''}
+let g:clap_prompt_format = ' %spinner% %forerunner_status% %provider_id% > '
+let g:clap_layout = { 'relative': 'editor' }
+let g:clap_layout = { 'width': '90%', 'col': '5%' }
