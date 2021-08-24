@@ -68,5 +68,6 @@ noremap <silent> <Leader>lf :Clap files<cr>
 noremap <silent> <Leader>lg :Clap grep<cr>
 noremap <silent> <Leader>lb :Clap buffers<cr>
 noremap <silent> <Leader>lr :Clap recent_files<cr>
+noremap <silent> <Leader>ll :Clap lines<cr>
 noremap <silent> <Leader>l/ :Clap hist/<cr>
 noremap <silent> <Leader>l: :Clap hist:<cr>

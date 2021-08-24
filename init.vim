@@ -9,8 +9,6 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'mattn/emmet-vim'
     Plug 'fatih/vim-go'
     " Editor enhancement
-    "Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    "Plug 'junegunn/fzf.vim'
     "Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
     Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
     Plug 'Yggdroot/indentLine'
@@ -23,7 +21,7 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'ryanoasis/vim-devicons'
     Plug 'sainnhe/forest-night'
     "Plug 'kristijanhusak/vim-hybrid-material'
-    "Plug 'morhetz/gruvbox' 
+    "Plug 'morhetz/gruvbox'
     Plug 'crusoexia/vim-monokai' 
     "Plug 'joshdick/onedark.vim'
     Plug 'vim-airline/vim-airline-themes'

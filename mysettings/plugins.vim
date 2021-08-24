@@ -37,18 +37,18 @@ let g:indentLine_concealcursor = ''
 let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
 
 " ( vim-clap )
-let g:clap_enable_icon = 1
-let g:clap_provider_grep_enable_icon = 1
+let g:clap_provider_grep_opts = '-H --no-heading --vimgrep --smart-case --hidden -g "!.git/"'
 let g:clap_enable_background_shadow = v:false
 let g:clap_search_box_border_symbols = { 'fire': [ "", "" ] }
 let g:clap_search_box_border_style = "fire"
 let g:clap_forerunner_status_sign = { 'running': '', 'done': '', 'using_cache': '' }
 let g:clap_prompt_format = ' %spinner% %provider_id% %forerunner_status% > '
 let g:clap_popup_border = has('nvim') ? "double" : "sharp"
-let g:clap_open_preview = "always"
-let g:clap_preview_direction = "LR"
+" 有 bug
+"let g:clap_open_preview = "never"
+let g:clap_preview_direction = "UD"
 let g:clap_layout = { 'relative': 'editor' }
 " 横向预览不要设置此项，有 bug
 let g:clap_layout = {'width': '80%', 'col':'10%', 'height': '50%', 'row': '15%' }
 " 纵向预览无效
-let g:clap_preview_size = 10
+"let g:clap_preview_size = 10
