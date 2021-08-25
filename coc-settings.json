@@ -25,7 +25,9 @@
         "gosnippets/UltiSnips"
     ],
     "diagnostic.errorSign":"E",
-    "diagnostic.warningSign":"H",
+    "diagnostic.warningSign":"W",
+    "diagnostic.infoSign":"I",
+    "diagnostic.hintSign": "H",
     //"python.jediEnabled": true,
     //"pyright.disableCompletion": true,
     //"python.analysis.autoImportCompletions": true,
