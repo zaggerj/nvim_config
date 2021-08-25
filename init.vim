@@ -10,7 +10,7 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'fatih/vim-go'
     " Editor enhancement
     "Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
-    Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
+    Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
     Plug 'Yggdroot/indentLine'
     Plug 'scrooloose/nerdtree'
     Plug 'vim-airline/vim-airline'
