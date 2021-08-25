@@ -7,3 +7,4 @@ let s:modules = [ "plugins", "functions", "basic", "ui", "maps", "autocmds"]
 for module in s:modules
     exec "runtime ".s:module_dir."/".module.".vim"
 endfor
+
