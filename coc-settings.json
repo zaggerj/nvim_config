@@ -24,7 +24,7 @@
         "UltiSnips",
         "gosnippets/UltiSnips"
     ],
-    "diagnostic.errorSign":"🙄",
+    "diagnostic.errorSign":"🎯",
     "diagnostic.warningSign":"🤔",
     //"python.jediEnabled": true,
     //"pyright.disableCompletion": true,

@@ -46,9 +46,9 @@ let g:clap_prompt_format = ' %spinner% %provider_id% %forerunner_status% > '
 let g:clap_popup_border = has('nvim') ? "double" : "sharp"
 " 有 bug
 "let g:clap_open_preview = "never"
-"let g:clap_preview_direction = "UD"
+let g:clap_preview_direction = "LR"
 let g:clap_layout = { 'relative': 'editor' }
-" 横向预览不要设置此项，有 bug
-"let g:clap_layout = {'width': '50%', 'col':'10%', 'height': '50%', 'row': '15%' }
+" LR不要设置此项，有 bug
+let g:clap_layout = {'width': '47%', 'col':'3%', 'height': '50%', 'row': '25%' }
 " 纵向预览无效
 "let g:clap_preview_size = 10

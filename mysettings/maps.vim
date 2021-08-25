@@ -64,7 +64,6 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
             \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " (leaderF && clap)
 noremap <silent> <Leader>lf :Clap files<cr>
-" 当前 grep2 结果显示不全
 noremap <silent> <Leader>lg :Clap grep<cr>
 noremap <silent> <Leader>lb :Clap buffers<cr>
 noremap <silent> <Leader>lr :Clap recent_files<cr>
