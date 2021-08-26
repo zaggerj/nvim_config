@@ -29,8 +29,9 @@ let g:airline#extensions#tabline#enabled = 1
 if !exists('g:airline_symbols') 
     let g:airline_symbols = {}
 endif
-let g:airline_symbols.dirty = " "
-let g:airline_symbols.readonly = ""
+let g:airline_symbols.dirty = ' '
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.maxlinenr = "  "
 
 " (rainbow)
 " 确保在 colo 之后

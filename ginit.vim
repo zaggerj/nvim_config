@@ -1,5 +1,6 @@
 if exists('g:GuiLoaded')
-    GuiFont! FiraCode NF:h16
+    " 用 w57 指定粗细为 retina
+    GuiFont! FiraCode NF:h16:w57
     GuiRenderLigatures 1
     GuiPopupmenu 0
     GuiTabline 0
