@@ -1,6 +1,8 @@
 call plug#begin('~\vimfiles\plugged')
     " Toolset
     Plug 'tpope/vim-fugitive'
+    Plug 'vimwiki/vimwiki'
+    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
     " IDE support
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'liuchengxu/vista.vim'
@@ -14,7 +16,6 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'luochen1990/rainbow'
     Plug 'tpope/vim-surround'
-    Plug 'vimwiki/vimwiki'
     " Themes
     Plug 'ryanoasis/vim-devicons'
     Plug 'sainnhe/forest-night'
@@ -70,7 +71,8 @@ let g:indentLine_fileTypeExclude = ['go', 'coc-explorer']
 let g:indentLine_concealcursor = ''
 
 " (vimwiki)
-let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1}]
+let g:mkdp_auto_start = 0
 
 " ( vim-clap )
 let g:clap_provider_grep_opts = '-H --no-heading --vimgrep --smart-case --hidden -g "!.git/"'
