@@ -26,7 +26,7 @@ noremap <silent> <leader><left> :bdelete<cr>
 " (my)
 " or <C-R>=
 inoremap <silent><expr> <tab> CTab()
-inoremap <silent><expr> _tm strftime("%c")
+inoremap <silent><expr> _tm strftime("%Y-%m-%d")
 nnoremap <silent> <Leader>fo :call Open_fix()<cr>
 noremap <silent> <Leader>fc :call Compiler()<cr>
 noremap <silent> <Leader>fr :call Runner()<cr>
