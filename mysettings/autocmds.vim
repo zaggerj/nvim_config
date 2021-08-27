@@ -4,3 +4,4 @@ autocmd FileType css,html,jsx,javascript,typescript,vue imap <S-Tab> <plug>(emme
 " (vimwiki)
 " 自动更新日记索引
 autocmd BufWinEnter diary.md execute "VimwikiDiaryGenerateLinks" | w
+autocmd FileType vimwiki,markdown set wrap

@@ -1,10 +1,10 @@
 let mapleader = " "
 inoremap fj <Esc> 
 inoremap <C-v> <C-R>+
-nnoremap \ :
+noremap \ :
 nnoremap / /\v
 nnoremap ? ?\v
-nmap <silent> <leader>n :noh<cr>
+nnoremap <silent> <leader>n :noh<cr>
 " (terminal control)
 tnoremap fj <C-\><C-n>
 tnoremap <Esc> exit<cr>
