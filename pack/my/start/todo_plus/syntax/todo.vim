@@ -6,11 +6,12 @@ endif
 
 syntax case ignore
 
-syntax match todoProject "\v^[a-z\u4E00-\u9FA5]+:$"
+syntax match todoProject "\v^.+\)?:$"
 
-syntax match todoDone /\v[\u2714]\s[a-z\u4E00-\u9FA5]+(\s|$)/
-syntax match todoDoing /\v[\u23F1]\s[a-z\u4E00-\u9FA5]+(\s|$)/
-syntax match todoCanc /\v[\u2717]\s[a-z\u4E00-\u9FA5]+(\s|$)/
+" 允许间隔 3 个字符
+syntax match todoDone /\v[\u2714].{,3}[a-z\u4E00-\u9FA5]+(\s|$)/
+syntax match todoDoing /\v[\u23F1].{,3}[a-z\u4E00-\u9FA5]+(\s|$)/
+syntax match todoCanc /\v[\u2717].{,3}[a-z\u4E00-\u9FA5]+(\s|$)/
 
 highlight def link todoProject Identifier 
 highlight def todoCanc guifg=#DC4341 ctermfg=12
