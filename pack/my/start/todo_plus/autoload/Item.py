@@ -1,3 +1,9 @@
+"""
+Author: LinHQ1999
+License: MIT
+Description: todoplus.vim 核心工具
+"""
+
 import vim as v
 #import arrow
 import re
@@ -5,7 +11,9 @@ import re
 (cancel, doing, done, todo) = v.eval("g:todo_symbols").values()
 
 """
-current.buffer 不能全局保存，否则会导致无法切换到真正的 current buffer
+current.buffer 不能全局保存，
+否则会导致无法切换到真正的 current buffer，
+应当总是在函数调用时请求 current buffer
 """
 
 def getSpaces(raw):
@@ -17,6 +25,13 @@ def getSpaces(raw):
         else:
             return spaces
 
+def parseProject(raw:str):
+    """解析 project 字符串"""
+    spaces = getSpaces(raw)
+    if "(" in raw:
+        return (spaces, raw[spaces:raw.index("(")])
+    else:
+        return (spaces, raw[spaces:raw.index(":")])
 
 class Item:
     """对每一个待办条目进行抽象"""
@@ -29,6 +44,7 @@ class Item:
         self.state:str = ""
         self.body:str = ""
         self.time = {}
+        self.tags = []
         self.parse()
 
     def parse(self):
@@ -52,11 +68,14 @@ class Item:
             dur.setdefault("use", re.findall("@use\((.*?)\)", desc)[0])
         except Exception as e:
             pass
+        # 标签单独解析
+        self.tags = re.findall(r"@.+?\b", self.raw)
         return self
     
     def renew(self):
         buffer = v.current.buffer
         buffer[self.line] = str(self)
+        self.renewProject()
 
     def toggleDone(self):
         """切换待办和完成间的状态"""
@@ -91,18 +110,20 @@ class Item:
             pstates['total'] += 1
             curr -= 1
         
+        proj = curr
         # 向下查找，跳过当前的
-        proj = buffer[curr]
         curr = self.line + 1
         while curr < len(buffer):
-            # 有可能是空行，也有可能是子项目
+            # 有可能是空行，也有可能是子项目，碰到就跳出
             if buffer[curr] == "" or buffer[curr].endswith(":"):
                 break
             if todo in buffer[curr]:
                 pstates['todo'] += 1
             pstates['total'] += 1
             curr += 1
-        return proj, pstates
+
+        (spaces, body) = parseProject(buffer[proj])
+        buffer[proj] = f"{' '*spaces}{body}({pstates['todo']}/{pstates['total']}):"
 
     def __str__(self):
         return f"{'  ' * self.indentLevel}{self.state}{self.body}"
