@@ -5,7 +5,7 @@ Description: todoplus.vim 核心工具
 """
 
 import vim as v
-#import arrow
+import arrow
 import re
 
 (cancel, doing, done, todo) = v.eval("g:todo_symbols").values()
@@ -33,8 +33,11 @@ def parseProject(raw:str):
     else:
         return (spaces, raw[spaces:raw.index(":")])
 
+
 class Item:
     """对每一个待办条目进行抽象"""
+
+    timeformat = v.eval("g:todo_timeformat")
 
     def __init__(self):
         # 注意索引和实际行数不同
@@ -57,15 +60,17 @@ class Item:
         self.indentLevel = int(pointer / 2)
         # 当前非空的字符视作状态字符
         self.state = self.raw[pointer]
-        # 剩下的全部作为主体
-        self.body = self.raw[pointer+1:]
+        # 剩下的至时间标记全部作为主体，时间标记总是在最后
+        if '@start(' in self.raw:
+            self.body = self.raw[pointer+1:self.raw.index(" @start(")]
+        else:
+            self.body = self.raw[pointer+1:]
         # 时间单独解析
         try:
             dur = self.time
-            dur.setdefault("start", re.findall("@start\((.*?)\)", desc)[0])
-            dur.setdefault("end", re.findall("@end\((.*?)\)", desc)[0])
-            dur.setdefault("due", re.findall("@due\((.*?)\)", desc)[0])
-            dur.setdefault("use", re.findall("@use\((.*?)\)", desc)[0])
+            dur.setdefault("start", re.findall("@start\((.*?)\)", self.raw)[0])
+            dur.setdefault("end", re.findall("@end\((.*?)\)", self.raw)[0])
+            dur.setdefault("use", re.findall("@use\((.*?)\)", self.raw)[0])
         except Exception as e:
             pass
         # 标签单独解析
@@ -77,19 +82,45 @@ class Item:
         buffer[self.line] = str(self)
         self.renewProject()
 
+    def toTodo(self):
+        if self.state not in (cancel, doing, done, todo):
+            self.body = f" {self.state}{self.body}"
+            self.state = todo
+
+        self.renew()
+        return self
+
     def toggleDone(self):
         """切换待办和完成间的状态"""
-        self.state = todo if self.state in [cancel, done] else done
+        if self.state in [cancel, done]:
+            self.state = todo 
+            self.time = {}
+        else:
+            self.state = done
+            # 没有 start 的话就不必计算了
+            if "start" in self.time.keys():
+                self.time['end'] = arrow.now().format(self.timeformat)
+                use = arrow.get(self.time['end'], self.timeformat) - arrow.get(self.time['start'], self.timeformat)
+                hour = use.seconds//3600
+                minutes = use.seconds % 3600 // 60
+                seconds = use.seconds % 60
+                self.time['use'] = f"{hour}h {minutes}m {seconds}s"
         self.renew()
         return self
 
     def toggleCancel(self):
         self.state = cancel if self.state in [todo, done, doing] else todo
+        self.time = {}
         self.renew()
         return self
 
     def toggleStart(self):
-        self.state = doing if self.state == todo else todo
+        if self.state in [todo, doing]:
+            self.state = doing
+            self.time['start'] = arrow.now().format(self.timeformat)
+        else:
+            self.state = todo
+            self.time = {}
         self.renew()
         return self
 
@@ -101,12 +132,17 @@ class Item:
         buffer = v.current.buffer
         # 向上查找，包括当前的
         curr = self.line
-        pstates = {"todo": 0, "total": 0}
-        while curr >= 0:
+        pstates = {"done": 0, "total": 0}
+        # 第 0 行总是 Project 
+        while curr > 0:
             if buffer[curr].endswith(":"):
                 break
-            if todo in buffer[curr]:
-                pstates['todo'] += 1
+            if done in buffer[curr]:
+                pstates['done'] += 1
+            elif cancel in buffer[curr]:
+                # 取消部分不计入总数
+                pstates['total'] -= 1
+
             pstates['total'] += 1
             curr -= 1
         
@@ -117,14 +153,24 @@ class Item:
             # 有可能是空行，也有可能是子项目，碰到就跳出
             if buffer[curr] == "" or buffer[curr].endswith(":"):
                 break
-            if todo in buffer[curr]:
-                pstates['todo'] += 1
+            if done in buffer[curr]:
+                pstates['done'] += 1
+            elif cancel in buffer[curr]:
+                # 取消部分不计入总数
+                pstates['total'] -= 1
+
             pstates['total'] += 1
             curr += 1
 
         (spaces, body) = parseProject(buffer[proj])
-        buffer[proj] = f"{' '*spaces}{body}({pstates['todo']}/{pstates['total']}):"
+        buffer[proj] = f"{' '*spaces}{body}({pstates['done']}/{pstates['total']}):"
+
 
     def __str__(self):
-        return f"{'  ' * self.indentLevel}{self.state}{self.body}"
+        # 更新时总是重新渲染时间使用情况，self.time 为空则清除
+        timeinfo = " "
+        for k, v in self.time.items():
+            timeinfo += f"@{k}({v}) "
+
+        return f"{'  ' * self.indentLevel}{self.state}{self.body}{timeinfo}"
 
