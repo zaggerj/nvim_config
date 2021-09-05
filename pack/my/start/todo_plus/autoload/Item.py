@@ -65,6 +65,9 @@ class Item:
             self.body = self.raw[pointer+1:self.raw.index(" @start(")]
         else:
             self.body = self.raw[pointer+1:]
+
+        # 去除尾部多余的空白字符，否则后面附加的时间标签可能会间隔很远
+        self.body = self.body.rstrip()
         # 时间单独解析
         try:
             dur = self.time
