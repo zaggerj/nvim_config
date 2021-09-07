@@ -16,24 +16,6 @@ current.buffer 不能全局保存，
 应当总是在函数调用时请求 current buffer
 """
 
-def getSpaces(raw):
-    """获取每个项目前面的空格数量"""
-    spaces = 0
-    for ch in raw:
-        if ch.isspace():
-            spaces += 1
-        else:
-            return spaces
-
-def parseProject(raw:str):
-    """解析 project 字符串"""
-    spaces = getSpaces(raw)
-    if "(" in raw:
-        return (spaces, raw[spaces:raw.index("(")])
-    else:
-        return (spaces, raw[spaces:raw.index(":")])
-
-
 class Item:
     """对每一个待办条目进行抽象"""
 
@@ -50,13 +32,33 @@ class Item:
         self.tags = []
         self.parse()
 
-    def parse(self):
-        """进行基本的条目解析
+    @classmethod
+    def isProject(cls, raw:str):
+        return raw.endswith(":")
 
-        Args: 
-            none
-        """
-        pointer = getSpaces(self.raw)
+    @classmethod
+    def getSpaces(cls, raw):
+        """获取每个项目前面的空格数量"""
+        spaces = 0
+        for ch in raw:
+            if ch.isspace():
+                spaces += 1
+            else:
+                return spaces
+
+    @classmethod
+    def parseProject(cls, raw:str):
+        """解析 project 字符串"""
+        spaces = Item.getSpaces(raw)
+        if "(" in raw:
+            return (spaces, raw[spaces:raw.index("(")])
+        else:
+            return (spaces, raw[spaces:raw.index(":")])
+
+
+    def parse(self):
+        """进行基本的条目解析"""
+        pointer = Item.getSpaces(self.raw)
         self.indentLevel = int(pointer / 2)
         # 当前非空的字符视作状态字符
         self.state = self.raw[pointer]
@@ -138,7 +140,7 @@ class Item:
         pstates = {"done": 0, "total": 0}
         # 第 0 行总是 Project 
         while curr > 0:
-            if buffer[curr].endswith(":"):
+            if Item.isProject(self.raw):
                 break
             if done in buffer[curr]:
                 pstates['done'] += 1
@@ -154,7 +156,7 @@ class Item:
         curr = self.line + 1
         while curr < len(buffer):
             # 有可能是空行，也有可能是子项目，碰到就跳出
-            if buffer[curr] == "" or buffer[curr].endswith(":"):
+            if buffer[curr] == "" or Item.isProject(self.raw):
                 break
             if done in buffer[curr]:
                 pstates['done'] += 1
@@ -165,9 +167,8 @@ class Item:
             pstates['total'] += 1
             curr += 1
 
-        (spaces, body) = parseProject(buffer[proj])
+        (spaces, body) = Item.parseProject(buffer[proj])
         buffer[proj] = f"{' '*spaces}{body}({pstates['done']}/{pstates['total']}):"
-
 
     def __str__(self):
         # 更新时总是重新渲染时间使用情况，self.time 为空则清除
