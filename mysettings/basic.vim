@@ -6,7 +6,7 @@ set title
 set grepprg=rg\ --vimgrep
 set mouse=nv
 set encoding=utf-8
-set fileencodings=ucs-bom,utf-8,gb2312
+set fileencodings=ucs-bom,utf-8,gb18030,gbk,gb2312
 set cursorline
 " set showmatch
 set number
