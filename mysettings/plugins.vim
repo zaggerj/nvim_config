@@ -16,6 +16,8 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'vim-airline/vim-airline'
     Plug 'luochen1990/rainbow'
     Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-commentary'
+    Plug 'tpope/vim-repeat'
     " Themes
     Plug 'ryanoasis/vim-devicons'
     Plug 'sainnhe/forest-night'
