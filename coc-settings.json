@@ -43,6 +43,5 @@
         "jsx"
     ],
     "html.format.indentHandlebars": true,
-    "vetur.format.enable": true,
     "javascript.suggest.autoImports": true
 }
