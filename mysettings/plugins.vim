@@ -27,6 +27,7 @@ call plug#begin('~\vimfiles\plugged')
     "Plug 'joshdick/onedark.vim'
     Plug 'vim-airline/vim-airline-themes'
     " Syntax
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'pangloss/vim-javascript'
     Plug 'posva/vim-vue'
     Plug 'HerringtonDarkholme/yats.vim'
@@ -82,13 +83,22 @@ let g:clap_enable_background_shadow = v:false
 let g:clap_search_box_border_symbols = { 'triangle': [ "", "" ] }
 let g:clap_search_box_border_style = "triangle"
 let g:clap_forerunner_status_sign = { 'running': '', 'done': '', 'using_cache': '' }
+" let g:clap_forerunner_status_sign = { 'running': 'R', 'done': 'D', 'using_cache': 'C' }
 let g:clap_prompt_format = ' %spinner% %provider_id% %forerunner_status% > '
 let g:clap_popup_border = has('nvim') ? "double" : "sharp"
-" 有 bug
 "let g:clap_open_preview = "never"
-let g:clap_preview_direction = "LR"
+let g:clap_preview_direction = "UD"
 let g:clap_layout = { 'relative': 'editor' }
-" LR不要设置此项，有 bug
-let g:clap_layout = {'width': '47%', 'col':'3%', 'height': '50%', 'row': '25%' }
-" 纵向预览无效
-"let g:clap_preview_size = 10
+" let g:clap_layout = {'width': '47%', 'col':'3%', 'height': '50%', 'row': '25%' }
+let g:clap_layout = {'width': '80%', 'col':'10%', 'height': '60%', 'row': '10%' }
+" 纵向预览下也和 row 有关，空间不够不显示
+let g:clap_preview_size = { '*': 3, 'files': 6 }
+
+" (treesitter)
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+    highlight = {
+    enable = true,
+    },
+}
+EOF

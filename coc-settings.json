@@ -18,18 +18,60 @@
                 "objc",
                 "objcpp"
             ]
+        },
+        "tailwind-lsp": {
+            "command": "tailwindcss-language-server.cmd",
+            "args": [
+                "--stdio"
+            ],
+            "filetypes": [
+                "javascript",
+                "javascriptreact",
+                "typescript",
+                "typescriptreact"
+            ],
+            "rootPatterns": [
+                "tailwind.config.js",
+                "tailwind.config.ts",
+                "postcss.config.js",
+                "postcss.config.ts",
+                "package.json"
+            ],
+            "settings": {
+                "tailwindCSS": {
+                    "validate": true,
+                    "lint": {
+                        "cssConflict": "warning",
+                        "invalidApply": "error",
+                        "invalidScreen": "error",
+                        "invalidVariant": "error",
+                        "invalidConfigPath": "error",
+                        "invalidTailwindDirective": "error",
+                        "recommendedVariantOrder": "warning"
+                    },
+                    "classAttributes": [
+                        "class",
+                        "className",
+                        "classList",
+                        "ngClass"
+                    ],
+                    "experimental": {}
+                }
+            }
         }
     },
     "snippets.ultisnips.directories": [
         "UltiSnips",
         "gosnippets/UltiSnips"
     ],
-    "diagnostic.errorSign":"E",
-    "diagnostic.warningSign":"W",
-    "diagnostic.infoSign":"I",
+    "diagnostic.errorSign": "E",
+    "diagnostic.warningSign": "W",
+    "diagnostic.infoSign": "I",
     "diagnostic.hintSign": "H",
     "jedi.completion.disableSnippets": false,
-    "jedi.jediSettings.autoImportModules": ["pandas"],
+    "jedi.jediSettings.autoImportModules": [
+        "pandas"
+    ],
     "suggest.noselect": true,
     "java.configuration.updateBuildConfiguration": "interactive",
     "java.import.maven.enabled": true,

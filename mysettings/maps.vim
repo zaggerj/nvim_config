@@ -36,7 +36,8 @@ nnoremap <silent> <Leader>ft <Cmd>call Open_terminal()<cr>
 nnoremap <silent> <Leader>fh <Cmd>cd %:h<cr>
 " (single plugin maps)
 nnoremap <silent> <Leader>pv <Cmd>Vista coc<cr>
-nnoremap <silent> <Leader>pd <Cmd>NERDTreeFind<cr>
+nnoremap <silent> <Leader>pd <Cmd>NERDTreeToggle<cr>
+" nnoremap <silent> <Leader>pd <Cmd>NERDTreeFind<cr>
 " (fugitive)
 nnoremap <silent> <Leader>gs <Cmd>G<cr>
 nnoremap <silent> <Leader>gps <Cmd>Git push<cr>
@@ -48,7 +49,7 @@ nnoremap <silent> <Leader>pu <Cmd>PlugUpdate<cr>
 nnoremap <silent> <Leader>pc <Cmd>PlugClean<cr>
 " (coc)
 nnoremap <silent> gh <Cmd>call CocActionAsync('doHover')<cr>
-nmap <Leader>ci <Cmd>CocActionAsync('organizeImport')<CR> 
+nmap <Leader>ci <Cmd>call CocActionAsync('organizeImport')<CR> 
 nmap <silent> <Leader>cl <Cmd>CocList<cr>
 nnoremap <silent> <Leader>cc <Cmd>CocConfig<cr>
 nmap <silent> <Leader>c. <Plug>(coc-codeaction)
@@ -63,7 +64,7 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
             \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " (leaderF && clap)
 noremap <silent> <Leader>lf <Cmd>Clap files<CR>
-noremap <Leader>lg :Clap grep2 
+noremap <silent><Leader>lg <Cmd>Clap grep<CR>
 noremap <silent> <Leader>lb <Cmd>Clap buffers<CR>
 noremap <silent> <Leader>lr <Cmd>Clap recent_files<CR>
 noremap <silent> <Leader>ll <Cmd>Clap lines<CR>
