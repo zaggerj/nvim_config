@@ -12,7 +12,8 @@ call plug#begin('~\vimfiles\plugged')
     "Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
     Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
     Plug 'Yggdroot/indentLine'
-    Plug 'scrooloose/nerdtree'
+    " Plug 'scrooloose/nerdtree'
+    Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
     Plug 'vim-airline/vim-airline'
     Plug 'luochen1990/rainbow'
     Plug 'tpope/vim-surround'
@@ -95,10 +96,16 @@ let g:clap_layout = {'width': '80%', 'col':'10%', 'height': '60%', 'row': '10%' 
 let g:clap_preview_size = { '*': 3, 'files': 6 }
 
 " (treesitter)
-lua << EOF
+lua << E
 require'nvim-treesitter.configs'.setup {
     highlight = {
     enable = true,
     },
 }
-EOF
+E
+
+" (chadtree)
+let g:chadtree_settings = {
+        \"view.width": 30,
+        \"theme.text_colour_set": "nord"
+      \ }

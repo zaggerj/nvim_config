@@ -36,8 +36,18 @@ nnoremap <silent> <Leader>ft <Cmd>call Open_terminal()<cr>
 nnoremap <silent> <Leader>fh <Cmd>cd %:h<cr>
 " (single plugin maps)
 nnoremap <silent> <Leader>pv <Cmd>Vista coc<cr>
-nnoremap <silent> <Leader>pd <Cmd>NERDTreeToggle<cr>
-" nnoremap <silent> <Leader>pd <Cmd>NERDTreeFind<cr>
+" nnoremap <silent> <Leader>pd <Cmd>NERDTreeToggle<cr>
+" (chadtree)
+if exists("g:chadtree_settings")
+    let g:chadtree_settings.keymap = {
+            \"v_split": ["v"],
+            \"h_split": ["i"],
+            \"open_sys": [],
+            \"secondary": ["o", "<tab>", "<2-leftmouse>"],
+            \"toggle_hidden": ["h"]
+          \ }
+endif
+nnoremap <silent> <Leader>pd <Cmd>CHADopen<cr>
 " (fugitive)
 nnoremap <silent> <Leader>gs <Cmd>G<cr>
 nnoremap <silent> <Leader>gps <Cmd>Git push<cr>
