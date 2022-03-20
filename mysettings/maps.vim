@@ -57,15 +57,16 @@ nnoremap <silent> <Leader>gl <Cmd>Gclog<cr>
 nnoremap <silent> <Leader>pi <Cmd>PlugInstall<cr>
 nnoremap <silent> <Leader>pu <Cmd>PlugUpdate<cr>
 nnoremap <silent> <Leader>pc <Cmd>PlugClean<cr>
-" (coc)
+" (coc) 不遵循通用命名规则，和 vscodevim 保持一致
 nnoremap <silent> gh <Cmd>call CocActionAsync('doHover')<cr>
-nmap <Leader>ci <Cmd>call CocActionAsync('organizeImport')<CR> 
-nmap <silent> <Leader>cl <Cmd>CocList<cr>
+noremap <Leader>ci <Cmd>call CocActionAsync('organizeImport')<CR> 
+noremap <silent> <Leader>cl <Cmd>CocList<cr>
 nnoremap <silent> <Leader>cc <Cmd>CocConfig<cr>
-nmap <silent> <Leader>c. <Plug>(coc-codeaction)
-nmap <silent> <Leader>cd <Plug>(coc-definition)
+nmap <silent> <leader>. <Plug>(coc-codeaction)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
 nmap <silent> <Leader>cf <Plug>(coc-format)
-nmap <silent> <Leader>cr <Plug>(coc-rename)
+nmap <silent> <F2> <Plug>(coc-rename)
 nmap <silent> <C-Up> <Plug>(coc-diagnostic-prev-error)
 nmap <silent> <C-Down> <Plug>(coc-diagnostic-next-error)
 nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
