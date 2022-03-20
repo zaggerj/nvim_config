@@ -98,9 +98,8 @@ let g:clap_preview_size = { '*': 3, 'files': 6 }
 " (treesitter)
 lua << E
 require'nvim-treesitter.configs'.setup {
-    highlight = {
-    enable = true,
-    },
+    highlight = { enable = true, },
+    indent = { enable = { "jsdoc" }, },
 }
 E
 
