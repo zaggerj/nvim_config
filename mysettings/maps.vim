@@ -36,7 +36,6 @@ nnoremap <silent> <Leader>ft <Cmd>call Open_terminal()<cr>
 nnoremap <silent> <Leader>fh <Cmd>cd %:h<cr>
 " (single plugin maps)
 nnoremap <silent> <Leader>pv <Cmd>Vista coc<cr>
-" nnoremap <silent> <Leader>pd <Cmd>NERDTreeToggle<cr>
 " (chadtree)
 if exists("g:chadtree_settings")
     let g:chadtree_settings.keymap = {
@@ -73,11 +72,11 @@ nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<
 nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
             \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-" (leaderF && clap)
-noremap <silent> <Leader>lf <Cmd>Clap files<CR>
-noremap <silent><Leader>lg <Cmd>Clap grep2<CR>
-noremap <silent> <Leader>lb <Cmd>Clap buffers<CR>
-noremap <silent> <Leader>lr <Cmd>Clap recent_files<CR>
-noremap <silent> <Leader>ll <Cmd>Clap lines<CR>
-noremap <silent> <Leader>l/ <Cmd>Clap hist/<CR>
-noremap <silent> <Leader>l: <Cmd>Clap hist:<CR>
+" (finder)
+noremap <silent> <Leader>lf <Cmd>Telescope fd<CR>
+" noremap <silent> <Leader>lf <Cmd>Telescope find_files<CR>
+noremap <silent><Leader>lg <Cmd>Telescope live_grep<CR>
+noremap <silent> <Leader>lb <Cmd>Telescope buffers<CR>
+noremap <silent> <Leader>lr <Cmd>Telescope oldfiles<CR>
+noremap <silent> <Leader>l: <Cmd>Telescope commands<CR>
+noremap <silent> <Leader>l/ <Cmd>Telescope search_history<CR>

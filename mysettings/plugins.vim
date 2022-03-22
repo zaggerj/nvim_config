@@ -10,9 +10,11 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'fatih/vim-go'
     " Editor enhancement
     "Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
-    Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
+    "Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
     Plug 'Yggdroot/indentLine'
-    " Plug 'scrooloose/nerdtree'
+    " Plug 'scrooloose/nerdtree' 不再维护
     Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
     Plug 'vim-airline/vim-airline'
     Plug 'luochen1990/rainbow'
@@ -21,6 +23,7 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'tpope/vim-repeat'
     " Themes
     Plug 'ryanoasis/vim-devicons'
+    Plug 'kyazdani42/nvim-web-devicons'
     Plug 'sainnhe/forest-night'
     "Plug 'kristijanhusak/vim-hybrid-material'
     "Plug 'morhetz/gruvbox'
@@ -78,22 +81,18 @@ let g:indentLine_concealcursor = ''
 let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1}]
 let g:mkdp_auto_start = 0
 
-" ( vim-clap )
-let g:clap_provider_grep_opts = '-H --no-heading --vimgrep --smart-case --hidden -g "!.git/"'
-let g:clap_enable_background_shadow = v:false
-let g:clap_search_box_border_symbols = { 'triangle': [ "", "" ] }
-let g:clap_search_box_border_style = "triangle"
-let g:clap_forerunner_status_sign = { 'running': '', 'done': '', 'using_cache': '' }
-" let g:clap_forerunner_status_sign = { 'running': 'R', 'done': 'D', 'using_cache': 'C' }
-let g:clap_prompt_format = ' %spinner% %provider_id% %forerunner_status% > '
-let g:clap_popup_border = has('nvim') ? "double" : "sharp"
-"let g:clap_open_preview = "never"
-let g:clap_preview_direction = "UD"
-let g:clap_layout = { 'relative': 'editor' }
-" let g:clap_layout = {'width': '47%', 'col':'3%', 'height': '50%', 'row': '25%' }
-let g:clap_layout = {'width': '80%', 'col':'10%', 'height': '60%', 'row': '10%' }
-" 纵向预览下也和 row 有关，空间不够不显示
-let g:clap_preview_size = { '*': 3, 'files': 6 }
+" (finder)
+lua << E
+require("telescope").setup {
+    defaults = {
+        layout_config = {
+            horizontal = {
+                preview_cutoff = 100
+            }
+        }
+    }
+}
+E
 
 " (treesitter)
 lua << E
