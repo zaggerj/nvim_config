@@ -75,7 +75,7 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
             \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " (leaderF && clap)
 noremap <silent> <Leader>lf <Cmd>Clap files<CR>
-noremap <silent><Leader>lg <Cmd>Clap grep<CR>
+noremap <silent><Leader>lg <Cmd>Clap grep2<CR>
 noremap <silent> <Leader>lb <Cmd>Clap buffers<CR>
 noremap <silent> <Leader>lr <Cmd>Clap recent_files<CR>
 noremap <silent> <Leader>ll <Cmd>Clap lines<CR>
