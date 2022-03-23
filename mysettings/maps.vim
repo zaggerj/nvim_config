@@ -73,10 +73,11 @@ nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
             \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " (finder)
-noremap <silent> <Leader>lf <Cmd>Telescope fd<CR>
-" noremap <silent> <Leader>lf <Cmd>Telescope find_files<CR>
-noremap <silent><Leader>lg <Cmd>Telescope live_grep<CR>
-noremap <silent> <Leader>lb <Cmd>Telescope buffers<CR>
-noremap <silent> <Leader>lr <Cmd>Telescope oldfiles<CR>
-noremap <silent> <Leader>l: <Cmd>Telescope commands<CR>
-noremap <silent> <Leader>l/ <Cmd>Telescope search_history<CR>
+let g:Lf_ShortcutF = "<Leader>lf"
+let g:Lf_ShortcutB = "<Leader>lb"
+" noremap <silent> <Leader>lf <Cmd>Leaderf file<CR>
+" noremap <silent> <Leader>lb <Cmd>Leaderf buffer<CR>
+noremap <silent><Leader>lg <Cmd>Leaderf rg<CR>
+noremap <silent> <Leader>lr <Cmd>Leaderf mru<CR>
+noremap <silent> <Leader>l: <Cmd>Leaderf command<CR>
+noremap <silent> <Leader>l/ <Cmd>Leaderf line<CR>

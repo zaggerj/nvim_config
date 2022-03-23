@@ -9,10 +9,8 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'mattn/emmet-vim'
     Plug 'fatih/vim-go'
     " Editor enhancement
-    "Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+    Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
     "Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'nvim-telescope/telescope.nvim'
     Plug 'Yggdroot/indentLine'
     " Plug 'scrooloose/nerdtree' 不再维护
     Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
@@ -23,7 +21,6 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'tpope/vim-repeat'
     " Themes
     Plug 'ryanoasis/vim-devicons'
-    Plug 'kyazdani42/nvim-web-devicons'
     Plug 'sainnhe/forest-night'
     "Plug 'kristijanhusak/vim-hybrid-material'
     "Plug 'morhetz/gruvbox'
@@ -82,17 +79,28 @@ let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1}]
 let g:mkdp_auto_start = 0
 
 " (finder)
-lua << E
-require("telescope").setup {
-    defaults = {
-        layout_config = {
-            horizontal = {
-                preview_cutoff = 100
-            }
-        }
-    }
-}
-E
+let g:Lf_WindowPosition = "popup"
+let g:Lf_StlSeparator = { 'left': '', 'right': '' }
+let g:Lf_PreviewInPopup = 1
+let g:Lf_PopupHeight = 0.6
+let g:Lf_PopupWidth = 0.8
+let g:Lf_PreviewResult = {
+            \ 'File': 1,
+            \ 'Buffer': 1,
+            \ 'Mru': 1,
+            \ 'Tag': 0,
+            \ 'BufTag': 1,
+            \ 'Function': 1,
+            \ 'Line': 0,
+            \ 'Colorscheme': 0,
+            \ 'Rg': 1,
+            \ 'Gtags': 0
+            \}
+let g:Lf_RgConfig = [
+            \ "--glob=!git/*",
+            \ "--hidden",
+            \ "--smart-case"
+            \ ]
 
 " (treesitter)
 lua << E
