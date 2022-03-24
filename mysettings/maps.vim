@@ -20,6 +20,8 @@ noremap <silent> <A-S-l> <C-w>L
 " (buffer jump & tab jump)
 noremap <silent> <C-Left> <Cmd>bp<cr>
 noremap <silent> <C-Right> <Cmd>bn<cr>
+noremap <silent> <C-S-Up> <Cmd>tabnew<cr>
+noremap <silent> <C-S-Down> <Cmd>tabclose<cr>
 noremap <silent> <C-S-Left> <Cmd>tabp<cr>
 noremap <silent> <C-S-Right> <Cmd>tabn<cr>
 noremap <silent> <leader><left> <Cmd>bdelete<cr>
