@@ -124,3 +124,23 @@ function! Open_fix()
         echo 'Neither quickfix or locallist has any sources!'
     endif
 endfunction
+
+function! Trans()
+    %s/角质/淫荡/ge
+    %s/大师/主人/ge
+    %s/腮红/脸上的红晕/ge
+    %s/拐点/起伏/ge
+    %s/猛禽/迅猛龙/ge
+    %s/\v数字(型|形)]/趾立\1/ge
+    %s/\v(墙壁|猫咪)/阴部/ge
+    %s/\v(竖井|枪杆|球杆|公鸡)/阴茎/ge
+    %s/豆袋/阴囊/ge
+    %s/的土丘/的乳房/ge
+    %s/山雀/乳头/ge
+    %s/\v(性交)/操/ge
+    %s/\v(性|子)气概/性器官/ge
+    %s/\v是?(卡明|cum)/要高潮了/ge
+    %s/的天平/的肩膀/ge
+    %s/握力/掌控力/ge
+    %s/\v唱歌的?声音/像歌声一样的声音/ge
+endfunction

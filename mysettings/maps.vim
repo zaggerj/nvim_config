@@ -35,20 +35,11 @@ noremap <silent> <Leader>fr <Cmd>call Runner()<cr>
 nnoremap <silent> <Leader>fs <Cmd>call Set_it()<cr>
 nnoremap <silent> <Leader>fd <Cmd>exe "e expand('<sfile>:p:h')"."\pack\my\start\myplugin\plugin\one.vim"<cr>
 nnoremap <silent> <Leader>ft <Cmd>call Open_terminal()<cr>
-nnoremap <silent> <Leader>fh <Cmd>cd %:h<cr>
+nnoremap <silent> <Leader>fh <Cmd>tcd %:h<cr>
 " (single plugin maps)
 nnoremap <silent> <Leader>pv <Cmd>Vista coc<cr>
-" (chadtree)
-if exists("g:chadtree_settings")
-    let g:chadtree_settings.keymap = {
-            \"v_split": ["v"],
-            \"h_split": ["i"],
-            \"open_sys": [],
-            \"secondary": ["o", "<tab>", "<2-leftmouse>"],
-            \"toggle_hidden": ["h"]
-          \ }
-endif
-nnoremap <silent> <Leader>pd <Cmd>CHADopen<cr>
+" (tree)
+nnoremap <silent> <Leader>pd <Cmd>NvimTreeFindFileToggle<cr>
 " (fugitive)
 nnoremap <silent> <Leader>gs <Cmd>G<cr>
 nnoremap <silent> <Leader>gps <Cmd>Git push<cr>

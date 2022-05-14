@@ -32,21 +32,22 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_symbols.dirty = ' '
 let g:airline_symbols.readonly = ''
-let g:airline_symbols.maxlinenr = "  "
+" let g:airline_symbols.maxlinenr = "  "
+let g:airline_symbols.maxlinenr = " ﭾ "
 
 " (rainbow)
 " 确保在 colo 之后
 let g:rainbow_active = 1
 let g:rainbow_conf = {'guifgs': reverse(['Red', 'Orange', 'Yellow', 'Green', 'Cyan', 'Lightblue', 'Purple'])}
 
-" (vim-go)
-let g:go_highlight_extra_types = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_parameters = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
+" (vim-go) Deprecated by treesitter
+" let g:go_highlight_extra_types = 1
+" let g:go_highlight_operators = 1
+" let g:go_highlight_functions = 1
+" let g:go_highlight_function_parameters = 1
+" let g:go_highlight_function_calls = 1
+" let g:go_highlight_types = 1
+" let g:go_highlight_fields = 1
 
 " (cpp)
 let g:cpp_class_scope_highlight = 1

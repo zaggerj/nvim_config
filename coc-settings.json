@@ -85,5 +85,9 @@
         "jsx"
     ],
     "html.format.indentHandlebars": true,
-    "javascript.suggest.autoImports": true
+    "javascript.suggest.autoImports": true,
+    "go.goplsOptions": {
+        "experimentalPostfixCompletions": true
+    },
+    "go.goplsUseDaemon": true
 }

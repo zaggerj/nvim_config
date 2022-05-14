@@ -2,7 +2,8 @@ call plug#begin('~\vimfiles\plugged')
     " Toolset
     Plug 'tpope/vim-fugitive'
     Plug 'vimwiki/vimwiki'
-    Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'NTBBloodbath/rest.nvim'
     " IDE support
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'liuchengxu/vista.vim'
@@ -12,8 +13,9 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
     "Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
     Plug 'Yggdroot/indentLine'
-    " Plug 'scrooloose/nerdtree' 不再维护
-    Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+    "Plug 'scrooloose/nerdtree' 不再维护
+    "Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'} 存在编码 bug
+    Plug 'kyazdani42/nvim-tree.lua'
     Plug 'vim-airline/vim-airline'
     Plug 'luochen1990/rainbow'
     Plug 'tpope/vim-surround'
@@ -21,6 +23,7 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'tpope/vim-repeat'
     " Themes
     Plug 'ryanoasis/vim-devicons'
+    Plug 'kyazdani42/nvim-web-devicons'
     Plug 'sainnhe/forest-night'
     "Plug 'kristijanhusak/vim-hybrid-material'
     "Plug 'morhetz/gruvbox'
@@ -29,9 +32,6 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'vim-airline/vim-airline-themes'
     " Syntax
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'pangloss/vim-javascript'
-    Plug 'posva/vim-vue'
-    Plug 'HerringtonDarkholme/yats.vim'
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'vim-python/python-syntax'
     Plug 'uiiaoo/java-syntax.vim'
@@ -56,14 +56,11 @@ let g:plug_retries = 5
 " (vim-go)
 let g:go_term_mode = "split"
 let g:go_term_enabled = 1
-" 使用 coc 补全
-let g:go_code_completion_enabled = 0
-let g:go_imports_autosave = 1
-let g:go_metalinter_autosave = 0
-
-" (nerdtree)
-let NERDTreeDirArrowExpandable="▸"
-let NERDTreeDirArrowCollapsible="▾"
+" 使用 coc-go 代替
+let g:go_code_completion_enabled = v:false
+let g:go_gopls_enabled = v:true
+let g:go_imports_autosave = v:true
+let g:go_metalinter_autosave = v:false
 
 " (rust)
 let g:rustfmt_autosave = 1
@@ -89,17 +86,3 @@ let g:Lf_RgConfig = [
             \ "--hidden",
             \ "--smart-case"
             \ ]
-
-" (treesitter)
-lua << E
-require'nvim-treesitter.configs'.setup {
-    highlight = { enable = true, },
-    indent = { enable = { "jsdoc" }, },
-}
-E
-
-" (chadtree)
-let g:chadtree_settings = {
-        \"view.width": 30,
-        \"theme.text_colour_set": "nord"
-      \ }
