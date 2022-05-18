@@ -1,3 +1,4 @@
+" 官方文档推荐
 autocmd TermOpen * startinsert
 autocmd TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=150, on_visual=true}
 " rest.nvim 无法在 win 上使用，此处改用 coc-restclient

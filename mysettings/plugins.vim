@@ -27,8 +27,8 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'sainnhe/forest-night'
     "Plug 'kristijanhusak/vim-hybrid-material'
     "Plug 'morhetz/gruvbox'
-    Plug 'crusoexia/vim-monokai' 
-    "Plug 'joshdick/onedark.vim'
+    " Plug 'crusoexia/vim-monokai' 
+    Plug 'joshdick/onedark.vim'
     Plug 'vim-airline/vim-airline-themes'
     " Syntax
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}

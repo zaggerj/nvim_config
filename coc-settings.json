@@ -89,5 +89,6 @@
     "go.goplsOptions": {
         "experimentalPostfixCompletions": true
     },
-    "go.goplsUseDaemon": true
+    "go.goplsUseDaemon": true,
+    "go.checkForUpdates": "disabled"
 }
