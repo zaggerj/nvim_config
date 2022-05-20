@@ -5,7 +5,7 @@ require('nvim-treesitter.configs').setup {
         "typescript", "tsx", "vue",
         "html", "http", "javascript", "jsdoc", "json"
     },
-    highlight = { enable = true},
+    highlight = { enable = true },
     indent = {
         enable = true,
         disable = {
@@ -40,4 +40,29 @@ require('rest-nvim').setup({
         timeout = 150,
     },
     jump_to_request = true
+})
+
+-- (lualine)
+vim.opt.showmode = false
+vim.opt.laststatus = 2
+vim.opt.showtabline = 2
+require('lualine').setup({
+    sections = {
+        lualine_b = {'branch', 'diff'},
+        lualine_x = {'diagnostics', 'encoding', 'fileformat', 'filetype'},
+        lualine_y = {'%2p%%/%-3L'},
+        lualine_z = {'%3l ﭾ %-2c'}
+    },
+    inactive_sections = {
+        lualine_x = {},
+        lualine_y = {'%2p%%/%-3L', '%3l ﭾ %-2c'}
+    },
+    tabline = {
+        lualine_a = {'buffers'},
+        lualine_z = {'tabs'}
+    },
+    extensions = {
+        'fugitive',
+        'nvim-tree'
+    }
 })

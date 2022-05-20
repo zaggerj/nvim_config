@@ -8,29 +8,31 @@
 "else
 "    let g:onedark_config['style'] = "cool"
 "endif
-colo onedark
+colo monokai
 
 set termguicolors
 set pumblend=10
 set winblend=0
+
 " (airline)
+" REPLACED BY LUALINE
 " Fix! Do not uncomment this or `a` will laggy
 "set noshowmode
-set laststatus=2
-set showtabline=2
-let g:airline_theme = 'onedark'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#coc#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_highlighting_cache = 1
-if !exists('g:airline_symbols') 
-    let g:airline_symbols = {}
-endif
-let g:airline_symbols.dirty = ' '
-let g:airline_symbols.readonly = ''
-" let g:airline_symbols.maxlinenr = "  "
-let g:airline_symbols.maxlinenr = " ﭾ "
+" set laststatus=2
+" set showtabline=2
+" let g:airline_theme = 'molokai'
+" let g:airline_powerline_fonts = 1
+" let g:airline#extensions#branch#enabled = 1
+" let g:airline#extensions#coc#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline_highlighting_cache = 1
+" if !exists('g:airline_symbols') 
+"     let g:airline_symbols = {}
+" endif
+" let g:airline_symbols.dirty = ' '
+" let g:airline_symbols.readonly = ''
+" " let g:airline_symbols.maxlinenr = "  "
+" let g:airline_symbols.maxlinenr = " ﭾ "
 
 " (rainbow)
 " 确保在 colo 之后

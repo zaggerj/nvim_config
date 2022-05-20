@@ -90,5 +90,8 @@
         "experimentalPostfixCompletions": true
     },
     "go.goplsUseDaemon": true,
-    "go.checkForUpdates": "disabled"
+    "go.checkForUpdates": "disabled",
+    "semanticTokens.filetypes": ["typescriptreact", "typescript", "javascript", "javascriptreact", "lua"],
+    "Lua.completion.enable": false,
+    "Lua.diagnostics.globals": ["vim"]
 }

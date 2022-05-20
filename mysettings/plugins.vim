@@ -16,27 +16,25 @@ call plug#begin('~\vimfiles\plugged')
     "Plug 'scrooloose/nerdtree' 不再维护
     "Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'} 存在编码 bug
     Plug 'kyazdani42/nvim-tree.lua'
-    Plug 'vim-airline/vim-airline'
+    " Plug 'vim-airline/vim-airline'
+    Plug 'nvim-lualine/lualine.nvim'
     Plug 'luochen1990/rainbow'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-repeat'
     " Themes
-    Plug 'ryanoasis/vim-devicons'
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'sainnhe/forest-night'
     "Plug 'kristijanhusak/vim-hybrid-material'
     "Plug 'morhetz/gruvbox'
-    " Plug 'crusoexia/vim-monokai' 
+	Plug 'tanvirtin/monokai.nvim'
     Plug 'joshdick/onedark.vim'
     Plug 'vim-airline/vim-airline-themes'
     " Syntax
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'vim-python/python-syntax'
-    Plug 'uiiaoo/java-syntax.vim'
     Plug 'rust-lang/rust.vim'
-    "Plug 'MaxMEllon/vim-jsx-pretty'
 call plug#end()
 
 " (vista)
@@ -86,3 +84,6 @@ let g:Lf_RgConfig = [
             \ "--hidden",
             \ "--smart-case"
             \ ]
+
+" lua 插件也需要在 plugins 后
+lua require('plugins')
