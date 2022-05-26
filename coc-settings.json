@@ -91,7 +91,8 @@
         "gosnippets/UltiSnips"
     ],
     "diagnostic.virtualText": true,
-    "diagnostic.virtualTextPrefix": "",
+    "diagnostic.enableMessage": "jump",
+    "diagnostic.virtualTextPrefix": "  ",
     "diagnostic.errorSign": "E",
     "diagnostic.warningSign": "W",
     "diagnostic.infoSign": "I",
