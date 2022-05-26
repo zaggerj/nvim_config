@@ -16,7 +16,7 @@ elseif exists('g:fvim_loaded')
     FVimFontHintLevel 'full'
     FVimFontLigature v:true
 
-    FVimFontNoBuiltinSymbols v:false
+    FVimFontNoBuiltinSymbols v:true
     FVimCursorSmoothMove v:true
 
     FVimCustomTitleBar v:true

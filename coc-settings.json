@@ -1,5 +1,30 @@
 {
     "languageserver": {
+        "golang": {
+            "command": "gopls",
+            "args": [
+                "-remote=auto",
+                "-logfile=auto",
+                "-debug=:0",
+                "-remote.debug=:0",
+                "-rpc.trace"
+            ],
+            "rootPatterns": [
+                "go.mod",
+                "go.work",
+                ".git/"
+            ],
+            "filetypes": [
+                "go",
+                "mod",
+                "sum"
+            ],
+            "initializationOptions": {
+                "usePlaceholders": true,
+                "gofumpt": false,
+                "experimentalPostfixCompletions": true
+            }
+        },
         "clangd": {
             "command": "clangd",
             "args": [
@@ -8,6 +33,7 @@
             "rootPatterns": [
                 "compile_flags.txt",
                 "compile_commands.json",
+                ".clang-format",
                 ".vim/",
                 ".git/",
                 ".hg/"
@@ -73,10 +99,6 @@
         "pandas"
     ],
     "suggest.noselect": true,
-    "java.configuration.updateBuildConfiguration": "interactive",
-    "java.import.maven.enabled": true,
-    //"java.configuration.maven.userSettings": "~/11571/.m2/settings.xml",
-    "java.errors.incompleteClasspath.severity": "ignore",
     "html.filetypes": [
         "html",
         "vue",
@@ -86,12 +108,15 @@
     ],
     "html.format.indentHandlebars": true,
     "javascript.suggest.autoImports": true,
-    "go.goplsOptions": {
-        "experimentalPostfixCompletions": true
-    },
-    "go.goplsUseDaemon": true,
-    "go.checkForUpdates": "disabled",
-    "semanticTokens.filetypes": ["typescriptreact", "typescript", "javascript", "javascriptreact", "lua"],
+    "semanticTokens.filetypes": [
+        "typescriptreact",
+        "typescript",
+        "javascript",
+        "javascriptreact",
+        "lua"
+    ],
     "Lua.completion.enable": false,
-    "Lua.diagnostics.globals": ["vim"]
+    "Lua.diagnostics.globals": [
+        "vim"
+    ]
 }

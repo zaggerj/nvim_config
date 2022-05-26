@@ -20,3 +20,6 @@ set splitbelow
 set ignorecase
 set hidden
 set cmdheight=1
+
+set nobackup
+set nowritebackup

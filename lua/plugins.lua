@@ -9,14 +9,15 @@ require('nvim-treesitter.configs').setup {
     indent = {
         enable = true,
         disable = {
-            "go", "tsx", "vue",
+            "go", "typescriptreact", "vue",
             "html", "http", "json"
         }
     }
 }
 
 -- (tree)
-require('nvim-tree').setup {
+require('nvim-tree').setup({
+    disable_netrw = true,
     open_on_tab = false,
     -- :cd 时自动切换树
     update_cwd = true,
@@ -31,9 +32,17 @@ require('nvim-tree').setup {
         show_on_dirs = true,
     },
     ignore_ft_on_setup = {}
-}
+})
 
 -- (rest)
+-- 仅 fvim 需要，别的 gui 可以启用 icon
+vim.g.nvim_tree_show_icons = {
+    git = 0,
+    folders = 1,
+    files = 1,
+    folder_arrows = 1
+}
+vim.g.nvim_tree_git_hl = 1
 require('rest-nvim').setup({
     highlight = {
         enable = true,
@@ -49,20 +58,29 @@ vim.opt.showtabline = 2
 require('lualine').setup({
     sections = {
         lualine_b = {'branch', 'diff'},
+        lualine_c = {{'filename', path = 1}},
         lualine_x = {'diagnostics', 'encoding', 'fileformat', 'filetype'},
-        lualine_y = {'%2p%%/%-3L'},
-        lualine_z = {'%3l ﭾ %-2c'}
+        lualine_y = {'%2p%% ﭾ %-3L'},
+        lualine_z = {'%3l:%-2c'}
     },
     inactive_sections = {
+        lualine_c = {{'filename', path = 1}},
         lualine_x = {},
-        lualine_y = {'%2p%%/%-3L', '%3l ﭾ %-2c'}
+        lualine_y = {'%2p%% ﭾ %-3L', '%3l:%-2c'}
     },
     tabline = {
-        lualine_a = {'buffers'},
-        lualine_z = {'tabs'}
+        lualine_a = {{'buffers', buffers_color = {
+        active = 'lualine_a_normal',
+        inactive = 'lualine_b_normal',
+      }}},
+        lualine_z = {{ 'tabs', mode = 2, tabs_color = {
+        active = 'lualine_a_normal',
+        inactive = 'lualine_b_normal',
+      }}}
     },
     extensions = {
         'fugitive',
-        'nvim-tree'
+        'nvim-tree',
+        'quickfix'
     }
 })

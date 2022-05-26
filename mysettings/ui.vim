@@ -15,7 +15,7 @@ set pumblend=10
 set winblend=0
 
 " (airline)
-" REPLACED BY LUALINE
+" REPLACED BY LUALINE, KEEPING FOR FURTHER USE
 " Fix! Do not uncomment this or `a` will laggy
 "set noshowmode
 " set laststatus=2

@@ -22,8 +22,6 @@ noremap <silent> <C-Left> <Cmd>bp<cr>
 noremap <silent> <C-Right> <Cmd>bn<cr>
 noremap <silent> <C-S-Up> <Cmd>tabnew<cr>
 noremap <silent> <C-S-Down> <Cmd>tabclose<cr>
-noremap <silent> <C-S-Left> <Cmd>tabp<cr>
-noremap <silent> <C-S-Right> <Cmd>tabn<cr>
 noremap <silent> <leader><left> <Cmd>bdelete<cr>
 " (my)
 " or <C-R>=
@@ -50,6 +48,7 @@ nnoremap <silent> <Leader>pi <Cmd>PlugInstall<cr>
 nnoremap <silent> <Leader>pu <Cmd>PlugUpdate<cr>
 nnoremap <silent> <Leader>pc <Cmd>PlugClean<cr>
 " (coc) 不遵循通用命名规则，和 vscodevim 保持一致
+nnoremap <silent> <Leader>cr <Cmd>CocRestart<cr>
 nnoremap <silent> gh <Cmd>call CocActionAsync('doHover')<cr>
 noremap <Leader>ci <Cmd>call CocActionAsync('organizeImport')<CR> 
 noremap <silent> <Leader>cl <Cmd>CocList<cr>
