@@ -84,3 +84,6 @@ require('lualine').setup({
         'quickfix'
     }
 })
+
+-- indentLine
+require("indent_blankline").setup({})

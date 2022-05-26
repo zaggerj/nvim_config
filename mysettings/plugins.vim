@@ -12,7 +12,7 @@ call plug#begin('~\vimfiles\plugged')
     " Editor enhancement
     Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
     "Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
-    Plug 'Yggdroot/indentLine'
+    Plug 'lukas-reineke/indent-blankline.nvim'
     "Plug 'scrooloose/nerdtree' 不再维护
     "Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'} 存在编码 bug
     Plug 'kyazdani42/nvim-tree.lua'
@@ -62,12 +62,6 @@ let g:go_metalinter_autosave = v:false
 
 " (rust)
 let g:rustfmt_autosave = 1
-
-" (indentLine)
-" 排除一些不能正常工作的文件
-let g:indentLine_fileTypeExclude = ['go', 'coc-explorer']
-" 避免和 vimwiki 的高亮冲突
-let g:indentLine_concealcursor = ''
 
 " (vimwiki)
 let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1}]
