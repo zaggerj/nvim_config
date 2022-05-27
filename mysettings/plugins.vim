@@ -18,7 +18,6 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-repeat'
-    Plug 'ggandor/lightspeed.nvim'
     " Themes
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'sainnhe/forest-night'

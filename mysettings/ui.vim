@@ -8,7 +8,7 @@
 "else
 "    let g:onedark_config['style'] = "cool"
 "endif
-colo monokai
+colo monokai_pro
 
 set termguicolors
 set pumblend=10
