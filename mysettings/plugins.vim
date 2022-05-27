@@ -11,12 +11,8 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'fatih/vim-go'
     " Editor enhancement
     Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
-    "Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
     Plug 'lukas-reineke/indent-blankline.nvim'
-    "Plug 'scrooloose/nerdtree' 不再维护
-    "Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'} 存在编码 bug
     Plug 'kyazdani42/nvim-tree.lua'
-    " Plug 'vim-airline/vim-airline'
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'luochen1990/rainbow'
     Plug 'tpope/vim-surround'

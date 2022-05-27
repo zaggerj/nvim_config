@@ -93,6 +93,7 @@
     "diagnostic.virtualText": true,
     "diagnostic.enableMessage": "jump",
     "diagnostic.virtualTextPrefix": "  ",
+    "diagnostic.virtualTextLineSeparator": " ﬋ ",
     "diagnostic.errorSign": "E",
     "diagnostic.warningSign": "W",
     "diagnostic.infoSign": "I",
