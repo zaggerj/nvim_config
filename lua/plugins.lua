@@ -5,11 +5,11 @@ require('nvim-treesitter.configs').setup {
         "typescript", "tsx", "vue",
         "html", "http", "javascript", "jsdoc", "json"
     },
-    highlight = { enable = true },
+    highlight = { enable = true},
     indent = {
         enable = true,
         disable = {
-            "go", "typescriptreact", "vue",
+            "go", "typescriptreact",
             "html", "http", "json"
         }
     }
@@ -28,7 +28,7 @@ require('nvim-tree').setup({
         ignore_list = {},
     },
     diagnostics = {
-        enable = true,
+        enable = false,
         show_on_dirs = true,
     },
     ignore_ft_on_setup = {}
@@ -56,6 +56,7 @@ vim.opt.showmode = false
 vim.opt.laststatus = 2
 vim.opt.showtabline = 2
 require('lualine').setup({
+    theme = "tokyonight",
     sections = {
         lualine_b = {'branch', 'diff'},
         lualine_c = {{'filename', path = 1}},

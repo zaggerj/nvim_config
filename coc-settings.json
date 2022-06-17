@@ -117,7 +117,9 @@
         "typescript",
         "javascript",
         "javascriptreact",
-        "lua"
+        "lua",
+        "vue",
+        "html"
     ],
     "Lua.completion.enable": false,
     "Lua.diagnostics.globals": [

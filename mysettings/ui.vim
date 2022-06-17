@@ -2,13 +2,15 @@
 " 务必确保 highlight 在 colorscheme 之后进行设置，否则会导致高亮不正确
 " (theme)
 " 根据时间自动调整主题
-"let s:now = str2nr(strftime("%H"))
-"if s:now > 7 && s:now < 18
-"    let g:onedark_config['style'] = "light"
-"else
-"    let g:onedark_config['style'] = "cool"
-"endif
-colo monokai_pro
+let s:now = str2nr(strftime("%H"))
+if s:now > 7 && s:now < 18
+    " let g:onedark_config['style'] = "light"
+    let g:tokyonight_style = "day"
+else
+    " let g:onedark_config['style'] = "cool"
+    let g:tokyonight_style = "night"
+endif
+colo tokyonight
 
 set termguicolors
 set pumblend=10
