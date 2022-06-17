@@ -25,7 +25,6 @@ call plug#begin('~\vimfiles\plugged')
     "Plug 'morhetz/gruvbox'
     Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
     Plug 'joshdick/onedark.vim'
-    Plug 'vim-airline/vim-airline-themes'
     " Syntax
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'rust-lang/rust.vim'
