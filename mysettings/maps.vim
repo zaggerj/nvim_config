@@ -65,11 +65,10 @@ nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
             \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " (finder)
-let g:Lf_ShortcutF = "<Leader>lf"
-let g:Lf_ShortcutB = "<Leader>lb"
-" noremap <silent> <Leader>lf <Cmd>Leaderf file<CR>
-" noremap <silent> <Leader>lb <Cmd>Leaderf buffer<CR>
-noremap <silent><Leader>lg <Cmd>Leaderf rg<CR>
-noremap <silent> <Leader>lr <Cmd>Leaderf mru<CR>
-noremap <silent> <Leader>l: <Cmd>Leaderf command<CR>
-noremap <silent> <Leader>l/ <Cmd>Leaderf line<CR>
+noremap <silent> <Leader>lf <Cmd>Clap files<CR>
+noremap <silent><Leader>lg <Cmd>Clap grep2<CR>
+noremap <silent> <Leader>lb <Cmd>Clap buffers<CR>
+noremap <silent> <Leader>lr <Cmd>Clap recent_files<CR>
+noremap <silent> <Leader>ll <Cmd>Clap lines<CR>
+noremap <silent> <Leader>l/ <Cmd>Clap hist/<CR>
+noremap <silent> <Leader>l: <Cmd>Clap hist:<CR>

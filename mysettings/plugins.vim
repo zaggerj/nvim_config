@@ -13,7 +13,7 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'mattn/emmet-vim'
     Plug 'fatih/vim-go'
     " Editor enhancement
-    Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+    Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
     Plug 'lukas-reineke/indent-blankline.nvim'
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'nvim-lualine/lualine.nvim'
@@ -26,13 +26,10 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'sainnhe/forest-night'
     "Plug 'kristijanhusak/vim-hybrid-material'
     "Plug 'morhetz/gruvbox'
-	Plug 'tanvirtin/monokai.nvim'
+    Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
     Plug 'joshdick/onedark.vim'
-    Plug 'vim-airline/vim-airline-themes'
     " Syntax
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'octol/vim-cpp-enhanced-highlight'
-    Plug 'vim-python/python-syntax'
     Plug 'rust-lang/rust.vim'
 call plug#end()
 
@@ -67,19 +64,14 @@ let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1}]
 let g:mkdp_auto_start = 0
 
 " (finder)
-let g:Lf_WindowPosition = "popup"
-let g:Lf_StlSeparator = { 'left': '', 'right': '' }
-let g:Lf_PreviewInPopup = 1
-let g:Lf_PopupHeight = 0.6
-let g:Lf_PopupWidth = 0.8
-let g:Lf_RgConfig = [
-            \ "--glob=!git/*",
-            \ "--hidden",
-            \ "--smart-case"
-            \ ]
-let g:Lf_WildIgnore = {
-            \ 'dir': ["node_modules", ".git"],
-            \}
+let g:clap_enable_icon = v:true
+let g:clap_provider_grep_opts = '-H --no-heading --vimgrep --smart-case --hidden -g "!.git/"'
+let g:clap_search_box_border_symbols = { 'triangle': [ "\ue0ba", "\ue0b8" ] }
+let g:clap_search_box_border_style = 'triangle'
+let g:clap_popup_border = "double"
+let g:clap_layout = { 'relative': 'editor' }
+let g:clap_forerunner_status_sign = { 'running': '', 'done': '', 'using_cache': '' }
+let g:clap_prompt_format = ' %spinner% %provider_id% %forerunner_status% > '
 
 " lua 插件也需要在 plugins 后
 lua require('plugins')
