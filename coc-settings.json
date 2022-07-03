@@ -124,5 +124,6 @@
     "Lua.completion.enable": false,
     "Lua.diagnostics.globals": [
         "vim"
-    ]
+    ],
+    "eslint.enable": false
 }

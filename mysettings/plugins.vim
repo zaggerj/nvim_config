@@ -10,7 +10,6 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'mattn/emmet-vim'
     Plug 'fatih/vim-go'
     " Editor enhancement
-    Plug 'liuchengxu/vim-clap', { 'do': { -> clap#installer#force_download() } }
     Plug 'lukas-reineke/indent-blankline.nvim'
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'nvim-lualine/lualine.nvim'

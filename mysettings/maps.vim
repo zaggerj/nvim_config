@@ -65,10 +65,11 @@ nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
             \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " (finder)
-noremap <silent> <Leader>lf <Cmd>Clap files<CR>
-noremap <silent><Leader>lg <Cmd>Clap grep2<CR>
-noremap <silent> <Leader>lb <Cmd>Clap buffers<CR>
-noremap <silent> <Leader>lr <Cmd>Clap recent_files<CR>
-noremap <silent> <Leader>ll <Cmd>Clap lines<CR>
-noremap <silent> <Leader>l/ <Cmd>Clap hist/<CR>
-noremap <silent> <Leader>l: <Cmd>Clap hist:<CR>
+noremap <silent> <Leader>lf <Cmd>CocList -A files<CR>
+noremap <silent><Leader>lg <Cmd>CocList grep<CR>
+noremap <silent> <Leader>lb <Cmd>CocList -A buffers<CR>
+noremap <silent> <Leader>lr <Cmd>CocList -A mru<CR>
+noremap <silent> <Leader>ll <Cmd>CocList -A lines<CR>
+noremap <silent> <Leader>lm <Cmd>CocList maps<CR>
+noremap <silent> <Leader>l/ <Cmd>CocList searchhistory<CR>
+noremap <silent> <Leader>l: <Cmd>CocList vimcommands<CR>
