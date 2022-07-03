@@ -2,7 +2,7 @@
 require('nvim-treesitter.configs').setup {
     ensurse_installed = {
         "c","lua", "go",
-        "typescript", "tsx", "vue",
+        "typescript", "tsx",
         "html", "http", "javascript", "jsdoc", "json"
     },
     highlight = { enable = true},
@@ -21,6 +21,14 @@ require('nvim-tree').setup({
     open_on_tab = false,
     -- :cd 时自动切换树
     update_cwd = true,
+    renderer = {
+        highlight_git = true,
+        icons = {
+            show = {
+                git = false
+            }
+        }
+    },
     update_focused_file = {
         -- 切换到buffer时跟踪显示
         enable = true,
@@ -36,13 +44,6 @@ require('nvim-tree').setup({
 
 -- (rest)
 -- 仅 fvim 需要，别的 gui 可以启用 icon
-vim.g.nvim_tree_show_icons = {
-    git = 0,
-    folders = 1,
-    files = 1,
-    folder_arrows = 1
-}
-vim.g.nvim_tree_git_hl = 1
 require('rest-nvim').setup({
     highlight = {
         enable = true,
@@ -87,4 +88,4 @@ require('lualine').setup({
 })
 
 -- indentLine
-require("indent_blankline").setup({})
+require("indent_blankline").setup({show_current_context = true})

@@ -6,6 +6,9 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'NTBBloodbath/rest.nvim'
     " IDE support
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    "临时使用
+    Plug 'yaegassy/coc-volar', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'yaegassy/coc-volar-tools', {'do': 'yarn install --frozen-lockfile'}
     Plug 'liuchengxu/vista.vim'
     Plug 'mattn/emmet-vim'
     Plug 'fatih/vim-go'

@@ -10,8 +10,8 @@
                 "-rpc.trace"
             ],
             "rootPatterns": [
-                "go.mod",
                 "go.work",
+                "go.mod",
                 ".git/"
             ],
             "filetypes": [
@@ -91,7 +91,7 @@
         "gosnippets/UltiSnips"
     ],
     "diagnostic.virtualText": true,
-    "diagnostic.enableMessage": "jump",
+    "diagnostic.enableMessage": "always",
     "diagnostic.virtualTextPrefix": "  ",
     "diagnostic.virtualTextLineSeparator": " ﬋ ",
     "diagnostic.errorSign": "E",
@@ -117,13 +117,15 @@
         "typescript",
         "javascript",
         "javascriptreact",
-        "lua",
         "vue",
-        "html"
+        "lua"
     ],
     "Lua.completion.enable": false,
     "Lua.diagnostics.globals": [
         "vim"
     ],
-    "eslint.enable": false
+    "eslint.enable": false,
+    "volar.diagnostics.tsLocale": "zh-cn",
+    "volar.autoClosingTags": true,
+    "volar.autoCompleteRefs": true
 }
