@@ -89,3 +89,7 @@ require('lualine').setup({
 
 -- indentLine
 require("indent_blankline").setup({show_current_context = true})
+
+-- Telescope
+-- require('telescope').setup{
+-- }
