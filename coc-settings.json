@@ -44,46 +44,6 @@
                 "objc",
                 "objcpp"
             ]
-        },
-        "tailwind-lsp": {
-            "command": "tailwindcss-language-server.cmd",
-            "args": [
-                "--stdio"
-            ],
-            "filetypes": [
-                "javascript",
-                "javascriptreact",
-                "typescript",
-                "typescriptreact"
-            ],
-            "rootPatterns": [
-                "tailwind.config.js",
-                "tailwind.config.ts",
-                "postcss.config.js",
-                "postcss.config.ts",
-                "package.json"
-            ],
-            "settings": {
-                "tailwindCSS": {
-                    "validate": true,
-                    "lint": {
-                        "cssConflict": "warning",
-                        "invalidApply": "error",
-                        "invalidScreen": "error",
-                        "invalidVariant": "error",
-                        "invalidConfigPath": "error",
-                        "invalidTailwindDirective": "error",
-                        "recommendedVariantOrder": "warning"
-                    },
-                    "classAttributes": [
-                        "class",
-                        "className",
-                        "classList",
-                        "ngClass"
-                    ],
-                    "experimental": {}
-                }
-            }
         }
     },
     "snippets.ultisnips.directories": [
@@ -127,5 +87,7 @@
     "eslint.enable": false,
     "volar.diagnostics.tsLocale": "zh-cn",
     "volar.autoClosingTags": true,
-    "volar.autoCompleteRefs": true
+    "volar.autoCompleteRefs": true,
+    "stylelint.autoFixOnSave": true,
+    "javascript.format.semicolons": "insert"
 }
