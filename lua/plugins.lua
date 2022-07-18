@@ -10,7 +10,7 @@ require('nvim-treesitter.configs').setup {
         enable = true,
         disable = {
             "go", "typescriptreact",
-            "html", "http", "json"
+            "http", "json"
         }
     }
 }
@@ -91,5 +91,12 @@ require('lualine').setup({
 require("indent_blankline").setup({show_current_context = true})
 
 -- Telescope
--- require('telescope').setup{
--- }
+require('telescope').setup{
+    defaults = {
+        mappings = {
+            i = {
+                ["<C-u>"] = false
+            }
+        }
+    }
+}

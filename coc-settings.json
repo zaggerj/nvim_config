@@ -51,7 +51,7 @@
         "gosnippets/UltiSnips"
     ],
     "diagnostic.virtualText": true,
-    "diagnostic.enableMessage": "always",
+    "diagnostic.enableMessage": "jump",
     "diagnostic.virtualTextPrefix": "  ",
     "diagnostic.virtualTextLineSeparator": " ﬋ ",
     "diagnostic.errorSign": "E",
