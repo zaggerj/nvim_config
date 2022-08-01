@@ -25,7 +25,8 @@ noremap <silent> <C-S-Down> <Cmd>tabclose<cr>
 noremap <silent> <leader><left> <Cmd>bdelete<cr>
 " (my)
 " or <C-R>=
-inoremap <silent><expr> <tab> CTab()
+" 根据最新的 coc 配置，不再使用此项
+" inoremap <silent><expr> <tab> CTab()
 inoremap <silent><expr> _tm strftime("%Y-%m-%d")
 nnoremap <silent> <Leader>fo <Cmd>call Open_fix()<cr>
 noremap <silent> <Leader>fc <Cmd>call Compiler()<cr>
@@ -47,7 +48,7 @@ nnoremap <silent> <Leader>gl <Cmd>Gclog<cr>
 nnoremap <silent> <Leader>pi <Cmd>PlugInstall<cr>
 nnoremap <silent> <Leader>pu <Cmd>PlugUpdate<cr>
 nnoremap <silent> <Leader>pc <Cmd>PlugClean<cr>
-" (coc) 不遵循通用命名规则，和 vscodevim 保持一致
+" (coc) 不遵循通用命名规则，{rhs} 和 vscodevim 保持一致
 nnoremap <silent> <Leader>cr <Cmd>CocRestart<cr>
 nnoremap <silent> gh <Cmd>call CocActionAsync('doHover')<cr>
 noremap <Leader>ci <Cmd>call CocActionAsync('organizeImport')<CR> 
@@ -62,8 +63,14 @@ nmap <silent> <C-Up> <Plug>(coc-diagnostic-prev-error)
 nmap <silent> <C-Down> <Plug>(coc-diagnostic-next-error)
 nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
 nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-            \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" 0.0.82 版适配
+inoremap <expr> <CR> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"
+" Insert <tab> when previous text is space, refresh completion if not.
+inoremap <silent><expr> <TAB>
+            \ coc#pum#visible() ? coc#pum#next(1):
+            \ <SID>check_back_space() ? "\<Tab>" :
+            \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 " (finder)
 noremap <silent> <Leader>lf <Cmd>Telescope find_files<CR>
 noremap <silent><Leader>lg <Cmd>Telescope live_grep<CR>

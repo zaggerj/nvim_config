@@ -89,5 +89,6 @@
     "volar.autoClosingTags": true,
     "volar.autoCompleteRefs": true,
     "stylelint.autoFixOnSave": true,
-    "javascript.format.semicolons": "insert"
+    "javascript.format.semicolons": "insert",
+    "html.format.wrapAttributes": "preserve"
 }
