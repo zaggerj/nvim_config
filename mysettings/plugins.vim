@@ -1,6 +1,7 @@
 call plug#begin('~\vimfiles\plugged')
     " Toolset
     Plug 'tpope/vim-fugitive'
+    Plug 'lewis6991/gitsigns.nvim'
     Plug 'vimwiki/vimwiki'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'NTBBloodbath/rest.nvim'

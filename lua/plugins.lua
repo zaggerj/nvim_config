@@ -87,6 +87,14 @@ require('lualine').setup({
     }
 })
 
+-- gitsigns
+require('gitsigns').setup({
+    current_line_blame = true,
+    current_line_blame_opts = {
+        delay = 500
+    }
+})
+
 -- indentLine
 require("indent_blankline").setup({show_current_context = true})
 
