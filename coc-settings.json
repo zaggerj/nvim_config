@@ -1,30 +1,5 @@
 {
     "languageserver": {
-        "golang": {
-            "command": "gopls",
-            "args": [
-                "-remote=auto",
-                "-logfile=auto",
-                "-debug=:0",
-                "-remote.debug=:0",
-                "-rpc.trace"
-            ],
-            "rootPatterns": [
-                "go.work",
-                "go.mod",
-                ".git/"
-            ],
-            "filetypes": [
-                "go",
-                "mod",
-                "sum"
-            ],
-            "initializationOptions": {
-                "usePlaceholders": true,
-                "gofumpt": false,
-                "experimentalPostfixCompletions": true
-            }
-        },
         "clangd": {
             "command": "clangd",
             "args": [
@@ -78,7 +53,8 @@
         "javascript",
         "javascriptreact",
         "vue",
-        "lua"
+        "lua",
+        "rust"
     ],
     "Lua.completion.enable": false,
     "Lua.diagnostics.globals": [
@@ -89,5 +65,6 @@
     "volar.autoClosingTags": true,
     "volar.autoCompleteRefs": true,
     "javascript.format.semicolons": "insert",
-    "html.format.wrapAttributes": "preserve"
+    "html.format.wrapAttributes": "preserve",
+    "rust-analyzer.server.path": "D:\\Binaries\\rust-analyzer.exe"
 }

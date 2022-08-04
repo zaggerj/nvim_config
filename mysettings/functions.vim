@@ -3,7 +3,7 @@ let g:Sp_height = {x -> float2nr(nvim_win_get_height(0) * x)}
 let g:Vsp_width = {x -> float2nr(nvim_win_get_width(0) * x)}
 
 " Tab to complete
-function! s:check_back_space() abort
+function! Check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~ '\s'
 endfunction

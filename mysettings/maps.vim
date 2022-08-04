@@ -44,6 +44,9 @@ nnoremap <silent> <Leader>gs <Cmd>G<cr>
 nnoremap <silent> <Leader>gps <Cmd>Git push<cr>
 nnoremap <silent> <Leader>gpl <Cmd>Git pull<cr>
 nnoremap <silent> <Leader>gl <Cmd>Gclog<cr>
+" (gitsigns)
+nnoremap <silent> ]c <Cmd>Gitsigns next_hunk<cr>
+nnoremap <silent> [c <Cmd>Gitsigns prev_hunk<cr>
 " (vim-plug)
 nnoremap <silent> <Leader>pi <Cmd>PlugInstall<cr>
 nnoremap <silent> <Leader>pu <Cmd>PlugUpdate<cr>
@@ -68,7 +71,7 @@ inoremap <expr> <CR> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"
 " Insert <tab> when previous text is space, refresh completion if not.
 inoremap <silent><expr> <TAB>
             \ coc#pum#visible() ? coc#pum#next(1):
-            \ <SID>check_back_space() ? "\<Tab>" :
+            \ Check_back_space() ? "\<Tab>" :
             \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 " (finder)

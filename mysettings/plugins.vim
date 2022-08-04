@@ -29,7 +29,6 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'joshdick/onedark.vim'
     " Syntax
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'rust-lang/rust.vim'
 call plug#end()
 
 " (vista)
