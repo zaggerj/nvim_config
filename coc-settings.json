@@ -60,11 +60,11 @@
     "Lua.diagnostics.globals": [
         "vim"
     ],
-    "eslint.enable": false,
+    "eslint.enable": true,
     "volar.diagnostics.tsLocale": "zh-cn",
     "volar.autoClosingTags": true,
     "volar.autoCompleteRefs": true,
-    "javascript.format.semicolons": "insert",
+    "javascript.format.semicolons": "remove",
     "html.format.wrapAttributes": "preserve",
     "rust-analyzer.server.path": "D:\\Binaries\\rust-analyzer.exe"
 }
