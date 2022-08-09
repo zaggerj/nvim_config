@@ -1,70 +1,49 @@
 {
-    "languageserver": {
-        "clangd": {
-            "command": "clangd",
-            "args": [
-                "--background-index"
-            ],
-            "rootPatterns": [
-                "compile_flags.txt",
-                "compile_commands.json",
-                ".clang-format",
-                ".vim/",
-                ".git/",
-                ".hg/"
-            ],
-            "filetypes": [
-                "c",
-                "cpp",
-                "objc",
-                "objcpp"
-            ]
-        }
-    },
-    "snippets.ultisnips.directories": [
-        "UltiSnips",
-        "gosnippets/UltiSnips"
-    ],
-    "diagnostic.virtualText": true,
-    "diagnostic.enableMessage": "jump",
-    "diagnostic.virtualTextPrefix": "  ",
-    "diagnostic.virtualTextLineSeparator": " ﬋ ",
-    "diagnostic.errorSign": "E",
-    "diagnostic.warningSign": "W",
-    "diagnostic.infoSign": "I",
-    "diagnostic.hintSign": "H",
-    "jedi.completion.disableSnippets": false,
-    "jedi.jediSettings.autoImportModules": [
-        "pandas"
-    ],
-    "suggest.noselect": true,
-    "html.filetypes": [
-        "html",
-        "vue",
-        "handlebars",
-        "template",
-        "jsx"
-    ],
-    "html.format.indentHandlebars": true,
-    "javascript.suggest.autoImports": true,
-    "semanticTokens.filetypes": [
-        "typescriptreact",
-        "typescript",
-        "javascript",
-        "javascriptreact",
-        "vue",
-        "lua",
-        "rust"
-    ],
-    "Lua.completion.enable": false,
-    "Lua.diagnostics.globals": [
-        "vim"
-    ],
-    "eslint.enable": true,
-    "volar.diagnostics.tsLocale": "zh-cn",
-    "volar.autoClosingTags": true,
-    "volar.autoCompleteRefs": true,
-    "javascript.format.semicolons": "remove",
-    "html.format.wrapAttributes": "preserve",
-    "rust-analyzer.server.path": "D:\\Binaries\\rust-analyzer.exe"
+  "languageserver": {
+    "clangd": {
+      "command": "clangd",
+      "args": ["--background-index"],
+      "rootPatterns": [
+        "compile_flags.txt",
+        "compile_commands.json",
+        ".clang-format",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "filetypes": ["c", "cpp", "objc", "objcpp"]
+    }
+  },
+  "snippets.ultisnips.directories": ["UltiSnips", "gosnippets/UltiSnips"],
+  "diagnostic.virtualText": false,
+  "diagnostic.enableMessage": "always",
+  "diagnostic.virtualTextPrefix": "  ",
+  "diagnostic.virtualTextLineSeparator": " ﬋ ",
+  "diagnostic.errorSign": "E",
+  "diagnostic.warningSign": "W",
+  "diagnostic.infoSign": "I",
+  "diagnostic.hintSign": "H",
+  "suggest.noselect": false,
+  "suggest.enablePreselect": true,
+  "html.filetypes": ["html", "vue", "handlebars", "template", "jsx"],
+  "html.format.indentHandlebars": true,
+  "javascript.suggest.autoImports": true,
+  "semanticTokens.filetypes": [
+    "typescriptreact",
+    "typescript",
+    "javascript",
+    "javascriptreact",
+    "vue",
+    "lua",
+    "rust"
+  ],
+  "Lua.completion.enable": false,
+  "Lua.diagnostics.globals": ["vim"],
+  "eslint.enable": true,
+  "volar.diagnostics.tsLocale": "zh-cn",
+  "volar.autoClosingTags": true,
+  "volar.autoCompleteRefs": true,
+  "javascript.format.semicolons": "remove",
+  "html.format.wrapAttributes": "preserve",
+  "rust-analyzer.server.path": "D:\\Binaries\\rust-analyzer.exe"
 }
