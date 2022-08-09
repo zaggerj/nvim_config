@@ -50,11 +50,5 @@ let g:rainbow_conf = {'guifgs': reverse(['Red', 'Orange', 'Yellow', 'Green', 'Cy
 " let g:go_highlight_types = 1
 " let g:go_highlight_fields = 1
 
-" (cpp)
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
-let g:cpp_experimental_template_highlight = 1
-
-" (python)
-let g:python_highlight_all = 1
+" Temp Fix Coc's Popupmenu
+hi! link CocMenuSel PmenuSel

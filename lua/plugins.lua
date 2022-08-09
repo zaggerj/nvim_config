@@ -7,7 +7,7 @@ require('nvim-treesitter.configs').setup {
     },
     highlight = { enable = true},
     indent = {
-        enable = false,
+        enable = true,
         disable = {
             "go", "typescriptreact",
             "http", "json", "html",
