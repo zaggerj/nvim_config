@@ -20,24 +20,20 @@ require('nvim-treesitter.configs').setup {
 require('nvim-tree').setup({
     disable_netrw = true,
     open_on_tab = false,
+    sync_root_with_cwd = true,
     -- :cd 时自动切换树
     update_cwd = true,
-    renderer = {
-        highlight_git = true,
-        icons = {
-            show = {
-                git = false
-            }
-        }
+    view = {
+        adaptive_size = true,
     },
     update_focused_file = {
         -- 切换到buffer时跟踪显示
-        enable = true,
+        enable = false,
         update_cwd = false,
         ignore_list = {},
     },
     diagnostics = {
-        enable = false,
+        enable = true,
         show_on_dirs = true,
     },
     ignore_ft_on_setup = {}
