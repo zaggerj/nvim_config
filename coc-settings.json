@@ -23,9 +23,10 @@
   "diagnostic.warningSign": "W",
   "diagnostic.infoSign": "I",
   "diagnostic.hintSign": "H",
-  "suggest.noselect": false,
-  "suggest.enablePreselect": true,
+  "suggest.noselect": true,
+  "suggest.enablePreselect": false,
   "suggest.virtualText": true,
+  "coc.preferences.formatOnType": true,
   "html.filetypes": ["html", "vue", "handlebars", "template", "jsx"],
   "html.format.indentHandlebars": true,
   "javascript.suggest.autoImports": true,
@@ -44,7 +45,7 @@
   "volar.diagnostics.tsLocale": "zh-cn",
   "volar.autoClosingTags": true,
   "volar.autoCompleteRefs": true,
-  "javascript.format.semicolons": "remove",
+  "javascript.format.semicolons": "ignore",
   "html.format.wrapAttributes": "preserve",
   "rust-analyzer.server.path": "D:\\Binaries\\rust-analyzer.exe"
 }
