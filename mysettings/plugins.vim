@@ -12,7 +12,7 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'mattn/emmet-vim'
     Plug 'fatih/vim-go'
     " Editor enhancement
-    Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+    Plug 'glacambre/firenvim', { 'do': { -> firenvim#install(0) } }
     Plug 'lukas-reineke/indent-blankline.nvim'
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'nvim-lualine/lualine.nvim'
