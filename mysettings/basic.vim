@@ -11,6 +11,7 @@ set cursorline
 " set showmatch
 set matchpairs+=<:>
 set number
+set relativenumber
 set autoindent
 set smartindent
 set expandtab
