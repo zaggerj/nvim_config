@@ -1,11 +1,12 @@
 if exists('g:GuiLoaded')
     " 注意：只有最新版的 nvim-qt 支持已被注释掉的选项
     " 用 w57 指定粗细为 retina，retina 和 medium 其实没有区别
-    GuiFont! FiraCode NF:h14:w57
+    GuiFont! FantasqueSansMono NF:h14,思源黑体:h14
+
     GuiPopupmenu 0
     GuiTabline 0
     " GuiRenderLigatures 1
-    " GuiWindowOpacity 0.95
+    GuiWindowOpacity 0.95
 elseif exists('g:fvim_loaded')
     " Fvim nvim-tree 无法正确显示
     let &guifont = "FiraCode NF:h18"
@@ -22,7 +23,7 @@ elseif exists('g:fvim_loaded')
     FVimCustomTitleBar v:true
 elseif exists('g:neovide')
     " neovide 中文输入法输入框位置将不正确
-    let &guifont = "CaskaydiaCove NF:h14"
+    let &guifont = "FantasqueSansMono NF:h14"
     let g:neovide_remember_window_size = v:true
     " 更短的拖尾
     let g:neovide_cursor_trail_length=0.1
