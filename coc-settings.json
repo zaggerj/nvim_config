@@ -30,15 +30,7 @@
   "html.filetypes": ["html", "vue", "handlebars", "template", "jsx"],
   "html.format.indentHandlebars": true,
   "javascript.suggest.autoImports": true,
-  "semanticTokens.filetypes": [
-    "typescriptreact",
-    "typescript",
-    "javascript",
-    "javascriptreact",
-    "vue",
-    "lua",
-    "rust"
-  ],
+  "semanticTokens.enable": true,
   "Lua.completion.enable": false,
   "Lua.diagnostics.globals": ["vim"],
   "eslint.enable": true,
@@ -46,6 +38,6 @@
   "volar.autoClosingTags": true,
   "volar.autoCompleteRefs": true,
   "javascript.format.semicolons": "ignore",
-  "html.format.wrapAttributes": "preserve",
+  "html.format.wrapAttributes": "preserve-aligned",
   "rust-analyzer.server.path": "D:\\Binaries\\rust-analyzer.exe"
 }
