@@ -1,5 +1,5 @@
 if exists('g:started_by_firenvim')
-    let &guifont = "CaskaydiaCove NF:h11"
+    let &guifont = "Iosevka Curly Slab Medium:h12"
     " 这里得禁用掉状态栏和顶栏，提供不了什么信息
     set laststatus=1
     set showtabline=1

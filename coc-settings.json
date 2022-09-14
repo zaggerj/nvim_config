@@ -30,6 +30,7 @@
   "html.filetypes": ["html", "vue", "handlebars", "template", "jsx"],
   "html.format.indentHandlebars": true,
   "javascript.suggest.autoImports": true,
+  "javascript.suggest.completeJSDocs": true,
   "semanticTokens.enable": true,
   "Lua.completion.enable": false,
   "Lua.diagnostics.globals": ["vim"],

@@ -108,3 +108,5 @@ require('telescope').setup{
         }
     }
 }
+
+require('Comment').setup()

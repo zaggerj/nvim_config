@@ -18,7 +18,7 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'luochen1990/rainbow'
     Plug 'tpope/vim-surround'
-    Plug 'tpope/vim-commentary'
+    Plug 'numToStr/Comment.nvim'
     Plug 'tpope/vim-repeat'
     Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
     " Themes
