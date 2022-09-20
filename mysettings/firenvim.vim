@@ -6,4 +6,12 @@ if exists('g:started_by_firenvim')
     " 没有底部栏，得找个办法显示模式
     set showmode
     "----------"
+
+    au BufEnter 172.21.17.174* set complete+=k | set dictionary+=D:\Working\iScriptDict.txt 
+    function SetDict() abort 
+        set complete+=k
+        set dictionary+=D:\Working\iScriptDict.txt
+    endfunction
+    noremap <leader>id <cmd>call SetDict()<cr>
 endif
+
