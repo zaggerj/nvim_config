@@ -14,6 +14,7 @@
       "filetypes": ["c", "cpp", "objc", "objcpp"]
     }
   },
+  "snippets.ultisnips.enable": true,
   "snippets.ultisnips.directories": ["UltiSnips", "gosnippets/UltiSnips"],
   "diagnostic.virtualText": false,
   "diagnostic.enableMessage": "always",
@@ -39,6 +40,6 @@
   "volar.autoClosingTags": true,
   "volar.autoCompleteRefs": true,
   "javascript.format.semicolons": "ignore",
-  "html.format.wrapAttributes": "preserve-aligned",
+  "html.format.wrapAttributes": "force-aligned",
   "rust-analyzer.server.path": "D:\\Binaries\\rust-analyzer.exe"
 }
