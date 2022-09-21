@@ -5,13 +5,20 @@ if exists('g:started_by_firenvim')
     set showtabline=1
     " 没有底部栏，得找个办法显示模式
     set showmode
-    "----------"
 
-    au BufEnter 172.21.17.174* set complete+=k | set dictionary+=D:\Working\iScriptDict.txt 
-    function SetDict() abort 
-        set complete+=k
-        set dictionary+=D:\Working\iScriptDict.txt
+    function! InitDicts() abort
+        let l:dicts = split(&dictionary, ",")
+        for item in glob("D:/Working/iScriptDicts/*", v:false, v:true) 
+            call insert(l:dicts, fnameescape(item))
+        endfor
+        let &dictionary = join(l:dicts, ",")
     endfunction
-    noremap <leader>id <cmd>call SetDict()<cr>
-endif
 
+    au! BufEnter 172.21.17.174* set ft=javascript | set complete+=k | call InitDicts()
+
+    function! AppendDict() abort
+        let word = expand("<cword>")
+        call writefile([word], "D:/Working/iScriptDicts/Custom.txt", "a")
+    endfunction
+    noremap <leader>ia <cmd>call AppendDict()<cr>
+endif
