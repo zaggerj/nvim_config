@@ -93,6 +93,8 @@ function! Runner()
             exe "te java %:r"
         elseif &filetype == 'typescript'
             exe "te node %<.js"
+        elseif &filetype == 'rust'
+            exe "te cargo run"
         elseif &filetype == 'python'
             exe "te python %"
         elseif &filetype == 'ps1'

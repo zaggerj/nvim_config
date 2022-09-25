@@ -41,5 +41,6 @@
   "volar.autoCompleteRefs": true,
   "javascript.format.semicolons": "ignore",
   "html.format.wrapAttributes": "force-aligned",
-  "rust-analyzer.server.path": "D:\\Binaries\\rust-analyzer.exe"
+  "rust-analyzer.server.path": "D:\\Binaries\\rust-analyzer.exe",
+  "rust-analyzer.checkOnSave.enable": false
 }
