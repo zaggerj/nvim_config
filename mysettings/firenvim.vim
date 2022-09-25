@@ -21,4 +21,16 @@ if exists('g:started_by_firenvim')
         call writefile([word], "D:/Working/iScriptDicts/Custom.txt", "a")
     endfunction
     noremap <leader>ia <cmd>call AppendDict()<cr>
+
+    function! Surround() abort
+        " s/\v^(\s*)(.+)$/\1"\2 " +/
+        '<,'>s/\v$/ \\/
+        noh
+    endfunction
+    " noremap 不能正确获取到范围！
+    vnoremap <leader>is <cmd>call Surround()<cr>
+    "
+    " 注释和取消注释所有的 println
+    nnoremap <leader>ic <cmd>g/\v^\s*println/normal gcc<cr>
+    nnoremap <leader>iC <cmd>g/\v\/\/.?println/normal gcc<cr>
 endif
