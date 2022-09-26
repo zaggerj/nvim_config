@@ -8,4 +8,4 @@ autocmd FileType css,html,javascriptreact,typescriptreact,javascript,typescript,
 " (vimwiki)
 " 自动更新日记索引
 autocmd BufWinEnter diary.md execute "VimwikiDiaryGenerateLinks" | w
-autocmd FileType vimwiki,markdown set wrap
+autocmd FileType vimwiki,markdown,text,tex set wrap
