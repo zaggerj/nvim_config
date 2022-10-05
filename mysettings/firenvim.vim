@@ -14,7 +14,7 @@ if exists('g:started_by_firenvim')
         let &dictionary = join(l:dicts, ",")
     endfunction
 
-    au! BufEnter 172.21.17.174* set ft=javascript | set complete+=k | call InitDicts()
+    au! BufEnter 172.21.17.* set ft=javascript | set complete+=k | call InitDicts()
 
     function! AppendDict() abort
         let word = expand("<cword>")
@@ -22,14 +22,8 @@ if exists('g:started_by_firenvim')
     endfunction
     noremap <leader>ia <cmd>call AppendDict()<cr>
 
-    function! Surround() abort
-        " s/\v^(\s*)(.+)$/\1"\2 " +/
-        '<,'>s/\v$/ \\/
-        noh
-    endfunction
-    " noremap 不能正确获取到范围！
-    vnoremap <leader>is <cmd>call Surround()<cr>
-    "
+    " 用 : 切换模式而不是 <cmd>
+    vnoremap <leader>is :s/\v$/ \\/<cr>
     " 注释和取消注释所有的 println
     nnoremap <leader>ic <cmd>g/\v^\s*println/normal gcc<cr>
     nnoremap <leader>iC <cmd>g/\v\/\/.?println/normal gcc<cr>
