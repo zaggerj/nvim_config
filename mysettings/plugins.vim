@@ -53,6 +53,7 @@ let g:go_term_enabled = 1
 let g:go_code_completion_enabled = v:false
 let g:go_gopls_enabled = v:true
 let g:go_imports_autosave = v:true
+let g:go_mod_fmt_autosave = v:false
 let g:go_metalinter_autosave = v:false
 
 " (rust)

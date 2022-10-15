@@ -1,6 +1,10 @@
 let mapleader = " "
 inoremap fj <Esc> 
-inoremap <C-v> <C-R>+
+
+" 方便粘贴
+nnoremap <A-S-v> "+p
+vnoremap <A-S-c> "+y
+
 noremap \ :
 nnoremap / /\v
 nnoremap ? ?\v
