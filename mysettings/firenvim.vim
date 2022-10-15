@@ -1,8 +1,23 @@
 if exists('g:started_by_firenvim')
+lua << EOF
+    -- 白名单，这里用 lua 写比较方便
+    vim.g.firenvim_config = {
+        localSettings = {
+            [".*"] = {takeover = "never", priority = 0},
+            ["http://172.21.17.175:8080/designer"] = {
+                takeover = "always",
+                selector = "textarea.SourceField,.CodeMirror"
+            },
+        },
+    }
+EOF
+
     let &guifont = "Iosevka Curly Slab Medium:h12"
     " 这里得禁用掉状态栏和顶栏，提供不了什么信息
+    colorscheme everforest
     set laststatus=1
     set showtabline=1
+    set mouse=
     " 没有底部栏，得找个办法显示模式
     set showmode
 
@@ -24,6 +39,7 @@ if exists('g:started_by_firenvim')
 
     " 用 : 切换模式而不是 <cmd>
     vnoremap <leader>is :s/\v$/ \\/<cr>
+    " vnoremap <leader>is :s/\v^(\s)*(\w.+)$/\1"\2 " +/g<cr>
     " 注释和取消注释所有的 println
     nnoremap <leader>ic <cmd>g/\v^\s*println/normal gcc<cr>
     nnoremap <leader>iC <cmd>g/\v\/\/.?println/normal gcc<cr>
