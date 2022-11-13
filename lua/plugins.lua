@@ -7,7 +7,7 @@ require('nvim-treesitter.configs').setup {
     },
     highlight = {
         enable = true,
-        additional_vim_regex_highlighting = false
+        additional_vim_regex_highlighting = {'org', 'vue'}
     },
     indent = {
         enable = true,
@@ -110,3 +110,18 @@ require('telescope').setup{
 }
 
 require('Comment').setup()
+
+-- (org-mode)
+require('orgmode').setup_ts_grammar()
+require('orgmode').setup({
+    org_agenda_files = {'D:\\Working\\Todos\\orgs\\agenda\\*'},
+    org_default_notes_file = 'D:\\Working\\Todos\\orgs\\main.org',
+    mappings = {
+        org = {
+            org_toggle_checkbox = '<C-Enter>',
+        }
+    }
+})
+require('org-bullets').setup({
+    concealcursor = false
+})

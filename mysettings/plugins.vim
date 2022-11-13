@@ -2,7 +2,6 @@ call plug#begin('~\vimfiles\plugged')
     " Toolset
     Plug 'tpope/vim-fugitive'
     Plug 'lewis6991/gitsigns.nvim'
-    Plug 'vimwiki/vimwiki'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'NTBBloodbath/rest.nvim'
     " IDE support
@@ -11,6 +10,8 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'liuchengxu/vista.vim'
     Plug 'mattn/emmet-vim'
     Plug 'fatih/vim-go'
+    Plug 'nvim-orgmode/orgmode'
+    Plug 'akinsho/org-bullets.nvim'
     " Editor enhancement
     Plug 'glacambre/firenvim', { 'do': { -> firenvim#install(0) } }
     Plug 'lukas-reineke/indent-blankline.nvim'
@@ -60,8 +61,8 @@ let g:go_metalinter_autosave = v:false
 let g:rustfmt_autosave = 1
 
 " (vimwiki)
-let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1}]
-let g:mkdp_auto_start = 0
+" let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md', 'auto_tags': 1}]
+" let g:mkdp_auto_start = 0
 
 " (finder)
 let g:clap_enable_icon = v:true

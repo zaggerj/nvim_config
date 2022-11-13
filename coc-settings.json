@@ -43,5 +43,6 @@
   "typescript.preferences.jsxAttributeCompletionStyle": "auto",
   "volar.autoClosingTags": true,
   "volar.autoCompleteRefs": true,
-  "volar.diagnostics.tsLocale": "zh-cn"
+  "volar.diagnostics.tsLocale": "zh-cn",
+  "coc.source.omni.filetypes": ["org"]
 }
