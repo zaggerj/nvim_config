@@ -6,17 +6,22 @@ lua << EOF
             [".*"] = {takeover = "never", priority = 0},
             ["http://172.21.17.175:8080/designer"] = {
                 takeover = "always",
-                selector = "textarea.SourceField,.CodeMirror"
+                selector = "textarea.SourceField,textarea:not(td>textarea,.el-textarea__inner)"
+            },
+            ["http://172.16.65.50:8080/designer"] = {
+                takeover = "always",
+                selector = "textarea.SourceField,textarea:not(td>textarea,.el-textarea__inner)"
             },
         },
     }
 EOF
 
-    let &guifont = "Iosevka Curly Slab Medium:h12"
+    let &guifont = "Iosevka Curly Slab:h11"
     " 这里得禁用掉状态栏和顶栏，提供不了什么信息
     colorscheme everforest
     set laststatus=1
     set showtabline=1
+    set cursorcolumn
     set mouse=
     " 没有底部栏，得找个办法显示模式
     set showmode
@@ -29,7 +34,7 @@ EOF
         let &dictionary = join(l:dicts, ",")
     endfunction
 
-    au! BufEnter 172.21.17.* set ft=javascript | set complete+=k | call InitDicts()
+    au! BufEnter 172.* set ft=javascript | set complete+=k | call InitDicts()
 
     function! AppendDict() abort
         let word = expand("<cword>")
