@@ -22,8 +22,8 @@ elseif exists('g:fvim_loaded')
 
     FVimCustomTitleBar v:true
 elseif exists('g:neovide')
-    " neovide 中文输入法输入框位置将不正确
-    let &guifont = "FantasqueSansMono NF:h14"
+    " neovide 中文输入法输入框位置不正确
+    set guifont=FiraCode\ NF:h14
     let g:neovide_remember_window_position = v:true
     let g:neovide_remember_window_size = v:true
     " 更短的拖尾
