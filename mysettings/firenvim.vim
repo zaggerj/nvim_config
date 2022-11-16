@@ -12,6 +12,10 @@ lua << EOF
                 takeover = "always",
                 selector = "textarea.SourceField,textarea:not(td>textarea,.el-textarea__inner)"
             },
+            ["http://172.16.65.52:8080/designer"] = {
+                takeover = "always",
+                selector = "textarea.SourceField,textarea:not(td>textarea,.el-textarea__inner)"
+            },
         },
     }
 EOF
