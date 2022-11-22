@@ -17,7 +17,6 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'lukas-reineke/indent-blankline.nvim'
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'nvim-lualine/lualine.nvim'
-    Plug 'luochen1990/rainbow'
     Plug 'tpope/vim-surround'
     Plug 'numToStr/Comment.nvim'
     Plug 'tpope/vim-repeat'
