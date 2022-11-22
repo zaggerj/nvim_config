@@ -26,6 +26,7 @@ EOF
     set laststatus=1
     set showtabline=1
     set cursorcolumn
+    set wrap
     set mouse=
     " 没有底部栏，得找个办法显示模式
     set showmode
