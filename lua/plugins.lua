@@ -7,7 +7,7 @@ require('nvim-treesitter.configs').setup {
     },
     highlight = {
         enable = true,
-        additional_vim_regex_highlighting = {'org', 'vue'}
+        additional_vim_regex_highlighting = {'org', 'vue', 'lua', 'html'}
     },
     indent = {
         enable = true,
@@ -90,6 +90,9 @@ require('lualine').setup({
 -- gitsigns
 require('gitsigns').setup({
     current_line_blame = true,
+    signcolumn = false,
+    linehl = true,
+    numberhl = true,
     current_line_blame_opts = {
         delay = 500
     }
@@ -109,6 +112,7 @@ require('telescope').setup{
     }
 }
 
+-- (Commenter)
 require('Comment').setup()
 
 -- (org-mode)
