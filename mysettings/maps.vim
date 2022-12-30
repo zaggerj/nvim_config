@@ -32,7 +32,8 @@ noremap <silent> <leader><left> <Cmd>bdelete<cr>
 " 根据最新的 coc 配置，不再使用此项
 " inoremap <silent><expr> <tab> CTab()
 inoremap <silent><expr> _tm strftime("%Y-%m-%d")
-nnoremap <silent> <Leader>fo <Cmd>call Open_fix()<cr>
+" 改用 Telescope 吧
+"nnoremap <silent> <Leader>fo <Cmd>call Open_fix()<cr>
 noremap <silent> <Leader>fc <Cmd>call Compiler()<cr>
 noremap <silent> <Leader>fr <Cmd>call Runner()<cr>
 nnoremap <silent> <Leader>fs <Cmd>call Set_it()<cr>
@@ -86,6 +87,7 @@ noremap <silent><Leader>lg <Cmd>Telescope live_grep<CR>
 noremap <silent> <Leader>lb <Cmd>Telescope buffers<CR>
 noremap <silent> <Leader>lr <Cmd>Telescope oldfiles<CR>
 noremap <silent> <Leader>lv <Cmd>Telescope vim_options<CR>
+noremap <silent> <Leader>ll <Cmd>Telescope loclist<CR>
 " noremap <silent> <Leader>lm <Cmd><CR>
 " noremap <silent> <Leader>l/ <Cmd><CR>
 " noremap <silent> <Leader>l: <Cmd><CR>

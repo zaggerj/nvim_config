@@ -5,12 +5,12 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'nvim-lua/plenary.nvim'
     Plug 'NTBBloodbath/rest.nvim'
     " IDE support
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocUpdate'}
     "临时使用
     Plug 'liuchengxu/vista.vim'
-    Plug 'mattn/emmet-vim'
-    Plug 'fatih/vim-go'
-    Plug 'nvim-orgmode/orgmode'
+    Plug 'mattn/emmet-vim', {'for': ['html', 'javascriptreact', 'typescriptreact', 'vue']}
+    Plug 'fatih/vim-go', {'for': 'go'}
+    Plug 'nvim-orgmode/orgmode',
     Plug 'akinsho/org-bullets.nvim'
     " Editor enhancement
     Plug 'glacambre/firenvim', { 'do': { -> firenvim#install(0) } }
@@ -29,7 +29,7 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
     Plug 'joshdick/onedark.vim'
     " Syntax
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate', 'frozen': v:true}
 call plug#end()
 
 " (vista)
