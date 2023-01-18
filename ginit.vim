@@ -1,7 +1,7 @@
 if exists('g:GuiLoaded')
     " 注意：只有最新版的 nvim-qt 支持已被注释掉的选项
     " 用 w57 指定粗细为 retina，retina 和 medium 其实没有区别
-    GuiFont! FantasqueSansMono NF:h14,思源黑体:h14
+    GuiFont! FantasqueSansMono NFM:h12
 
     GuiPopupmenu 0
     GuiTabline 0
