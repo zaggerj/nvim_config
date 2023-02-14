@@ -5,12 +5,10 @@
 let s:now = str2nr(strftime("%H"))
 if s:now > 7 && s:now < 18
     " let g:onedark_config['style'] = "light"
-    colo tokyonight-day
-    set background=light
+    colo catppuccin-latte
 else
     " let g:onedark_config['style'] = "cool"
-    colo tokyonight-storm
-    set background=dark
+    colo catppuccin-macchiato
 endif
 
 set termguicolors

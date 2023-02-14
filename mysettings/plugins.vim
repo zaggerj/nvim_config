@@ -24,10 +24,8 @@ call plug#begin('~\vimfiles\plugged')
     " Themes
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'sainnhe/forest-night'
-    "Plug 'kristijanhusak/vim-hybrid-material'
-    "Plug 'morhetz/gruvbox'
     Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-    Plug 'joshdick/onedark.vim'
+    Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
     " Syntax
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate', 'frozen': v:true}
 call plug#end()
