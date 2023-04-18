@@ -56,7 +56,10 @@ vim.opt.showmode = false
 vim.opt.laststatus = 2
 vim.opt.showtabline = 2
 require('lualine').setup({
-    theme = vim.g.colors_name,
+    options = {
+        -- theme = vim.g.colors_name,
+        theme = 'ayu_light'
+    },
     sections = {
         lualine_b = {'branch', 'diff'},
         lualine_c = {{'filename', newfile_status = true, path = 1}},

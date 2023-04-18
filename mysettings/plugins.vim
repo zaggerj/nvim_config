@@ -4,6 +4,7 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'lewis6991/gitsigns.nvim'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'NTBBloodbath/rest.nvim'
+    Plug 'gpanders/editorconfig.nvim'
     " IDE support
     Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocUpdate'}
     "临时使用
