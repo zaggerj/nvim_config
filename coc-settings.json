@@ -1,5 +1,49 @@
 {
   "languageserver": {
+    "tailwind-lsp": {
+      "command": "tailwindcss-language-server.cmd",
+      "args": ["--stdio"],
+
+      "filetypes": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "vue"
+      ],
+
+      "rootPatterns": [
+        "tailwind.config.js",
+        "tailwind.config.ts",
+        "postcss.config.js",
+        "postcss.config.ts",
+        "package.json",
+        "node_modules",
+        ".git"
+      ],
+      "settings": {
+        "tailwindCSS": {
+          "validate": true,
+          "lint": {
+            "cssConflict": "warning",
+            "invalidApply": "error",
+            "invalidScreen": "error",
+            "invalidVariant": "error",
+            "invalidConfigPath": "error",
+            "invalidTailwindDirective": "error",
+            "recommendedVariantOrder": "warning"
+          },
+          "classAttributes": [
+            "class",
+            "className",
+            "classList",
+            "ngClass",
+            "ng-class"
+          ],
+          "experimental": {}
+        }
+      }
+    },
     "clangd": {
       "command": "clangd",
       "args": ["--background-index"],
@@ -26,11 +70,21 @@
   "diagnostic.virtualTextPrefix": "  ",
   "diagnostic.warningSign": "W",
   "eslint.enable": true,
-  "html.filetypes": ["html", "vue", "handlebars", "template", "javascriptreact"],
-  "html.format.wrapAttributes": "force",
+  "html.filetypes": [
+    "html",
+    "vue",
+    "handlebars",
+    "template",
+    "javascriptreact"
+  ],
+  "html.format.wrapAttributes": "force-aligned",
   "javascript.format.semicolons": "remove",
   "javascript.suggest.autoImports": true,
   "javascript.suggest.completeJSDocs": true,
+  "javascript.preferences.quoteStyle": "single",
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+  "eslint.autoFixOnSave": false,
   "rust-analyzer.checkOnSave.enable": false,
   "rust-analyzer.server.path": "D:\\Binaries\\rust-analyzer.exe",
   "semanticTokens.enable": true,
@@ -43,5 +97,6 @@
   "volar.autoClosingTags": true,
   "volar.autoCompleteRefs": true,
   "volar.diagnostics.tsLocale": "zh-cn",
-  "coc.source.omni.filetypes": ["org"]
+  "coc.source.omni.filetypes": ["org"],
+  "snippets.ultisnips.pythonPrompt": false
 }

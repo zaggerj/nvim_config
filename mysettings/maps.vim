@@ -50,8 +50,8 @@ nnoremap <silent> <Leader>gps <Cmd>Git push<cr>
 nnoremap <silent> <Leader>gpl <Cmd>Git pull<cr>
 nnoremap <silent> <Leader>gl <Cmd>Gclog<cr>
 " (gitsigns)
-nnoremap <silent> ]c <Cmd>Gitsigns next_hunk<cr>
-nnoremap <silent> [c <Cmd>Gitsigns prev_hunk<cr>
+nnoremap <silent> ]g <Cmd>Gitsigns next_hunk<cr>
+nnoremap <silent> [g <Cmd>Gitsigns prev_hunk<cr>
 " (vim-plug)
 nnoremap <silent> <Leader>pi <Cmd>PlugInstall<cr>
 nnoremap <silent> <Leader>pu <Cmd>PlugUpdate<cr>
@@ -83,7 +83,8 @@ inoremap <silent><expr> <TAB>
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 " (finder)
 noremap <silent> <Leader>lf <Cmd>Telescope find_files<CR>
-noremap <silent><Leader>lg <Cmd>Telescope live_grep<CR>
+" noremap <silent><Leader>lg <Cmd>Telescope live_grep<CR>
+noremap <Leader>lg :grep! <cword> 
 noremap <silent> <Leader>lb <Cmd>Telescope buffers<CR>
 noremap <silent> <Leader>lr <Cmd>Telescope oldfiles<CR>
 noremap <silent> <Leader>lv <Cmd>Telescope vim_options<CR>

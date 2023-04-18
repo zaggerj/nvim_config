@@ -23,15 +23,22 @@ elseif exists('g:fvim_loaded')
     FVimCustomTitleBar v:true
 elseif exists('g:neovide')
     " neovide 中文输入法输入框位置不正确
-    set guifont=FiraCode\ NF:h14
+    let &guifont = "FantasqueSansMono NFM:h14"
     let g:neovide_remember_window_position = v:true
     let g:neovide_remember_window_size = v:true
-    " 更短的拖尾
-    let g:neovide_cursor_trail_length=0.1
-    let g:neovide_cursor_animation_length=0
+    let g:neovide_scroll_animation_length = 0.3
+    " 输入时动画
+    let g:neovide_cursor_animate_in_insert_mode = v:true
+    " 跳转到 cmd 时是否使用动画
+    let g:neovide_cursor_animate_command_line = v:false
+    " 更长的拖尾
+    " let g:neovide_cursor_trail_length=0.1
+    " 更慢的动画
+    " let g:neovide_cursor_animation_length=0.08
+
     " 存在内存泄漏，关闭
     " let g:neovide_cursor_vfx_mode = "railgun"
-    " 更显眼的粒子
+    "" 更显眼的粒子
     " let g:neovide_cursor_vfx_particle_lifetime=1.4
     " let g:neovide_cursor_vfx_particle_density=9.0
 endif

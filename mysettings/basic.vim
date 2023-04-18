@@ -24,6 +24,7 @@ set hidden
 set cmdheight=1
 set nobackup
 set nowritebackup
+set foldopen-=search
 
 "let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
 "let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'

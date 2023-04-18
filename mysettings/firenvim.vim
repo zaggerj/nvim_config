@@ -20,7 +20,7 @@ lua << EOF
     }
 EOF
 
-    let &guifont = "Iosevka Curly Slab:h11"
+    let &guifont = "Cascadia Code:h11"
     " 这里得禁用掉状态栏和顶栏，提供不了什么信息
     colorscheme everforest
     set laststatus=1

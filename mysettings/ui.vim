@@ -1,15 +1,25 @@
 " 配置 colorscheme 和 syntax highlight
 " 务必确保 highlight 在 colorscheme 之后进行设置，否则会导致高亮不正确
+
 " (theme)
-" 根据时间自动调整主题
-let s:now = str2nr(strftime("%H"))
-if s:now > 7 && s:now < 18
-    " let g:onedark_config['style'] = "light"
-    colo catppuccin-latte
-else
-    " let g:onedark_config['style'] = "cool"
-    colo catppuccin-macchiato
-endif
+" 根据时间自动调整主题，每 5 分钟更新一次
+function TrySwitchTheme(timer)
+    let s:now = str2nr(strftime("%H"))
+    if s:now > 8 && s:now < 18
+        " let g:onedark_config['style'] = "light"
+        colo onelight
+    else
+        " let g:onedark_config['style'] = "cool"
+        colo onedarkpro
+    endif
+endfunction
+
+call TrySwitchTheme(0)
+
+" if (exists('s:p'))
+"     unlet s:p
+" endif
+" let s:p = timer_start(1000 * 60 * 5, 'TrySwitchTheme')
 
 set termguicolors
 set pumblend=10

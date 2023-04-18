@@ -38,8 +38,7 @@ require('nvim-tree').setup({
     diagnostics = {
         enable = true,
         show_on_dirs = true,
-    },
-    ignore_ft_on_setup = {}
+    }
 })
 
 -- (rest)
@@ -57,10 +56,10 @@ vim.opt.showmode = false
 vim.opt.laststatus = 2
 vim.opt.showtabline = 2
 require('lualine').setup({
-    theme = "tokyonight",
+    theme = vim.g.colors_name,
     sections = {
         lualine_b = {'branch', 'diff'},
-        lualine_c = {{'filename', path = 1}},
+        lualine_c = {{'filename', newfile_status = true, path = 1}},
         lualine_x = {'diagnostics', 'encoding', 'fileformat', 'filetype'},
         lualine_y = {'%2p%% ﭾ %-3L'},
         lualine_z = {'%3l:%-2c'}
@@ -90,10 +89,10 @@ require('lualine').setup({
 -- gitsigns
 require('gitsigns').setup({
     current_line_blame = true,
-    signcolumn = false,
-    linehl = true,
+    signcolumn = true,
+    linehl = false,
     current_line_blame_opts = {
-        delay = 500
+        delay = 1000
     }
 })
 
@@ -117,8 +116,8 @@ require('Comment').setup()
 -- (org-mode)
 require('orgmode').setup_ts_grammar()
 require('orgmode').setup({
-    org_agenda_files = {'D:\\Working\\Todos\\orgs\\agenda\\*'},
-    org_default_notes_file = 'D:\\Working\\Todos\\orgs\\main.org',
+    org_agenda_files = {'E:\\working\\todo\\orgs\\agenda\\*'},
+    org_default_notes_file = 'E:\\working\\todo\\main.org',
     mappings = {
         org = {
             org_toggle_checkbox = '<C-Enter>',
