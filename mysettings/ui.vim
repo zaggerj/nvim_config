@@ -10,7 +10,7 @@ function TrySwitchTheme(timer)
         colo onelight
     else
         " let g:onedark_config['style'] = "cool"
-        colo onedarkpro
+        colo onedark
     endif
 endfunction
 

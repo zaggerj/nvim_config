@@ -82,7 +82,6 @@
   "javascript.suggest.autoImports": true,
   "javascript.suggest.completeJSDocs": true,
   "javascript.preferences.quoteStyle": "single",
-  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
   "eslint.autoFixOnSave": false,
   "rust-analyzer.checkOnSave.enable": false,

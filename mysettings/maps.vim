@@ -65,6 +65,11 @@ nnoremap <silent> <Leader>cc <Cmd>CocConfig<cr>
 nmap <silent> <leader>. <Plug>(coc-codeaction)
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
+" 弄一下文本对象的跳转，omap 就不用 silent 了
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
 nmap <silent> <Leader>cf <Plug>(coc-format)
 xmap <silent> <Leader>cf <Plug>(coc-format-selected)
 xmap <silent> <Leader>cv <Plug>(coc-convert-snippet)
