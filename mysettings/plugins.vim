@@ -27,6 +27,7 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'sainnhe/forest-night'
     Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
     Plug 'olimorris/onedarkpro.nvim'
+    Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
     " Syntax
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate', 'frozen': v:true}
 call plug#end()

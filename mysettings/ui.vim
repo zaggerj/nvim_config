@@ -7,10 +7,10 @@ function TrySwitchTheme(timer)
     let s:now = str2nr(strftime("%H"))
     if s:now > 8 && s:now < 18
         " let g:onedark_config['style'] = "light"
-        colo onelight
+        colo catppuccin-latte
     else
         " let g:onedark_config['style'] = "cool"
-        colo onedark
+        colo catppuccin-macchiato
     endif
 endfunction
 
