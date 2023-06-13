@@ -58,7 +58,7 @@ vim.opt.showtabline = 2
 require('lualine').setup({
     options = {
         -- theme = vim.g.colors_name,
-        theme = 'ayu_light'
+        theme = 'auto'
     },
     sections = {
         lualine_b = {'branch', 'diff'},
@@ -109,6 +109,13 @@ require('telescope').setup{
             i = {
                 ["<C-u>"] = false
             }
+        }
+    },
+    pickers = {
+        live_grep = {
+            debounce = 500,
+            glob_pattern = {'!*.bundle.js', '!*.min.js', '!chunk*.js'},
+            search_dirs = {'views', 'js', 'css', 'src'}
         }
     }
 }
