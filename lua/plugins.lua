@@ -114,8 +114,9 @@ require('telescope').setup{
     pickers = {
         live_grep = {
             debounce = 500,
-            glob_pattern = {'!*.bundle.js', '!*.min.js', '!chunk*.js'},
-            search_dirs = {'views', 'js', 'css', 'src'}
+            -- glob_pattern = {'!*.bundle.js', '!*.min.js', '!chunk*.js', '!**/@(libs|plugin)/**'},
+            glob_pattern = {'!*.{bundle,min}.js', '!**/{libs,plugin,*vnc,rdp}/**'},
+            search_dirs = {'src', 'css', 'js', 'views'}
         }
     }
 }

@@ -3,18 +3,18 @@
 
 " (theme)
 " 根据时间自动调整主题，每 5 分钟更新一次
-function TrySwitchTheme(timer)
-    let s:now = str2nr(strftime("%H"))
-    if s:now > 8 && s:now < 18
-        " let g:onedark_config['style'] = "light"
-        colo catppuccin-latte
-    else
-        " let g:onedark_config['style'] = "cool"
-        colo catppuccin-macchiato
-    endif
-endfunction
-
-call TrySwitchTheme(0)
+"function TrySwitchTheme(timer)
+"    let s:now = str2nr(strftime("%H"))
+"    if s:now > 8 && s:now < 18
+"        " let g:onedark_config['style'] = "light"
+"        colo catppuccin-latte
+"    else
+"        " let g:onedark_config['style'] = "cool"
+"        colo catppuccin-macchiato
+"    endif
+"endfunction
+"
+"call TrySwitchTheme(0)
 
 " if (exists('s:p'))
 "     unlet s:p

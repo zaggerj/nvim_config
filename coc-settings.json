@@ -3,7 +3,6 @@
     "tailwind-lsp": {
       "command": "tailwindcss-language-server.cmd",
       "args": ["--stdio"],
-
       "filetypes": [
         "javascript",
         "javascriptreact",
@@ -17,6 +16,7 @@
         "tailwind.config.ts",
         "postcss.config.js",
         "postcss.config.ts",
+        "windi.config.js",
         "package.json",
         "node_modules",
         ".git"
@@ -60,7 +60,8 @@
   },
   "Lua.completion.enable": false,
   "Lua.diagnostics.globals": ["vim"],
-  "coc.preferences.formatOnType": false,
+  "coc.preferences.formatOnType": true,
+  "eslint.autoFixOnSave": true,
   "diagnostic.enableMessage": "always",
   "diagnostic.errorSign": "E",
   "diagnostic.hintSign": "H",
@@ -83,7 +84,6 @@
   "javascript.suggest.completeJSDocs": true,
   "javascript.preferences.quoteStyle": "single",
   "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
-  "eslint.autoFixOnSave": false,
   "rust-analyzer.checkOnSave.enable": false,
   "rust-analyzer.server.path": "D:\\Binaries\\rust-analyzer.exe",
   "semanticTokens.enable": true,
@@ -97,5 +97,6 @@
   "volar.autoCompleteRefs": true,
   "volar.diagnostics.tsLocale": "zh-cn",
   "coc.source.omni.filetypes": ["org"],
-  "snippets.ultisnips.pythonPrompt": false
+  "snippets.ultisnips.pythonPrompt": false,
+  "powershell.integratedConsole.showOnStartup": false
 }
