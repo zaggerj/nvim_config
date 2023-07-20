@@ -48,7 +48,9 @@ nnoremap <silent> <Leader>pd <Cmd>NvimTreeFindFileToggle<cr>
 nnoremap <silent> <Leader>gs <Cmd>G<cr>
 nnoremap <silent> <Leader>gps <Cmd>Git push<cr>
 nnoremap <silent> <Leader>gpl <Cmd>Git pull<cr>
-nnoremap <silent> <Leader>gl <Cmd>Gclog<cr>
+nnoremap <silent> <Leader>gla <Cmd>Gclog<cr>
+nnoremap <silent> <Leader>gll <Cmd>exec "Git log -L ".line('.').",".line('.').":% --no-merges"<cr>
+nnoremap <silent> <Leader>gls :Git log -p --no-merges -S"<cword>" %<cr>
 " (gitsigns)
 nnoremap <silent> ]g <Cmd>Gitsigns next_hunk<cr>
 nnoremap <silent> [g <Cmd>Gitsigns prev_hunk<cr>
@@ -59,6 +61,7 @@ nnoremap <silent> <Leader>pc <Cmd>PlugClean<cr>
 " (coc) 不遵循通用命名规则，{rhs} 和 vscodevim 保持一致
 nnoremap <silent> <Leader>cr <Cmd>CocRestart<cr>
 nnoremap <silent> gh <Cmd>call CocActionAsync('doHover')<cr>
+nnoremap gx <Cmd>exec "!start ".expand('<cfile>')<cr>
 noremap <Leader>ci <Cmd>call CocActionAsync('organizeImport')<CR> 
 noremap <silent> <Leader>cl <Cmd>CocList<cr>
 nnoremap <silent> <Leader>cc <Cmd>CocConfig<cr>
