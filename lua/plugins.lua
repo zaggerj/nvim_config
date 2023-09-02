@@ -64,13 +64,13 @@ require('lualine').setup({
         lualine_b = {'branch', 'diff'},
         lualine_c = {{'filename', newfile_status = true, path = 1}},
         lualine_x = {'diagnostics', 'encoding', 'fileformat', 'filetype'},
-        lualine_y = {'%2p%% ﭾ %-3L'},
+        lualine_y = {'%2p%% 󰚀 %-3L'},
         lualine_z = {'%3l:%-2c'}
     },
     inactive_sections = {
         lualine_c = {{'filename', path = 1}},
         lualine_x = {},
-        lualine_y = {'%2p%% ﭾ %-3L', '%3l:%-2c'}
+        lualine_y = {'%2p%% 󰚀 %-3L', '%3l:%-2c'}
     },
     tabline = {
         lualine_a = {{'buffers', buffers_color = {
