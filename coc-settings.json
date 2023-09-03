@@ -12,14 +12,7 @@
       ],
 
       "rootPatterns": [
-        "tailwind.config.js",
-        "tailwind.config.ts",
-        "postcss.config.js",
-        "postcss.config.ts",
         "windi.config.js",
-        "package.json",
-        "node_modules",
-        ".git"
       ],
       "settings": {
         "tailwindCSS": {
@@ -98,5 +91,6 @@
   "volar.diagnostics.tsLocale": "zh-cn",
   "coc.source.omni.filetypes": ["org"],
   "snippets.ultisnips.pythonPrompt": false,
-  "powershell.integratedConsole.showOnStartup": false
+  "powershell.integratedConsole.showOnStartup": false,
+  "vetur.completion.tagCasing": "initial",
 }
