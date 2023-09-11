@@ -53,7 +53,7 @@
   },
   "Lua.completion.enable": false,
   "Lua.diagnostics.globals": ["vim"],
-  "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnType": false,
   "eslint.autoFixOnSave": true,
   "diagnostic.enableMessage": "always",
   "diagnostic.errorSign": "E",

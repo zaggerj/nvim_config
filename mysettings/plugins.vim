@@ -14,13 +14,11 @@ call plug#begin('~\vimfiles\plugged')
     Plug 'nvim-orgmode/orgmode',
     Plug 'akinsho/org-bullets.nvim'
     " Editor enhancement
-    Plug 'glacambre/firenvim', { 'do': { -> firenvim#install(0) } }
     Plug 'lukas-reineke/indent-blankline.nvim'
     Plug 'kyazdani42/nvim-tree.lua'
     Plug 'nvim-lualine/lualine.nvim'
-    Plug 'tpope/vim-surround'
+    Plug 'kylechui/nvim-surround'
     Plug 'numToStr/Comment.nvim'
-    Plug 'tpope/vim-repeat'
     Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
     " Themes
     Plug 'kyazdani42/nvim-web-devicons'

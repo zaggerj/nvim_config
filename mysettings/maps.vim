@@ -77,12 +77,12 @@ nmap <silent> <Leader>cf <Plug>(coc-format)
 xmap <silent> <Leader>cf <Plug>(coc-format-selected)
 xmap <silent> <Leader>cv <Plug>(coc-convert-snippet)
 nmap <silent> <F2> <Plug>(coc-rename)
-nmap <silent> <C-Up> <Plug>(coc-diagnostic-prev-error)
-nmap <silent> <C-Down> <Plug>(coc-diagnostic-next-error)
-nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+nmap <silent> <Up> <Plug>(coc-diagnostic-prev)
+nmap <silent> <Down> <Plug>(coc-diagnostic-next)
+nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 " 0.0.82 版适配
-inoremap <expr> <CR> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " Insert <tab> when previous text is space, refresh completion if not.
 inoremap <silent><expr> <TAB>
             \ coc#pum#visible() ? coc#pum#next(1):

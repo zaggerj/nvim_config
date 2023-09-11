@@ -3,7 +3,7 @@ require('nvim-treesitter.configs').setup {
     ensurse_installed = {
         "c","lua", "go",
         "typescript", "tsx",
-        "html", "http", "javascript", "jsdoc", "json"
+        "html", "http", "javascript", "jsdoc", "json", "vue"
     },
     highlight = {
         enable = true,
@@ -138,3 +138,6 @@ require('orgmode').setup({
 require('org-bullets').setup({
     concealcursor = false
 })
+
+-- (vim-surround 替代品)
+require("nvim-surround").setup({})
