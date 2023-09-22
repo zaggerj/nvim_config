@@ -1,4 +1,4 @@
-call plug#begin('~\vimfiles\plugged')
+call plug#begin(stdpath('data').'\plugins')
     " Toolset
     Plug 'tpope/vim-fugitive'
     Plug 'lewis6991/gitsigns.nvim'
