@@ -97,6 +97,6 @@ noremap <silent> <Leader>lb <Cmd>Telescope buffers<CR>
 noremap <silent> <Leader>lr <Cmd>Telescope oldfiles<CR>
 noremap <silent> <Leader>lv <Cmd>Telescope vim_options<CR>
 noremap <silent> <Leader>ll <Cmd>Telescope loclist<CR>
-" noremap <silent> <Leader>lm <Cmd><CR>
+noremap <silent> <Leader>lm <Cmd>Telescope marks<CR>
 " noremap <silent> <Leader>l/ <Cmd><CR>
 " noremap <silent> <Leader>l: <Cmd><CR>

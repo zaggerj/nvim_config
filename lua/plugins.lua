@@ -7,15 +7,14 @@ require('nvim-treesitter.configs').setup {
     },
     highlight = {
         enable = true,
-        additional_vim_regex_highlighting = {'org', 'vue', 'lua', 'html'}
+        -- additional_vim_regex_highlighting = {'org', 'vue', 'lua', 'html'}
     },
     indent = {
         enable = true,
-        disable = {
-            "go", "typescriptreact",
-            "http", "json", "html",
-            "javascript"
-        }
+        -- disable = {
+        --     "go",
+        --     "http"
+        -- }
     }
 }
 
