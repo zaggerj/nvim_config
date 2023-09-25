@@ -2,8 +2,7 @@ let mapleader = " "
 inoremap fj <Esc> 
 
 " 方便粘贴
-nnoremap <A-S-v> "+p
-vnoremap <A-S-c> "+y
+inoremap <C-v> <C-o>"+p
 
 noremap \ :
 nnoremap / /\v
