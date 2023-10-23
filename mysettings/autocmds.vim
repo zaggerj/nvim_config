@@ -6,7 +6,6 @@ autocmd VimResized * wincmd =
 " rest.nvim 无法在 win 上使用，此处改用 coc-restclient
 autocmd FileType http noremap <buffer>go <Plug>RestNvim
 autocmd FileType javascript,vue,scss,less,typescriptreact,javascriptreact,org setl tabstop=2 | setl shiftwidth=2
-autocmd FileType css,html,javascriptreact,typescriptreact,javascript,typescript,vue imap <S-Tab> <plug>(emmet-expand-abbr)
 " (vimwiki)
 " 自动更新日记索引
 autocmd BufWinEnter diary.md execute "VimwikiDiaryGenerateLinks" | w

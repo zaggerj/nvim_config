@@ -9,7 +9,6 @@ call plug#begin(stdpath('data').'\plugins')
     Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocUpdate'}
     "临时使用
     Plug 'liuchengxu/vista.vim'
-    Plug 'mattn/emmet-vim', {'for': ['html', 'javascriptreact', 'typescriptreact', 'vue']}
     Plug 'fatih/vim-go', {'for': 'go'}
     Plug 'nvim-orgmode/orgmode',
     Plug 'akinsho/org-bullets.nvim'

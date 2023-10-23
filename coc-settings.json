@@ -53,7 +53,6 @@
   },
   "Lua.completion.enable": false,
   "Lua.diagnostics.globals": ["vim"],
-  "coc.preferences.formatOnType": false,
   "eslint.autoFixOnSave": true,
   "diagnostic.enableMessage": "always",
   "diagnostic.errorSign": "E",
@@ -93,4 +92,5 @@
   "snippets.ultisnips.pythonPrompt": false,
   "powershell.integratedConsole.showOnStartup": false,
   "vetur.completion.tagCasing": "initial",
+  "svelte.enable-ts-plugin": false,
 }

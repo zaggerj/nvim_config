@@ -11,10 +11,9 @@ require('nvim-treesitter.configs').setup {
     },
     indent = {
         enable = true,
-        -- disable = {
-        --     "go",
-        --     "http"
-        -- }
+        disable = {
+            "javascript"
+        }
     }
 }
 
@@ -99,7 +98,7 @@ require('gitsigns').setup({
 })
 
 -- indentLine
-require("indent_blankline").setup({show_current_context = true})
+require("ibl").setup()
 
 -- Telescope
 require('telescope').setup{
