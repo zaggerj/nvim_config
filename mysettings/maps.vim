@@ -1,4 +1,4 @@
-let mapleader = " "
+" 见 plugins.lua let mapleader = " "
 inoremap fj <Esc> 
 
 " 方便粘贴
@@ -54,9 +54,9 @@ nnoremap <silent> <Leader>gls :Git log -p --no-merges -S"<cword>" %<cr>
 nnoremap <silent> ]g <Cmd>Gitsigns next_hunk<cr>
 nnoremap <silent> [g <Cmd>Gitsigns prev_hunk<cr>
 " (vim-plug)
-nnoremap <silent> <Leader>pi <Cmd>PlugInstall<cr>
-nnoremap <silent> <Leader>pu <Cmd>PlugUpdate<cr>
-nnoremap <silent> <Leader>pc <Cmd>PlugClean<cr>
+nnoremap <silent> <Leader>pi <Cmd>Lazy Install<cr>
+nnoremap <silent> <Leader>pu <Cmd>Lazy Update<cr>
+nnoremap <silent> <Leader>pc <Cmd>Lazy Clean<cr>
 " (coc) 不遵循通用命名规则，{rhs} 和 vscodevim 保持一致
 nnoremap <silent> <Leader>cr <Cmd>CocRestart<cr>
 nnoremap <silent> gh <Cmd>call CocActionAsync('doHover')<cr>
@@ -106,4 +106,3 @@ xmap ' <Plug>Sneak_s
 xmap <BS> <Plug>Sneak_S
 omap ' <Plug>Sneak_s
 omap <BS> <Plug>Sneak_S
-
