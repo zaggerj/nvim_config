@@ -47,8 +47,8 @@ set winblend=0
 
 " (rainbow)
 " 确保在 colo 之后
-let g:rainbow_active = 1
-let g:rainbow_conf = {'guifgs': reverse(['Red', 'Orange', 'Yellow', 'Green', 'Cyan', 'Lightblue', 'Purple'])}
+" let g:rainbow_active = 1
+" let g:rainbow_conf = {'guifgs': reverse(['Red', 'Orange', 'Yellow', 'Green', 'Cyan', 'Lightblue', 'Purple'])}
 
 " (vim-go) Deprecated by treesitter
 " let g:go_highlight_extra_types = 1

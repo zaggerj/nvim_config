@@ -10,7 +10,7 @@ call plug#begin(stdpath('data').'\plugins')
     "临时使用
     Plug 'liuchengxu/vista.vim'
     Plug 'fatih/vim-go', {'for': 'go'}
-    Plug 'nvim-orgmode/orgmode',
+    Plug 'nvim-orgmode/orgmode'
     Plug 'akinsho/org-bullets.nvim'
     " Editor enhancement
     Plug 'lukas-reineke/indent-blankline.nvim'

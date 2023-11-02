@@ -99,3 +99,11 @@ noremap <silent> <Leader>ll <Cmd>Telescope loclist<CR>
 noremap <silent> <Leader>lm <Cmd>Telescope marks<CR>
 " noremap <silent> <Leader>l/ <Cmd><CR>
 " noremap <silent> <Leader>l: <Cmd><CR>
+" 2-character Sneak (default)
+nmap ' <Plug>Sneak_s
+nmap <BS> <Plug>Sneak_S
+xmap ' <Plug>Sneak_s
+xmap <BS> <Plug>Sneak_S
+omap ' <Plug>Sneak_s
+omap <BS> <Plug>Sneak_S
+
