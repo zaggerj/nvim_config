@@ -19,6 +19,7 @@ call plug#begin(stdpath('data').'\plugins')
     Plug 'kylechui/nvim-surround'
     Plug 'numToStr/Comment.nvim'
     Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+    Plug 'justinmk/vim-sneak'
     " Themes
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'sainnhe/forest-night'
