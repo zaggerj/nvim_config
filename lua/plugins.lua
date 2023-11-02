@@ -1,3 +1,48 @@
+require('lazy').setup({
+    'tpope/vim-fugitive',
+    'lewis6991/gitsigns.nvim',
+    'nvim-lua/plenary.nvim',
+    'NTBBloodbath/rest.nvim',
+    'gpanders/editorconfig.nvim',
+    {
+        'neoclide/coc.nvim',
+        branch = 'release',
+        build = 'CocUpdate'
+    },
+    'liuchengxu/vista.vim',
+    'fatih/vim-go',
+    {
+        'nvim-orgmode/orgmode',
+        dependencies: {
+            'akinsho/org-bullets.nvim'
+        }
+    },
+    'lukas-reineke/indent-blankline.nvim',
+    'kyazdani42/nvim-tree.lua',
+    'nvim-lualine/lualine.nvim',
+    'kylechui/nvim-surround',
+    'numToStr/Comment.nvim',
+    {
+        'nvim-telescope/telescope.nvim',
+        tag = "0.1.0"
+    },
+    'justinmk/vim-sneak',
+    'kyazdani42/nvim-web-devicons',
+    'sainnhe/forest-night',
+        {
+            'folke/tokyonight.nvim'
+        },
+    'olimorris/onedarkpro.nvim',
+    {
+        'catppuccin/nvim',
+        name: 'catppuccin'
+    },
+    {
+        'nvim-treesitter/nvim-treesitter',
+        build = 'TSUpdate'
+    },
+})
+
 -- (treesitter)
 require('nvim-treesitter.configs').setup {
     ensurse_installed = {

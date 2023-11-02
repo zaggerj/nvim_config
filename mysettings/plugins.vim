@@ -1,17 +1,5 @@
 call plug#begin(stdpath('data').'\plugins')
     " Toolset
-    Plug 'tpope/vim-fugitive'
-    Plug 'lewis6991/gitsigns.nvim'
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'NTBBloodbath/rest.nvim'
-    Plug 'gpanders/editorconfig.nvim'
-    " IDE support
-    Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocUpdate'}
-    "临时使用
-    Plug 'liuchengxu/vista.vim'
-    Plug 'fatih/vim-go', {'for': 'go'}
-    Plug 'nvim-orgmode/orgmode'
-    Plug 'akinsho/org-bullets.nvim'
     " Editor enhancement
     Plug 'lukas-reineke/indent-blankline.nvim'
     Plug 'kyazdani42/nvim-tree.lua'
