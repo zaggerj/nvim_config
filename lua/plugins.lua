@@ -13,7 +13,7 @@ require('lazy').setup({
     'fatih/vim-go',
     {
         'nvim-orgmode/orgmode',
-        dependencies: {
+        dependencies = {
             'akinsho/org-bullets.nvim'
         }
     },
@@ -35,7 +35,7 @@ require('lazy').setup({
     'olimorris/onedarkpro.nvim',
     {
         'catppuccin/nvim',
-        name: 'catppuccin'
+        name = 'catppuccin'
     },
     {
         'nvim-treesitter/nvim-treesitter',
