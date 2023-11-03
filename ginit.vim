@@ -7,20 +7,6 @@ if exists('g:GuiLoaded')
     GuiTabline 0
     " GuiRenderLigatures 1
     GuiWindowOpacity 0.95
-elseif exists('g:fvim_loaded')
-    " Fvim nvim-tree 无法正确显示
-    let &guifont = "FiraCode NF:h18"
-    " 启用抗锯齿，和 hint
-    FVimFontAntialias v:true
-    FVimFontSubpixel v:true
-    FVimFontAutohint v:true
-    FVimFontHintLevel 'full'
-    FVimFontLigature v:true
-
-    FVimFontNoBuiltinSymbols v:true
-    FVimCursorSmoothMove v:true
-
-    FVimCustomTitleBar v:true
 elseif exists('g:neovide')
     " neovide 中文输入法输入框位置不正确
     let &guifont = "FantasqueSansMono NFM:h14"
