@@ -34,7 +34,7 @@ require('lazy').setup({
         'neoclide/coc.nvim',
         branch = 'release',
         build = 'CocUpdate',
-        event = 'BufReadPre',
+        event = 'InsertEnter',
         init = function ()
             -- vim.o 则是字符串
             vim.opt.shortmess:append('c')
@@ -226,7 +226,15 @@ require('lazy').setup({
             {
                 'lukas-reineke/indent-blankline.nvim',
                 main = 'ibl',
-                -- config = true
+                config = true
+            },
+            {
+                'nvim-treesitter/nvim-treesitter-context',
+                config = true
+            },
+            {
+                'windwp/nvim-ts-autotag',
+                config = true
             }
         }
     }

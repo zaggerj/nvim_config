@@ -27,6 +27,11 @@ set nowritebackup
 set foldopen-=search
 set diffopt+=vertical,linematch:60,algorithm:histogram
 
+if exists('g:goneovim')
+    " ginit 中设置无效
+    let &guifont = "FantasqueSansMono NFM:h14"
+endif
+
 "let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
 "let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
 "let &shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait'

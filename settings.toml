@@ -15,9 +15,9 @@ BorderlessWindow = true
 # HideTitlebar = false
 
 ## Editor minimum window width (>= 400)
-# Width = 800
+Width = 1200
 ## Editor minimum window height (>= 300)
-# Height = 600
+Height = 900
 ## Margin adds a margin between the window and the drawn content.
 ## This value is 0 by default for Linux and 2 by default for MacOS and Windows.
 # Margin = 0
@@ -40,7 +40,7 @@ MouseScrollingUnit = "pixel"
 
 ## This option makes the whole GUI window in semi-transparent.
 ## This setting also implicitly enables the Drawborder setting
-Transparent = 0.9
+# Transparent = 0.9
 
 ## Launch goneovim with full screen window size.
 # StartFullscreen = false
@@ -55,7 +55,7 @@ Transparent = 0.9
 
 ## Enable the ability to remember the last window geometry that was displayed
 ## and restore it at the next startup.
-RestoreWindowGeometry = false
+RestoreWindowGeometry = true
 
 ## Editor external font-family, font-siz.
 ## This is the font settings of the graphical UI as an nvim front end.
@@ -65,9 +65,9 @@ RestoreWindowGeometry = false
 ## In Linux
 # FontFamily = "Consolas"
 ## In Windows
-# FontFamily = "Windows"
+# FontFamily = "FantasqueSansMono NFM"
 ## Fontsize is
-# FontSize = 12
+# FontSize = 16
 ## letterspace is
 # Letterspace = 0
 
@@ -79,7 +79,7 @@ RestoreWindowGeometry = false
 # ExtCmdline   = false
 # ExtPopupmenu = false
 # ExtTabline   = false
-ExtMessages  = true
+# ExtMessages  = true
 
 ## Goneovim has a cached rendering feature enabled to speed up the process.
 ## If you want to disable it, set it to false
@@ -193,9 +193,6 @@ ClickEffect = true
 ## GinitVim = '''
 ##  let g:hoge = 'fuga'
 ## '''
-Ginitvim = '''
-let &guifont = "FantasqueSansMono NFM:h14"
-'''
 
 [Cursor]
 ## Specifies whether the smooth cursor feature is enabled or disabled by a boolean value.
