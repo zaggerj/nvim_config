@@ -34,7 +34,7 @@ require('lazy').setup({
         'neoclide/coc.nvim',
         branch = 'release',
         build = 'CocUpdate',
-        event = 'VeryLazy',
+        event = 'BufReadPre',
         init = function()
             -- vim.o 则是字符串
             vim.opt.shortmess:append('c')
@@ -164,7 +164,7 @@ require('lazy').setup({
     {
         'nvim-telescope/telescope.nvim',
         tag = "0.1.0",
-        event = 'VeryLazy',
+        cmd = "Telescope",
         opts = {
             defaults = {
                 mappings = {
