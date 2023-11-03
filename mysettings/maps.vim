@@ -54,9 +54,9 @@ nnoremap <silent> <Leader>gls :Git log -p --no-merges -S"<cword>" %<cr>
 nnoremap <silent> ]g <Cmd>Gitsigns next_hunk<cr>
 nnoremap <silent> [g <Cmd>Gitsigns prev_hunk<cr>
 " (vim-plug)
-nnoremap <silent> <Leader>pi <Cmd>Lazy Install<cr>
-nnoremap <silent> <Leader>pu <Cmd>Lazy Update<cr>
-nnoremap <silent> <Leader>pc <Cmd>Lazy Clean<cr>
+nnoremap <silent> <Leader>pi <Cmd>Lazy install<cr>
+nnoremap <silent> <Leader>pu <Cmd>Lazy update<cr>
+nnoremap <silent> <Leader>pc <Cmd>Lazy clean<cr>
 " (coc) 不遵循通用命名规则，{rhs} 和 vscodevim 保持一致
 nnoremap <silent> <Leader>cr <Cmd>CocRestart<cr>
 nnoremap <silent> gh <Cmd>call CocActionAsync('doHover')<cr>
