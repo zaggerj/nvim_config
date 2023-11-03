@@ -58,6 +58,7 @@ nnoremap <silent> <Leader>pi <Cmd>Lazy Install<cr>
 nnoremap <silent> <Leader>pu <Cmd>Lazy Update<cr>
 nnoremap <silent> <Leader>pc <Cmd>Lazy Clean<cr>
 " (coc) 不遵循通用命名规则，{rhs} 和 vscodevim 保持一致
+" 一部分覆盖默认快捷键的设定为了避免懒加载时失效已经移到 init() 中
 nnoremap <silent> <Leader>cr <Cmd>CocRestart<cr>
 nnoremap <silent> gh <Cmd>call CocActionAsync('doHover')<cr>
 nnoremap gx <Cmd>exec "!start ".expand('<cfile>')<cr>
@@ -78,16 +79,6 @@ xmap <silent> <Leader>cv <Plug>(coc-convert-snippet)
 nmap <silent> <F2> <Plug>(coc-rename)
 nmap <silent> <Up> <Plug>(coc-diagnostic-prev)
 nmap <silent> <Down> <Plug>(coc-diagnostic-next)
-nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-" 0.0.82 版适配
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-" Insert <tab> when previous text is space, refresh completion if not.
-inoremap <silent><expr> <TAB>
-            \ coc#pum#visible() ? coc#pum#next(1):
-            \ Check_back_space() ? "\<Tab>" :
-            \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 " (finder)
 noremap <silent> <Leader>lf <Cmd>Telescope find_files<CR>
 noremap <silent><Leader>lg <Cmd>Telescope live_grep<CR>
