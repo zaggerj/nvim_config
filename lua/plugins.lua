@@ -34,7 +34,7 @@ require('lazy').setup({
         'neoclide/coc.nvim',
         branch = 'release',
         build = 'CocUpdate',
-        event = 'BufReadPre',
+        event = 'VeryLazy',
         init = function()
             -- vim.o 则是字符串
             vim.opt.shortmess:append('c')
@@ -198,7 +198,7 @@ require('lazy').setup({
         'nvim-treesitter/nvim-treesitter',
         build = 'TSUpdate',
         main = 'nvim-treesitter.configs',
-        event = 'BufReadPre',
+        event = 'VeryLazy',
         opts = {
             ensurse_installed = {
                 "c", "lua", "go",
