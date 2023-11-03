@@ -39,40 +39,6 @@ require('lazy').setup({
             -- vim.o 则是字符串
             vim.opt.shortmess:append('c')
             vim.o.signcolumn = 'number'
-
-            -- 调用 vim 函数判断真假需要手动判断是 0 还是 1
-            vim.keymap.set('n', '<C-f>',
-                function()
-                    return vim.fn["coc#float#has_scroll"]() == 1 and vim.fn["coc#float#scroll"](1) or "<C-f>"
-                end,
-                { silent = true, expr = true })
-            vim.keymap.set('n', '<C-b>',
-                function()
-                    return vim.fn["coc#float#has_scroll"]() == 1 and vim.fn["coc#float#scroll"](0) or "<C-b>"
-                end,
-                { silent = true, expr = true })
-            vim.keymap.set('i', '<CR>',
-                function()
-                    return vim.fn["coc#pum#visible"]() == 1 and vim.fn["coc#_select_confirm"]() or
-                    "<C-g>u<CR><c-r>=coc#on_enter()<CR>"
-                end,
-                { silent = true, expr = true })
-            vim.keymap.set('i', '<TAB>',
-                function()
-                    return vim.fn["coc#pum#visible"]() == 1
-                        and vim.fn["coc#pum#next"](1)
-                        or vim.fn.Check_back_space() == 1
-                        and "<Tab>"
-                        or vim.fn["coc#refresh"]()
-                end,
-                { silent = true, expr = true })
-            vim.keymap.set('i', '<S-TAB>',
-                function()
-                    return vim.fn["coc#pum#visible"]() == 1
-                        and vim.fn["coc#pum#prev"](1)
-                        or "<C-h>"
-                end,
-                { silent = true, expr = true })
         end,
         dependencies = {
             'gpanders/editorconfig.nvim',
