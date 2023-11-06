@@ -33,8 +33,8 @@ require('lazy').setup({
     {
         'neoclide/coc.nvim',
         branch = 'release',
-        build = 'CocUpdate',
-        event = 'BufReadPost',
+        build = ':CocUpdate',
+        event = 'VeryLazy',
         init = function()
             -- vim.o 则是字符串
             vim.opt.shortmess:append('c')
@@ -196,7 +196,7 @@ require('lazy').setup({
     { 'catppuccin/nvim',           name = 'catppuccin', lazy = true },
     {
         'nvim-treesitter/nvim-treesitter',
-        build = 'TSUpdate',
+        build = ':TSUpdate',
         main = 'nvim-treesitter.configs',
         event = 'VeryLazy',
         opts = {
