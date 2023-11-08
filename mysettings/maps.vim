@@ -26,6 +26,9 @@ noremap <silent> <C-Right> <Cmd>bn<cr>
 noremap <silent> <C-S-Up> <Cmd>tabnew<cr>
 noremap <silent> <C-S-Down> <Cmd>tabclose<cr>
 noremap <silent> <leader><left> <Cmd>bdelete<cr>
+" (diff)
+noremap <silent> <Leader>dt <Cmd>diffthis<cr>
+noremap <silent> <Leader>do <Cmd>diffoff<cr>
 " (my)
 " or <C-R>=
 " 根据最新的 coc 配置，不再使用此项
