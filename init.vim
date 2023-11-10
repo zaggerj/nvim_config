@@ -1,4 +1,4 @@
-"mysettings/plugins.vim
+"lua/plugins.lua
 "mysettings/functions.vim
 "mysettings/basic.vim
 "mysettings/ui.vim

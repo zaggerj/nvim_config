@@ -41,7 +41,6 @@ require('lazy').setup({
             vim.o.signcolumn = 'number'
         end,
         dependencies = {
-            'gpanders/editorconfig.nvim',
             {
                 'liuchengxu/vista.vim',
                 init = function()
@@ -163,8 +162,8 @@ require('lazy').setup({
     },
     {
         'nvim-telescope/telescope.nvim',
-        tag = "0.1.0",
-        cmd = "Telescope",
+        version = "~0.1.0",
+        event = "VeryLazy",
         opts = {
             defaults = {
                 mappings = {
