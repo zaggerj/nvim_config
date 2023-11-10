@@ -8,6 +8,9 @@ noremap \ :
 nnoremap / /\v
 nnoremap ? ?\v
 nnoremap <silent> <leader>n <Cmd>noh<CR>
+" (cmd mode)
+cnoremap <A-b> <C-Left>
+cnoremap <A-f> <C-Right>
 " (terminal control)
 tnoremap fj <C-\><C-n>
 tnoremap <Esc> exit<cr>

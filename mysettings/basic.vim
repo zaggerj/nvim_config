@@ -11,7 +11,7 @@ set cursorline
 set matchpairs+=<:>
 set number
 set relativenumber
-set autoindent
+"set autoindent
 set smartindent
 set expandtab
 set softtabstop=4
@@ -19,13 +19,14 @@ set shiftwidth=4
 set timeoutlen=1500
 set splitbelow
 set ignorecase
-set hidden
+"set hidden
 set cmdheight=1
 set nobackup
 "set nowritebackup
 set foldopen-=search
 " set nowrap
 set showbreak=\|>\ 
+set wildoptions+=fuzzy
 set diffopt+=vertical,linematch:60,algorithm:histogram
 
 if exists('g:goneovim')
