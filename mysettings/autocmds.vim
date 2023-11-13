@@ -17,3 +17,15 @@ autocmd FileType vimwiki,markdown,text,tex set wrap
 :  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | setl rnu   | endif
 :  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | setl nornu | endif
 :augroup END
+
+" 添加一些文件类型别名
+lua << EOF
+local alias = {
+    wxml = "html",
+    wxss = "css"
+}
+
+vim.filetype.add ({
+    extension = alias
+})
+EOF
