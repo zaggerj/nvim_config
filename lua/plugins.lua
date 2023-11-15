@@ -2,7 +2,7 @@ vim.g.mapleader = ' '
 -- config = true 等于 require('foo').setup({})
 -- 如果同时指定了 opts 和 config，则需要在 config 中显示调用 setup，否则应该使用 init
 require('lazy').setup({
-    { 'tpope/vim-fugitive',        event = 'VeryLazy' },
+    { 'tpope/vim-fugitive', event = 'VeryLazy' },
     {
         'lewis6991/gitsigns.nvim',
         event = 'VeryLazy',
@@ -13,6 +13,22 @@ require('lazy').setup({
             current_line_blame_opts = {
                 delay = 1000
             }
+        }
+    },
+    {
+        'kevinhwang91/nvim-ufo',
+        event = 'VeryLazy',
+        opts = {},
+        init = function()
+            vim.o.foldcolumn = '0'
+            vim.o.foldlevel = 99
+            vim.o.foldlevelstart = 99
+            vim.o.foldenable = true
+            vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+            vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+        end,
+        dependencies = {
+            { 'kevinhwang91/promise-async' }
         }
     },
     {
@@ -51,7 +67,7 @@ require('lazy').setup({
             }
         }
     },
-    { 'fatih/vim-go', ft = 'go' },
+    { 'fatih/vim-go',       ft = 'go' },
     {
         'nvim-orgmode/orgmode',
         ft = 'org',
@@ -110,8 +126,9 @@ require('lazy').setup({
         end,
         opts = {
             options = {
-                -- theme = vim.g.colors_name,
-                theme = 'auto'
+                theme = 'auto',
+                section_separators = { left = '', right = '' },
+                component_separators = { left = '', right = '' }
             },
             sections = {
                 lualine_b = { 'branch', 'diff' },
@@ -188,10 +205,10 @@ require('lazy').setup({
         end
     },
     { 'kyazdani42/nvim-web-devicons', lazy = true },
-    { 'sainnhe/forest-night',      lazy = true },
-    { 'folke/tokyonight.nvim',     lazy = true },
-    { 'olimorris/onedarkpro.nvim', lazy = true },
-    { 'catppuccin/nvim',           name = 'catppuccin', lazy = true },
+    { 'sainnhe/forest-night',         lazy = true },
+    { 'folke/tokyonight.nvim',        lazy = true },
+    { 'olimorris/onedarkpro.nvim',    lazy = true },
+    { 'catppuccin/nvim',              name = 'catppuccin', lazy = true },
     {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
