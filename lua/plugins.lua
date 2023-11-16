@@ -1,6 +1,9 @@
-vim.g.mapleader = ' '
 -- config = true 等于 require('foo').setup({})
--- 如果同时指定了 opts 和 config，则需要在 config 中显示调用 setup，否则应该使用 init
+-- 如果同时指定了 opts 和 config，则需要在 config 中显式调用 setup
+-- 非 lua 插件，除了 basic.vim 之外的配置需要写在 init 中
+-- lua 插件如果存在非 opts 的选项，则需要在 config 中初始化，写在 init 中如果存在 require() 会导致 lazy 失效 e.g ufo 的配置
+
+vim.g.mapleader = ' '
 require('lazy').setup({
     { 'tpope/vim-fugitive', event = 'VeryLazy' },
     {
@@ -19,13 +22,18 @@ require('lazy').setup({
         'kevinhwang91/nvim-ufo',
         event = 'VeryLazy',
         opts = {},
-        init = function()
+        config = function(_, opts)
+            local ufo = require('ufo')
+
+            ufo.setup(opts)
+
             vim.o.foldcolumn = '0'
             vim.o.foldlevel = 99
             vim.o.foldlevelstart = 99
             vim.o.foldenable = true
-            vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-            vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+
+            vim.keymap.set('n', 'zR', ufo.openAllFolds)
+            vim.keymap.set('n', 'zM', ufo.closeAllFolds)
         end,
         dependencies = {
             { 'kevinhwang91/promise-async' }
@@ -119,11 +127,6 @@ require('lazy').setup({
     },
     {
         'nvim-lualine/lualine.nvim',
-        init = function()
-            vim.opt.showmode = false
-            vim.opt.laststatus = 2
-            vim.opt.showtabline = 2
-        end,
         opts = {
             options = {
                 theme = 'auto',
@@ -165,7 +168,13 @@ require('lazy').setup({
                 'quickfix',
                 'lazy'
             }
-        }
+        },
+        config = function(_, opts)
+            require('lualine').setup(opts)
+            vim.opt.showmode = false
+            vim.opt.laststatus = 2
+            vim.opt.showtabline = 2
+        end,
     },
     {
         'kylechui/nvim-surround',
