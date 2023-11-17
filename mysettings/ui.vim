@@ -61,3 +61,36 @@ set winblend=0
 
 " Temp Fix Coc's Popupmenu
 hi! link CocMenuSel PmenuSel
+
+" 由于一部分字体设置在 ginit 中死都不生效，所以挪到这里来
+if exists('g:goneovim')
+    " goneovim 它现在不支持任何字体回退，gfw 会导致字体图标失效
+    let &guifont = "FantasqueSansMono NFM:h14,FantasqueSansM_Nerd_Font:h12"
+elseif exists('g:neovide')
+    " neovide 的字体回退都在 guifont，gfw 不支持
+    let &guifont = "FantasqueSansMono NFM,霞鹜文楷等宽,思源黑体,微软雅黑:h14"
+
+    let g:neovide_remember_window_position = v:true
+    let g:neovide_remember_window_size = v:true
+    let g:neovide_scroll_animation_length = 0.3
+    " 输入时动画
+    let g:neovide_cursor_animate_in_insert_mode = v:true
+    " 跳转到 cmd 时是否使用动画
+    let g:neovide_cursor_animate_command_line = v:false
+    " 更长的拖尾
+    " let g:neovide_cursor_trail_length=0.1
+    " 更慢的动画
+    " let g:neovide_cursor_animation_length=0.08
+
+    " 存在内存泄漏，关闭
+    " let g:neovide_cursor_vfx_mode = "railgun"
+    "" 更显眼的粒子
+    " let g:neovide_cursor_vfx_particle_lifetime=1.4
+    " let g:neovide_cursor_vfx_particle_density=9.0
+else
+    " 借助 gfw 实现 cjk 字符显示，gvim，nvim-qt 通用，
+    " 但 nvim-qt 不支持回退列表，分别只能指定一个
+    let &guifont = "FantasqueSansMono NFM:h14"
+    let &guifontwide = "霞鹜文楷"
+endif
+
