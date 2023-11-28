@@ -131,31 +131,34 @@ require('lazy').setup({
             options = {
                 theme = 'auto',
                 section_separators = { left = '', right = '' },
-                component_separators = { left = '', right = '' }
+                component_separators = { left = '', right = '' },
+                globalstatus = true
             },
             sections = {
                 lualine_b = { 'branch', 'diff' },
                 lualine_c = { { 'filename', newfile_status = true, path = 1 } },
                 lualine_x = { 'diagnostics', 'encoding', 'fileformat', 'filetype' },
-                lualine_y = { '%2p%% 󰚀 %-3L' },
+                lualine_y = { '%2p%%❆ %-3L' },
                 lualine_z = { '%3l:%-2c' }
             },
             inactive_sections = {
                 lualine_c = { { 'filename', path = 1 } },
                 lualine_x = {},
-                lualine_y = { '%2p%% 󰚀 %-3L', '%3l:%-2c' }
+                lualine_y = { '%2p%%❆ %-3L', '%3l:%-2c' }
             },
             tabline = {
                 lualine_a = { {
                     'buffers',
+                    mode = 4,
+                    use_mode_colors = true,
                     buffers_color = {
-                        active = 'lualine_a_normal',
+                        -- active = 'lualine_a_normal',
                         inactive = 'lualine_b_normal',
                     }
                 } },
                 lualine_z = { {
                     'tabs',
-                    mode = 2,
+                    mode = 1,
                     tabs_color = {
                         active = 'lualine_a_normal',
                         inactive = 'lualine_b_normal',

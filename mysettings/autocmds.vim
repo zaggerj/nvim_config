@@ -5,7 +5,9 @@ autocmd TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=1
 autocmd VimResized * wincmd =
 " rest.nvim 无法在 win 上使用，此处改用 coc-restclient
 autocmd FileType http noremap <buffer>go <Plug>RestNvim
-autocmd FileType javascript,vue,scss,less,typescriptreact,javascriptreact,org setl tabstop=2 | setl shiftwidth=2
+" smartindent 看上去和 coc-pairs 冲突
+autocmd BufRead *.ps1 set nosmartindent
+autocmd FileType javascript,vue,scss,less,typescriptreact,javascriptreact,org,json setl softtabstop=2 | setl shiftwidth=2
 " (vimwiki)
 " 自动更新日记索引
 autocmd BufWinEnter diary.md execute "VimwikiDiaryGenerateLinks" | w

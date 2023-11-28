@@ -12,7 +12,7 @@ set matchpairs+=<:>
 set number
 set relativenumber
 "set autoindent
-set smartindent
+"set smartindent
 set expandtab
 set softtabstop=4
 set shiftwidth=4

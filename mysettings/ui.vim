@@ -68,7 +68,7 @@ if exists('g:goneovim')
     let &guifont = "FantasqueSansMono NFM:h14,FantasqueSansM_Nerd_Font:h12"
 elseif exists('g:neovide')
     " neovide 的字体回退都在 guifont，gfw 不支持
-    let &guifont = "FantasqueSansMono NFM,霞鹜文楷等宽,思源黑体,微软雅黑:h14"
+    let &guifont = "FantasqueSansMono NFM,霞鹜新晰黑:h14"
 
     let g:neovide_remember_window_position = v:true
     let g:neovide_remember_window_size = v:true
@@ -91,6 +91,6 @@ else
     " 借助 gfw 实现 cjk 字符显示，gvim，nvim-qt 通用，
     " 但 nvim-qt 不支持回退列表，分别只能指定一个
     let &guifont = "FantasqueSansMono NFM:h14"
-    let &guifontwide = "霞鹜文楷"
+    let &guifontwide = "霞鹜新晰黑"
 endif
 
