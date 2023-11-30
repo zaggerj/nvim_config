@@ -1,92 +1,90 @@
 {
-    "languageserver": {
-        "tailwind-lsp": {
-            "command": "tailwindcss-language-server.cmd",
-            "args": [
-                "--stdio"
-            ],
-            "filetypes": [
-                "javascript",
-                "javascriptreact",
-                "typescript",
-                "typescriptreact",
-                "vue"
-            ],
-            "rootPatterns": [
-                "windi.config.js",
-            ],
-            "settings": {
-                "tailwindCSS": {
-                    "validate": true,
-                    "lint": {
-                        "cssConflict": "warning",
-                        "invalidApply": "error",
-                        "invalidScreen": "error",
-                        "invalidVariant": "error",
-                        "invalidConfigPath": "error",
-                        "invalidTailwindDirective": "error",
-                        "recommendedVariantOrder": "warning"
-                    },
-                    "classAttributes": [
-                        "class",
-                        "className",
-                        "classList",
-                        "ngClass",
-                        "ng-class"
-                    ],
-                    "experimental": {}
-                }
-            }
-        },
+  "languageserver": {
+    "tailwind-lsp": {
+      "command": "tailwindcss-language-server.cmd",
+      "args": [
+        "--stdio"
+      ],
+      "filetypes": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "vue"
+      ],
+      "rootPatterns": [
+        "windi.config.js",
+      ],
+      "settings": {
+        "tailwindCSS": {
+          "validate": true,
+          "lint": {
+            "cssConflict": "warning",
+            "invalidApply": "error",
+            "invalidScreen": "error",
+            "invalidVariant": "error",
+            "invalidConfigPath": "error",
+            "invalidTailwindDirective": "error",
+            "recommendedVariantOrder": "warning"
+          },
+          "classAttributes": [
+            "class",
+            "className",
+            "classList",
+            "ngClass",
+            "ng-class"
+          ],
+          "experimental": {}
+        }
+      }
     },
-    "Lua.completion.enable": false,
-    "eslint.autoFixOnSave": true,
-    "diagnostic.enableMessage": "always",
-    "diagnostic.errorSign": "E",
-    "diagnostic.hintSign": "H",
-    "diagnostic.infoSign": "I",
-    "diagnostic.virtualText": false,
-    "diagnostic.virtualTextLineSeparator": " ﬋ ",
-    "diagnostic.virtualTextPrefix": "  ",
-    "diagnostic.warningSign": "W",
-    "eslint.enable": true,
-    "html.filetypes": [
-        "html",
-        "vue",
-        "handlebars",
-        "template",
-        "javascriptreact"
-    ],
-    "html.format.wrapAttributes": "force-aligned",
-    "javascript.format.semicolons": "remove",
-    "javascript.suggest.autoImports": true,
-    "javascript.suggest.completeJSDocs": true,
-    "javascript.preferences.quoteStyle": "single",
-    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
-    "rust-analyzer.checkOnSave.enable": false,
-    "rust-analyzer.server.path": "D:\\Binaries\\rust-analyzer.exe",
-    "semanticTokens.enable": true,
-    "snippets.ultisnips.directories": [
-        "UltiSnips",
-        "gosnippets/UltiSnips"
-    ],
-    "snippets.ultisnips.enable": true,
-    "suggest.enablePreselect": false,
-    "suggest.noselect": true,
-    "suggest.virtualText": true,
-    "typescript.preferences.jsxAttributeCompletionStyle": "auto",
-    "volar.autoClosingTags": true,
-    "volar.autoCompleteRefs": true,
-    "volar.diagnostics.tsLocale": "zh-cn",
-    "coc.source.omni.filetypes": [
-        "org"
-    ],
-    "snippets.ultisnips.pythonPrompt": false,
-    "powershell.integratedConsole.showOnStartup": false,
-    "vetur.completion.tagCasing": "initial",
-    "svelte.enable-ts-plugin": false,
-    "Lua.diagnostics.globals": [
-        "vim",
-        "requ"
-    ]
+  },
+  "Lua.completion.enable": false,
+  "eslint.autoFixOnSave": true,
+  "diagnostic.enableMessage": "always",
+  "diagnostic.errorSign": "E",
+  "diagnostic.hintSign": "H",
+  "diagnostic.infoSign": "I",
+  "diagnostic.virtualText": false,
+  "diagnostic.virtualTextLineSeparator": " ﬋ ",
+  "diagnostic.virtualTextPrefix": "  ",
+  "diagnostic.warningSign": "W",
+  "eslint.enable": true,
+  "html.filetypes": [
+    "html",
+    "vue",
+    "handlebars",
+    "template",
+    "javascriptreact"
+  ],
+  "html.format.wrapAttributes": "force-aligned",
+  "javascript.format.semicolons": "remove",
+  "javascript.suggest.autoImports": true,
+  "javascript.suggest.completeJSDocs": true,
+  "javascript.preferences.quoteStyle": "single",
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+  "rust-analyzer.checkOnSave.enable": false,
+  "rust-analyzer.server.path": "D:\\Binaries\\rust-analyzer.exe",
+  "semanticTokens.enable": true,
+  "snippets.ultisnips.directories": [
+    "UltiSnips",
+    "gosnippets/UltiSnips"
+  ],
+  "snippets.ultisnips.enable": true,
+  "suggest.enablePreselect": false,
+  "suggest.noselect": true,
+  "suggest.virtualText": true,
+  "typescript.preferences.jsxAttributeCompletionStyle": "auto",
+  "volar.autoClosingTags": true,
+  "coc.source.omni.filetypes": [
+    "org"
+  ],
+  "snippets.ultisnips.pythonPrompt": false,
+  "powershell.integratedConsole.showOnStartup": false,
+  "svelte.enable-ts-plugin": false,
+  "Lua.diagnostics.globals": [
+    "vim",
+    "requ"
+  ],
+  "volar.tsLocale": "zh-cn"
 }
