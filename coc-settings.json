@@ -86,5 +86,5 @@
     "vim",
     "requ"
   ],
-  "volar.tsLocale": "zh-cn"
+  "vetur.completion.tagCasing": "initial"
 }

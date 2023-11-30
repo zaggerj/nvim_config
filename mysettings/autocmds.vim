@@ -24,7 +24,8 @@ autocmd FileType vimwiki,markdown,text,tex set wrap
 lua << EOF
 local alias = {
     wxml = "html",
-    wxss = "css"
+    wxss = "css",
+    less = "scss"
 }
 
 vim.filetype.add ({
