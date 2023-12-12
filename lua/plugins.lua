@@ -107,16 +107,15 @@ require('lazy').setup({
         opts = {
             disable_netrw = true,
             open_on_tab = false,
-            sync_root_with_cwd = true,
             -- :cd 时自动切换树
-            update_cwd = true,
+            sync_root_with_cwd = true,
             view = {
                 adaptive_size = true,
             },
             update_focused_file = {
                 -- 切换到buffer时跟踪显示
-                enable = false,
-                update_cwd = false,
+                enable = true,
+                update_root = false,
                 ignore_list = {},
             },
             diagnostics = {
