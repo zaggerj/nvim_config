@@ -203,7 +203,7 @@ require('lazy').setup({
             pickers = {
                 live_grep = {
                     debounce = 500,
-                    glob_pattern = { '!*.{bundle,min}.{js,css}', '!*-lock.*', '!{view-front,built,libs,plugin,*vnc,rdp,node_modules}/' }
+                    glob_pattern = { '!*.{bundle,min}.{js,css}', '!*-lock.*', '!{view-front,built,lib,plugin,*vnc,rdp,node_modules}/' }
                 }
             }
         }
