@@ -39,3 +39,18 @@ endif
 
 " 这里假定加载按照列表顺序，否则应该用链式加载确保顺序
 exec "runtime! ".s:transform(s:dir, s:modules)
+
+let g:coc_global_extensions = [
+  \ 'coc-tsserver',
+  \ 'coc-json',
+  \ 'coc-css',
+  \ 'coc-eslint',
+  \ 'coc-pairs',
+  \ 'coc-omni',
+  \ 'coc-marketplace',
+  \ 'coc-lists',
+  \ 'coc-html',
+  \ 'coc-emmet',
+  \ 'coc-dictionary',
+  \ 'coc-cssmodules',
+  \ ]

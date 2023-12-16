@@ -1,46 +1,7 @@
 {
-  "languageserver": {
-    "tailwind-lsp": {
-      "command": "tailwindcss-language-server.cmd",
-      "args": [
-        "--stdio"
-      ],
-      "filetypes": [
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "vue"
-      ],
-      "rootPatterns": [
-        "windi.config.js",
-      ],
-      "settings": {
-        "tailwindCSS": {
-          "validate": true,
-          "lint": {
-            "cssConflict": "warning",
-            "invalidApply": "error",
-            "invalidScreen": "error",
-            "invalidVariant": "error",
-            "invalidConfigPath": "error",
-            "invalidTailwindDirective": "error",
-            "recommendedVariantOrder": "warning"
-          },
-          "classAttributes": [
-            "class",
-            "className",
-            "classList",
-            "ngClass",
-            "ng-class"
-          ],
-          "experimental": {}
-        }
-      }
-    },
-  },
+  "languageserver": {},
   "Lua.completion.enable": false,
-  "eslint.autoFixOnSave": true,
+  "eslint.autoFixOnSave": false,
   "diagnostic.enableMessage": "always",
   "diagnostic.errorSign": "E",
   "diagnostic.hintSign": "H",
@@ -57,6 +18,20 @@
     "template",
     "javascriptreact"
   ],
+  "eslint.filetypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "tsserver.formatOnType": true,
+  "coc.preferences.formatOnType": true,
   "html.format.wrapAttributes": "force-aligned",
   "javascript.format.semicolons": "remove",
   "javascript.suggest.autoImports": true,
