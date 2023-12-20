@@ -77,29 +77,24 @@ require('lazy').setup({
     },
     { 'fatih/vim-go',       ft = 'go' },
     {
-        'nvim-orgmode/orgmode',
-        ft = 'org',
-        config = function(_, opts)
-            require('orgmode').setup_ts_grammar()
-            require('orgmode').setup(opts)
-        end,
+        "nvim-neorg/neorg",
+        build = ":Neorg sync-parsers",
+        cmd = "Neorg",
+        ft = "norg",
         opts = {
-            org_agenda_files = { 'E:\\working\\todo\\orgs\\agenda\\*' },
-            org_default_notes_file = 'E:\\working\\todo\\main.org',
-            mappings = {
-                org = {
-                    org_toggle_checkbox = '<C-Enter>',
-                }
-            }
+            load = {
+                ["core.defaults"] = {},      -- Loads default behaviour
+                ["core.concealer"] = {},     -- Adds pretty icons to your documents
+                ["core.ui.calendar"] = {},     -- Adds pretty icons to your documents
+                ["core.dirman"] = {          -- Manages Neorg workspaces
+                    config = {
+                        workspaces = {
+                            notes = "~/Desktop/备忘录",
+                        },
+                    },
+                },
+            },
         },
-        dependencies = {
-            {
-                'akinsho/org-bullets.nvim',
-                opts = {
-                    concealcursor = false
-                }
-            }
-        }
     },
     {
         'kyazdani42/nvim-tree.lua',
@@ -223,8 +218,15 @@ require('lazy').setup({
     {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
-        main = 'nvim-treesitter.configs',
         event = 'VeryLazy',
+        config = function (_, opts)
+            -- 高级选项，巨幅提升 parser 下载速度
+            -- 要求 curl, tar, 且可以在非 admin 下创建 SymbolicLink
+            -- https://github.com/nvim-treesitter/nvim-treesitter/wiki/Windows-support#how-will-the-parser-be-downloaded
+            require("nvim-treesitter.install").prefer_git = false
+
+            require("nvim-treesitter.configs").setup(opts)
+        end,
         opts = {
             ensurse_installed = {
                 "c", "lua", "go",
