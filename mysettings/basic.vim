@@ -14,8 +14,8 @@ set relativenumber
 "set autoindent
 "set smartindent
 set expandtab
-set softtabstop=4
-set shiftwidth=4
+set softtabstop=2
+set shiftwidth=2
 set timeoutlen=1500
 set splitbelow
 set ignorecase
