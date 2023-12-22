@@ -53,4 +53,9 @@ let g:coc_global_extensions = [
   \ 'coc-emmet',
   \ 'coc-dictionary',
   \ 'coc-cssmodules',
+  \ 'coc-lua',
+  \ 'coc-unocss',
+  \ 'coc-tabnine',
   \ ]
+
+ 

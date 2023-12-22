@@ -41,6 +41,7 @@ inoremap <silent><expr> _tm strftime("%Y-%m-%d")
 "nnoremap <silent> <Leader>fo <Cmd>call Open_fix()<cr>
 noremap <silent> <Leader>fc <Cmd>call Compiler()<cr>
 noremap <silent> <Leader>fr <Cmd>call Runner()<cr>
+" 打开init.vim 配置文件
 nnoremap <silent> <Leader>fs <Cmd>call Set_it()<cr>
 nnoremap <silent> <Leader>fd <Cmd>exe "e expand('<sfile>:p:h')"."\pack\my\start\myplugin\plugin\one.vim"<cr>
 nnoremap <silent> <Leader>ft <Cmd>call Open_terminal()<cr>
@@ -54,7 +55,7 @@ nnoremap <silent> <Leader>gs <Cmd>G<cr>
 nnoremap <silent> <Leader>gps <Cmd>Git push<cr>
 nnoremap <silent> <Leader>gpl <Cmd>Git pull<cr>
 nnoremap <silent> <Leader>gla <Cmd>Gclog<cr>
-nnoremap <silent> <Leader>gll <Cmd>exec "Git log -L ".line('.').",".line('.').":% --no-merges"<cr>
+nnoremap <silent> <Leader>gll <Cmd>exec "Git log -L ".line('.').",".line('.').":% --no-merges --oneline"<cr>
 nnoremap <silent> <Leader>gls :Git log -p --no-merges -S"<cword>" %<cr>
 " (gitsigns)
 nnoremap <silent> ]g <Cmd>Gitsigns next_hunk<cr>

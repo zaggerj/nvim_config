@@ -3,6 +3,9 @@
 -- 非 lua 插件，除了 basic.vim 之外的配置需要写在 init 中
 -- lua 插件如果存在非 opts 的选项，则需要在 config 中初始化，写在 init 中如果存在 require() 会导致 lazy 失效 e.g ufo 的配置
 
+local HEIGHT_RATIO = 0.8  -- You can change this
+local WIDTH_RATIO = 0.5   -- You can change this too
+
 vim.g.mapleader = ' '
 require('lazy').setup({
     { 'tpope/vim-fugitive', event = 'VeryLazy' },
@@ -112,7 +115,32 @@ require('lazy').setup({
             update_cwd = true,
             view = {
                 adaptive_size = true,
-            },
+                -- float = {
+                --   enable = true,
+                --   open_win_config = function()
+                --     local screen_w = vim.opt.columns:get()
+                --     local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
+                --     local window_w = screen_w * WIDTH_RATIO
+                --     local window_h = screen_h * HEIGHT_RATIO
+                --     local window_w_int = math.floor(window_w)
+                --     local window_h_int = math.floor(window_h)
+                --     local center_x = (screen_w - window_w) / 2
+                --     local center_y = ((vim.opt.lines:get() - window_h) / 2)
+                --                      - vim.opt.cmdheight:get()
+                --     return {
+                --       border = 'rounded',
+                --       relative = 'editor',
+                --       row = center_y,
+                --       col = center_x,
+                --       width = window_w_int,
+                --       height = window_h_int,
+                --     }
+                --     end,
+                -- },
+                -- width = function()
+                --   return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
+                --   end,
+                },
             update_focused_file = {
                 -- 切换到buffer时跟踪显示
                 enable = false,
