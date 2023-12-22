@@ -60,6 +60,14 @@ nnoremap <silent> <Leader>gls :Git log -p --no-merges -S"<cword>" %<cr>
 " (gitsigns)
 nnoremap <silent> ]g <Cmd>Gitsigns next_hunk<cr>
 nnoremap <silent> [g <Cmd>Gitsigns prev_hunk<cr>
+" unstaged file
+nnoremap <silent> [d <Cmd>Gitsigns diffthis<cr>
+" staged file
+nnoremap <silent> [f <Cmd>Gitsigns diffthis ~<cr>
+" stage current file
+nnoremap <silent> [c <Cmd>Gitsigns stage_buffer<cr>
+" clear stage changes
+nnoremap <silent> ]c <Cmd>Gitsigns reset_buffer<cr>
 " (vim-plug)
 nnoremap <silent> <Leader>pi <Cmd>Lazy install<cr>
 nnoremap <silent> <Leader>pu <Cmd>Lazy update<cr>

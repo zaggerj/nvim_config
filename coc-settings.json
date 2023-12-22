@@ -1,7 +1,14 @@
 {
-  "languageserver": {},
+  "languageserver": {
+    "lua": {
+      "command": "lua-lsp",
+      "filetypes": [
+        "lua"
+      ]
+    }
+  },
   "Lua.completion.enable": false,
-  "eslint.autoFixOnSave": false,
+  "eslint.autoFixOnSave": true,
   "diagnostic.enableMessage": "always",
   "diagnostic.errorSign": "E",
   "diagnostic.hintSign": "H",
@@ -28,7 +35,8 @@
     "javascript",
     "javascriptreact",
     "typescript",
-    "typescriptreact"
+    "typescriptreact",
+    "lua"
   ],
   "tsserver.formatOnType": true,
   "coc.preferences.formatOnType": true,
@@ -57,7 +65,6 @@
     "requ"
   ],
   "vetur.completion.tagCasing": "initial",
-
   "typescript.inlayHints.parameterTypes.enabled": true,
   "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
   "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
