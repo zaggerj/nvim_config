@@ -33,11 +33,6 @@
   "tsserver.formatOnType": true,
   "coc.preferences.formatOnType": true,
   "html.format.wrapAttributes": "force-aligned",
-  "javascript.format.semicolons": "remove",
-  "javascript.suggest.autoImports": true,
-  "javascript.suggest.completeJSDocs": true,
-  "javascript.preferences.quoteStyle": "single",
-  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
   "rust-analyzer.checkOnSave.enable": false,
   "rust-analyzer.server.path": "D:\\Binaries\\rust-analyzer.exe",
   "semanticTokens.enable": true,
@@ -61,5 +56,21 @@
     "vim",
     "requ"
   ],
-  "vetur.completion.tagCasing": "initial"
+  "vetur.completion.tagCasing": "initial",
+
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "typescript.inlayHints.parameterNames.enabled": "literals",
+  "javascript.format.semicolons": "remove",
+  "javascript.suggest.autoImports": true,
+  "javascript.suggest.completeJSDocs": true,
+  "javascript.preferences.quoteStyle": "single",
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+  "typescript.inlayHints.variableTypes.enabled": true,
+  "javascript.inlayHints.variableTypes.enabled": true,
+  "javascript.inlayHints.parameterTypes.enabled": true,
+  "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "javascript.inlayHints.parameterNames.enabled": "literals"
 }

@@ -21,6 +21,8 @@ autocmd FileType vimwiki,markdown,text,tex set wrap
 :augroup END
 
 " 添加一些文件类型别名
+" 注意，这里和 treesitter 的类型别名不一样，但效果应该差不多:
+" https://github.com/nvim-treesitter/nvim-treesitter/blob/master/README.md#using-an-existing-parser-for-another-filetype
 lua << EOF
 local alias = {
     wxml = "html",
