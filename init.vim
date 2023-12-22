@@ -57,5 +57,3 @@ let g:coc_global_extensions = [
   \ 'coc-unocss',
   \ 'coc-tabnine',
   \ ]
-
- 

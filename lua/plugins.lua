@@ -5,6 +5,7 @@
 
 local HEIGHT_RATIO = 0.8  -- You can change this
 local WIDTH_RATIO = 0.5   -- You can change this too
+vim.opt.updatetime = 100
 
 vim.g.mapleader = ' '
 require('lazy').setup({
@@ -213,9 +214,16 @@ require('lazy').setup({
         config = true
     },
     {
-        'numToStr/Comment.nvim',
-        event = 'VeryLazy',
-        config = true
+      'JoosepAlviste/nvim-ts-context-commentstring',
+    },
+    {
+      'numToStr/Comment.nvim',
+      event = 'VeryLazy',
+      config = function()
+        require('Comment').setup {
+          pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+        }
+      end,
     },
     {
         'nvim-telescope/telescope.nvim',
@@ -285,5 +293,5 @@ require('lazy').setup({
                 config = true
             }
         }
-    }
+    },
 })
