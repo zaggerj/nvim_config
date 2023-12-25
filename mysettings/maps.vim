@@ -52,7 +52,7 @@ nnoremap <silent> <Leader>fh <Cmd>tcd %:h<cr>
 nnoremap <silent> <Leader>pv <Cmd>Vista coc<cr>
 " (tree)
 nnoremap <silent> <Leader>pd <Cmd>NvimTreeFindFileToggle<cr>
-" (fugitive)
+" (fugitive) https://github.com/tpope/vim-fugitive/wiki/Basic-fugitive-commands
 nnoremap <silent> <Leader>gs <Cmd>G<cr>
 nnoremap <silent> <Leader>gps <Cmd>Git push<cr>
 nnoremap <silent> <Leader>gpl <Cmd>Git pull<cr>
