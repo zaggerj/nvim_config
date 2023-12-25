@@ -108,6 +108,7 @@ endf
 " Neovim 专属
 function! Set_it()
     exe g:Sp_height(0.8)."sp ".stdpath("config")."/init.vim"
+    " lcd %:h"：这是要执行的命令字符串。在这个命令中，lcd 是 Vim 的内置命令，用于改变当前目录（working directory）。% 表示当前文件的路径，而 :h 是一个修饰符，表示获取当前文件所在目录的路径。
     exe "lcd %:h"
 endf
 

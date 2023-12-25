@@ -114,6 +114,7 @@ require('lazy').setup({
     end,
     dependencies = {
       {
+        -- Vista 插件，生成vscode大纲
         'liuchengxu/vista.vim',
         init = function()
           vim.g.vista_cursor_delay = 60

@@ -43,10 +43,12 @@ noremap <silent> <Leader>fc <Cmd>call Compiler()<cr>
 noremap <silent> <Leader>fr <Cmd>call Runner()<cr>
 " 打开init.vim 配置文件
 nnoremap <silent> <Leader>fs <Cmd>call Set_it()<cr>
-nnoremap <silent> <Leader>fd <Cmd>exe "e expand('<sfile>:p:h')"."\pack\my\start\myplugin\plugin\one.vim"<cr>
+" 目前好像没啥用 <sfile>：表示当前正在编辑的文件名 :p：表示展开为绝对路径 :h：表示展开为所在目录路径 当前正在编辑的文件所在的目录的绝对路径
+" nnoremap <silent> <Leader>fd <Cmd>exe "e expand('<sfile>:p:h')"."\pack\my\start\myplugin\plugin\one.vim"<cr>
 nnoremap <silent> <Leader>ft <Cmd>call Open_terminal()<cr>
+" 将nvimtree目录更新到文件所在目录, tcd 是 Vim 的内置命令，用于在新的标签页中改变当前目录。% 表示当前文件的路径，而 :h 是一个修饰符，表示获取当前文件所在目录的路径。
 nnoremap <silent> <Leader>fh <Cmd>tcd %:h<cr>
-" (single plugin maps)
+" (single plugin maps) 使用coc生成vsita 大纲
 nnoremap <silent> <Leader>pv <Cmd>Vista coc<cr>
 " (tree)
 nnoremap <silent> <Leader>pd <Cmd>NvimTreeFindFileToggle<cr>
@@ -75,9 +77,11 @@ nnoremap <silent> <Leader>pc <Cmd>Lazy clean<cr>
 " (coc) 不遵循通用命名规则，{rhs} 和 vscodevim 保持一致
 nnoremap <silent> <Leader>cr <Cmd>CocRestart<cr>
 nnoremap <silent> gh <Cmd>call CocActionAsync('doHover')<cr>
+" 用系统默认程序打开当前文件所在目录 目前默认使用了cmd打开
 nnoremap gx <Cmd>exec "!start ".expand('<cfile>')<cr>
 noremap <Leader>ci <Cmd>call CocActionAsync('organizeImport')<CR> 
 noremap <silent> <Leader>cl <Cmd>CocList<cr>
+" 打开coc-settings.json
 nnoremap <silent> <Leader>cc <Cmd>CocConfig<cr>
 nmap <silent> <leader>. <Plug>(coc-codeaction)
 nmap <silent> gd <Plug>(coc-definition)
@@ -103,15 +107,32 @@ inoremap <silent><expr> <TAB>
             \ Check_back_space() ? "\<Tab>" :
             \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-" (finder)
+
+" Telescope (finder) https://github.com/nvim-telescope/telescope.nvim#pickers
+" Lists files in your current working directory, respects .gitignore
 noremap <silent> <Leader>lf <Cmd>Telescope find_files<CR>
+" Search for a string in your current working directory and get results live as you type, respects .gitignore.
 noremap <silent><Leader>lg <Cmd>Telescope live_grep<CR>
-" noremap <Leader>lg :grep! <cword> 
+" Searches for the string under your cursor or selection in your current working directory
+noremap <silent><Leader>ls <Cmd>Telescope grep_string<CR>
+" Lists open buffers in current neovim instance
 noremap <silent> <Leader>lb <Cmd>Telescope buffers<CR>
+" Lists previously open files
 noremap <silent> <Leader>lr <Cmd>Telescope oldfiles<CR>
+
+" Lists vim options, allows you to edit the current value on <cr>
 noremap <silent> <Leader>lv <Cmd>Telescope vim_options<CR>
-noremap <silent> <Leader>ll <Cmd>Telescope loclist<CR>
+" Lists items from the current window's location list
+noremap <silent> <Leader>lt <Cmd>Telescope registers<CR>
 noremap <silent> <Leader>lm <Cmd>Telescope marks<CR>
+" Lists available help tags and opens a new window with the relevant help info on <cr>
+noremap <silent> <Leader>lh <Cmd>Telescope help_tags<CR>
+
+" git
+noremap <silent> <Leader>lj <Cmd>Telescope git_status<CR>
+noremap <silent> <Leader>lk <Cmd>Telescope git_stash<CR>
+noremap <silent> <Leader>ll <Cmd>Telescope git_branches<CR>
+
 " noremap <silent> <Leader>l/ <Cmd><CR>
 " noremap <silent> <Leader>l: <Cmd><CR>
 " 2-character Sneak (default)
