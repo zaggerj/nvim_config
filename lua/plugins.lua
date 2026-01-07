@@ -5,7 +5,7 @@
 
 local HEIGHT_RATIO = 0.8 -- You can change this
 local WIDTH_RATIO = 0.5  -- You can change this too
-vim.opt.updatetime = 100
+vim.opt.updatetime = 300
 
 vim.g.mapleader = ' '
 require('lazy').setup({
@@ -270,6 +270,46 @@ require('lazy').setup({
     event = "VeryLazy",
     opts = {
       defaults = {
+        -- 配置 ripgrep 参数以支持中文搜索
+        vimgrep_arguments = {
+          'rg',
+          '--color=never',
+          '--no-heading',
+          '--with-filename',
+          '--line-number',
+          '--column',
+          '--smart-case',
+          '--trim',
+          '--hidden',
+          '--glob=!.git/',
+          '--pcre2',  -- 启用 PCRE2 引擎以支持中文等 Unicode 字符搜索
+        },
+        -- 全局文件忽略模式（更精确的控制）
+        file_ignore_patterns = {
+          "node_modules/",
+          ".git/",
+          "dist/",
+          "build/",
+          "built/",
+          "lib/",
+          "%.min%.js$",
+          "%.min%.css$",
+          "%.bundle%.js$",
+          "%.bundle%.css$",
+          "%-lock%.json$",
+          "package%-lock%.json$",
+          "yarn%.lock$",
+          "pnpm%-lock%.yaml$",
+          -- 性能优化：忽略常见的二进制文件和资源文件
+          "%.jpg$", "%.jpeg$", "%.png$", "%.gif$", "%.svg$", "%.ico$",
+          "%.mp4$", "%.webm$", "%.ogg$", "%.mp3$", "%.wav$", "%.flac$",
+          "%.pdf$", "%.zip$", "%.tar%.gz$", "%.tgz$", "%.rar$", "%.7z$",
+          "%.woff$", "%.woff2$", "%.ttf$", "%.eot$",
+          "%.db$", "%.sqlite$", "%.sqlite3$",
+          "%.log$", "%.cache$",
+          -- 常见的编译器产物
+          "%.o$", "%.a$", "%.obj$", "%.exe$", "%.dll$", "%.so$", "%.dylib$",
+        },
         mappings = {
           i = {
             ["<C-u>"] = false
@@ -279,7 +319,10 @@ require('lazy').setup({
       pickers = {
         live_grep = {
           debounce = 500,
-          glob_pattern = { '!*.{bundle,min}.{js,css}', '!*-lock.*', '!{view-front,built,lib,plugin,*vnc,rdp,node_modules}/' }
+        },
+        find_files = {
+          -- 确保 find_files 也能搜索隐藏文件和所有类型
+          hidden = true,
         }
       }
     }
