@@ -377,7 +377,15 @@ require('lazy').setup({
         "html", "http", "javascript", "jsdoc", "json", "vue"
       },
       highlight = {
-        enable = true
+        enable = true,
+        -- 核心优化：大文件保护。当文件超过 100KB 时禁用 Treesitter 高亮，防止打字卡随
+        disable = function(lang, buf)
+          local max_filesize = 100 * 1024 -- 100 KB
+          local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+          if ok and stats and stats.size > max_filesize then
+            return true
+          end
+        end,
       },
       indent = {
         enable = true,

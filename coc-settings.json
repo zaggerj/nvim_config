@@ -42,7 +42,17 @@
   "coc.preferences.formatOnType": true,
   "html.format.wrapAttributes": "force-aligned",
   "rust-analyzer.checkOnSave.enable": false,
-  "rust-analyzer.server.path": "D:\\Binaries\\rust-analyzer.exe",
+  "coc.preferences.ignoredFolders": [
+    "$HOME",
+    "$HOME/.cache",
+    "$HOME/.npm",
+    "**/node_modules/**",
+    "**/.git/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/.next/**",
+    "**/.yarn/**"
+  ],
   "semanticTokens.enable": true,
   "snippets.ultisnips.directories": [
     "UltiSnips",
