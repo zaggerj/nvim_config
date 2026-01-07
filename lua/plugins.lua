@@ -264,13 +264,17 @@ require('lazy').setup({
       }
     end,
   },
+  -- 注意微信输入法开启自动添加空格的功能时，输入中文时，会自动带入一个空格。
   {
     'nvim-telescope/telescope.nvim',
-    version = "~0.1.0",
+    branch = '0.1.x',
     event = "VeryLazy",
+    dependencies = {
+      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
+    },
     opts = {
       defaults = {
-        -- 配置 ripgrep 参数以支持中文搜索
+        -- 配置 ripgrep 参数
         vimgrep_arguments = {
           'rg',
           '--color=never',
@@ -279,12 +283,11 @@ require('lazy').setup({
           '--line-number',
           '--column',
           '--smart-case',
-          '--trim',
           '--hidden',
           '--glob=!.git/',
-          '--pcre2',  -- 启用 PCRE2 引擎以支持中文等 Unicode 字符搜索
+          '--pcre2', -- 核心项：保持中文搜索支持
         },
-        -- 全局文件忽略模式（更精确的控制）
+        -- 全局文件忽略模式
         file_ignore_patterns = {
           "node_modules/",
           ".git/",
@@ -300,15 +303,18 @@ require('lazy').setup({
           "package%-lock%.json$",
           "yarn%.lock$",
           "pnpm%-lock%.yaml$",
-          -- 性能优化：忽略常见的二进制文件和资源文件
+          -- 性能优化：忽略二进制和资源
           "%.jpg$", "%.jpeg$", "%.png$", "%.gif$", "%.svg$", "%.ico$",
           "%.mp4$", "%.webm$", "%.ogg$", "%.mp3$", "%.wav$", "%.flac$",
           "%.pdf$", "%.zip$", "%.tar%.gz$", "%.tgz$", "%.rar$", "%.7z$",
           "%.woff$", "%.woff2$", "%.ttf$", "%.eot$",
           "%.db$", "%.sqlite$", "%.sqlite3$",
           "%.log$", "%.cache$",
-          -- 常见的编译器产物
+          -- 编译器与中间产物
           "%.o$", "%.a$", "%.obj$", "%.exe$", "%.dll$", "%.so$", "%.dylib$",
+          -- 常见开发缓存目录
+          "%.next/", "%.nuxt/", "%.svelte-kit/", "%.yarn/", "%.pnpm-store/",
+          "%.sass-cache/", "%.swp$", "%.tmp$", "%.DS_Store",
         },
         mappings = {
           i = {
@@ -318,14 +324,27 @@ require('lazy').setup({
       },
       pickers = {
         live_grep = {
-          debounce = 500,
+          debounce = 100, -- 恢复极速响应
         },
         find_files = {
-          -- 确保 find_files 也能搜索隐藏文件和所有类型
           hidden = true,
         }
+      },
+      extensions = {
+        fzf = {
+          fuzzy = true,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+          case_mode = "smart_case",
+        }
       }
-    }
+    },
+    config = function(_, opts)
+      local telescope = require('telescope')
+      telescope.setup(opts)
+      -- 安全加载 fzf 扩展，防止编译失败导致整个 Telescope 崩溃
+      pcall(telescope.load_extension, 'fzf')
+    end
   },
   {
     'justinmk/vim-sneak',
