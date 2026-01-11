@@ -40,7 +40,12 @@ endif
 " 这里假定加载按照列表顺序，否则应该用链式加载确保顺序
 exec "runtime! ".s:transform(s:dir, s:modules)
 
-let g:coc_global_extensions = [
+" 检测是否为 Termux 环境 (Android 平台)
+" TabNine 不支持 Android/Termux,因为没有提供对应的二进制文件
+let s:is_termux = !empty($TERMUX_VERSION)
+
+" 基础插件列表
+let s:base_extensions = [
   \ 'coc-tsserver',
   \ 'coc-json',
   \ 'coc-css',
@@ -55,5 +60,11 @@ let g:coc_global_extensions = [
   \ 'coc-cssmodules',
   \ 'coc-lua',
   \ 'coc-unocss',
-  \ 'coc-tabnine',
   \ ]
+
+" 仅在非 Termux 环境下添加 TabNine
+if !s:is_termux
+  let s:base_extensions += ['coc-tabnine']
+endif
+
+let g:coc_global_extensions = s:base_extensions
