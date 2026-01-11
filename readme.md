@@ -1,5 +1,42 @@
 # 更新描述
 
+> 2026/01/11 (最新)
+
+**新增插件功能**
+
+本次更新新增了 4 个强大的插件,显著提升 Neovim 的易用性和学习体验:
+
+1. **Which-Key** (`folke/which-key.nvim`)
+   - 实时显示可用快捷键提示
+   - 按下 `<Leader>` 后等待 200ms 自动弹出提示窗口
+   - 支持快捷键分组和 Vim 原生命令帮助
+   - 详见 `BEST_PRACTICES.md` 第九章第 1 节
+
+2. **Alpha-nvim** (`goolord/alpha-nvim`)
+   - 美观的启动引导页面
+   - 提供快速访问入口(查找文件、全局搜索、最近文件等)
+   - 实时显示插件数量和系统信息
+   - 详见 `BEST_PRACTICES.md` 第九章第 2 节
+
+3. **Legendary** (`mrjones2014/legendary.nvim`)
+   - 强大的命令面板,快捷键 `<Leader><Leader>`
+   - 模糊搜索所有命令和快捷键
+   - 基于 SQLite 的使用频率统计
+   - 详见 `BEST_PRACTICES.md` 第九章第 3 节
+
+4. **Vim-Tutor-Mode** (`fmoralesc/vim-tutor-mode`)
+   - 交互式 Vim 教程,支持中文
+   - 快捷键 `<Leader>?t` 启动中文教程
+   - 自动保存学习进度
+   - 详见 `BEST_PRACTICES.md` 第九章第 4 节
+
+**快速开始**:
+- 按 `<Leader>` 键(空格)查看所有可用快捷键
+- 按 `<Leader><Leader>` 打开命令面板
+- 按 `<Leader>?t` 启动交互式教程
+
+---
+
 > 2026/01/11
 
 **平台兼容性优化**
