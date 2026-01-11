@@ -253,7 +253,8 @@ require('lazy').setup({
           dashboard.section.footer.val = footer()
           pcall(vim.cmd.AlphaRedraw)
         end,
-      })\n    end,
+      })
+    end,
   },
   {
     'mrjones2014/legendary.nvim',
