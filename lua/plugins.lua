@@ -194,6 +194,108 @@ require('lazy').setup({
     }
   },
   {
+    'goolord/alpha-nvim',
+    event = 'VimEnter',
+    dependencies = { 'kyazdani42/nvim-web-devicons' },
+    config = function()
+      local alpha = require('alpha')
+      local dashboard = require('alpha.themes.dashboard')
+
+      -- 自定义 Logo (使用简洁的 Neovim Logo)
+      dashboard.section.header.val = {
+        [[                                                    ]],
+        [[ ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗]],
+        [[ ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║]],
+        [[ ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║]],
+        [[ ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║]],
+        [[ ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║]],
+        [[ ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
+        [[                                                    ]],
+      }
+
+      -- 快捷操作按钮
+      dashboard.section.buttons.val = {
+        dashboard.button("f", "🔍  查找文件", ":Telescope find_files<CR>"),
+        dashboard.button("g", "🔎  全局搜索", ":Telescope live_grep<CR>"),
+        dashboard.button("r", "📁  最近文件", ":Telescope oldfiles<CR>"),
+        dashboard.button("c", "⚙️   配置文件", ":e $MYVIMRC<CR>"),
+        dashboard.button("t", "📚  启动教程", ":Tutor zh<CR>"),
+        dashboard.button("l", "💤  插件管理", ":Lazy<CR>"),
+        dashboard.button("q", "🚪  退出", ":qa<CR>"),
+      }
+
+      -- 页脚信息
+      local function footer()
+        local total_plugins = #vim.tbl_keys(require('lazy').plugins())
+        local datetime = os.date(" %Y-%m-%d   %H:%M:%S")
+        local version = vim.version()
+        local nvim_version_info = "   v" .. version.major .. "." .. version.minor .. "." .. version.patch
+
+        return datetime .. "   " .. total_plugins .. " plugins" .. nvim_version_info
+      end
+
+      dashboard.section.footer.val = footer()
+
+      -- 设置高亮
+      dashboard.section.header.opts.hl = "Include"
+      dashboard.section.buttons.opts.hl = "Keyword"
+      dashboard.section.footer.opts.hl = "Type"
+
+      -- 布局配置
+      dashboard.config.opts.noautocmd = true
+
+      alpha.setup(dashboard.config)
+
+      -- 自动刷新页脚 (显示最新时间)
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "LazyVimStarted",
+        callback = function()
+          dashboard.section.footer.val = footer()
+          pcall(vim.cmd.AlphaRedraw)
+        end,
+      })\n    end,
+  },
+  {
+    'mrjones2014/legendary.nvim',
+    event = 'VeryLazy',
+    dependencies = { 'kkharji/sqlite.lua' },
+    opts = {
+      -- 集成 which-key
+      extensions = {
+        which_key = {
+          auto_register = true,
+          do_binding = false,
+        },
+      },
+      -- 搜索选项
+      select_prompt = ' 命令面板 ',
+      -- 包含的项目类型
+      include_builtin = true,
+      include_legendary_cmds = true,
+      -- 排序优先级
+      sort = {
+        frecency = {
+          db_root = vim.fn.stdpath('data') .. '/legendary',
+          max_timestamps = 10,
+        },
+      },
+    },
+    config = function(_, opts)
+      require('legendary').setup(opts)
+      
+      -- 添加自定义命令到 legendary
+      require('legendary').commands({
+        { ':Lazy', description = '打开插件管理器' },
+        { ':Lazy sync', description = '同步插件' },
+        { ':Lazy update', description = '更新插件' },
+        { ':NvimTreeFindFileToggle', description = '切换文件树' },
+        { ':Vista!!', description = '切换代码大纲' },
+        { ':Tutor zh', description = '启动中文教程' },
+        { ':Tutor', description = '启动英文教程' },
+      })
+    end,
+  },
+  {
     'nvim-lualine/lualine.nvim',
     opts = {
       options = {
@@ -251,6 +353,109 @@ require('lazy').setup({
     'kylechui/nvim-surround',
     event = 'VeryLazy',
     config = true
+  },
+  {
+    'folke/which-key.nvim',
+    event = 'VeryLazy',
+    opts = {
+      -- 插件配置选项
+      plugins = {
+        marks = true,       -- 显示标记
+        registers = true,   -- 显示寄存器
+        spelling = {
+          enabled = true,   -- 拼写建议
+          suggestions = 20,
+        },
+        presets = {
+          operators = true,    -- 操作符帮助 (d, y, c 等)
+          motions = true,      -- 移动命令帮助
+          text_objects = true, -- 文本对象帮助 (iw, aw 等)
+          windows = true,      -- 窗口命令
+          nav = true,          -- 导航命令
+          z = true,            -- z 开头的命令
+          g = true,            -- g 开头的命令
+        },
+      },
+      -- 窗口配置
+      window = {
+        border = "rounded",       -- 边框样式: none, single, double, rounded
+        position = "bottom",      -- 位置: bottom, top
+        margin = { 1, 0, 1, 0 }, -- 外边距 [上, 右, 下, 左]
+        padding = { 1, 2, 1, 2 }, -- 内边距
+        winblend = 0,            -- 透明度 (0-100)
+      },
+      layout = {
+        height = { min = 4, max = 25 }, -- 窗口高度
+        width = { min = 20, max = 50 }, -- 窗口宽度
+        spacing = 3,                     -- 列间距
+        align = "left",                  -- 对齐方式
+      },
+      -- 触发延迟 (毫秒)
+      triggers_delay = 200,
+    },
+    config = function(_, opts)
+      local wk = require("which-key")
+      wk.setup(opts)
+      
+      -- 注册快捷键分组说明
+      wk.register({
+        ["<leader>f"] = { name = "🔍 查找 (Find)" },
+        ["<leader>g"] = { name = "🔀 Git 操作" },
+        ["<leader>h"] = { name = "🔧 Git Hunk 操作" },
+        ["<leader>t"] = { name = "🎯 切换 (Toggle)" },
+        ["<leader>b"] = { name = "📦 缓冲区 (Buffer)" },
+        ["<leader>w"] = { name = "🪟 窗口 (Window)" },
+        ["<leader>c"] = { name = "💻 代码 (Code)" },
+        ["<leader>d"] = { name = "🐛 调试 (Debug)" },
+        ["<leader>s"] = { name = "🔎 搜索 (Search)" },
+        ["<leader>n"] = { name = "📝 笔记 (Notes)" },
+        ["<leader>?"] = { name = "❓ 帮助 (Help)" },
+      })
+      
+      -- 注册具体的快捷键说明 (根据您的实际配置调整)
+      wk.register({
+        -- Telescope 相关
+        ["<leader>ff"] = { "<cmd>Telescope find_files<cr>", "查找文件" },
+        ["<leader>fg"] = { "<cmd>Telescope live_grep<cr>", "全局搜索" },
+        ["<leader>fb"] = { "<cmd>Telescope buffers<cr>", "查找缓冲区" },
+        ["<leader>fh"] = { "<cmd>Telescope help_tags<cr>", "查找帮助文档" },
+        ["<leader>fr"] = { "<cmd>Telescope oldfiles<cr>", "最近文件" },
+        
+        -- NvimTree
+        ["<leader>e"] = { "<cmd>NvimTreeFindFileToggle<cr>", "文件树" },
+        
+        -- Vista (大纲)
+        ["<leader>v"] = { "<cmd>Vista!!<cr>", "代码大纲" },
+        
+        -- Git 相关 (如果您配置了 gitsigns 快捷键)
+        ["<leader>gb"] = { "Git Blame" },
+        ["<leader>gd"] = { "Git Diff" },
+        
+        -- 折叠相关
+        ["zR"] = { "打开所有折叠" },
+        ["zM"] = { "关闭所有折叠" },
+        
+        -- 帮助和教程
+        ["<leader>?t"] = { "<cmd>Tutor zh<cr>", "📚 Vim 教程 (中文)" },
+        ["<leader>?e"] = { "<cmd>Tutor<cr>", "📚 Vim Tutorial (English)" },
+        ["<leader>?h"] = { "<cmd>Telescope help_tags<cr>", "📖 搜索帮助文档" },
+        ["<leader>?k"] = { "<cmd>Telescope keymaps<cr>", "⌨️  查看所有快捷键" },
+        ["<leader>?c"] = { "<cmd>Telescope commands<cr>", "🔧 搜索命令" },
+        
+        -- 命令面板
+        ["<leader><leader>"] = { "<cmd>Legendary<cr>", "🎯 命令面板" },
+      })
+    end,
+  },
+  {
+    'fmoralesc/vim-tutor-mode',
+    cmd = 'Tutor',
+    init = function()
+      -- 设置教程语言 (可选: 'zh', 'en', 'es', 'fr', 'de', 'it', 'ja', 'ko', 'pt', 'ru')
+      vim.g.tutor_default_language = 'zh'
+      -- 启用教程进度保存
+      vim.g.tutor_save_progress = 1
+    end,
   },
   {
     'JoosepAlviste/nvim-ts-context-commentstring',
