@@ -640,3 +640,160 @@ nnoremap <silent> <Leader>bo <Cmd>%bd|e#|bd#<CR>
 3. **Tab 是任务** → 用于隔离不同工作上下文
 
 **永远优先使用模糊搜索，而不是手动导航！**
+
+---
+
+## 十五、Termux/Android 平台兼容性
+
+### 问题背景
+
+TabNine 插件不支持 Android 平台,因为官方没有提供对应的二进制文件。在 Termux 环境下加载 TabNine 会导致以下错误:
+
+```
+[coc.nvim]: UnhandledRejection: Error: Sorry, the platform 'android' is not supported by TabNine.
+```
+
+### 解决方案
+
+本配置已实现**自动检测 Termux 环境并条件禁用 TabNine**,无需手动修改配置文件。
+
+#### 实现原理
+
+在 `init.vim` 中通过检测 `$TERMUX_VERSION` 环境变量判断是否为 Termux 环境:
+
+```vim
+" 检测是否为 Termux 环境 (Android 平台)
+let s:is_termux = !empty($TERMUX_VERSION)
+
+" 基础插件列表(14个通用插件)
+let s:base_extensions = [
+  \ 'coc-tsserver',
+  \ 'coc-json',
+  \ 'coc-css',
+  \ 'coc-eslint',
+  \ 'coc-pairs',
+  \ 'coc-omni',
+  \ 'coc-marketplace',
+  \ 'coc-lists',
+  \ 'coc-html',
+  \ 'coc-emmet',
+  \ 'coc-dictionary',
+  \ 'coc-cssmodules',
+  \ 'coc-lua',
+  \ 'coc-unocss',
+  \ ]
+
+" 仅在非 Termux 环境下添加 TabNine
+if !s:is_termux
+  let s:base_extensions += ['coc-tabnine']
+endif
+
+let g:coc_global_extensions = s:base_extensions
+```
+
+#### 环境检测逻辑
+
+- **Termux 环境**: `$TERMUX_VERSION` 变量存在 → 不加载 `coc-tabnine`
+- **其他平台** (macOS/Linux/Windows): 变量不存在 → 正常加载 `coc-tabnine`
+
+### ⚠️ 重要:手动卸载已安装的扩展
+
+**条件加载代码只能阻止 Coc 自动安装新扩展,但无法卸载已安装的扩展。**
+
+如果您之前在 Termux 中使用过 Neovim,`coc-tabnine` 可能已经被安装,即使配置中不包含它,Coc 仍会尝试加载已存在的扩展。
+
+#### 方法 1: 使用 Coc 命令(推荐)
+
+1. 在 Termux 中打开 Neovim
+2. 执行命令:
+   ```vim
+   :CocUninstall coc-tabnine
+   ```
+3. 等待卸载完成
+4. 重启 Neovim,错误应该消失
+
+#### 方法 2: 手动删除扩展目录
+
+在 Termux 终端执行:
+
+```bash
+# 删除 coc-tabnine 扩展目录
+rm -rf ~/.config/coc/extensions/node_modules/coc-tabnine
+
+# 编辑 package.json 移除依赖
+vim ~/.config/coc/extensions/package.json
+# 找到并删除 "coc-tabnine": "..." 这一行
+
+# 重启 Neovim
+```
+
+#### 方法 3: 完全重置 Coc 扩展(慎用)
+
+```bash
+# 备份配置
+cp ~/.config/coc/extensions/package.json ~/.config/coc/extensions/package.json.bak
+
+# 删除所有扩展
+rm -rf ~/.config/coc/extensions/node_modules
+
+# 重启 Neovim,Coc 会根据 g:coc_global_extensions 重新安装
+```
+
+### 验证修复
+
+在 Neovim 中执行:
+
+```vim
+" 查看已安装的扩展列表
+:CocList extensions
+
+" Termux 环境应该只看到 14 个扩展,不包含 coc-tabnine
+" 其他平台应该看到 15 个扩展,包含 coc-tabnine
+```
+
+### 技术说明
+
+#### 为什么选择 `$TERMUX_VERSION`?
+
+- ✅ **可靠性高**: Termux 官方环境变量,所有版本都会设置
+- ✅ **性能优越**: 直接读取环境变量,无需执行外部命令
+- ✅ **精确判断**: 专门针对 Termux,不会误判其他 Android 环境
+
+#### 其他可选方案
+
+如果需要更通用的 Android 检测,可使用:
+
+```vim
+let s:is_android = system('uname -o') =~ 'Android'
+```
+
+但这需要执行外部命令,性能开销较大,当前方案已足够精确且高效。
+
+### 常见问题
+
+**Q: 为什么不直接从配置中删除 TabNine?**
+
+A: 因为其他平台(macOS/Linux/Windows)需要使用 TabNine。条件加载可以让同一份配置在不同平台上都能正常工作。
+
+**Q: 卸载 TabNine 后会影响代码补全吗?**
+
+A: 不会。Coc 还有其他 14 个扩展提供补全功能,包括:
+- `coc-tsserver`: TypeScript/JavaScript 补全
+- `coc-json`: JSON 补全
+- `coc-css`: CSS 补全
+- `coc-html`: HTML 补全
+- `coc-emmet`: Emmet 补全
+- 等等
+
+**Q: 如何确认当前环境是否为 Termux?**
+
+A: 在 Neovim 中执行:
+```vim
+:echo $TERMUX_VERSION
+```
+- Termux: 显示版本号(如 "0.118")
+- 其他平台: 显示空字符串
+
+---
+
+**配置已完全支持跨平台使用,无需手动修改!**

@@ -8,6 +8,22 @@
 2. TabNine 插件在 Termux 环境下自动禁用(该平台不支持 TabNine 二进制文件)
 3. 通过 `$TERMUX_VERSION` 环境变量实现条件加载,保持其他平台正常使用
 
+**重要提示**: 如果在 Termux 中仍看到 TabNine 错误,需要手动卸载已安装的扩展:
+
+```vim
+" 方法 1: 使用 Coc 命令(推荐)
+:CocUninstall coc-tabnine
+
+" 方法 2: 手动删除扩展目录
+" 在 Termux 终端执行:
+rm -rf ~/.config/coc/extensions/node_modules/coc-tabnine
+
+" 验证修复
+:CocList extensions  " 确认列表中没有 coc-tabnine
+```
+
+详细说明请参考 `BEST_PRACTICES.md` 第十五章节。
+
 > 2020/11/19
 
 修复键入`a`进入插入模式缓慢情况。
