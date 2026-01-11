@@ -261,13 +261,6 @@ require('lazy').setup({
     event = 'VeryLazy',
     dependencies = { 'kkharji/sqlite.lua' },
     opts = {
-      -- 集成 which-key
-      extensions = {
-        which_key = {
-          auto_register = true,
-          do_binding = false,
-        },
-      },
       -- 搜索选项
       select_prompt = ' 命令面板 ',
       -- 包含的项目类型
@@ -359,7 +352,14 @@ require('lazy').setup({
     'folke/which-key.nvim',
     event = 'VeryLazy',
     opts = {
-      -- 插件配置选项
+      preset = "modern",  -- v3 新增: 使用现代化预设样式
+      delay = 200,        -- 触发延迟 (毫秒)
+      -- v3 已移除 window/layout 配置,改用 win 配置
+      win = {
+        border = "rounded",  -- 边框样式
+        padding = { 1, 2 },  -- 内边距 [垂直, 水平]
+      },
+      -- 插件集成
       plugins = {
         marks = true,       -- 显示标记
         registers = true,   -- 显示寄存器
@@ -377,74 +377,55 @@ require('lazy').setup({
           g = true,            -- g 开头的命令
         },
       },
-      -- 窗口配置
-      window = {
-        border = "rounded",       -- 边框样式: none, single, double, rounded
-        position = "bottom",      -- 位置: bottom, top
-        margin = { 1, 0, 1, 0 }, -- 外边距 [上, 右, 下, 左]
-        padding = { 1, 2, 1, 2 }, -- 内边距
-        winblend = 0,            -- 透明度 (0-100)
-      },
-      layout = {
-        height = { min = 4, max = 25 }, -- 窗口高度
-        width = { min = 20, max = 50 }, -- 窗口宽度
-        spacing = 3,                     -- 列间距
-        align = "left",                  -- 对齐方式
-      },
-      -- 触发延迟 (毫秒)
-      triggers_delay = 200,
     },
     config = function(_, opts)
       local wk = require("which-key")
       wk.setup(opts)
       
-      -- 注册快捷键分组说明
-      wk.register({
-        ["<leader>f"] = { name = "🔍 查找 (Find)" },
-        ["<leader>g"] = { name = "🔀 Git 操作" },
-        ["<leader>h"] = { name = "🔧 Git Hunk 操作" },
-        ["<leader>t"] = { name = "🎯 切换 (Toggle)" },
-        ["<leader>b"] = { name = "📦 缓冲区 (Buffer)" },
-        ["<leader>w"] = { name = "🪟 窗口 (Window)" },
-        ["<leader>c"] = { name = "💻 代码 (Code)" },
-        ["<leader>d"] = { name = "🐛 调试 (Debug)" },
-        ["<leader>s"] = { name = "🔎 搜索 (Search)" },
-        ["<leader>n"] = { name = "📝 笔记 (Notes)" },
-        ["<leader>?"] = { name = "❓ 帮助 (Help)" },
-      })
-      
-      -- 注册具体的快捷键说明 (根据您的实际配置调整)
-      wk.register({
+      -- v3 API: 使用 add() 替代 register(),采用 spec 数组格式
+      wk.add({
+        -- 分组说明
+        { "<leader>f", group = "🔍 查找 (Find)" },
+        { "<leader>g", group = "🔀 Git 操作" },
+        { "<leader>h", group = "🔧 Git Hunk 操作" },
+        { "<leader>t", group = "🎯 切换 (Toggle)" },
+        { "<leader>b", group = "📦 缓冲区 (Buffer)" },
+        { "<leader>w", group = "🪟 窗口 (Window)" },
+        { "<leader>c", group = "💻 代码 (Code)" },
+        { "<leader>d", group = "🐛 调试 (Debug)" },
+        { "<leader>s", group = "🔎 搜索 (Search)" },
+        { "<leader>n", group = "📝 笔记 (Notes)" },
+        { "<leader>?", group = "❓ 帮助 (Help)" },
+        
         -- Telescope 相关
-        ["<leader>ff"] = { "<cmd>Telescope find_files<cr>", "查找文件" },
-        ["<leader>fg"] = { "<cmd>Telescope live_grep<cr>", "全局搜索" },
-        ["<leader>fb"] = { "<cmd>Telescope buffers<cr>", "查找缓冲区" },
-        ["<leader>fh"] = { "<cmd>Telescope help_tags<cr>", "查找帮助文档" },
-        ["<leader>fr"] = { "<cmd>Telescope oldfiles<cr>", "最近文件" },
+        { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "查找文件" },
+        { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "全局搜索" },
+        { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "查找缓冲区" },
+        { "<leader>fh", "<cmd>FindFilesWithHidden<cr>", desc = "查找文件 (含隐藏)" },
+        { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "最近文件" },
+        { "<leader>ft", "<cmd>Telescope help_tags<cr>", desc = "查找帮助文档" },
         
-        -- NvimTree
-        ["<leader>e"] = { "<cmd>NvimTreeFindFileToggle<cr>", "文件树" },
+        -- 文件树与大纲
+        { "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>", desc = "文件树" },
+        { "<leader>v", "<cmd>Vista!!<cr>", desc = "代码大纲" },
         
-        -- Vista (大纲)
-        ["<leader>v"] = { "<cmd>Vista!!<cr>", "代码大纲" },
-        
-        -- Git 相关 (如果您配置了 gitsigns 快捷键)
-        ["<leader>gb"] = { "Git Blame" },
-        ["<leader>gd"] = { "Git Diff" },
+        -- Git 相关
+        { "<leader>gb", desc = "Git Blame" },
+        { "<leader>gd", desc = "Git Diff" },
         
         -- 折叠相关
-        ["zR"] = { "打开所有折叠" },
-        ["zM"] = { "关闭所有折叠" },
+        { "zR", desc = "打开所有折叠" },
+        { "zM", desc = "关闭所有折叠" },
         
         -- 帮助和教程
-        ["<leader>?t"] = { "<cmd>Tutor zh<cr>", "📚 Vim 教程 (中文)" },
-        ["<leader>?e"] = { "<cmd>Tutor<cr>", "📚 Vim Tutorial (English)" },
-        ["<leader>?h"] = { "<cmd>Telescope help_tags<cr>", "📖 搜索帮助文档" },
-        ["<leader>?k"] = { "<cmd>Telescope keymaps<cr>", "⌨️  查看所有快捷键" },
-        ["<leader>?c"] = { "<cmd>Telescope commands<cr>", "🔧 搜索命令" },
+        { "<leader>?t", "<cmd>Tutor zh<cr>", desc = "📚 Vim 教程 (中文)" },
+        { "<leader>?e", "<cmd>Tutor<cr>", desc = "📚 Vim Tutorial (English)" },
+        { "<leader>?h", "<cmd>Telescope help_tags<cr>", desc = "📖 搜索帮助文档" },
+        { "<leader>?k", "<cmd>Telescope keymaps<cr>", desc = "⌨️  查看所有快捷键" },
+        { "<leader>?c", "<cmd>Telescope commands<cr>", desc = "🔧 搜索命令" },
         
         -- 命令面板
-        ["<leader><leader>"] = { "<cmd>Legendary<cr>", "🎯 命令面板" },
+        { "<leader><leader>", "<cmd>Legendary<cr>", desc = "🎯 命令面板" },
       })
     end,
   },
@@ -495,32 +476,71 @@ require('lazy').setup({
         },
         -- 全局文件忽略模式
         file_ignore_patterns = {
+          -- 版本控制和依赖目录
+          "^%.git/",
           "node_modules/",
-          ".git/",
+          "%.yarn/",
+          "%.pnpm%-store/",
+          "vendor/",
+          
+          -- 构建产物和缓存
           "dist/",
           "build/",
           "built/",
+          "out/",
           "lib/",
-          "%.min%.js$",
-          "%.min%.css$",
-          "%.bundle%.js$",
-          "%.bundle%.css$",
+          "target/",
+          "%.next/",
+          "%.nuxt/",
+          "%.svelte%-kit/",
+          "%.sass%-cache/",
+          "%.cache/",
+          "__pycache__/",
+          "%.pytest_cache/",
+          
+          -- Lock 文件
           "%-lock%.json$",
           "package%-lock%.json$",
           "yarn%.lock$",
           "pnpm%-lock%.yaml$",
-          -- 性能优化：忽略二进制和资源
-          "%.jpg$", "%.jpeg$", "%.png$", "%.gif$", "%.svg$", "%.ico$",
-          "%.mp4$", "%.webm$", "%.ogg$", "%.mp3$", "%.wav$", "%.flac$",
-          "%.pdf$", "%.zip$", "%.tar%.gz$", "%.tgz$", "%.rar$", "%.7z$",
-          "%.woff$", "%.woff2$", "%.ttf$", "%.eot$",
+          "Gemfile%.lock$",
+          "Cargo%.lock$",
+          "poetry%.lock$",
+          
+          -- 压缩和打包文件
+          "%.min%.js$",
+          "%.min%.css$",
+          "%.bundle%.js$",
+          "%.bundle%.css$",
+          "%.chunk%.js$",
+          "%.chunk%.css$",
+          
+          -- 二进制和媒体文件
+          "%.jpg$", "%.jpeg$", "%.png$", "%.gif$", "%.bmp$", "%.webp$", "%.svg$", "%.ico$",
+          "%.mp4$", "%.webm$", "%.ogg$", "%.avi$", "%.mov$",
+          "%.mp3$", "%.wav$", "%.flac$", "%.aac$",
+          "%.woff$", "%.woff2$", "%.ttf$", "%.eot$", "%.otf$",
+          "%.pdf$", "%.doc$", "%.docx$", "%.xls$", "%.xlsx$", "%.ppt$", "%.pptx$",
+          
+          -- 压缩包
+          "%.zip$", "%.tar$", "%.tar%.gz$", "%.tgz$", "%.rar$", "%.7z$", "%.gz$", "%.bz2$",
+          
+          -- 数据库和日志
           "%.db$", "%.sqlite$", "%.sqlite3$",
-          "%.log$", "%.cache$",
-          -- 编译器与中间产物
-          "%.o$", "%.a$", "%.obj$", "%.exe$", "%.dll$", "%.so$", "%.dylib$",
-          -- 常见开发缓存目录
-          "%.next/", "%.nuxt/", "%.svelte-kit/", "%.yarn/", "%.pnpm-store/",
-          "%.sass-cache/", "%.swp$", "%.tmp$", "%.DS_Store",
+          "%.log$", "%.log%.[0-9]+$",
+          
+          -- 编译产物
+          "%.o$", "%.a$", "%.so$", "%.dylib$", "%.dll$", "%.exe$", "%.obj$", "%.pyc$", "%.class$",
+          
+          -- IDE 和编辑器文件
+          "%.swp$", "%.swo$", "%.tmp$", "%.bak$", "%.DS_Store$",
+          "%.idea/",
+          "%.vscode/",
+          "%.vs/",
+          
+          -- 其他常见排除
+          "tags$", "TAGS$",
+          "%.env$", "%.env%.local$",
         },
         mappings = {
           i = {
@@ -531,9 +551,44 @@ require('lazy').setup({
       pickers = {
         live_grep = {
           debounce = 100, -- 恢复极速响应
+          -- 额外的 ripgrep 参数
+          additional_args = function()
+            return {
+              "--hidden",           -- 搜索隐藏文件
+              "--no-ignore-vcs",    -- 不使用 .gitignore (由 file_ignore_patterns 控制)
+            }
+          end,
         },
         find_files = {
-          hidden = true,
+          -- 使用 ripgrep 进行文件搜索,性能最优
+          find_command = {
+            "rg",
+            "--files",
+            "--color=never",
+            -- 排除版本控制和依赖
+            "--glob=!.git/",
+            "--glob=!node_modules/",
+            "--glob=!.yarn/",
+            "--glob=!.pnpm-store/",
+            "--glob=!vendor/",
+            -- 排除构建产物
+            "--glob=!dist/",
+            "--glob=!build/",
+            "--glob=!out/",
+            "--glob=!target/",
+            "--glob=!.next/",
+            "--glob=!.nuxt/",
+            "--glob=!__pycache__/",
+            -- 排除 IDE 和临时文件
+            "--glob=!.idea/",
+            "--glob=!.vscode/",
+            "--glob=!.vs/",
+            "--glob=!.quokka/",
+            -- 排除常见隐藏配置(如需搜索,使用 <leader>fh)
+            "--glob=!.eslintcache",
+            -- 不搜索隐藏文件(性能优化)
+            -- 如需搜索隐藏文件,使用 <leader>fh
+          },
         }
       },
       extensions = {
@@ -550,6 +605,27 @@ require('lazy').setup({
       telescope.setup(opts)
       -- 安全加载 fzf 扩展，防止编译失败导致整个 Telescope 崩溃
       pcall(telescope.load_extension, 'fzf')
+      
+      -- 自定义命令:搜索隐藏文件
+      vim.api.nvim_create_user_command('FindFilesWithHidden', function()
+        require('telescope.builtin').find_files({
+          find_command = {
+            "rg",
+            "--files",
+            "--hidden",  -- 包含隐藏文件
+            "--color=never",
+            -- 仍然排除不需要的目录
+            "--glob=!.git/",
+            "--glob=!node_modules/",
+            "--glob=!.yarn/",
+            "--glob=!.pnpm-store/",
+            "--glob=!dist/",
+            "--glob=!build/",
+            "--glob=!.next/",
+            "--glob=!__pycache__/",
+          }
+        })
+      end, { desc = '查找文件(包含隐藏文件)' })
     end
   },
   {
