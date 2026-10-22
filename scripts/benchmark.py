@@ -12,6 +12,7 @@ import platform
 import re
 import statistics
 import subprocess
+import sys
 import tempfile
 import time
 
@@ -25,8 +26,9 @@ local function elapsed() return ((vim.uv or vim.loop).hrtime() - started) / 1e6 
 vim.defer_fn(function()
   vim.rpcnotify(1, 'benchmark_error', 'measurement exceeded 35 seconds')
 end, 35000)
-vim.api.nvim_create_autocmd('VimEnter', {once=true, callback=function()
+vim.api.nvim_create_autocmd('VimEnter', {group=vim.api.nvim_create_augroup('NvimBenchmark', {clear=true}), once=true, callback=function()
   vim.rpcnotify(1, 'benchmark_vimenter', elapsed())
+  if vim.env.NVIM_BENCHMARK_MODE == 'first-screen' then return end
   local function run_poll()
     local buf = vim.api.nvim_get_current_buf()
     if not result.editor_ready_ms and vim.treesitter.highlighter.active[buf]
@@ -77,8 +79,11 @@ end})
 
 
 def measure(config, project, preload, log):
+    screen_only = os.environ.get('NVIM_BENCHMARK_MODE') == 'first-screen'
     argv = ['nvim', '--embed', '-n', '--startuptime', str(log), '-u', str(config / 'init.vim'),
             '--cmd', 'lua dofile(' + json.dumps(preload.as_posix()) + ')', str(project / 'main.py')]
+    if screen_only:
+        argv[1:1] = ['--cmd', 'let g:coc_start_at_startup=0']
     started = time.perf_counter()
     nvim = pynvim.attach('child', argv=argv)
     result = {}
@@ -92,6 +97,15 @@ def measure(config, project, preload, log):
         elif name == 'redraw' and entered and 'first_ui_flush_wall_ms' not in result:
             if any(event[0] == 'flush' for event in args):
                 result['first_ui_flush_wall_ms'] = (time.perf_counter() - started) * 1000
+                if screen_only:
+                    nvim.stop_loop()
+        if name == 'redraw':
+            for event in args:
+                if event[0] == 'msg_show':
+                    for message in event[1:]:
+                        if message[0] == 'emsg':
+                            result['error'] = ''.join(part[1] for part in message[1])
+                            nvim.stop_loop()
         elif name == 'benchmark_done':
             result.update(args[0])
             nvim.stop_loop()
@@ -100,7 +114,7 @@ def measure(config, project, preload, log):
             nvim.stop_loop()
 
     try:
-        nvim.ui_attach(100, 35, rgb=True)
+        nvim.ui_attach(100, 35, rgb=True, ext_messages=True)
         nvim.run_loop(None, notice)
         try:
             nvim.command('qa!')
@@ -118,11 +132,19 @@ def measure(config, project, preload, log):
 
 
 def main():
+    # 每个RPC样本由外层进程树监督，Lua定时器不能中断同步RPC或启动阶段阻塞。
+    if len(sys.argv) == 7 and sys.argv[1] == '--worker':
+        config, project, preload, log, output = map(Path, sys.argv[2:])
+        output.write_text(json.dumps(measure(config, project, preload, log)), encoding='utf-8')
+        return
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tests'))
+    from nvim_process import run_nvim
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config-root', type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument('--compare-root', type=Path)
     parser.add_argument('--runs', type=int, default=3)
     parser.add_argument('--files', type=int, default=1200)
+    parser.add_argument('--first-screen-only', action='store_true', help='Disable Coc in both variants; measure first-screen cost only, not service readiness')
     parser.add_argument('--output', required=True, type=Path)
     args = parser.parse_args()
     assert args.runs > 0 and args.files > 0, 'runs and files must be positive'
@@ -130,6 +152,7 @@ def main():
     if args.compare_root:
         configs.append(('B', args.compare_root.resolve()))
     records = []
+    env = dict(os.environ, NVIM_BENCHMARK_MODE='first-screen' if args.first_screen_only else 'full')
     with tempfile.TemporaryDirectory(prefix='nvim-benchmark-') as directory:
         project = Path(directory)
         (project / 'main.py').write_text('def greet(name: str) -> str:\n    return name\nprint(greet("world"))\n', encoding='utf-8')
@@ -147,9 +170,18 @@ def main():
         for number in range(1, args.runs + 1):
             for kind, config in configs:
                 log = project / f'{kind}-{number}.log'
-                record = measure(config, project, preload, log)
+                output = project / f'{kind}-{number}.json'
+                try:
+                    result = run_nvim([sys.executable, str(Path(__file__).resolve()), '--worker',
+                        str(config), str(project), str(preload), str(log), str(output)], timeout=45, env=env)
+                    assert result.returncode == 0, result.stdout
+                    record = json.loads(output.read_text(encoding='utf-8'))
+                except AssertionError as error:
+                    record = {'error': str(error)}
                 record.update(kind=kind, run=number, cache_state='first-observed' if number == 1 else 'warm-repeated')
                 records.append(record)
+                args.output.parent.mkdir(parents=True, exist_ok=True)
+                args.output.write_text(json.dumps({'status':'in-progress','runs':records},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
                 print(json.dumps(record, ensure_ascii=False), flush=True)
     fields = ('first_screen_internal_ms', 'first_ui_flush_wall_ms', 'editor_ready_ms', 'coc_rpc_ms',
               'definition_provider_ms', 'files_first_result_ms', 'grep_first_result_ms')
@@ -167,6 +199,8 @@ def main():
                                                      + sorted((config / 'mysettings').rglob('*.vim')))}
                                     for kind, config in configs},
                     method='RPC UI attach 100x35; internal first screen from --startuptime; first UI flush after VimEnter uses Python process wall clock; no physical terminal painting.',
+                    lifetime='Each sample has a 45s external process-tree deadline; errors retained and fail final assertions. Worker startup is outside measured Neovim wall time.',
+                    mode='first-screen only; Coc disabled in both variants; no language/search readiness measured' if args.first_screen_only else 'full service readiness and search',
                     cache='No user cache deleted. First-observed is not certified cold; later samples warm repeated. A/B alternate only when compare-root is provided.',
                     readiness='Lua pre-init hrtime; highlighter+statusline, Coc RPC and definition-provider availability separately; 10ms polling. Provider availability is not completion-quality verification.',
                     fixture=dict(files=args.files, kind='generated Python project and ignored Git cache', search='same input set for all variants'),
@@ -175,6 +209,8 @@ def main():
     args.output.write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     required = ('first_ui_flush_wall_ms', 'first_screen_internal_ms', 'editor_ready_ms',
                 'coc_rpc_ms', 'definition_provider_ms', 'files_first_result_ms', 'grep_first_result_ms')
+    if args.first_screen_only:
+        required = ('first_ui_flush_wall_ms', 'first_screen_internal_ms')
     for record in records:
         assert all(isinstance(record.get(field),(int,float)) and record[field]>0 for field in required), record
 

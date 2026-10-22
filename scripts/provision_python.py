@@ -27,8 +27,9 @@ def main():
     state = dict(tool='nvim-python-provider', complete=False)
     marker.write_text(json.dumps(state) + '\n', encoding='utf-8')
     python = destination / ('Scripts/python.exe' if os.name == 'nt' else 'bin/python')
-    if not python.is_file():
-        venv.EnvBuilder(with_pip=True).create(destination)
+    # 已管理目录允许原地补齐；解释器存在不代表ensurepip已完成。
+    # clear=False保留已有内容，标准venv步骤重新完成ensurepip。
+    venv.EnvBuilder(with_pip=True).create(destination)
     env = os.environ.copy()
     for name in ('PYTHONHOME', 'PYTHONPATH'):
         env.pop(name, None)

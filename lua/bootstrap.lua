@@ -38,11 +38,17 @@ function M.init(root)
     local python = data .. '/tools/python-provider/'
       .. (vim.fn.has('win32') == 1 and 'Scripts/python.exe' or 'bin/python')
     vim.g.python3_host_prog = python
-    if vim.fn.executable(python) == 0 then
+    local ok, state = pcall(function()
+      return vim.json.decode(table.concat(vim.fn.readfile(data .. '/tools/python-provider/nvim-provider.json'), '\n'))
+    end)
+    local complete = ok and type(state) == 'table' and state.tool == 'nvim-python-provider' and state.complete == true
+    if vim.fn.executable(python) == 0 or not complete then
       vim.api.nvim_create_autocmd('FileType', { pattern = 'python', once = true, callback = function()
         vim.schedule(function()
           vim.notify('尚未部署Neovim Python provider：' .. python
-            .. '\npython scripts/provision_python.py --data "' .. data .. '" --apply'
+            .. '\n请先进入配置目录：' .. root
+            .. '\n' .. (vim.fn.has('win32') == 1 and 'python' or 'python3')
+            .. ' scripts/provision_python.py --data "' .. data .. '" --apply'
             .. '\n部署后完整重启；Coc/Pyright与项目解释器独立。', vim.log.levels.WARN)
         end)
       end })
