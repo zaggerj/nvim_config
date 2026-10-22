@@ -51,10 +51,11 @@ def main():
     with tempfile.TemporaryDirectory(prefix="nvim-coc-smoke-") as directory:
         root = Path(directory)
         (root / "verify.lua").write_text(LUA, encoding="utf-8")
+        (root / "sample.ts").write_text('const sharedState = true;\n', encoding='utf-8')
         env = os.environ.copy()
         env["NVIM_COC_TEST"] = root.as_posix()
         env["NVIM_COC_LOG_FILE"] = (root / "coc.log").as_posix()
-        result = subprocess.run(["nvim", "--headless", "-n", ".",
+        result = subprocess.run(["nvim", "--headless", "-n", "sample.ts",
                                  "+lua dofile(vim.env.NVIM_COC_TEST .. '/verify.lua')"],
                                 cwd=root, env=env, capture_output=True, text=True, timeout=22)
         report = json.loads((root / "result.json").read_text(encoding="utf-8"))

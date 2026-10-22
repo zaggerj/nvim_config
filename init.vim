@@ -43,3 +43,8 @@ exec "runtime! ".s:transform(s:dir, s:modules)
 " 扩展安装属于部署步骤，不在编辑启动时自动访问 npm 或旧 TabNine 域名。
 let g:coc_global_extensions = []
 lua require('coc_setup').register()
+
+" Tutor 使用宿主教材与独立练习副本，保留语言入口和学习进度。
+lua vim.schedule(function() require("tutor_progress").setup() end)
+lua require("command_palette").setup()
+lua require("parser_setup").setup()

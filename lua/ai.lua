@@ -20,7 +20,8 @@ function M.setup()
     { expr = true, replace_keycodes = false, silent = true, desc = '接受 AI 建议' })
   vim.keymap.set('i', '<M-]>', '<Cmd>call copilot#Next()<CR>', { desc = '下一个 AI 建议' })
   vim.keymap.set('i', '<M-[>', '<Cmd>call copilot#Previous()<CR>', { desc = '上一个 AI 建议' })
-  vim.keymap.set('i', '<C-g>', '<Cmd>call copilot#Dismiss()<CR>', { desc = '隐藏 AI 建议' })
+  -- C-g 是 nvim-surround 的插入前缀，单独占用会让 s/S 等待 timeoutlen。
+  vim.keymap.set('i', '<C-g>d', '<Cmd>call copilot#Dismiss()<CR>', { desc = '隐藏 AI 建议' })
   if vim.fn['copilot#Enabled']() == 1 then
     -- InsertEnter 时延迟加载，显式补上已错过的 VimEnter/FileType 初始化。
     vim.fn['copilot#Init']()

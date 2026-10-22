@@ -13,6 +13,13 @@ function M.init(root)
   end
   local sep = vim.fn.has('win32') == 1 and ';' or ':'
   if vim.fn.has('win32') == 1 then
+    -- jobstop 只能可靠地终止直接子进程。Scoop 的 git.exe shim 会额外
+    -- 启动真实 Git，快速切换 buffer 时 shim 被停止而 Git 遗留并持有日志句柄。
+    -- 让所有插件的字面 git 命令直接解析到已发现的原生可执行文件。
+    local git = require('platform').executable('git')
+    if git then
+      vim.env.PATH = vim.fn.fnamemodify(git, ':h') .. sep .. vim.env.PATH
+    end
     local gcc = require('platform').executable('gcc')
     if gcc then
       -- 启动只发现路径；编译器目标由显式构建脚本检查，不能在首屏等待外部命令。

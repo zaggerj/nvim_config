@@ -9,6 +9,7 @@ local WIDTH_RATIO = 0.5  -- You can change this too
 vim.opt.updatetime = 300
 
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ',' -- Neorg独立前缀，不覆盖全局反斜杠命令入口
 require('lazy').setup({
   {
     'github/copilot.vim',
@@ -163,14 +164,27 @@ require('lazy').setup({
   { 'fatih/vim-go', ft = 'go', init = function()
     vim.g.go_code_completion_enabled = 0
     vim.g.go_gopls_enabled = 0 -- 语言服务交由 Coc，避免重复启动
+    vim.g.go_def_mapping_enabled = 0
+    vim.g.go_doc_keywordprg_enabled = 0
+    vim.g.go_textobj_enabled = 0
   end, config = function() require('go_compat').setup() end },
   {
     "nvim-neorg/neorg",
-    build = ":Neorg sync-parsers",
+    -- rockspec 的 specs 只是顶层声明；明确依赖关系，避免空首页启动整个依赖树。
+    dependencies = {
+      { 'nvim-neotest/nvim-nio', lazy = true },
+      { 'nvim-neorg/lua-utils.nvim', lazy = true },
+      { 'nvim-lua/plenary.nvim', lazy = true },
+      { 'MunifTanjim/nui.nvim', lazy = true },
+      { 'pysan3/pathlib.nvim', lazy = true },
+    },
+    build = function() require('neorg_setup').install() end,
     cmd = "Neorg",
     ft = "norg",
+    config = require('neorg_setup').setup,
     opts = {
       load = {
+        ["core.integrations.treesitter"] = { config = { install_parsers = false } },
         ["core.defaults"] = {},    -- Loads default behaviour
         ["core.concealer"] = {},   -- Adds pretty icons to your documents
         ["core.ui.calendar"] = {}, -- Adds pretty icons to your documents
@@ -298,39 +312,6 @@ require('lazy').setup({
     end,
   },
   {
-    'mrjones2014/legendary.nvim',
-    event = 'VeryLazy',
-    dependencies = { 'kkharji/sqlite.lua' },
-    opts = {
-      -- 搜索选项
-      select_prompt = ' 命令面板 ',
-      -- 包含的项目类型
-      include_builtin = true,
-      include_legendary_cmds = true,
-      -- 排序优先级
-      sort = {
-        frecency = {
-          db_root = vim.fn.stdpath('data') .. '/legendary',
-          max_timestamps = 10,
-        },
-      },
-    },
-    config = function(_, opts)
-      require('legendary').setup(opts)
-      
-      -- 添加自定义命令到 legendary
-      require('legendary').commands({
-        { ':Lazy', description = '打开插件管理器' },
-        { ':Lazy sync', description = '同步插件' },
-        { ':Lazy update', description = '更新插件' },
-        { ':NvimTreeFindFileToggle', description = '切换文件树' },
-        { ':Vista!!', description = '切换代码大纲' },
-        { ':Tutor zh', description = '启动中文教程' },
-        { ':Tutor', description = '启动英文教程' },
-      })
-    end,
-  },
-  {
     'nvim-lualine/lualine.nvim',
     -- 主题在启动设置层确定后再初始化，避免 ColorScheme 触发第二次 setup。
     event = 'VimEnter',
@@ -382,7 +363,7 @@ require('lazy').setup({
     config = function(_, opts)
       require('lualine').setup(opts)
       vim.opt.showmode = false
-      vim.opt.laststatus = 2
+      vim.opt.laststatus = 3
       vim.opt.showtabline = 2
     end,
   },
@@ -453,7 +434,6 @@ require('lazy').setup({
         { "<leader>v", "<cmd>Vista!!<cr>", desc = "代码大纲" },
         
         -- Git 相关
-        { "<leader>gb", desc = "Git Blame" },
         { "<leader>gd", desc = "Git Diff" },
         
         -- 折叠相关
@@ -470,16 +450,6 @@ require('lazy').setup({
         -- 命令面板
         { "<leader><leader>", "<cmd>Legendary<cr>", desc = "🎯 命令面板" },
       })
-    end,
-  },
-  {
-    'fmoralesc/vim-tutor-mode',
-    cmd = 'Tutor',
-    init = function()
-      -- 设置教程语言 (可选: 'zh', 'en', 'es', 'fr', 'de', 'it', 'ja', 'ko', 'pt', 'ru')
-      vim.g.tutor_default_language = 'zh'
-      -- 启用教程进度保存
-      vim.g.tutor_save_progress = 1
     end,
   },
   {
@@ -500,178 +470,12 @@ require('lazy').setup({
   {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
-    event = "VeryLazy",
+    cmd = { 'Telescope', 'FindFilesWithHidden', 'FindFilesIgnored', 'GrepIgnored', 'GrepPCRE', 'SearchHealth' },
     dependencies = {
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
     },
-    opts = {
-      defaults = {
-        -- 配置 ripgrep 参数
-        vimgrep_arguments = {
-          'rg',
-          '--color=never',
-          '--no-heading',
-          '--with-filename',
-          '--line-number',
-          '--column',
-          '--smart-case',
-          '--hidden',
-          '--glob=!.git/',
-          '--pcre2', -- 核心项：保持中文搜索支持
-        },
-        -- 全局文件忽略模式
-        file_ignore_patterns = {
-          -- 版本控制和依赖目录
-          "^%.git/",
-          "node_modules/",
-          "%.yarn/",
-          "%.pnpm%-store/",
-          "vendor/",
-          
-          -- 构建产物和缓存
-          "dist/",
-          "build/",
-          "built/",
-          "out/",
-          "lib/",
-          "target/",
-          "%.next/",
-          "%.nuxt/",
-          "%.svelte%-kit/",
-          "%.sass%-cache/",
-          "%.cache/",
-          "__pycache__/",
-          "%.pytest_cache/",
-          
-          -- Lock 文件
-          "%-lock%.json$",
-          "package%-lock%.json$",
-          "yarn%.lock$",
-          "pnpm%-lock%.yaml$",
-          "Gemfile%.lock$",
-          "Cargo%.lock$",
-          "poetry%.lock$",
-          
-          -- 压缩和打包文件
-          "%.min%.js$",
-          "%.min%.css$",
-          "%.bundle%.js$",
-          "%.bundle%.css$",
-          "%.chunk%.js$",
-          "%.chunk%.css$",
-          
-          -- 二进制和媒体文件
-          "%.jpg$", "%.jpeg$", "%.png$", "%.gif$", "%.bmp$", "%.webp$", "%.svg$", "%.ico$",
-          "%.mp4$", "%.webm$", "%.ogg$", "%.avi$", "%.mov$",
-          "%.mp3$", "%.wav$", "%.flac$", "%.aac$",
-          "%.woff$", "%.woff2$", "%.ttf$", "%.eot$", "%.otf$",
-          "%.pdf$", "%.doc$", "%.docx$", "%.xls$", "%.xlsx$", "%.ppt$", "%.pptx$",
-          
-          -- 压缩包
-          "%.zip$", "%.tar$", "%.tar%.gz$", "%.tgz$", "%.rar$", "%.7z$", "%.gz$", "%.bz2$",
-          
-          -- 数据库和日志
-          "%.db$", "%.sqlite$", "%.sqlite3$",
-          "%.log$", "%.log%.[0-9]+$",
-          
-          -- 编译产物
-          "%.o$", "%.a$", "%.so$", "%.dylib$", "%.dll$", "%.exe$", "%.obj$", "%.pyc$", "%.class$",
-          
-          -- IDE 和编辑器文件
-          "%.swp$", "%.swo$", "%.tmp$", "%.bak$", "%.DS_Store$",
-          "%.idea/",
-          "%.vscode/",
-          "%.vs/",
-          
-          -- 其他常见排除
-          "tags$", "TAGS$",
-          "%.env$", "%.env%.local$",
-        },
-        mappings = {
-          i = {
-            ["<C-u>"] = false
-          }
-        }
-      },
-      pickers = {
-        live_grep = {
-          debounce = 100, -- 恢复极速响应
-          -- 额外的 ripgrep 参数
-          additional_args = function()
-            return {
-              "--hidden",           -- 搜索隐藏文件
-              "--no-ignore-vcs",    -- 不使用 .gitignore (由 file_ignore_patterns 控制)
-            }
-          end,
-        },
-        find_files = {
-          -- 使用 ripgrep 进行文件搜索,性能最优
-          find_command = {
-            "rg",
-            "--files",
-            "--color=never",
-            -- 排除版本控制和依赖
-            "--glob=!.git/",
-            "--glob=!node_modules/",
-            "--glob=!.yarn/",
-            "--glob=!.pnpm-store/",
-            "--glob=!vendor/",
-            -- 排除构建产物
-            "--glob=!dist/",
-            "--glob=!build/",
-            "--glob=!out/",
-            "--glob=!target/",
-            "--glob=!.next/",
-            "--glob=!.nuxt/",
-            "--glob=!__pycache__/",
-            -- 排除 IDE 和临时文件
-            "--glob=!.idea/",
-            "--glob=!.vscode/",
-            "--glob=!.vs/",
-            "--glob=!.quokka/",
-            -- 排除常见隐藏配置(如需搜索,使用 <leader>fh)
-            "--glob=!.eslintcache",
-            -- 不搜索隐藏文件(性能优化)
-            -- 如需搜索隐藏文件,使用 <leader>fh
-          },
-        }
-      },
-      extensions = {
-        fzf = {
-          fuzzy = true,
-          override_generic_sorter = true,
-          override_file_sorter = true,
-          case_mode = "smart_case",
-        }
-      }
-    },
-    config = function(_, opts)
-      local telescope = require('telescope')
-      telescope.setup(opts)
-      -- 安全加载 fzf 扩展，防止编译失败导致整个 Telescope 崩溃
-      pcall(telescope.load_extension, 'fzf')
-      
-      -- 自定义命令:搜索隐藏文件
-      vim.api.nvim_create_user_command('FindFilesWithHidden', function()
-        require('telescope.builtin').find_files({
-          find_command = {
-            "rg",
-            "--files",
-            "--hidden",  -- 包含隐藏文件
-            "--color=never",
-            -- 仍然排除不需要的目录
-            "--glob=!.git/",
-            "--glob=!node_modules/",
-            "--glob=!.yarn/",
-            "--glob=!.pnpm-store/",
-            "--glob=!dist/",
-            "--glob=!build/",
-            "--glob=!.next/",
-            "--glob=!__pycache__/",
-          }
-        })
-      end, { desc = '查找文件(包含隐藏文件)' })
-    end
+    opts = require('search').options(),
+    config = require('search').setup,
   },
   {
     'justinmk/vim-sneak',
@@ -699,11 +503,9 @@ require('lazy').setup({
       require("nvim-treesitter.configs").setup(opts)
     end,
     opts = {
-      ensure_installed = {
-        "c", "lua", "go", "python", "css", "scss",
-        "typescript", "tsx",
-        "html", "http", "javascript", "jsdoc", "json", "vue"
-      },
+      -- 使用 :ParserInstall 显式部署，首次打开代码不下载安装。
+      ensure_installed = {},
+      auto_install = false,
       highlight = {
         enable = true,
         disable = function(_, buf) return large_file.is_large(buf) end,

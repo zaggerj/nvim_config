@@ -32,6 +32,7 @@ vim.defer_fn(function()
       'statusline setup ran '..tostring(vim.g.statusline_setup_count)..' times instead of once')
     assert(vim.g.colors_name == vim.env.NVIM_UI_EXPECTED_THEME, 'directory theme changed')
     assert(vim.o.statusline:find('lualine', 1, true), 'statusline is not active')
+    assert(vim.o.laststatus == 3, 'global statusline contract is inconsistent')
     if vim.fn.argc() > 0 then
       assert(not plugins['alpha-nvim']._.loaded, 'dashboard loaded while opening a file')
       vim.cmd('Alpha')

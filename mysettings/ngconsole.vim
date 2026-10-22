@@ -1,13 +1,5 @@
-" 根据打开的目录自动切换主题
+" 保留旧函数入口，项目身份、路径与切换事件由同一模块管理。
 function! TrySwitchTheme()
-    let s:cwd = getcwd()
-    if (stridx(s:cwd, '_oem') != -1)
-        colo onelight
-    elseif (stridx(s:cwd, '_bug') != -1)
-        colo everforest
-    else
-        colo catppuccin-latte
-    endif
+    lua require('project_theme').apply()
 endfunction
-" au DirChanged * call TrySwitchTheme()
-call TrySwitchTheme()
+lua require('project_theme').setup()

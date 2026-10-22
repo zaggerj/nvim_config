@@ -1,13 +1,5 @@
 {
-  "languageserver": {
-    "lua": {
-      "command": "lua-lsp",
-      "filetypes": [
-        "lua"
-      ]
-    }
-  },
-  "Lua.completion.enable": false,
+  "Lua.completion.enable": true,
   "eslint.autoFixOnSave": true,
   "diagnostic.enableMessage": "always",
   "diagnostic.errorSign": "E",
@@ -71,8 +63,7 @@
   "powershell.integratedConsole.showOnStartup": false,
   "svelte.enable-ts-plugin": false,
   "Lua.diagnostics.globals": [
-    "vim",
-    "requ"
+    "vim"
   ],
   "vetur.completion.tagCasing": "initial",
   "typescript.inlayHints.parameterTypes.enabled": true,
@@ -92,5 +83,12 @@
   "javascript.inlayHints.parameterNames.enabled": "literals",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  }
+  },
+  "lua.checkForUpdates": "disabled",
+  "Lua.runtime.version": "LuaJIT",
+  "go.checkForUpdates": "disabled",
+  "go.goplsUseDaemon": false,
+  "vetur.enable": false,
+  "volar.enable": true,
+  "volar.useWorkspaceTsdk": true
 }

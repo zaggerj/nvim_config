@@ -7,13 +7,14 @@ inoremap <C-v> <C-o>"+p
 noremap \ :
 nnoremap / /\v
 nnoremap ? ?\v
-nnoremap <silent> <leader>n <Cmd>noh<CR>
+nnoremap <silent> <leader>sn <Cmd>noh<CR>
 " (cmd mode)
 cnoremap <A-b> <C-Left>
 cnoremap <A-f> <C-Right>
 " (terminal control)
 tnoremap fj <C-\><C-n>
-tnoremap <Esc> exit<cr>
+" 只离开终端输入；退出任务使用明确的 Ctrl-E，不向前台程序发送文本。
+tnoremap <Esc> <C-\><C-n>
 " (window jump)
 noremap <silent> <A-h> <C-w>h
 noremap <silent> <A-j> <C-w>j
@@ -66,10 +67,15 @@ nnoremap <silent> [g <Cmd>Gitsigns prev_hunk<cr>
 nnoremap <silent> [d <Cmd>Gitsigns diffthis<cr>
 " staged file
 nnoremap <silent> [f <Cmd>Gitsigns diffthis ~<cr>
-" stage current file
-nnoremap <silent> [c <Cmd>Gitsigns stage_buffer<cr>
-" clear stage changes
-nnoremap <silent> ]c <Cmd>Gitsigns reset_buffer<cr>
+" 差异导航不暂存、不重置；diff窗口沿用原生跳转。
+nnoremap <silent> [c <Cmd>lua require('git_actions').navigate('prev')<cr>
+nnoremap <silent> ]c <Cmd>lua require('git_actions').navigate('next')<cr>
+nnoremap <silent> <Leader>hs <Cmd>Gitsigns stage_hunk<cr>
+nnoremap <silent> <Leader>hu <Cmd>Gitsigns undo_stage_hunk<cr>
+nnoremap <silent> <Leader>hS <Cmd>Gitsigns stage_buffer<cr>
+nnoremap <silent> <Leader>hU <Cmd>Gitsigns reset_buffer_index<cr>
+nnoremap <silent> <Leader>hR <Cmd>lua require('git_actions').reset_buffer()<cr>
+nnoremap <silent> <Leader>gd <Cmd>Gitsigns diffthis<cr>
 " (vim-plug)
 nnoremap <silent> <Leader>pi <Cmd>Lazy install<cr>
 nnoremap <silent> <Leader>pu <Cmd>Lazy update<cr>
@@ -85,6 +91,9 @@ noremap <silent> <Leader>cl <Cmd>CocList<cr>
 nnoremap <silent> <Leader>cc <Cmd>CocConfig<cr>
 nmap <silent> <leader>. <Plug>(coc-codeaction)
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gD <Plug>(coc-type-definition)
+nmap <silent> <C-]> <Plug>(coc-definition)
+nnoremap <silent> K <Cmd>call CocActionAsync('doHover')<cr>
 nmap <silent> gr <Plug>(coc-references)
 " 弄一下文本对象的跳转，omap 就不用 silent 了
 xmap af <Plug>(coc-funcobj-a)
@@ -97,16 +106,15 @@ xmap <silent> <Leader>cv <Plug>(coc-convert-snippet)
 nmap <silent> <F2> <Plug>(coc-rename)
 nmap <silent> <Up> <Plug>(coc-diagnostic-prev)
 nmap <silent> <Down> <Plug>(coc-diagnostic-next)
-nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+nnoremap <silent><nowait><expr> <C-f> get(g:, 'did_coc_loaded', 0) && get(b:, 'coc_enabled', 1) && coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <silent><nowait><expr> <C-b> get(g:, 'did_coc_loaded', 0) && get(b:, 'coc_enabled', 1) && coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 " 0.0.82 版适配
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <CR> get(g:, 'did_coc_loaded', 0) && get(b:, 'coc_enabled', 1) ? (coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>") : "\<C-g>u\<CR>"
 " Insert <tab> when previous text is space, refresh completion if not.
 inoremap <silent><expr> <TAB>
-            \ coc#pum#visible() ? coc#pum#next(1):
-            \ Check_back_space() ? "\<Tab>" :
-            \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+            \ get(g:, 'did_coc_loaded', 0) && get(b:, 'coc_enabled', 1) ?
+            \ (coc#pum#visible() ? coc#pum#next(1) : Check_back_space() ? "\<Tab>" : coc#refresh()) : "\<Tab>"
+inoremap <expr><S-TAB> get(g:, 'did_coc_loaded', 0) && get(b:, 'coc_enabled', 1) ? (coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>") : "\<C-h>"
 
 " Telescope (finder) https://github.com/nvim-telescope/telescope.nvim#pickers
 " Lists files in your current working directory, respects .gitignore

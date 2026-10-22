@@ -1,5 +1,21 @@
 local M = { max_bytes = 1024 * 1024, max_lines = 20000, max_line = 20000 }
 local group = vim.api.nvim_create_augroup('LargeFileProtection', { clear = true })
+local changed_lines = {}
+
+local function watch_changes(buf)
+  if changed_lines[buf] or vim.bo[buf].buftype ~= '' then return end
+  changed_lines[buf] = {}
+  vim.api.nvim_buf_attach(buf, false, {
+    on_lines = function(_, current, _, first, old_last, new_last)
+      local dirty = changed_lines[current]
+      if not dirty then return true end
+      -- 只记范围；回调处于textlock中，昂贵功能的解除留到编辑事件。
+      dirty.first = math.min(dirty.first or first, first)
+      dirty.last = math.max((dirty.last or old_last) + new_last - old_last, new_last)
+    end,
+    on_detach = function(_, current) changed_lines[current] = nil end,
+  })
+end
 
 function M.is_large(buf)
   return vim.b[buf or 0].large_file == true
@@ -49,11 +65,22 @@ end
 
 local function check(buf)
   if vim.bo[buf].buftype ~= '' then return end
+  watch_changes(buf)
   if M.is_large(buf) then window_options(buf); return end
   local lines = vim.api.nvim_buf_line_count(buf)
   if lines > M.max_lines then protect(buf, '超过 20000 行'); return end
   if vim.api.nvim_buf_get_offset(buf, lines) > M.max_bytes then
     protect(buf, '超过 1 MiB'); return
+  end
+  local dirty = changed_lines[buf]
+  if dirty and dirty.first then
+    local first, last = dirty.first, math.min(dirty.last, lines)
+    dirty.first, dirty.last = nil, nil
+    for start = first, last - 1, 256 do
+      for _, line in ipairs(vim.api.nvim_buf_get_lines(buf, start, math.min(start + 256, last), false)) do
+        if #line > M.max_line then protect(buf, '单行超过 20000 字节'); return end
+      end
+    end
   end
 end
 
@@ -125,12 +152,19 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'WinEnter', 'FocusGained', 'InsertLeav
 })
 
 -- 大文件首次启动时不加载这些插件；切回普通文件后再按需加载。
+local function normal_code_file(buf)
+  return vim.api.nvim_buf_is_valid(buf) and not M.is_large(buf)
+    and vim.bo[buf].buftype == '' and vim.api.nvim_buf_get_name(buf) ~= ''
+    and vim.bo[buf].filetype ~= '' and vim.bo[buf].filetype ~= 'text'
+end
+
 vim.api.nvim_create_autocmd({ 'BufEnter', 'VimEnter' }, {
   group = group,
   callback = function(ev)
-    if M.is_large(ev.buf) or vim.bo[ev.buf].buftype ~= '' then return end
+    watch_changes(ev.buf)
+    if not normal_code_file(ev.buf) then return end
     vim.schedule(function()
-      if vim.api.nvim_buf_is_valid(ev.buf) and not M.is_large(ev.buf) then
+      if vim.api.nvim_get_current_buf() == ev.buf and normal_code_file(ev.buf) then
         vim.api.nvim_exec_autocmds('User', { pattern = 'NormalFile', modeline = false })
       end
     end)

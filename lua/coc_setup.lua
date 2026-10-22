@@ -6,6 +6,7 @@ function M.manifest()
 end
 
 function M.register()
+  require('languages').setup()
   vim.api.nvim_create_user_command('CocProvision', function()
     require('lazy').load({ plugins = { 'coc.nvim' } })
     local packages = {}

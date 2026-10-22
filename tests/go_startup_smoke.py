@@ -6,6 +6,7 @@ import subprocess
 import sys
 import tempfile
 import time
+from nvim_process import run_nvim
 
 
 def main():
@@ -54,9 +55,9 @@ end)
         env = os.environ.copy()
         env['PATH'] = str(root) + os.pathsep + env.get('PATH', '')
         started = time.monotonic()
-        result = subprocess.run(['nvim', '--headless', '-n', '--cmd', 'let g:coc_start_at_startup=0',
+        result = run_nvim(['nvim', '--headless', '-n', '--cmd', 'let g:coc_start_at_startup=0',
                                  'main.go', '+luafile ' + str(probe)],
-                                cwd=root, env=env, capture_output=True, text=True, timeout=30)
+                                cwd=root, env=env, timeout=8)
         elapsed = time.monotonic() - started
         if (root / 'go-called').exists():
             print(result.stdout + result.stderr)
