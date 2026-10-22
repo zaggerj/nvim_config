@@ -32,6 +32,22 @@ function M.init(root)
     end
   end
   local data = vim.fn.stdpath('data')
+  -- Python ftplugin 的 has('python3') 会同步扫描 PATH 并启动多个解释器。
+  -- 显式provider独立于项目venv；遵循用户提前设置的host，不禁用Python集成。
+  if vim.g.python3_host_prog == nil then
+    local python = data .. '/tools/python-provider/'
+      .. (vim.fn.has('win32') == 1 and 'Scripts/python.exe' or 'bin/python')
+    vim.g.python3_host_prog = python
+    if vim.fn.executable(python) == 0 then
+      vim.api.nvim_create_autocmd('FileType', { pattern = 'python', once = true, callback = function()
+        vim.schedule(function()
+          vim.notify('尚未部署Neovim Python provider：' .. python
+            .. '\npython scripts/provision_python.py --data "' .. data .. '" --apply'
+            .. '\n部署后完整重启；Coc/Pyright与项目解释器独立。', vim.log.levels.WARN)
+        end)
+      end })
+    end
+  end
   -- Coc 默认还受 XDG_CONFIG_HOME 影响，仅统一 HOME 无法共享扩展状态。
   vim.g.coc_data_home = data .. '/coc'
   vim.g.coc_config_home = root

@@ -11,7 +11,7 @@ from nvim_process import run_nvim
 
 ROOT = Path(__file__).resolve().parents[1]
 SMOKES = [
-    'process_runner', 'windows_tools', 'startup', 'go_startup', 'git_lifecycle', 'editor', 'ui_startup',
+    'process_runner', 'windows_tools', 'startup', 'python_provider', 'go_startup', 'git_lifecycle', 'editor', 'ui_startup',
     'keys', 'large_file_growth', 'coc_large_growth', 'project_theme', 'search', 'native_extension',
     'command_palette', 'palette_concurrency', 'palette_migration', 'tutor', 'file_tree', 'surround',
     'lazy_loading', 'parser_deployment', 'neorg_deploy', 'keymap_inventory', 'coc', 'ai', 'rest',
