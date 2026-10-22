@@ -7,12 +7,13 @@ from pathlib import Path
 import subprocess
 import sys
 import time
+from nvim_process import run_nvim
 
 ROOT = Path(__file__).resolve().parents[1]
 SMOKES = [
-    'process_runner', 'startup', 'go_startup', 'git_lifecycle', 'editor', 'ui_startup',
-    'keys', 'large_file_growth', 'project_theme', 'search', 'native_extension',
-    'command_palette', 'palette_migration', 'tutor', 'file_tree', 'surround',
+    'process_runner', 'windows_tools', 'startup', 'go_startup', 'git_lifecycle', 'editor', 'ui_startup',
+    'keys', 'large_file_growth', 'coc_large_growth', 'project_theme', 'search', 'native_extension',
+    'command_palette', 'palette_concurrency', 'palette_migration', 'tutor', 'file_tree', 'surround',
     'lazy_loading', 'parser_deployment', 'neorg_deploy', 'keymap_inventory', 'coc', 'ai', 'rest',
 ]
 LANGUAGES = ['python', 'python-venv', 'lua', 'javascript', 'typescript',
@@ -32,12 +33,10 @@ def main():
         started = time.monotonic()
         print('RUN ' + ' '.join(job), flush=True)
         try:
-            result = subprocess.run([sys.executable, *job], cwd=ROOT, env=env,
-                                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-                                    text=True, encoding='utf-8', errors='replace', timeout=180)
+            result = run_nvim([sys.executable, *job], cwd=ROOT, env=env, timeout=180)
             record = dict(test=' '.join(job).replace(str(ROOT), '.'),
                           passed=result.returncode == 0, output=result.stdout)
-        except subprocess.TimeoutExpired as error:
+        except AssertionError as error:
             record = dict(test=' '.join(job), passed=False, output=str(error))
         record['seconds'] = round(time.monotonic() - started, 3)
         records.append(record)

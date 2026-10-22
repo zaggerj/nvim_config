@@ -44,6 +44,12 @@ local function protect(buf, reason)
     vim.b[buf].coc_suggest_disable = 1
     vim.b[buf].coc_diagnostic_disable = 1
     vim.b[buf].coc_disable_autoformat = 1
+    if vim.g.coc_service_initialized == 1 then
+      -- coc_enabled只阻止新Document初始化；已附加Document须走Coc自身的逐buffer关闭链。
+      -- 对应plugin/coc.vim的BufUnload通知：释放该Document的lines监听并发送didClose。
+      -- 不触发Neovim BufUnload（buffer仍在编辑），也不调用全局Coc detach action。
+      vim.fn['coc#rpc#notify']('CocAutocmd', { 'BufUnload', buf })
+    end
     vim.b[buf].copilot_enabled = false
     for _, client in ipairs(vim.lsp.get_clients({ bufnr = buf })) do
       if client.name == 'GitHub Copilot' then vim.lsp.buf_detach_client(buf, client.id) end

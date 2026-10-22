@@ -7,19 +7,41 @@ end
 
 function M.executable(candidates)
   if type(candidates) == 'string' then candidates = { candidates } end
-  for _, name in ipairs(candidates) do
+  local search = vim.list_extend({}, candidates)
+  -- MSYS登录脚本可能只保留POSIX PATH。标准Windows安装根作为后备，
+  -- 仍优先用户PATH；不扫描磁盘、不启动shell、不固定盘符。
+  if M.windows then
+    for _, name in ipairs(candidates) do
+      if name == 'node' and vim.env.ProgramFiles then
+        search[#search + 1] = vim.env.ProgramFiles .. '/nodejs/node.exe'
+      elseif name == 'rg' and vim.env.LOCALAPPDATA then
+        search[#search + 1] = vim.env.LOCALAPPDATA .. '/Microsoft/WinGet/Links/rg.exe'
+      end
+    end
+  end
+  for _, name in ipairs(search) do
+    if M.windows and not name:find('[/\\]') and not name:match('%.%w+$') then
+      name = name .. '.exe'
+    end
     if name ~= '' and vim.fn.executable(name) == 1 then
       local path = vim.fn.exepath(name)
-      -- Scoop 的 exe shim 不改变父进程 PATH；优先还原无附加参数的真实工具路径。
-      local shim = path:gsub('%.[eE][xX][eE]$', '') .. '.shim'
-      if vim.fn.filereadable(shim) == 1 then
-        local content = table.concat(vim.fn.readfile(shim), '\n')
-        local target = content:match('path%s*=%s*"([^"]+)"')
-        if target and not content:match('args%s*=') and vim.fn.executable(target) == 1 then
-          path = target
-        end
+      -- Windows executable() 可能认可MSYS中的无扩展名PE，但exepath()
+      -- 无法按本机启动规则解析它。继续寻找可供插件字面node调用的.exe。
+      if path == '' and M.windows and not name:find('[/\\]') then
+        path = nil
       end
-      return path ~= '' and path or name
+      if path then
+        -- Scoop 的 exe shim 不改变父进程 PATH；优先还原无附加参数的真实工具路径。
+        local shim = path:gsub('%.[eE][xX][eE]$', '') .. '.shim'
+        if vim.fn.filereadable(shim) == 1 then
+          local content = table.concat(vim.fn.readfile(shim), '\n')
+          local target = content:match('path%s*=%s*"([^"]+)"')
+          if target and not content:match('args%s*=') and vim.fn.executable(target) == 1 then
+            path = target
+          end
+        end
+        return path ~= '' and path or name
+      end
     end
   end
 end

@@ -26,6 +26,10 @@ function M.init(root)
       -- 优先真实 GCC 目录，避免 zsh 的 MSYS DLL 覆盖编译器依赖。
       vim.env.PATH = vim.fn.fnamemodify(gcc, ':h') .. sep .. vim.env.PATH
     end
+    for _, name in ipairs({ 'node', 'rg' }) do
+      local tool = require('platform').executable(name)
+      if tool then vim.env.PATH = vim.fn.fnamemodify(tool, ':h') .. sep .. vim.env.PATH end
+    end
   end
   local data = vim.fn.stdpath('data')
   -- Coc 默认还受 XDG_CONFIG_HOME 影响，仅统一 HOME 无法共享扩展状态。

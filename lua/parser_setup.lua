@@ -4,7 +4,8 @@ M.languages = { 'c', 'lua', 'go', 'python', 'css', 'scss', 'typescript', 'tsx',
   'html', 'http', 'javascript', 'jsdoc', 'json', 'vue' }
 function M.install()
   require('lazy').load({ plugins = { 'nvim-treesitter' } })
-  vim.cmd('TSInstallSync ' .. table.concat(M.languages, ' '))
+  -- TSInstallSync 对已安装语言逐个问是否重装；部署采用无交互、只补缺失语义。
+  require('nvim-treesitter.install').ensure_installed_sync(M.languages)
   for _, language in ipairs(M.languages) do
     local ok, loaded = pcall(vim.treesitter.language.add, language)
     assert(ok and loaded, 'parser未能加载：' .. language .. '；请检查本平台构建日志')

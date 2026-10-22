@@ -6,9 +6,12 @@ local custom = {
   { 'Vista!!', '切换代码大纲' }, { 'Tutor zh', '启动中文教程' }, { 'Tutor en', '启动英文教程' },
   { 'Telescope keymaps', '查看全部模式快捷键' }, { 'Telescope commands', '查看全部命令及说明' },
 }
-local function history()
+local function location()
   local directory = vim.env.NVIM_PALETTE_DATA or (vim.fn.stdpath('data') .. '/command-palette')
-  local path = directory .. '/usage.json'
+  return directory, directory .. '/usage.json'
+end
+local function history()
+  local directory, path = location()
   local usage = {}
   if vim.fn.filereadable(path) == 1 then
     local ok, data = pcall(vim.json.decode, table.concat(vim.fn.readfile(path), '\n'))
@@ -29,16 +32,35 @@ local function score(entry)
   return (entry.count or 0) * recency / 10
 end
 local function execute(command)
-  local directory, path, usage = history()
-  local entry = usage[command] or { count = 0, timestamps = {} }
-  entry.count = entry.count + 1
-  entry.timestamps[#entry.timestamps + 1] = os.time()
-  while #entry.timestamps > 10 do table.remove(entry.timestamps, 1) end
-  usage[command] = entry
+  local directory, path = location()
   vim.fn.mkdir(directory, 'p')
-  local staged = path .. '.new'
-  vim.fn.writefile({ vim.json.encode(usage) }, staged)
-  assert((vim.uv or vim.loop).fs_rename(staged, path))
+  local uv = vim.uv or vim.loop
+  local lock = path .. '.lock'
+  local descriptor, lock_error
+  vim.wait(2000, function()
+    descriptor, lock_error = uv.fs_open(lock, 'wx', 384)
+    return descriptor ~= nil or not (lock_error or ''):find('EEXIST', 1, true)
+  end, 10)
+  if not descriptor then
+    error('无法锁定命令使用记录：' .. tostring(lock_error)
+      .. '\n若其他编辑器已关闭，请核对并移除遗留锁：' .. lock)
+  end
+  uv.fs_write(descriptor, tostring(vim.fn.getpid()), 0)
+  local ok, err = xpcall(function()
+    -- 获得跨进程锁后重新读，避免多个编辑器覆盖彼此计数。
+    local _, _, usage = history()
+    local entry = usage[command] or { count = 0, timestamps = {} }
+    entry.count = entry.count + 1
+    entry.timestamps[#entry.timestamps + 1] = os.time()
+    while #entry.timestamps > 10 do table.remove(entry.timestamps, 1) end
+    usage[command] = entry
+    local staged = path .. '.new'
+    vim.fn.writefile({ vim.json.encode(usage) }, staged)
+    assert(uv.fs_rename(staged, path))
+  end, debug.traceback)
+  uv.fs_close(descriptor)
+  uv.fs_unlink(lock)
+  if not ok then error(err) end
   vim.cmd(command)
 end
 function M.open(command)
