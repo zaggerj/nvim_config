@@ -38,8 +38,13 @@ local function execute(command)
   local lock = path .. '.lock'
   local descriptor, lock_error
   vim.wait(2000, function()
-    descriptor, lock_error = uv.fs_open(lock, 'wx', 384)
-    return descriptor ~= nil or not (lock_error or ''):find('EEXIST', 1, true)
+    local code
+    descriptor, lock_error, code = uv.fs_open(lock, 'wx', 384)
+    -- Windows在并发释放/重建文件期间也可能返回访问错误。保留同一有界
+    -- 锁等待；真正的权限错误到期后仍显示原始异常，不能跳过记录或抢锁。
+    local contended = code == 'EEXIST' or (vim.fn.has('win32') == 1
+      and (code == 'EPERM' or code == 'EACCES'))
+    return descriptor ~= nil or not contended
   end, 10)
   if not descriptor then
     error('无法锁定命令使用记录：' .. tostring(lock_error)
