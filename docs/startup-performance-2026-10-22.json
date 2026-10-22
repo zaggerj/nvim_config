@@ -1,0 +1,82 @@
+{
+  "checked_on": "2026-10-22",
+  "neovim": "0.12.6",
+  "platform": "Windows native / MSYS2 zsh TUI",
+  "method": "Three alternating A/B pairs, warm filesystem; same original Go file. Baseline probe restores pre-change lualine/alpha loading only.",
+  "first_screen": "Neovim --startuptime, excludes shell startup and process creation",
+  "readiness": "Pre-init hrtime, 10ms polling; editor means highlighter attached and statusline loaded; Coc means RPC ready, not every language server ready.",
+  "runs": [
+    {
+      "statusline_setup_count": 2,
+      "editor_ready_ms": 619.2019,
+      "dashboard_loaded": true,
+      "colors_name": "catppuccin-latte",
+      "coc_ready_ms": 619.219,
+      "kind": "baseline",
+      "run": 1,
+      "first_screen_ms": 436.73
+    },
+    {
+      "colors_name": "catppuccin-latte",
+      "coc_ready_ms": 614.4736,
+      "editor_ready_ms": 614.4534,
+      "statusline_setup_count": 2,
+      "dashboard_loaded": true,
+      "kind": "baseline",
+      "run": 2,
+      "first_screen_ms": 397.054
+    },
+    {
+      "statusline_setup_count": 2,
+      "dashboard_loaded": true,
+      "colors_name": "catppuccin-latte",
+      "coc_ready_ms": 648.2544,
+      "editor_ready_ms": 648.2305,
+      "kind": "baseline",
+      "run": 3,
+      "first_screen_ms": 454.388
+    },
+    {
+      "colors_name": "catppuccin-latte",
+      "coc_ready_ms": 506.8377,
+      "statusline_setup_count": 1,
+      "dashboard_loaded": false,
+      "editor_ready_ms": 506.8116,
+      "kind": "optimized",
+      "run": 1,
+      "first_screen_ms": 350.287
+    },
+    {
+      "statusline_setup_count": 1,
+      "dashboard_loaded": false,
+      "colors_name": "catppuccin-latte",
+      "coc_ready_ms": 512.2631,
+      "editor_ready_ms": 512.2024,
+      "kind": "optimized",
+      "run": 2,
+      "first_screen_ms": 353.866
+    },
+    {
+      "colors_name": "catppuccin-latte",
+      "coc_ready_ms": 521.0303,
+      "statusline_setup_count": 1,
+      "dashboard_loaded": false,
+      "editor_ready_ms": 520.9897,
+      "kind": "optimized",
+      "run": 3,
+      "first_screen_ms": 348.903
+    }
+  ],
+  "median_ms": {
+    "baseline": {
+      "first_screen_ms": 436.73,
+      "editor_ready_ms": 619.2019,
+      "coc_ready_ms": 619.219
+    },
+    "optimized": {
+      "first_screen_ms": 350.287,
+      "editor_ready_ms": 512.2024,
+      "coc_ready_ms": 512.2631
+    }
+  }
+}
