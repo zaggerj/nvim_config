@@ -1,0 +1,16 @@
+{
+  "result": {
+    "diagnostics": true,
+    "native_initialize_ms": 1962.4717,
+    "completion_request_ms": 21.055,
+    "language": "vue3",
+    "blink_setup": true,
+    "rename": true,
+    "matcher": "lua",
+    "blink_menu_callback": true,
+    "completion": true,
+    "definition": true,
+    "references": true
+  },
+  "ok": true
+}

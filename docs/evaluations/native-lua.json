@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "result": {
+    "blink_setup": true,
+    "blink_menu_callback": true,
+    "matcher": "lua",
+    "completion": true,
+    "language": "lua",
+    "rename": true,
+    "references": true,
+    "diagnostics": true,
+    "native_initialize_ms": 176.3158,
+    "completion_request_ms": 15.2379,
+    "definition": true
+  }
+}

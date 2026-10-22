@@ -1,0 +1,28 @@
+# 启动与搜索测量口径
+
+使用专用虚拟环境：`python -m venv <专用目录>`，在其中 `python -m pip install -r scripts/benchmark-requirements.txt`。不要安装到全局Python。执行 `python scripts/benchmark.py --runs 3 --output docs/evaluations/performance-baseline.json`。对照加入 `--compare-root <完整配置目录>`，按A1/B1/A2/B2顺序使用同一生成项目；不清理用户缓存，第一次称first-observed，不能称真正冷启动。
+
+脚本创建1200文件的Python Git项目，用真实Neovim RPC UI attach 100×35测量，结束后删除生成项目。`--startuptime` 提取内部first screen update；进程外首个VimEnter后UI flush包含进程创建与RPC通信，不包含物理终端绘制和shell启动。高亮/状态栏、Coc RPC和definition provider分别记录，provider存在不表示补全内容质量已验证。10ms轮询，搜索使用真实Telescope finder首个结果，不将全部结果完成时间混为首次结果。
+
+测量在Lua异常时向RPC上报错误，运行超过35秒上报超时；启动若在事件循环开始前同步阻塞，仍需外层进程监控，当前脚本不覆盖这种宿主级无响应。测试回归使用独立的 `tests/nvim_process.py` 来验证进程退出和后代，不用benchmark替代生命周期测试。
+
+2026-10-22最终测量在37/37完整功能回归后顺序执行，运行代码c4493af，独占Neovim性能窗口，无并发Neovim测量。A为当前配置，B为归档提交2aa64bd；两边共用当前已安装插件及语言服务，属于配置源对照，不是历史插件二进制恢复。A1/B1/A2/B2/A3/B3使用同一生成项目，全部6个进程正常结束，7类指标42个值全部通过存在且为正数的断言。完整源码指纹、环境与全部样本见 [最终原始数据](performance-baseline.json)。
+
+| 指标ms | A当前，中位数（最小–最大） | B源基线，中位数（最小–最大） | A相对B |
+| --- | ---: | ---: | ---: |
+| 内部首屏 | 632（607–932） | 558（527–688） | 慢13.2% |
+| 进程外首UI flush | 671（651–996） | 615（561–726） | 慢9.0% |
+| 高亮/状态栏 | 760（736–1120） | 778（726–941） | 快2.2% |
+| Coc RPC | 760（736–1120） | 778（726–941） | 快2.2% |
+| Python definition provider | 1821（1817–2547） | 1901（1813–2023） | 快4.2% |
+| 文件搜索首次结果 | 207（206–228） | 233（214–318） | 快11.1% |
+| grep首次结果 | 102（95–109） | 133（127–201） | 快23.5% |
+
+结论：当前配置的文件搜索和grep首次结果较快，语言就绪略快，但首屏中位数比同产物的源基线慢；不能宣称本次整体启动优化成功。A第二样本首屏932ms及UI flush996ms均保留，没有剔除或挑选最好一轮。三个样本提供当次可复现基准与波动，下一轮首屏优化应围绕这条现有回归继续分项剖析。此Python项目测量不与历史单次Go1.39秒直接计算收益，也不建立未约定的SLA。
+
+治理并发时的早期 [探索A/B](performance-exploratory.json) 另存保留：A首屏701–1362ms、B692–711ms，曾与候选克隆/构建重叠。它不作为最终收益证据，未覆盖或丢弃不利结果。macOS尚未实机测量。
+
+
+## 测量环境回执
+
+早期试验曾误把pynvim/msgpack安装到全局Python3.14，并将原先无法导入_C扩展的greenlet3.0.3升级到3.5.6；pip报告其与既有playwright1.43依赖不一致。已卸载本次全局pynvim/msgpack及3.5.6，恢复3.0.3官方cp312 wheel布局；Python3.14下仍是此前不可导入状态，这不是原目录字节级恢复。后续所有RPC UI测量使用stdpath(data)/tools/benchmark-python专用venv，不再变动全局Python包。功能回归使用现有Python及psutil，不依赖全局greenlet。

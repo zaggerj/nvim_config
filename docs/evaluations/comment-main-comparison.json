@@ -1,0 +1,78 @@
+{
+  "plugin": [
+    {
+      "commented": "-- local value = 1",
+      "kind": "lua"
+    },
+    {
+      "commented": "    {/* <span>Hello</span> */}",
+      "kind": "jsx"
+    },
+    {
+      "commented": "    {/* <span>Hello</span> */}",
+      "kind": "tsx"
+    },
+    {
+      "commented": "  <!-- <div>Hello</div> -->",
+      "kind": "vue-template"
+    },
+    {
+      "commented": "// const value = 1;",
+      "kind": "vue-script"
+    },
+    {
+      "commented": "/* .a { color: red } */",
+      "kind": "vue-style"
+    },
+    {
+      "commented": "-- local a = 1\n-- local b = 2\nlocal c = 3",
+      "kind": "motion"
+    },
+    {
+      "commented": "local a = 1\nlocal b = 2\nlocal c = 3",
+      "kind": "selection"
+    }
+  ],
+  "native": [
+    {
+      "kind": "lua",
+      "commented": "-- local value = 1"
+    },
+    {
+      "kind": "jsx",
+      "commented": "    // <span>Hello</span>"
+    },
+    {
+      "kind": "tsx",
+      "commented": "    // <span>Hello</span>"
+    },
+    {
+      "kind": "vue-template",
+      "commented": "  <!-- <div>Hello</div> -->"
+    },
+    {
+      "kind": "vue-script",
+      "commented": "// const value = 1;"
+    },
+    {
+      "kind": "vue-style",
+      "commented": "/* .a { color: red } */"
+    },
+    {
+      "kind": "motion",
+      "commented": "-- local a = 1\n-- local b = 2\nlocal c = 3"
+    },
+    {
+      "kind": "selection",
+      "commented": "local a = 1\nlocal b = 2\nlocal c = 3"
+    }
+  ],
+  "environment": {
+    "neovim": "NVIM v0.12.6",
+    "plugins": {
+      "Comment.nvim": "e30b7f2008e52442154b66f7c519bfd2f1e32acb",
+      "nvim-treesitter": "29212d826054bb2948fa9d3a99eca9bf6a050eb2",
+      "nvim-ts-context-commentstring": "1b212c2eee76d787bbea6aa5e92a2b534e7b4f8f"
+    }
+  }
+}

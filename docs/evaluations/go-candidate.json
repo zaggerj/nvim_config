@@ -1,0 +1,15 @@
+{
+  "ok": true,
+  "result": {
+    "repaired_build": true,
+    "started_native_lsp": false,
+    "setup_ms": 45.0492,
+    "format": true,
+    "toolchain": "go version go1.26.3 windows/amd64\n",
+    "build": true,
+    "test": true,
+    "failing_test": true,
+    "failing_build": true,
+    "error_list": true
+  }
+}

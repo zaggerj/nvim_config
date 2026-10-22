@@ -1,0 +1,16 @@
+{
+  "result": {
+    "rename": true,
+    "language": "typescriptreact",
+    "matcher": "lua",
+    "completion": true,
+    "references": true,
+    "diagnostics": true,
+    "native_initialize_ms": 282.9248,
+    "completion_request_ms": 203.9772,
+    "definition": true,
+    "blink_setup": true,
+    "blink_menu_callback": true
+  },
+  "ok": true
+}

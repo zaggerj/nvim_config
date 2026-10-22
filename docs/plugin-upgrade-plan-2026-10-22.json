@@ -1,0 +1,44 @@
+[
+  {
+    "name": "gitsigns.nvim",
+    "branch": "main",
+    "before": "42d6aed4e94e0f0bbced16bbdcc42f57673bd75e",
+    "target": "fd780920613e541cbdfac41bf711583ed49f9249"
+  },
+  {
+    "name": "vim-fugitive",
+    "branch": "master",
+    "before": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4",
+    "target": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0"
+  },
+  {
+    "name": "nvim-tree.lua",
+    "branch": "master",
+    "before": "a0db8bf7d6488b1dcd9cb5b0dfd6684a1e14f769",
+    "target": "9a2e0006d42f292eb3ade7dfdff201a7429a780c"
+  },
+  {
+    "name": "lualine.nvim",
+    "branch": "master",
+    "before": "47f91c416daef12db467145e16bed5bbfe00add8",
+    "target": "221ce6b2d999187044529f49da6554a92f740a96"
+  },
+  {
+    "name": "which-key.nvim",
+    "branch": "main",
+    "before": "3aab2147e74890957785941f0c1ad87d0a44c15a",
+    "target": "3aab2147e74890957785941f0c1ad87d0a44c15a"
+  },
+  {
+    "name": "nvim-surround",
+    "branch": "main",
+    "before": "1098d7b3c34adcfa7feb3289ee434529abd4afd1",
+    "target": "8b47db616ef658b8fc27e61db2896aa2f40134de"
+  },
+  {
+    "name": "plenary.nvim",
+    "branch": "master",
+    "before": "b9fd5226c2f76c951fc8ed5923d85e4de065e509",
+    "target": "74b06c6c75e4eeb3108ec01852001636d85a932b"
+  }
+]

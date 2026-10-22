@@ -1,0 +1,794 @@
+{
+  "platform": "Windows-11-10.0.26100-SP0",
+  "python": "3.14.5",
+  "method": "RPC UI attach 120x40. Process wall to first UI flush includes process creation and minimal isolated setup; excludes shell startup and physical terminal paint. Files/grep begin at picker invocation. Filter begins at actual input after 500ms picker settling. Quickfix selects exactly two real entries.",
+  "sequence": "Same generated fixture; telescope/fzf/snacks repeated per round; no user cache cleared; first-observed is not certified cold.",
+  "fixture": {
+    "files": 1000,
+    "source_sha256": "a7f184203039d4033bfbae97040d50f54df360074a430ee0d5ebf958ebd9b165"
+  },
+  "runs": [
+    {
+      "first_ui_flush_wall_ms": 142.1944000030635,
+      "results": [
+        {
+          "ready": true,
+          "kind": "files",
+          "first_result_ms": 137.6323,
+          "count": 2
+        },
+        {
+          "ready": true,
+          "kind": "grep",
+          "first_result_ms": 59.839,
+          "count": 5
+        },
+        {
+          "ready": true,
+          "kind": "buffers",
+          "first_result_ms": 40.7935,
+          "count": 1
+        },
+        {
+          "ready": true,
+          "kind": "oldfiles",
+          "first_result_ms": 40.4831,
+          "count": 2
+        },
+        {
+          "ready": true,
+          "kind": "help",
+          "first_result_ms": 129.6301,
+          "count": 2000
+        },
+        {
+          "ready": true,
+          "kind": "commands",
+          "first_result_ms": 47.6289,
+          "count": 31
+        },
+        {
+          "ready": true,
+          "kind": "keymaps",
+          "first_result_ms": 29.8567,
+          "count": 99
+        },
+        {
+          "ready": true,
+          "kind": "filter",
+          "first_result_ms": 30.8125,
+          "count": 1
+        },
+        {
+          "ready": true,
+          "kind": "quickfix",
+          "first_result_ms": 5.919,
+          "count": 2
+        }
+      ],
+      "messages": [],
+      "variant": "telescope",
+      "nvim": "0.12.6",
+      "revision": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026",
+      "process_wall_ms": 7702.002999998513,
+      "run": 1,
+      "cache_state": "first-observed"
+    },
+    {
+      "first_ui_flush_wall_ms": 131.12989999353886,
+      "results": [
+        {
+          "kind": "files",
+          "ready": true,
+          "count": 1003,
+          "first_result_ms": 464.6613
+        },
+        {
+          "kind": "grep",
+          "ready": true,
+          "count": 346,
+          "first_result_ms": 482.5863
+        },
+        {
+          "kind": "buffers",
+          "ready": true,
+          "count": 1,
+          "first_result_ms": 312.6639
+        },
+        {
+          "kind": "oldfiles",
+          "ready": true,
+          "count": 2,
+          "first_result_ms": 329.6331
+        },
+        {
+          "kind": "help",
+          "ready": true,
+          "count": 2509,
+          "first_result_ms": 338.3266
+        },
+        {
+          "kind": "commands",
+          "ready": true,
+          "count": 581,
+          "first_result_ms": 311.7475
+        },
+        {
+          "kind": "keymaps",
+          "ready": true,
+          "count": 93,
+          "first_result_ms": 308.9465
+        },
+        {
+          "kind": "filter",
+          "ready": true,
+          "count": 1,
+          "first_result_ms": 46.1057
+        },
+        {
+          "kind": "quickfix",
+          "ready": true,
+          "count": 2,
+          "first_result_ms": 154.6027
+        }
+      ],
+      "messages": [],
+      "variant": "fzf",
+      "nvim": "0.12.6",
+      "revision": "5dca84ef44f37b960a128a43d044ee348ff86fb4",
+      "process_wall_ms": 10057.018399995286,
+      "run": 1,
+      "cache_state": "first-observed"
+    },
+    {
+      "first_ui_flush_wall_ms": 142.23330000822898,
+      "results": [
+        {
+          "kind": "files",
+          "ready": true,
+          "first_result_ms": 113.7884,
+          "count": 1002
+        },
+        {
+          "kind": "grep",
+          "ready": true,
+          "first_result_ms": 68.5163,
+          "count": 233
+        },
+        {
+          "kind": "buffers",
+          "ready": true,
+          "first_result_ms": 68.5469,
+          "count": 1
+        },
+        {
+          "kind": "oldfiles",
+          "ready": true,
+          "first_result_ms": 51.2279,
+          "count": 1
+        },
+        {
+          "kind": "help",
+          "ready": true,
+          "first_result_ms": 114.8822,
+          "count": 1600
+        },
+        {
+          "kind": "commands",
+          "ready": true,
+          "first_result_ms": 59.8446,
+          "count": 574
+        },
+        {
+          "kind": "keymaps",
+          "ready": true,
+          "first_result_ms": 109.8882,
+          "count": 108
+        },
+        {
+          "kind": "filter",
+          "ready": true,
+          "first_result_ms": 13.9269,
+          "count": 1
+        },
+        {
+          "kind": "quickfix",
+          "ready": true,
+          "first_result_ms": 25.4271,
+          "count": 2
+        }
+      ],
+      "messages": [],
+      "variant": "snacks",
+      "nvim": "0.12.6",
+      "revision": "882c996cf28183f4d63640de0b4c02ec886d01f2",
+      "process_wall_ms": 7857.855599999311,
+      "run": 1,
+      "cache_state": "first-observed"
+    },
+    {
+      "first_ui_flush_wall_ms": 129.0317000093637,
+      "nvim": "0.12.6",
+      "revision": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026",
+      "messages": [],
+      "variant": "telescope",
+      "results": [
+        {
+          "count": 2,
+          "ready": true,
+          "first_result_ms": 136.7675,
+          "kind": "files"
+        },
+        {
+          "count": 4,
+          "ready": true,
+          "first_result_ms": 60.5625,
+          "kind": "grep"
+        },
+        {
+          "count": 1,
+          "ready": true,
+          "first_result_ms": 35.5506,
+          "kind": "buffers"
+        },
+        {
+          "count": 2,
+          "ready": true,
+          "first_result_ms": 37.9072,
+          "kind": "oldfiles"
+        },
+        {
+          "count": 2000,
+          "ready": true,
+          "first_result_ms": 126.5757,
+          "kind": "help"
+        },
+        {
+          "count": 31,
+          "ready": true,
+          "first_result_ms": 31.5987,
+          "kind": "commands"
+        },
+        {
+          "count": 99,
+          "ready": true,
+          "first_result_ms": 31.9931,
+          "kind": "keymaps"
+        },
+        {
+          "count": 1,
+          "ready": true,
+          "first_result_ms": 31.5227,
+          "kind": "filter"
+        },
+        {
+          "count": 2,
+          "ready": true,
+          "first_result_ms": 16.0823,
+          "kind": "quickfix"
+        }
+      ],
+      "process_wall_ms": 7716.615500001353,
+      "run": 2,
+      "cache_state": "warm-repeated"
+    },
+    {
+      "first_ui_flush_wall_ms": 139.93229999323376,
+      "nvim": "0.12.6",
+      "revision": "5dca84ef44f37b960a128a43d044ee348ff86fb4",
+      "messages": [],
+      "results": [
+        {
+          "ready": true,
+          "first_result_ms": 422.05,
+          "count": 1003,
+          "kind": "files"
+        },
+        {
+          "ready": true,
+          "first_result_ms": 496.0974,
+          "count": 778,
+          "kind": "grep"
+        },
+        {
+          "ready": true,
+          "first_result_ms": 325.5189,
+          "count": 1,
+          "kind": "buffers"
+        },
+        {
+          "ready": true,
+          "first_result_ms": 356.5217,
+          "count": 2,
+          "kind": "oldfiles"
+        },
+        {
+          "ready": true,
+          "first_result_ms": 350.3818,
+          "count": 1278,
+          "kind": "help"
+        },
+        {
+          "ready": true,
+          "first_result_ms": 342.0937,
+          "count": 581,
+          "kind": "commands"
+        },
+        {
+          "ready": true,
+          "first_result_ms": 371.838,
+          "count": 93,
+          "kind": "keymaps"
+        },
+        {
+          "ready": true,
+          "first_result_ms": 46.1072,
+          "count": 1,
+          "kind": "filter"
+        },
+        {
+          "ready": true,
+          "first_result_ms": 140.9132,
+          "count": 2,
+          "kind": "quickfix"
+        }
+      ],
+      "variant": "fzf",
+      "process_wall_ms": 10101.897600005032,
+      "run": 2,
+      "cache_state": "warm-repeated"
+    },
+    {
+      "first_ui_flush_wall_ms": 134.5281999965664,
+      "nvim": "0.12.6",
+      "revision": "882c996cf28183f4d63640de0b4c02ec886d01f2",
+      "messages": [],
+      "results": [
+        {
+          "kind": "files",
+          "count": 1002,
+          "ready": true,
+          "first_result_ms": 119.3787
+        },
+        {
+          "kind": "grep",
+          "count": 367,
+          "ready": true,
+          "first_result_ms": 59.6224
+        },
+        {
+          "kind": "buffers",
+          "count": 1,
+          "ready": true,
+          "first_result_ms": 63.397
+        },
+        {
+          "kind": "oldfiles",
+          "count": 1,
+          "ready": true,
+          "first_result_ms": 46.5634
+        },
+        {
+          "kind": "help",
+          "count": 1600,
+          "ready": true,
+          "first_result_ms": 103.0498
+        },
+        {
+          "kind": "commands",
+          "count": 574,
+          "ready": true,
+          "first_result_ms": 57.4583
+        },
+        {
+          "kind": "keymaps",
+          "count": 108,
+          "ready": true,
+          "first_result_ms": 102.3365
+        },
+        {
+          "kind": "filter",
+          "count": 1,
+          "ready": true,
+          "first_result_ms": 11.379
+        },
+        {
+          "kind": "quickfix",
+          "count": 2,
+          "ready": true,
+          "first_result_ms": 38.5735
+        }
+      ],
+      "variant": "snacks",
+      "process_wall_ms": 7798.383100001956,
+      "run": 2,
+      "cache_state": "warm-repeated"
+    },
+    {
+      "first_ui_flush_wall_ms": 138.4424999996554,
+      "revision": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026",
+      "messages": [],
+      "results": [
+        {
+          "ready": true,
+          "first_result_ms": 145.135,
+          "count": 2,
+          "kind": "files"
+        },
+        {
+          "ready": true,
+          "first_result_ms": 57.2813,
+          "count": 6,
+          "kind": "grep"
+        },
+        {
+          "ready": true,
+          "first_result_ms": 39.416,
+          "count": 1,
+          "kind": "buffers"
+        },
+        {
+          "ready": true,
+          "first_result_ms": 43.2364,
+          "count": 2,
+          "kind": "oldfiles"
+        },
+        {
+          "ready": true,
+          "first_result_ms": 116.7536,
+          "count": 3000,
+          "kind": "help"
+        },
+        {
+          "ready": true,
+          "first_result_ms": 31.0103,
+          "count": 31,
+          "kind": "commands"
+        },
+        {
+          "ready": true,
+          "first_result_ms": 29.0461,
+          "count": 99,
+          "kind": "keymaps"
+        },
+        {
+          "ready": true,
+          "first_result_ms": 30.879,
+          "count": 1,
+          "kind": "filter"
+        },
+        {
+          "ready": true,
+          "first_result_ms": 10.6771,
+          "count": 2,
+          "kind": "quickfix"
+        }
+      ],
+      "variant": "telescope",
+      "nvim": "0.12.6",
+      "process_wall_ms": 7677.99370001012,
+      "run": 3,
+      "cache_state": "warm-repeated"
+    },
+    {
+      "first_ui_flush_wall_ms": 214.4008000032045,
+      "messages": [],
+      "variant": "fzf",
+      "nvim": "0.12.6",
+      "results": [
+        {
+          "kind": "files",
+          "first_result_ms": 465.747,
+          "count": 1003,
+          "ready": true
+        },
+        {
+          "kind": "grep",
+          "first_result_ms": 480.4884,
+          "count": 484,
+          "ready": true
+        },
+        {
+          "kind": "buffers",
+          "first_result_ms": 401.1036,
+          "count": 1,
+          "ready": true
+        },
+        {
+          "kind": "oldfiles",
+          "first_result_ms": 420.1205,
+          "count": 2,
+          "ready": true
+        },
+        {
+          "kind": "help",
+          "first_result_ms": 434.0363,
+          "count": 2611,
+          "ready": true
+        },
+        {
+          "kind": "commands",
+          "first_result_ms": 572.6446,
+          "count": 581,
+          "ready": true
+        },
+        {
+          "kind": "keymaps",
+          "first_result_ms": 388.8655,
+          "count": 93,
+          "ready": true
+        },
+        {
+          "kind": "filter",
+          "first_result_ms": 46.4981,
+          "count": 1,
+          "ready": true
+        },
+        {
+          "kind": "quickfix",
+          "first_result_ms": 203.6299,
+          "count": 2,
+          "ready": true
+        }
+      ],
+      "revision": "5dca84ef44f37b960a128a43d044ee348ff86fb4",
+      "process_wall_ms": 10876.924600001075,
+      "run": 3,
+      "cache_state": "warm-repeated"
+    },
+    {
+      "first_ui_flush_wall_ms": 245.97040000662673,
+      "variant": "snacks",
+      "nvim": "0.12.6",
+      "results": [
+        {
+          "kind": "files",
+          "ready": true,
+          "first_result_ms": 122.6691,
+          "count": 1002
+        },
+        {
+          "kind": "grep",
+          "ready": true,
+          "first_result_ms": 86.4245,
+          "count": 400
+        },
+        {
+          "kind": "buffers",
+          "ready": true,
+          "first_result_ms": 99.4504,
+          "count": 1
+        },
+        {
+          "kind": "oldfiles",
+          "ready": true,
+          "first_result_ms": 85.1818,
+          "count": 1
+        },
+        {
+          "kind": "help",
+          "ready": true,
+          "first_result_ms": 141.4425,
+          "count": 1700
+        },
+        {
+          "kind": "commands",
+          "ready": true,
+          "first_result_ms": 97.3416,
+          "count": 574
+        },
+        {
+          "kind": "keymaps",
+          "ready": true,
+          "first_result_ms": 170.5756,
+          "count": 108
+        },
+        {
+          "kind": "filter",
+          "ready": true,
+          "first_result_ms": 15.764,
+          "count": 1
+        },
+        {
+          "kind": "quickfix",
+          "ready": true,
+          "first_result_ms": 31.0822,
+          "count": 2
+        }
+      ],
+      "revision": "882c996cf28183f4d63640de0b4c02ec886d01f2",
+      "messages": [],
+      "process_wall_ms": 8212.354900009814,
+      "run": 3,
+      "cache_state": "warm-repeated"
+    }
+  ],
+  "summary_ms": {
+    "telescope": {
+      "first_ui_flush_wall_ms": {
+        "samples": 3,
+        "median": 138.4424999996554,
+        "minimum": 129.0317000093637,
+        "maximum": 142.1944000030635
+      },
+      "files_ms": {
+        "samples": 3,
+        "median": 137.6323,
+        "minimum": 136.7675,
+        "maximum": 145.135
+      },
+      "grep_ms": {
+        "samples": 3,
+        "median": 59.839,
+        "minimum": 57.2813,
+        "maximum": 60.5625
+      },
+      "buffers_ms": {
+        "samples": 3,
+        "median": 39.416,
+        "minimum": 35.5506,
+        "maximum": 40.7935
+      },
+      "oldfiles_ms": {
+        "samples": 3,
+        "median": 40.4831,
+        "minimum": 37.9072,
+        "maximum": 43.2364
+      },
+      "help_ms": {
+        "samples": 3,
+        "median": 126.5757,
+        "minimum": 116.7536,
+        "maximum": 129.6301
+      },
+      "commands_ms": {
+        "samples": 3,
+        "median": 31.5987,
+        "minimum": 31.0103,
+        "maximum": 47.6289
+      },
+      "keymaps_ms": {
+        "samples": 3,
+        "median": 29.8567,
+        "minimum": 29.0461,
+        "maximum": 31.9931
+      },
+      "filter_ms": {
+        "samples": 3,
+        "median": 30.879,
+        "minimum": 30.8125,
+        "maximum": 31.5227
+      },
+      "quickfix_ms": {
+        "samples": 3,
+        "median": 10.6771,
+        "minimum": 5.919,
+        "maximum": 16.0823
+      }
+    },
+    "fzf": {
+      "first_ui_flush_wall_ms": {
+        "samples": 3,
+        "median": 139.93229999323376,
+        "minimum": 131.12989999353886,
+        "maximum": 214.4008000032045
+      },
+      "files_ms": {
+        "samples": 3,
+        "median": 464.6613,
+        "minimum": 422.05,
+        "maximum": 465.747
+      },
+      "grep_ms": {
+        "samples": 3,
+        "median": 482.5863,
+        "minimum": 480.4884,
+        "maximum": 496.0974
+      },
+      "buffers_ms": {
+        "samples": 3,
+        "median": 325.5189,
+        "minimum": 312.6639,
+        "maximum": 401.1036
+      },
+      "oldfiles_ms": {
+        "samples": 3,
+        "median": 356.5217,
+        "minimum": 329.6331,
+        "maximum": 420.1205
+      },
+      "help_ms": {
+        "samples": 3,
+        "median": 350.3818,
+        "minimum": 338.3266,
+        "maximum": 434.0363
+      },
+      "commands_ms": {
+        "samples": 3,
+        "median": 342.0937,
+        "minimum": 311.7475,
+        "maximum": 572.6446
+      },
+      "keymaps_ms": {
+        "samples": 3,
+        "median": 371.838,
+        "minimum": 308.9465,
+        "maximum": 388.8655
+      },
+      "filter_ms": {
+        "samples": 3,
+        "median": 46.1072,
+        "minimum": 46.1057,
+        "maximum": 46.4981
+      },
+      "quickfix_ms": {
+        "samples": 3,
+        "median": 154.6027,
+        "minimum": 140.9132,
+        "maximum": 203.6299
+      }
+    },
+    "snacks": {
+      "first_ui_flush_wall_ms": {
+        "samples": 3,
+        "median": 142.23330000822898,
+        "minimum": 134.5281999965664,
+        "maximum": 245.97040000662673
+      },
+      "files_ms": {
+        "samples": 3,
+        "median": 119.3787,
+        "minimum": 113.7884,
+        "maximum": 122.6691
+      },
+      "grep_ms": {
+        "samples": 3,
+        "median": 68.5163,
+        "minimum": 59.6224,
+        "maximum": 86.4245
+      },
+      "buffers_ms": {
+        "samples": 3,
+        "median": 68.5469,
+        "minimum": 63.397,
+        "maximum": 99.4504
+      },
+      "oldfiles_ms": {
+        "samples": 3,
+        "median": 51.2279,
+        "minimum": 46.5634,
+        "maximum": 85.1818
+      },
+      "help_ms": {
+        "samples": 3,
+        "median": 114.8822,
+        "minimum": 103.0498,
+        "maximum": 141.4425
+      },
+      "commands_ms": {
+        "samples": 3,
+        "median": 59.8446,
+        "minimum": 57.4583,
+        "maximum": 97.3416
+      },
+      "keymaps_ms": {
+        "samples": 3,
+        "median": 109.8882,
+        "minimum": 102.3365,
+        "maximum": 170.5756
+      },
+      "filter_ms": {
+        "samples": 3,
+        "median": 13.9269,
+        "minimum": 11.379,
+        "maximum": 15.764
+      },
+      "quickfix_ms": {
+        "samples": 3,
+        "median": 31.0822,
+        "minimum": 25.4271,
+        "maximum": 38.5735
+      }
+    }
+  }
+}

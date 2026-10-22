@@ -1,0 +1,225 @@
+{
+  "revision": "e3d80f6b0b885166843589fb6d2459ce8bb9fdf9",
+  "note": "分阶段真实Windows入口矩阵，共27/27；原9项基于e3d80f6加实施工作树。zsh search/Coc/AI失败修复后分别补验，最终运行修复归c4493af。保留before_fix_output。每项revision_scope说明实际执行范围；新增键位清单/Neorg已在c4493af完整37项回归通过，不冒充三入口重跑。",
+  "results": [
+    {
+      "entry": "PowerShell",
+      "test": "go_startup",
+      "command": "Set-Location -LiteralPath 'C:/Users/zagge/.config/nvim'; & 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/go_startup_smoke.py'",
+      "passed": true,
+      "output": "Native MinGW compiler: x86_64-w64-mingw32\nPASS Go file and disabled-LSP lifecycle do not run Go; commands preserved: 1.61s\n",
+      "revision_scope": "e3d80f6加当时实施工作树；当前受影响路径由c4493af完整回归补验"
+    },
+    {
+      "entry": "PowerShell",
+      "test": "git_lifecycle",
+      "command": "Set-Location -LiteralPath 'C:/Users/zagge/.config/nvim'; & 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/git_lifecycle_smoke.py'",
+      "passed": true,
+      "output": "PASS rapid buffer/write lifecycle, process exit and output handle cleanup\n",
+      "revision_scope": "e3d80f6加当时实施工作树；当前受影响路径由c4493af完整回归补验"
+    },
+    {
+      "entry": "PowerShell",
+      "test": "keys",
+      "command": "Set-Location -LiteralPath 'C:/Users/zagge/.config/nvim'; & 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/keys_smoke.py'",
+      "passed": true,
+      "output": "PASS terminal current Esc/fj preserve foreground task and resumed input\nPASS terminal split Esc/fj preserve foreground task and resumed input\nHunk 1 of 2Hunk 2 of 2Hunk 1 of 2PASS Git hunk navigation leaves contents unchangedPASS native diff navigation leaves contents unchangedPASS explicit staging, cancelling/confirming reset and real Git diff entry\nPASS bigfile paging works without CocPASS bigfile Enter/Tab/Shift-Tab work without Coc\nPASS grouped resize/nohighlight and unified navigation entries\n",
+      "revision_scope": "e3d80f6加当时实施工作树；当前受影响路径由c4493af完整回归补验"
+    },
+    {
+      "entry": "PowerShell",
+      "test": "editor",
+      "command": "Set-Location -LiteralPath 'C:/Users/zagge/.config/nvim'; & 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/editor_smoke.py'",
+      "passed": true,
+      "output": "PASS highlight sample.jsPASS highlight sample.tsPASS highlight sample.jsxPASS highlight sample.tsxPASS highlight vue2.vuePASS highlight vue3.vuePASS highlight sample.goPASS highlight sample.pyPASS real Git blamePASS large-file bytes.tsPASS large-file lines.tsPASS large-file longline.ts",
+      "revision_scope": "e3d80f6加当时实施工作树；当前受影响路径由c4493af完整回归补验"
+    },
+    {
+      "entry": "PowerShell",
+      "test": "coc",
+      "command": "Set-Location -LiteralPath 'C:/Users/zagge/.config/nvim'; & 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/coc_smoke.py'",
+      "passed": true,
+      "output": "PASS shared Coc data, provisioned extensions and retired Tabnine policy; CocRestart rechecked; no TLS rejection\n",
+      "revision_scope": "e3d80f6加当时实施工作树；当前受影响路径由c4493af完整回归补验"
+    },
+    {
+      "entry": "PowerShell",
+      "test": "ai",
+      "command": "Set-Location -LiteralPath 'C:/Users/zagge/.config/nvim'; & 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/ai_smoke.py'",
+      "passed": true,
+      "output": "PASS bundled Copilot initialized; Coc keys preserved; large-file startup and growth guarded",
+      "revision_scope": "e3d80f6加当时实施工作树；当前受影响路径由c4493af完整回归补验"
+    },
+    {
+      "entry": "PowerShell",
+      "test": "rest",
+      "command": "Set-Location -LiteralPath 'C:/Users/zagge/.config/nvim'; & 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/rest_smoke.py'",
+      "passed": true,
+      "output": "PASS GET /get?value=portable\nPASS POST /json\nPASS POST /xml\nPASS POST /file",
+      "revision_scope": "e3d80f6加当时实施工作树；当前受影响路径由c4493af完整回归补验"
+    },
+    {
+      "entry": "PowerShell",
+      "test": "search",
+      "command": "Set-Location -LiteralPath 'C:/Users/zagge/.config/nvim'; & 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/search_smoke.py'",
+      "passed": true,
+      "output": "PASS default and explicit ignored searches; legitimate lib source preserved\n",
+      "revision_scope": "e3d80f6加当时实施工作树；当前受影响路径由c4493af完整回归补验"
+    },
+    {
+      "entry": "PowerShell",
+      "test": "project_theme",
+      "command": "Set-Location -LiteralPath 'C:/Users/zagge/.config/nvim'; & 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/project_theme_smoke.py'",
+      "passed": true,
+      "output": "PASS absolute files and same-name Git/worktree roots select separate themesPASS portable suffix roots, monorepo override and non-Git project marker项目主题 missing-neovim-test-theme 无法加载，请检查 nvim_project_themes：Vim:E185: Cannot find color scheme 'missing-neovim-test-theme'PASS stable theme, special buffers, global tab switching and invalid-theme diagnostic\n",
+      "revision_scope": "e3d80f6加当时实施工作树；当前受影响路径由c4493af完整回归补验"
+    },
+    {
+      "entry": "Git Bash",
+      "test": "go_startup",
+      "command": "export PATH='/d/install/GlobalScoopApps/shims:/d/install/Scoop/shims:/c/Windows/System32:'\"$PATH\"; cd 'C:/Users/zagge/.config/nvim' && 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/go_startup_smoke.py'",
+      "passed": true,
+      "output": "Native MinGW compiler: x86_64-w64-mingw32\nPASS Go file and disabled-LSP lifecycle do not run Go; commands preserved: 1.19s\n",
+      "revision_scope": "e3d80f6加当时实施工作树；当前受影响路径由c4493af完整回归补验"
+    },
+    {
+      "entry": "Git Bash",
+      "test": "git_lifecycle",
+      "command": "export PATH='/d/install/GlobalScoopApps/shims:/d/install/Scoop/shims:/c/Windows/System32:'\"$PATH\"; cd 'C:/Users/zagge/.config/nvim' && 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/git_lifecycle_smoke.py'",
+      "passed": true,
+      "output": "PASS rapid buffer/write lifecycle, process exit and output handle cleanup\n",
+      "revision_scope": "e3d80f6加当时实施工作树；当前受影响路径由c4493af完整回归补验"
+    },
+    {
+      "entry": "Git Bash",
+      "test": "keys",
+      "command": "export PATH='/d/install/GlobalScoopApps/shims:/d/install/Scoop/shims:/c/Windows/System32:'\"$PATH\"; cd 'C:/Users/zagge/.config/nvim' && 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/keys_smoke.py'",
+      "passed": true,
+      "output": "PASS terminal current Esc/fj preserve foreground task and resumed input\nPASS terminal split Esc/fj preserve foreground task and resumed input\nHunk 1 of 2Hunk 2 of 2Hunk 1 of 2PASS Git hunk navigation leaves contents unchangedPASS native diff navigation leaves contents unchangedPASS explicit staging, cancelling/confirming reset and real Git diff entry\nPASS bigfile paging works without CocPASS bigfile Enter/Tab/Shift-Tab work without Coc\nPASS grouped resize/nohighlight and unified navigation entries\n",
+      "revision_scope": "e3d80f6加当时实施工作树；当前受影响路径由c4493af完整回归补验"
+    },
+    {
+      "entry": "Git Bash",
+      "test": "editor",
+      "command": "export PATH='/d/install/GlobalScoopApps/shims:/d/install/Scoop/shims:/c/Windows/System32:'\"$PATH\"; cd 'C:/Users/zagge/.config/nvim' && 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/editor_smoke.py'",
+      "passed": true,
+      "output": "PASS highlight sample.jsPASS highlight sample.tsPASS highlight sample.jsxPASS highlight sample.tsxPASS highlight vue2.vuePASS highlight vue3.vuePASS highlight sample.goPASS highlight sample.pyPASS real Git blamePASS large-file bytes.tsPASS large-file lines.tsPASS large-file longline.ts",
+      "revision_scope": "e3d80f6加当时实施工作树；当前受影响路径由c4493af完整回归补验"
+    },
+    {
+      "entry": "Git Bash",
+      "test": "coc",
+      "command": "export PATH='/d/install/GlobalScoopApps/shims:/d/install/Scoop/shims:/c/Windows/System32:'\"$PATH\"; cd 'C:/Users/zagge/.config/nvim' && 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/coc_smoke.py'",
+      "passed": true,
+      "output": "PASS shared Coc data, provisioned extensions and retired Tabnine policy; CocRestart rechecked; no TLS rejection\n",
+      "revision_scope": "e3d80f6加当时实施工作树；当前受影响路径由c4493af完整回归补验"
+    },
+    {
+      "entry": "Git Bash",
+      "test": "ai",
+      "command": "export PATH='/d/install/GlobalScoopApps/shims:/d/install/Scoop/shims:/c/Windows/System32:'\"$PATH\"; cd 'C:/Users/zagge/.config/nvim' && 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/ai_smoke.py'",
+      "passed": true,
+      "output": "PASS bundled Copilot initialized; Coc keys preserved; large-file startup and growth guarded",
+      "revision_scope": "e3d80f6加当时实施工作树；当前受影响路径由c4493af完整回归补验"
+    },
+    {
+      "entry": "Git Bash",
+      "test": "rest",
+      "command": "export PATH='/d/install/GlobalScoopApps/shims:/d/install/Scoop/shims:/c/Windows/System32:'\"$PATH\"; cd 'C:/Users/zagge/.config/nvim' && 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/rest_smoke.py'",
+      "passed": true,
+      "output": "PASS GET /get?value=portable\nPASS POST /json\nPASS POST /xml\nPASS POST /file",
+      "revision_scope": "e3d80f6加当时实施工作树；当前受影响路径由c4493af完整回归补验"
+    },
+    {
+      "entry": "Git Bash",
+      "test": "search",
+      "command": "export PATH='/d/install/GlobalScoopApps/shims:/d/install/Scoop/shims:/c/Windows/System32:'\"$PATH\"; cd 'C:/Users/zagge/.config/nvim' && 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/search_smoke.py'",
+      "passed": true,
+      "output": "PASS default and explicit ignored searches; legitimate lib source preserved\n",
+      "revision_scope": "e3d80f6加当时实施工作树；当前受影响路径由c4493af完整回归补验"
+    },
+    {
+      "entry": "Git Bash",
+      "test": "project_theme",
+      "command": "export PATH='/d/install/GlobalScoopApps/shims:/d/install/Scoop/shims:/c/Windows/System32:'\"$PATH\"; cd 'C:/Users/zagge/.config/nvim' && 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/project_theme_smoke.py'",
+      "passed": true,
+      "output": "PASS absolute files and same-name Git/worktree roots select separate themesPASS portable suffix roots, monorepo override and non-Git project marker项目主题 missing-neovim-test-theme 无法加载，请检查 nvim_project_themes：Vim:E185: Cannot find color scheme 'missing-neovim-test-theme'PASS stable theme, special buffers, global tab switching and invalid-theme diagnostic\n",
+      "revision_scope": "e3d80f6加当时实施工作树；当前受影响路径由c4493af完整回归补验"
+    },
+    {
+      "entry": "zsh",
+      "test": "go_startup",
+      "command": "export PATH='/d/install/GlobalScoopApps/shims:/d/install/Scoop/shims:/c/Windows/System32:'\"$PATH\"; cd 'C:/Users/zagge/.config/nvim' && 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/go_startup_smoke.py'",
+      "passed": true,
+      "output": "Native MinGW compiler: x86_64-w64-mingw32\nPASS Go file and disabled-LSP lifecycle do not run Go; commands preserved: 0.97s\n",
+      "revision_scope": "e3d80f6加当时实施工作树；当前受影响路径由c4493af完整回归补验"
+    },
+    {
+      "entry": "zsh",
+      "test": "git_lifecycle",
+      "command": "export PATH='/d/install/GlobalScoopApps/shims:/d/install/Scoop/shims:/c/Windows/System32:'\"$PATH\"; cd 'C:/Users/zagge/.config/nvim' && 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/git_lifecycle_smoke.py'",
+      "passed": true,
+      "output": "PASS rapid buffer/write lifecycle, process exit and output handle cleanup\n",
+      "revision_scope": "e3d80f6加当时实施工作树；当前受影响路径由c4493af完整回归补验"
+    },
+    {
+      "entry": "zsh",
+      "test": "keys",
+      "command": "export PATH='/d/install/GlobalScoopApps/shims:/d/install/Scoop/shims:/c/Windows/System32:'\"$PATH\"; cd 'C:/Users/zagge/.config/nvim' && 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/keys_smoke.py'",
+      "passed": true,
+      "output": "PASS terminal current Esc/fj preserve foreground task and resumed input\nPASS terminal split Esc/fj preserve foreground task and resumed input\nHunk 1 of 2Hunk 2 of 2Hunk 1 of 2PASS Git hunk navigation leaves contents unchangedPASS native diff navigation leaves contents unchangedPASS explicit staging, cancelling/confirming reset and real Git diff entry\nPASS bigfile paging works without CocPASS bigfile Enter/Tab/Shift-Tab work without Coc\nPASS grouped resize/nohighlight and unified navigation entries\n",
+      "revision_scope": "e3d80f6加当时实施工作树；当前受影响路径由c4493af完整回归补验"
+    },
+    {
+      "entry": "zsh",
+      "test": "editor",
+      "command": "export PATH='/d/install/GlobalScoopApps/shims:/d/install/Scoop/shims:/c/Windows/System32:'\"$PATH\"; cd 'C:/Users/zagge/.config/nvim' && 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/editor_smoke.py'",
+      "passed": true,
+      "output": "PASS highlight sample.jsPASS highlight sample.tsPASS highlight sample.jsxPASS highlight sample.tsxPASS highlight vue2.vuePASS highlight vue3.vuePASS highlight sample.goPASS highlight sample.pyPASS real Git blamePASS large-file bytes.tsPASS large-file lines.tsPASS large-file longline.ts",
+      "revision_scope": "e3d80f6加当时实施工作树；当前受影响路径由c4493af完整回归补验"
+    },
+    {
+      "entry": "zsh",
+      "test": "coc",
+      "command": "export PATH='/d/install/GlobalScoopApps/shims:/d/install/Scoop/shims:/c/Windows/System32:'\"$PATH\"; cd 'C:/Users/zagge/.config/nvim' && 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/coc_smoke.py'",
+      "passed": true,
+      "output": "PASS shared Coc data, provisioned extensions and retired Tabnine policy; CocRestart rechecked; no TLS rejection\n",
+      "before_fix_output": "Traceback (most recent call last):\n  File \"C:\\Users\\zagge\\.config\\nvim\\tests\\coc_smoke.py\", line 72, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\Users\\zagge\\.config\\nvim\\tests\\coc_smoke.py\", line 64, in main\n    assert report[\"ok\"], report[\"message\"] + \"\\n\" + captured\n           ~~~~~~^^^^^^\nAssertionError: .../msys2/2026-03-22/tmp/nvim-coc-smoke-i10jny55/verify.lua:11: \"service not started\"; CocRestart rechecked\n[coc.nvim] \"node\" is not executa...t https://nodejs.org/en/download/\n",
+      "revision_scope": "c4493af工作树修复后补验"
+    },
+    {
+      "entry": "zsh",
+      "test": "ai",
+      "command": "export PATH='/d/install/GlobalScoopApps/shims:/d/install/Scoop/shims:/c/Windows/System32:'\"$PATH\"; cd 'C:/Users/zagge/.config/nvim' && 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/ai_smoke.py'",
+      "passed": true,
+      "output": "PASS bundled Copilot initialized; Coc keys preserved; large-file startup and growth guarded",
+      "before_fix_output": "...s/msys2/2026-03-22/tmp/nvim-ai-smoke-e5mzzhkz/verify.lua:10: Bundled Copilot server did not initialize\nstack traceback:\n\t[C]: in function 'assert'\n\t...s/msys2/2026-03-22/tmp/nvim-ai-smoke-e5mzzhkz/verify.lua:10: in function <...s/msys2/2026-03-22/tmp/nvim-ai-smoke-e5mzzhkz/verify.lua:2>\n\t[C]: in function 'xpcall'\n\t...s/msys2/2026-03-22/tmp/nvim-ai-smoke-e5mzzhkz/verify.lua:29: in function 'fn'\n\t[string \"?\"]:526: in function <[string \"?\"]:521>\nTraceback (most recent call last):\n  File \"C:\\Users\\zagge\\.config\\nvim\\tests\\ai_smoke.py\", line 57, in <module>\n    main()\n    ~~~~^^\n  File \"C:\\Users\\zagge\\.config\\nvim\\tests\\ai_smoke.py\", line 51, in main\n    subprocess.run([\"nvim\", \"--headless\", \"-n\", \"--cmd\", \"let g:coc_start_at_startup=0\",\n    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                    str(root / \"large.ts\"), \"+lua dofile(vim.env.NVIM_AI_TEST .. '/verify.lua')\"],\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                   env=env, check=True, timeout=20)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\install\\GlobalScoopApps\\apps\\python\\current\\Lib\\subprocess.py\", line 578, in run\n    raise CalledProcessError(retcode, process.args,\n                             output=stdout, stderr=stderr)\nsubprocess.CalledProcessError: Command '['nvim', '--headless', '-n', '--cmd', 'let g:coc_start_at_startup=0', 'D:\\\\install\\\\Scoop\\\\apps\\\\msys2\\\\2026-03-22\\\\tmp\\\\nvim-ai-smoke-e5mzzhkz\\\\large.ts', \"+lua dofile(vim.env.NVIM_AI_TEST .. '/verify.lua')\"]' returned non-zero exit status 1.\n",
+      "revision_scope": "c4493af工作树修复后补验"
+    },
+    {
+      "entry": "zsh",
+      "test": "rest",
+      "command": "export PATH='/d/install/GlobalScoopApps/shims:/d/install/Scoop/shims:/c/Windows/System32:'\"$PATH\"; cd 'C:/Users/zagge/.config/nvim' && 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/rest_smoke.py'",
+      "passed": true,
+      "output": "PASS GET /get?value=portable\nPASS POST /json\nPASS POST /xml\nPASS POST /file",
+      "revision_scope": "e3d80f6加当时实施工作树；当前受影响路径由c4493af完整回归补验"
+    },
+    {
+      "entry": "zsh",
+      "test": "search",
+      "command": "export PATH='/d/install/GlobalScoopApps/shims:/d/install/Scoop/shims:/c/Windows/System32:'\"$PATH\"; cd 'C:/Users/zagge/.config/nvim' && 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/search_smoke.py'",
+      "passed": true,
+      "output": "PASS default and explicit ignored searches; legitimate lib source preserved\n",
+      "before_fix_output": "Traceback (most recent call last):\n  File \"C:\\Users\\zagge\\.config\\nvim\\tests\\search_smoke.py\", line 58, in <module>\n    if __name__=='__main__':main()\n                            ~~~~^^\n  File \"C:\\Users\\zagge\\.config\\nvim\\tests\\search_smoke.py\", line 55, in main\n    assert result.returncode==0,result.stdout\n           ^^^^^^^^^^^^^^^^^^^^\nAssertionError: [telescope] [WARN  13:32:20] C:/...lua:298: rg: Executable not found[telescope] stack traceback:[telescope] ^I.../Local/nvim-dat...a:298: in function 'convert_opts'[telescope] ^I.../Local/nvim-dat...scope/_.lua:18: in function 'new'[telescope] ^I.../Local/nvim-dat...ope/_.lua:64: in function 'spawn'[telescope] ^I...elescope.nvim/l...nder.lua:49: in function 'finder'[telescope] ^I.../nvim-data/lazy...im/lua/telescope/pickers.lua:493>[telescope] ^I[C]: in function 'pcall'[telescope] ^I.../nvim-data/lazy...im/lua/telescope/pickers.lua:454>...apps/msys2/2026-03-22/tmp/nvim-search-j0i0s3xm/probe.lua:14: search never completed\nstack traceback:\n\t[C]: in function 'assert'\n\t...apps/msys2/2026-03-22/tmp/nvim-search-j0i0s3xm/probe.lua:14: in function 'search'\n\t...apps/msys2/2026-03-22/tmp/nvim-search-j0i0s3xm/probe.lua:21: in function <...apps/msys2/2026-03-22/tmp/nvim-search-j0i0s3xm/probe.lua:3>\n\t[C]: in function 'xpcall'\n\t...apps/msys2/2026-03-22/tmp/nvim-search-j0i0s3xm/probe.lua:3: in function 'fn'\n\t[string \"?\"]:526: in function <[string \"?\"]:521>\n",
+      "revision_scope": "c4493af工作树修复后补验"
+    },
+    {
+      "entry": "zsh",
+      "test": "project_theme",
+      "command": "export PATH='/d/install/GlobalScoopApps/shims:/d/install/Scoop/shims:/c/Windows/System32:'\"$PATH\"; cd 'C:/Users/zagge/.config/nvim' && 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/project_theme_smoke.py'",
+      "passed": true,
+      "output": "PASS absolute files and same-name Git/worktree roots select separate themesPASS portable suffix roots, monorepo override and non-Git project marker项目主题 missing-neovim-test-theme 无法加载，请检查 nvim_project_themes：Vim:E185: Cannot find color scheme 'missing-neovim-test-theme'PASS stable theme, special buffers, global tab switching and invalid-theme diagnostic\n",
+      "revision_scope": "e3d80f6加当时实施工作树；当前受影响路径由c4493af完整回归补验"
+    }
+  ]
+}

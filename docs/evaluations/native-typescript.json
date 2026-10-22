@@ -1,0 +1,16 @@
+{
+  "result": {
+    "references": true,
+    "completion": true,
+    "language": "typescript",
+    "blink_setup": true,
+    "diagnostics": true,
+    "native_initialize_ms": 338.051,
+    "completion_request_ms": 251.1728,
+    "definition": true,
+    "rename": true,
+    "blink_menu_callback": true,
+    "matcher": "lua"
+  },
+  "ok": true
+}

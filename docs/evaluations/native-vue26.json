@@ -1,0 +1,16 @@
+{
+  "result": {
+    "diagnostics": true,
+    "native_initialize_ms": 1283.1727,
+    "completion_request_ms": 16.9607,
+    "definition": true,
+    "blink_setup": true,
+    "blink_menu_callback": true,
+    "completion": true,
+    "matcher": "lua",
+    "rename": true,
+    "language": "vue26",
+    "references": true
+  },
+  "ok": true
+}

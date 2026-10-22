@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "result": {
+    "rename": true,
+    "completion": true,
+    "diagnostics": true,
+    "native_initialize_ms": 216.769,
+    "language": "go",
+    "definition": true,
+    "blink_setup": true,
+    "blink_menu_callback": true,
+    "matcher": "lua",
+    "references": true,
+    "completion_request_ms": 221.6615
+  }
+}

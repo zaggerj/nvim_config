@@ -1,0 +1,16 @@
+{
+  "result": {
+    "references": true,
+    "native_initialize_ms": 247.3808,
+    "completion_request_ms": 202.4213,
+    "rename": true,
+    "blink_setup": true,
+    "blink_menu_callback": true,
+    "completion": true,
+    "matcher": "lua",
+    "definition": true,
+    "language": "javascript",
+    "diagnostics": true
+  },
+  "ok": true
+}

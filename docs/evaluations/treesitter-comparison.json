@@ -1,0 +1,85 @@
+{
+  "candidate": "29212d826054bb2948fa9d3a99eca9bf6a050eb2",
+  "http_request": {
+    "ok": true
+  },
+  "cases": [
+    {
+      "file": "sample.js",
+      "ready_ms": 159.7105,
+      "ok": true
+    },
+    {
+      "file": "sample.ts",
+      "ready_ms": 302.5082,
+      "ok": true
+    },
+    {
+      "file": "sample.jsx",
+      "ready_ms": 1.7653,
+      "ok": true
+    },
+    {
+      "file": "sample.tsx",
+      "ready_ms": 352.9375,
+      "ok": true
+    },
+    {
+      "file": "vue2.vue",
+      "ready_ms": 27.3788,
+      "ok": true
+    },
+    {
+      "file": "vue3.vue",
+      "ready_ms": 6.5774,
+      "ok": true
+    },
+    {
+      "file": "main.go",
+      "ready_ms": 21.7559,
+      "ok": true
+    },
+    {
+      "file": "main.py",
+      "ready_ms": 72.6717,
+      "ok": true
+    },
+    {
+      "file": "main.lua",
+      "ready_ms": 5.4619,
+      "ok": true
+    },
+    {
+      "file": "request.http",
+      "ready_ms": 13.8313,
+      "ok": true
+    }
+  ],
+  "context_detected": false,
+  "autotag_output": "const V = () => <div></div>",
+  "autotag_closed": true,
+  "large_line_protected": true,
+  "install_ok": true,
+  "context_window": false,
+  "context_view": {
+    "leftcol": 0,
+    "coladd": 0,
+    "lnum": 60,
+    "curswant": 2,
+    "skipcol": 0,
+    "topline": 60,
+    "col": 2,
+    "topfill": 0
+  },
+  "cli": "tree-sitter 0.27.1\n",
+  "integrations": {
+    "nvim-ts-autotag": {
+      "setup_ok": true
+    },
+    "treesitter-context": {
+      "setup_ok": true
+    }
+  },
+  "old_configs_present": false,
+  "build_log": "5 lines to indent... 6 lines indented 5 lines to indent... 6 lines indented 2 lines to indent... 3 lines indented 2 lines to indent... 3 lines indented "
+}

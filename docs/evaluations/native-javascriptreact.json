@@ -1,0 +1,16 @@
+{
+  "result": {
+    "language": "javascriptreact",
+    "diagnostics": true,
+    "native_initialize_ms": 326.9328,
+    "completion_request_ms": 175.812,
+    "definition": true,
+    "blink_setup": true,
+    "blink_menu_callback": true,
+    "completion": true,
+    "rename": true,
+    "references": true,
+    "matcher": "lua"
+  },
+  "ok": true
+}

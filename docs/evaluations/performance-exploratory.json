@@ -1,0 +1,202 @@
+{
+  "platform": "Windows-11-10.0.26100-SP0",
+  "python": "3.14.5",
+  "neovim": "NVIM v0.12.6",
+  "config_sources": {
+    "A": {
+      "init.vim": "fddb3499b8c9091a2f80ae48dd017f11d3c68bec9bc66699c1781ec28917bb4c",
+      "lua\\plugins.lua": "ec16a5d52c497f209cdb363c071a1b912b9963b1186ab381d5de2ec28cba60da",
+      "lazy-lock.json": "e5486c2e86625b6b8766f81873710254ba0d9c37cf56a17b4411cf013a6802cc"
+    },
+    "B": {
+      "init.vim": "b856d8e8cb09e475b5ed2ef269d09224a73709f3afd7b78568ed7275a9dc9dec",
+      "lua\\plugins.lua": "28d0792f6cad748f30ff6ba2021565b0f8ffee8d2bd83609fa0e2c60de3c2b39",
+      "lazy-lock.json": "e7c54ac00032fe5662624bc7f3b929ec5f0bcb0da9a4f2809c4cf4c2d27afcb2"
+    }
+  },
+  "method": "RPC UI attach 100x35; internal first screen from --startuptime; first UI flush after VimEnter uses Python process wall clock; no physical terminal painting.",
+  "cache": "No user cache deleted. First-observed is not certified cold; later samples warm repeated. A/B alternate only when compare-root is provided.",
+  "readiness": "Lua pre-init hrtime; highlighter+statusline, Coc RPC and definition-provider availability separately; 10ms polling. Provider availability is not completion-quality verification.",
+  "fixture": {
+    "files": 1200,
+    "kind": "generated Python project and ignored Git cache",
+    "search": "same input set for all variants"
+  },
+  "runs": [
+    {
+      "vimenter_ms": 968.0275,
+      "first_ui_flush_wall_ms": 1592.0582999970065,
+      "loaded_plugins": 22,
+      "colors_name": "catppuccin-latte",
+      "language_filetype": "python",
+      "editor_ready_ms": 1535.7302,
+      "coc_rpc_ms": 1535.7682,
+      "files_first_result_ms": 350.0948,
+      "definition_provider_ms": 3669.7933,
+      "grep_first_result_ms": 166.3787,
+      "first_screen_internal_ms": 1361.885,
+      "process_wall_ms": 4992.727200005902,
+      "kind": "A",
+      "run": 1,
+      "cache_state": "first-observed"
+    },
+    {
+      "vimenter_ms": 495.0884,
+      "first_ui_flush_wall_ms": 813.0327999970177,
+      "coc_rpc_ms": 915.4064,
+      "definition_provider_ms": 2551.2592,
+      "loaded_plugins": 27,
+      "grep_first_result_ms": 271.5086,
+      "files_first_result_ms": 463.2563,
+      "language_filetype": "python",
+      "editor_ready_ms": 915.3816,
+      "first_screen_internal_ms": 691.78,
+      "process_wall_ms": 3992.8960999968695,
+      "kind": "B",
+      "run": 1,
+      "cache_state": "first-observed"
+    },
+    {
+      "vimenter_ms": 826.7699,
+      "first_ui_flush_wall_ms": 1196.4592999866,
+      "loaded_plugins": 22,
+      "colors_name": "catppuccin-latte",
+      "grep_first_result_ms": 176.4866,
+      "language_filetype": "python",
+      "coc_rpc_ms": 1603.1867,
+      "files_first_result_ms": 318.9016,
+      "editor_ready_ms": 1603.1658,
+      "definition_provider_ms": 3471.8577,
+      "first_screen_internal_ms": 1127.901,
+      "process_wall_ms": 4505.498399987118,
+      "kind": "A",
+      "run": 2,
+      "cache_state": "warm-repeated"
+    },
+    {
+      "vimenter_ms": 494.4927,
+      "first_ui_flush_wall_ms": 744.4802999962121,
+      "loaded_plugins": 27,
+      "definition_provider_ms": 2341.6028,
+      "grep_first_result_ms": 161.6817,
+      "files_first_result_ms": 247.1006,
+      "language_filetype": "python",
+      "editor_ready_ms": 1062.558,
+      "coc_rpc_ms": 1062.5953,
+      "first_screen_internal_ms": 695.49,
+      "process_wall_ms": 3178.980500000762,
+      "kind": "B",
+      "run": 2,
+      "cache_state": "warm-repeated"
+    },
+    {
+      "vimenter_ms": 515.8423,
+      "first_ui_flush_wall_ms": 985.0850000075297,
+      "loaded_plugins": 22,
+      "language_filetype": "python",
+      "files_first_result_ms": 260.0349,
+      "editor_ready_ms": 940.9613,
+      "coc_rpc_ms": 940.9854,
+      "definition_provider_ms": 2230.0837,
+      "colors_name": "catppuccin-latte",
+      "grep_first_result_ms": 162.968,
+      "first_screen_internal_ms": 701.646,
+      "process_wall_ms": 3096.068800005014,
+      "kind": "A",
+      "run": 3,
+      "cache_state": "warm-repeated"
+    },
+    {
+      "vimenter_ms": 478.0561,
+      "first_ui_flush_wall_ms": 783.8673000078415,
+      "loaded_plugins": 27,
+      "files_first_result_ms": 413.0744,
+      "definition_provider_ms": 3334.1553,
+      "grep_first_result_ms": 240.6316,
+      "coc_rpc_ms": 1061.9567,
+      "editor_ready_ms": 1061.9387,
+      "language_filetype": "python",
+      "first_screen_internal_ms": 710.572,
+      "process_wall_ms": 4688.427200002479,
+      "kind": "B",
+      "run": 3,
+      "cache_state": "warm-repeated"
+    }
+  ],
+  "summary_ms": {
+    "A": {
+      "first_screen_internal_ms": {
+        "median": 1127.901,
+        "minimum": 701.646,
+        "maximum": 1361.885
+      },
+      "first_ui_flush_wall_ms": {
+        "median": 1196.4592999866,
+        "minimum": 985.0850000075297,
+        "maximum": 1592.0582999970065
+      },
+      "editor_ready_ms": {
+        "median": 1535.7302,
+        "minimum": 940.9613,
+        "maximum": 1603.1658
+      },
+      "coc_rpc_ms": {
+        "median": 1535.7682,
+        "minimum": 940.9854,
+        "maximum": 1603.1867
+      },
+      "definition_provider_ms": {
+        "median": 3471.8577,
+        "minimum": 2230.0837,
+        "maximum": 3669.7933
+      },
+      "files_first_result_ms": {
+        "median": 318.9016,
+        "minimum": 260.0349,
+        "maximum": 350.0948
+      },
+      "grep_first_result_ms": {
+        "median": 166.3787,
+        "minimum": 162.968,
+        "maximum": 176.4866
+      }
+    },
+    "B": {
+      "first_screen_internal_ms": {
+        "median": 695.49,
+        "minimum": 691.78,
+        "maximum": 710.572
+      },
+      "first_ui_flush_wall_ms": {
+        "median": 783.8673000078415,
+        "minimum": 744.4802999962121,
+        "maximum": 813.0327999970177
+      },
+      "editor_ready_ms": {
+        "median": 1061.9387,
+        "minimum": 915.3816,
+        "maximum": 1062.558
+      },
+      "coc_rpc_ms": {
+        "median": 1061.9567,
+        "minimum": 915.4064,
+        "maximum": 1062.5953
+      },
+      "definition_provider_ms": {
+        "median": 2551.2592,
+        "minimum": 2341.6028,
+        "maximum": 3334.1553
+      },
+      "files_first_result_ms": {
+        "median": 413.0744,
+        "minimum": 247.1006,
+        "maximum": 463.2563
+      },
+      "grep_first_result_ms": {
+        "median": 240.6316,
+        "minimum": 161.6817,
+        "maximum": 271.5086
+      }
+    }
+  }
+}

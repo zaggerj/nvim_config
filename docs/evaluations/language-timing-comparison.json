@@ -1,0 +1,266 @@
+{
+  "method": "Alternating 3 samples per language/stack; no cache deletion. Both issue definition/references/rename before timed completion. Native -u NONE+blink Lua matcher versus configured Coc. Native initialize and Coc provider are different readiness signals. Lua completion uses trailing gre. No terminal paint/process-start cost.",
+  "runs": [
+    {
+      "ok": true,
+      "result": {
+        "completion_request_ms": 23.4345,
+        "stack": "coc",
+        "language": "python",
+        "coc_provider_ms": 1383.4052
+      },
+      "stack": "coc",
+      "sample": 1
+    },
+    {
+      "ok": true,
+      "result": {
+        "diagnostics": true,
+        "native_initialize_ms": 240.9599,
+        "completion_request_ms": 49.2161,
+        "definition": true,
+        "rename": true,
+        "blink_menu_callback": true,
+        "matcher": "lua",
+        "completion": true,
+        "blink_setup": true,
+        "language": "python",
+        "references": true
+      },
+      "stack": "native",
+      "sample": 1
+    },
+    {
+      "result": {
+        "matcher": "lua",
+        "references": true,
+        "diagnostics": true,
+        "native_initialize_ms": 242.8375,
+        "completion_request_ms": 52.6796,
+        "definition": true,
+        "blink_setup": true,
+        "blink_menu_callback": true,
+        "rename": true,
+        "language": "python",
+        "completion": true
+      },
+      "ok": true,
+      "stack": "native",
+      "sample": 2
+    },
+    {
+      "ok": true,
+      "result": {
+        "stack": "coc",
+        "completion_request_ms": 24.0634,
+        "coc_provider_ms": 1307.1976,
+        "language": "python"
+      },
+      "stack": "coc",
+      "sample": 2
+    },
+    {
+      "ok": true,
+      "result": {
+        "completion_request_ms": 21.0291,
+        "coc_provider_ms": 1265.6187,
+        "language": "python",
+        "stack": "coc"
+      },
+      "stack": "coc",
+      "sample": 3
+    },
+    {
+      "ok": true,
+      "result": {
+        "rename": true,
+        "diagnostics": true,
+        "native_initialize_ms": 233.602,
+        "completion_request_ms": 51.1755,
+        "language": "python",
+        "blink_setup": true,
+        "completion": true,
+        "matcher": "lua",
+        "blink_menu_callback": true,
+        "definition": true,
+        "references": true
+      },
+      "stack": "native",
+      "sample": 3
+    },
+    {
+      "ok": true,
+      "result": {
+        "stack": "coc",
+        "coc_provider_ms": 1103.5607,
+        "completion_request_ms": 12.2853,
+        "language": "lua"
+      },
+      "stack": "coc",
+      "sample": 1
+    },
+    {
+      "result": {
+        "completion": true,
+        "matcher": "lua",
+        "references": true,
+        "language": "lua",
+        "blink_menu_callback": true,
+        "native_initialize_ms": 178.5431,
+        "diagnostics": true,
+        "rename": true,
+        "completion_request_ms": 14.3924,
+        "definition": true,
+        "blink_setup": true
+      },
+      "ok": true,
+      "stack": "native",
+      "sample": 1
+    },
+    {
+      "result": {
+        "blink_menu_callback": true,
+        "matcher": "lua",
+        "completion": true,
+        "rename": true,
+        "language": "lua",
+        "references": true,
+        "diagnostics": true,
+        "native_initialize_ms": 157.2558,
+        "completion_request_ms": 13.6606,
+        "definition": true,
+        "blink_setup": true
+      },
+      "ok": true,
+      "stack": "native",
+      "sample": 2
+    },
+    {
+      "result": {
+        "language": "lua",
+        "stack": "coc",
+        "completion_request_ms": 12.5978,
+        "coc_provider_ms": 1192.6176
+      },
+      "ok": true,
+      "stack": "coc",
+      "sample": 2
+    },
+    {
+      "result": {
+        "language": "lua",
+        "coc_provider_ms": 1086.1296,
+        "completion_request_ms": 13.5107,
+        "stack": "coc"
+      },
+      "ok": true,
+      "stack": "coc",
+      "sample": 3
+    },
+    {
+      "ok": true,
+      "result": {
+        "rename": true,
+        "matcher": "lua",
+        "blink_menu_callback": true,
+        "references": true,
+        "language": "lua",
+        "diagnostics": true,
+        "native_initialize_ms": 164.6793,
+        "completion_request_ms": 12.0668,
+        "definition": true,
+        "blink_setup": true,
+        "completion": true
+      },
+      "stack": "native",
+      "sample": 3
+    },
+    {
+      "result": {
+        "language": "go",
+        "coc_provider_ms": 1033.8955,
+        "completion_request_ms": 177.1264,
+        "stack": "coc"
+      },
+      "ok": true,
+      "stack": "coc",
+      "sample": 1
+    },
+    {
+      "result": {
+        "rename": true,
+        "diagnostics": true,
+        "native_initialize_ms": 209.3198,
+        "completion_request_ms": 213.2029,
+        "definition": true,
+        "blink_setup": true,
+        "completion": true,
+        "matcher": "lua",
+        "blink_menu_callback": true,
+        "references": true,
+        "language": "go"
+      },
+      "ok": true,
+      "stack": "native",
+      "sample": 1
+    },
+    {
+      "result": {
+        "native_initialize_ms": 209.5698,
+        "completion_request_ms": 204.5501,
+        "definition": true,
+        "blink_setup": true,
+        "blink_menu_callback": true,
+        "references": true,
+        "completion": true,
+        "matcher": "lua",
+        "language": "go",
+        "rename": true,
+        "diagnostics": true
+      },
+      "ok": true,
+      "stack": "native",
+      "sample": 2
+    },
+    {
+      "result": {
+        "completion_request_ms": 189.2976,
+        "language": "go",
+        "stack": "coc",
+        "coc_provider_ms": 1157.7641
+      },
+      "ok": true,
+      "stack": "coc",
+      "sample": 2
+    },
+    {
+      "result": {
+        "language": "go",
+        "stack": "coc",
+        "coc_provider_ms": 1220.1154,
+        "completion_request_ms": 196.6124
+      },
+      "ok": true,
+      "stack": "coc",
+      "sample": 3
+    },
+    {
+      "ok": true,
+      "result": {
+        "rename": true,
+        "language": "go",
+        "references": true,
+        "diagnostics": true,
+        "native_initialize_ms": 224.3794,
+        "completion_request_ms": 212.2178,
+        "definition": true,
+        "blink_setup": true,
+        "blink_menu_callback": true,
+        "matcher": "lua",
+        "completion": true
+      },
+      "stack": "native",
+      "sample": 3
+    }
+  ]
+}
