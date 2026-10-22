@@ -1,0 +1,189 @@
+{
+  "platform": "Windows-11-10.0.26100-SP0",
+  "python": "3.14.5",
+  "neovim": "NVIM v0.12.6",
+  "config_sources": {
+    "A": {
+      "init.vim": "d4560d71689db9b13f67bb258cb6c15cbb8204e8db6ab51f10df02c241cca5d3",
+      "lazy-lock.json": "c585df8b9d79ff1ffea57dd04264879fb3d1e978240e209525172031a954d6a5",
+      "lua\\ai.lua": "678c06be77d168074f058b7564daef9f8e40e7f3b275dc3200b6386de1cc497c",
+      "lua\\bootstrap.lua": "cd1cea456867f45356b983972e41445728844751606d5feb8eabf99b77cebb8a",
+      "lua\\coc_setup.lua": "470388c3af00d81e5b988c8a92f02c164f83947122fcd9214bad035f71bde7a7",
+      "lua\\command_palette.lua": "1436af2be6b43630a7acb4918423d47a01cfca5f0600b7284e89281fa5264c6f",
+      "lua\\git_actions.lua": "f713896345e11acde3b5f7f10365065ff974eefb3e8e3b61403041285faa6271",
+      "lua\\go_compat.lua": "692a11bdb30e605b42256eb6a66102c36f510a7212eee3718829c63b80008a87",
+      "lua\\languages.lua": "13245a584167aec17d18437cd5b212c6cfa671f08b678570b5375b1d173361b0",
+      "lua\\large_file.lua": "c9899f02d3ccf62f624a26357c827b22c1609e3f219e44131a424158ad0b9b5e",
+      "lua\\neorg_setup.lua": "83d8b7b762d5bf9cd4053af4d48df67bb82870fe34060395d0d55054c948208e",
+      "lua\\parser_setup.lua": "886e23aae052a5cefedec22dbcd80d16eacca42199a0c608efe81a94e9dfcc49",
+      "lua\\platform.lua": "7a66a910cbe2333112e8bbc73ba958eb0696e7c76caa4d9eb23c1d0b463cb8ea",
+      "lua\\plugins.lua": "8cdc711b6cac679150d6458b3dfa8fd5a23fd1b952f070eb56a31d6df46a7a9a",
+      "lua\\project_theme.lua": "12505bd199cd903f46a2d548c0ead4232dc3560edd4bfef878a073914b5519ba",
+      "lua\\rest_compat.lua": "69ebb3a232d27514ba87a8a3f346d2a6d23e9341dda3e0c61ba5910eb7f2e319",
+      "lua\\search.lua": "a61a653d89d21f6fcd10c4cba6df8b9ad5f7aa9608e96d12c365cafa89e80384",
+      "lua\\tutor_progress.lua": "95333ceb079d6512f7ccbea62e6fd0c886238f16b23bee0aecd568243b530b14",
+      "mysettings\\autocmds.vim": "b71630de8c629196a4dfa662520face66d6b63a537053e4ed179f9d670c70e6c",
+      "mysettings\\basic.vim": "f556202e03cfd1ed2922aa2a603172c8c375ab05bfc1c3046f8496979e1977d5",
+      "mysettings\\firenvim.vim": "d380b093f3001caba44ff02cfe3b942c7a09102078f0cc35d487e677ecef5838",
+      "mysettings\\functions.vim": "8ab2a490eb5156921ae8abdfdd1f1fead43cac7a857df1d3a4189c7312cdc275",
+      "mysettings\\maps.vim": "195663ce0461f7b54991e8789da2f2b363d173087eb7e4d18f05fe8886e83057",
+      "mysettings\\ngconsole.vim": "8274eda8abd216292a368b2265b3b7628baa75f8f3280bc9853c1a1906b31f0b",
+      "mysettings\\ui.vim": "6a63ee5d56e41b848e9e7f206a79c0565bd1d56864eb689d78e7bccd273928e2"
+    },
+    "B": {
+      "init.vim": "d4560d71689db9b13f67bb258cb6c15cbb8204e8db6ab51f10df02c241cca5d3",
+      "lazy-lock.json": "c585df8b9d79ff1ffea57dd04264879fb3d1e978240e209525172031a954d6a5",
+      "lua\\ai.lua": "678c06be77d168074f058b7564daef9f8e40e7f3b275dc3200b6386de1cc497c",
+      "lua\\bootstrap.lua": "6d0c2eb8c04727b70972449fc7b865701456fca20be987a6c587e66f68545ecc",
+      "lua\\coc_setup.lua": "470388c3af00d81e5b988c8a92f02c164f83947122fcd9214bad035f71bde7a7",
+      "lua\\command_palette.lua": "1436af2be6b43630a7acb4918423d47a01cfca5f0600b7284e89281fa5264c6f",
+      "lua\\git_actions.lua": "a055efd2a04529ae1f2c4ea0dc5b3afb603438facb311d83537b8e8c7f29dffd",
+      "lua\\go_compat.lua": "92e99b04f78473fe3ca1f58849c9ddd1c41502ab6a2b251f7941e76a56e590d9",
+      "lua\\languages.lua": "13245a584167aec17d18437cd5b212c6cfa671f08b678570b5375b1d173361b0",
+      "lua\\large_file.lua": "86d9d5df5684b317ab94d1cc2335d85265b0cd222f8b9648dfafda86cd101d42",
+      "lua\\neorg_setup.lua": "7b73b960eae3eb18bd73ebb23281ecd88d365ed285bbdb897e0bd5a2e99a5cdc",
+      "lua\\parser_setup.lua": "18011e2c53d1f79caae690fde163096e3f1af450fc25fe33a36b4fb42ac2834f",
+      "lua\\platform.lua": "e92ad99457c7ca1d6554356a1c56c1deca2e8fca4c2d8f969f3834dd17424196",
+      "lua\\plugins.lua": "8cdc711b6cac679150d6458b3dfa8fd5a23fd1b952f070eb56a31d6df46a7a9a",
+      "lua\\project_theme.lua": "85596e415f96fb5c684232706a49c317bf5e5461881b561eb2b43210ab52fb19",
+      "lua\\rest_compat.lua": "424d2c5e67bbfb5066219698ecc48e61ce8a1ba92e877929bce0dad6f24761b0",
+      "lua\\search.lua": "a61a653d89d21f6fcd10c4cba6df8b9ad5f7aa9608e96d12c365cafa89e80384",
+      "lua\\tutor_progress.lua": "95333ceb079d6512f7ccbea62e6fd0c886238f16b23bee0aecd568243b530b14",
+      "mysettings\\autocmds.vim": "b71630de8c629196a4dfa662520face66d6b63a537053e4ed179f9d670c70e6c",
+      "mysettings\\basic.vim": "f556202e03cfd1ed2922aa2a603172c8c375ab05bfc1c3046f8496979e1977d5",
+      "mysettings\\firenvim.vim": "d380b093f3001caba44ff02cfe3b942c7a09102078f0cc35d487e677ecef5838",
+      "mysettings\\functions.vim": "8ab2a490eb5156921ae8abdfdd1f1fead43cac7a857df1d3a4189c7312cdc275",
+      "mysettings\\maps.vim": "195663ce0461f7b54991e8789da2f2b363d173087eb7e4d18f05fe8886e83057",
+      "mysettings\\ngconsole.vim": "8274eda8abd216292a368b2265b3b7628baa75f8f3280bc9853c1a1906b31f0b",
+      "mysettings\\ui.vim": "6a63ee5d56e41b848e9e7f206a79c0565bd1d56864eb689d78e7bccd273928e2"
+    }
+  },
+  "method": "RPC UI attach 100x35; internal first screen from --startuptime; first UI flush after VimEnter uses Python process wall clock; no physical terminal painting.",
+  "lifetime": "Each sample has a 45s external process-tree deadline; errors retained and fail final assertions. Worker startup is outside measured Neovim wall time.",
+  "cache": "No user cache deleted. First-observed is not certified cold; later samples warm repeated. A/B alternate only when compare-root is provided.",
+  "readiness": "Lua pre-init hrtime; highlighter+statusline, Coc RPC and definition-provider availability separately; 10ms polling. Provider availability is not completion-quality verification.",
+  "fixture": {
+    "files": 1200,
+    "kind": "generated Python project and ignored Git cache",
+    "search": "same input set for all variants"
+  },
+  "runs": [
+    {
+      "vimenter_ms": 233.1735,
+      "first_ui_flush_wall_ms": 536.9940999999017,
+      "language_filetype": "python",
+      "grep_first_result_ms": 110.899,
+      "colors_name": "catppuccin-latte",
+      "files_first_result_ms": 261.4552,
+      "editor_ready_ms": 682.0186,
+      "loaded_plugins": 22,
+      "coc_rpc_ms": 682.0549,
+      "definition_provider_ms": 2047.2133,
+      "first_screen_internal_ms": 421.642,
+      "process_wall_ms": 2846.5067000006457,
+      "kind": "A",
+      "run": 1,
+      "cache_state": "first-observed"
+    },
+    {
+      "error": "Neovim timed out after 45s; descendants=[(33776, 'nvim.exe', ['nvim', '--embed', '-n', '--startuptime', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\B-1.log', '-u', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-before-provider-rujc0g82\\\\init.vim', '--cmd', 'lua dofile(\"C:/Users/zagge/AppData/Local/Temp/nvim-benchmark-lljxyovs/preload.lua\")', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\main.py']), (39616, 'python.exe', ['C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\nvim-data\\\\tools\\\\benchmark-python\\\\Scripts\\\\python.exe', 'C:\\\\Users\\\\zagge\\\\.config\\\\nvim\\\\scripts\\\\benchmark.py', '--worker', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-before-provider-rujc0g82', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\preload.lua', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\B-1.log', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\B-1.json']), (37144, 'python.exe', ['C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\nvim-data\\\\tools\\\\benchmark-python\\\\Scripts\\\\python.exe', 'C:\\\\Users\\\\zagge\\\\.config\\\\nvim\\\\scripts\\\\benchmark.py', '--worker', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-before-provider-rujc0g82', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\preload.lua', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\B-1.log', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\B-1.json']), (23092, 'nvim.exe', ['D:\\\\install\\\\GlobalScoopApps\\\\apps\\\\neovim\\\\current\\\\bin\\\\nvim.exe', '--embed', '-n', '--startuptime', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\B-1.log', '-u', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-before-provider-rujc0g82\\\\init.vim', '--cmd', 'lua dofile(\"C:/Users/zagge/AppData/Local/Temp/nvim-benchmark-lljxyovs/preload.lua\")', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\main.py'])]\n",
+      "kind": "B",
+      "run": 1,
+      "cache_state": "first-observed"
+    },
+    {
+      "vimenter_ms": 244.3248,
+      "first_ui_flush_wall_ms": 540.5459000003248,
+      "colors_name": "catppuccin-latte",
+      "definition_provider_ms": 2193.2129,
+      "loaded_plugins": 22,
+      "files_first_result_ms": 284.2033,
+      "editor_ready_ms": 594.9456,
+      "language_filetype": "python",
+      "grep_first_result_ms": 144.6007,
+      "coc_rpc_ms": 594.9825,
+      "first_screen_internal_ms": 455.068,
+      "process_wall_ms": 3192.775200000142,
+      "kind": "A",
+      "run": 2,
+      "cache_state": "warm-repeated"
+    },
+    {
+      "error": "Neovim timed out after 45s; descendants=[(32916, 'python.exe', ['C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\nvim-data\\\\tools\\\\benchmark-python\\\\Scripts\\\\python.exe', 'C:\\\\Users\\\\zagge\\\\.config\\\\nvim\\\\scripts\\\\benchmark.py', '--worker', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-before-provider-rujc0g82', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\preload.lua', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\B-2.log', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\B-2.json']), (29960, 'nvim.exe', ['nvim', '--embed', '-n', '--startuptime', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\B-2.log', '-u', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-before-provider-rujc0g82\\\\init.vim', '--cmd', 'lua dofile(\"C:/Users/zagge/AppData/Local/Temp/nvim-benchmark-lljxyovs/preload.lua\")', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\main.py']), (8220, 'nvim.exe', ['D:\\\\install\\\\GlobalScoopApps\\\\apps\\\\neovim\\\\current\\\\bin\\\\nvim.exe', '--embed', '-n', '--startuptime', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\B-2.log', '-u', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-before-provider-rujc0g82\\\\init.vim', '--cmd', 'lua dofile(\"C:/Users/zagge/AppData/Local/Temp/nvim-benchmark-lljxyovs/preload.lua\")', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\main.py']), (3112, 'python.exe', ['C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\nvim-data\\\\tools\\\\benchmark-python\\\\Scripts\\\\python.exe', 'C:\\\\Users\\\\zagge\\\\.config\\\\nvim\\\\scripts\\\\benchmark.py', '--worker', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-before-provider-rujc0g82', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\preload.lua', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\B-2.log', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\B-2.json'])]\n",
+      "kind": "B",
+      "run": 2,
+      "cache_state": "warm-repeated"
+    },
+    {
+      "vimenter_ms": 242.451,
+      "first_ui_flush_wall_ms": 722.2766999993837,
+      "editor_ready_ms": 611.0738,
+      "language_filetype": "python",
+      "colors_name": "catppuccin-latte",
+      "grep_first_result_ms": 171.6841,
+      "coc_rpc_ms": 611.0952,
+      "definition_provider_ms": 2574.7477,
+      "loaded_plugins": 22,
+      "files_first_result_ms": 413.8578,
+      "first_screen_internal_ms": 458.188,
+      "process_wall_ms": 3811.516699999629,
+      "kind": "A",
+      "run": 3,
+      "cache_state": "warm-repeated"
+    },
+    {
+      "error": "Neovim timed out after 45s; descendants=[(13172, 'python.exe', ['C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\nvim-data\\\\tools\\\\benchmark-python\\\\Scripts\\\\python.exe', 'C:\\\\Users\\\\zagge\\\\.config\\\\nvim\\\\scripts\\\\benchmark.py', '--worker', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-before-provider-rujc0g82', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\preload.lua', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\B-3.log', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\B-3.json']), (40068, 'python.exe', ['C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\nvim-data\\\\tools\\\\benchmark-python\\\\Scripts\\\\python.exe', 'C:\\\\Users\\\\zagge\\\\.config\\\\nvim\\\\scripts\\\\benchmark.py', '--worker', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-before-provider-rujc0g82', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\preload.lua', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\B-3.log', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\B-3.json']), (35120, 'nvim.exe', ['D:\\\\install\\\\GlobalScoopApps\\\\apps\\\\neovim\\\\current\\\\bin\\\\nvim.exe', '--embed', '-n', '--startuptime', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\B-3.log', '-u', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-before-provider-rujc0g82\\\\init.vim', '--cmd', 'lua dofile(\"C:/Users/zagge/AppData/Local/Temp/nvim-benchmark-lljxyovs/preload.lua\")', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\main.py']), (32696, 'nvim.exe', ['nvim', '--embed', '-n', '--startuptime', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\B-3.log', '-u', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-before-provider-rujc0g82\\\\init.vim', '--cmd', 'lua dofile(\"C:/Users/zagge/AppData/Local/Temp/nvim-benchmark-lljxyovs/preload.lua\")', 'C:\\\\Users\\\\zagge\\\\AppData\\\\Local\\\\Temp\\\\nvim-benchmark-lljxyovs\\\\main.py'])]\n",
+      "kind": "B",
+      "run": 3,
+      "cache_state": "warm-repeated"
+    }
+  ],
+  "summary_ms": {
+    "A": {
+      "first_screen_internal_ms": {
+        "median": 455.068,
+        "minimum": 421.642,
+        "maximum": 458.188
+      },
+      "first_ui_flush_wall_ms": {
+        "median": 540.5459000003248,
+        "minimum": 536.9940999999017,
+        "maximum": 722.2766999993837
+      },
+      "editor_ready_ms": {
+        "median": 611.0738,
+        "minimum": 594.9456,
+        "maximum": 682.0186
+      },
+      "coc_rpc_ms": {
+        "median": 611.0952,
+        "minimum": 594.9825,
+        "maximum": 682.0549
+      },
+      "definition_provider_ms": {
+        "median": 2193.2129,
+        "minimum": 2047.2133,
+        "maximum": 2574.7477
+      },
+      "files_first_result_ms": {
+        "median": 284.2033,
+        "minimum": 261.4552,
+        "maximum": 413.8578
+      },
+      "grep_first_result_ms": {
+        "median": 144.6007,
+        "minimum": 110.899,
+        "maximum": 171.6841
+      }
+    },
+    "B": {
+      "first_screen_internal_ms": null,
+      "first_ui_flush_wall_ms": null,
+      "editor_ready_ms": null,
+      "coc_rpc_ms": null,
+      "definition_provider_ms": null,
+      "files_first_result_ms": null,
+      "grep_first_result_ms": null
+    }
+  }
+}

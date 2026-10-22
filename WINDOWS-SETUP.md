@@ -33,6 +33,15 @@ python3 scripts/deploy.py --data "<实际数据目录>" --bootstrap-lazy --apply
 
 迁移已有 Coc 时，可用 `--coc-from "<旧 Coc 目录>"` 替换 `--bootstrap-lazy`，同样先预览再执行；脚本复制并保留源目录，不覆盖已有不同目标。新机器无需旧状态，后续执行 `:CocProvision` 即可安装清单中的扩展。
 
+在配置仓库根目录显式部署编辑器的Python provider（Windows可用`python`或`py -3`替代`python3`）：
+
+```sh
+python3 scripts/provision_python.py --data "<实际数据目录>"
+python3 scripts/provision_python.py --data "<实际数据目录>" --apply
+```
+
+它在`stdpath(data)/tools/python-provider`创建本平台venv并安装固定依赖，不改变全局Python或项目venv。`g:python3_host_prog`在ftplugin前指向此环境；提前显式设置的用户host优先。部署完成后完整重启，用`:echo py3eval('6 * 7')`确认得到42。Pyright和项目解释器仍按语言服务章节配置，两者职责不同。中断时保留管理标记和内容，重新执行同一`--apply`命令补齐ensurepip及依赖；已有非本脚本管理的同名目录会被拒绝修改。缺失或未完成时编辑器显示部署指引，启动不联网安装。
+
 正常编辑不自动安装缺失的 Git 插件或检查远程更新。首次配置或迁移后，重新打开 nvim，主动执行以下命令，等待每一步完成后再执行下一步：
 
 ```vim

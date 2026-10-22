@@ -27,3 +27,9 @@
 完成时追加复现、改动原因、执行环境/revision、实际结果、未验证边界和恢复方式；同步当前设计、教程、问题状态及决策记录。候选评估票以可复现比较和选型材料完成，不因评估结束自动获得迁移状态。
 
 [返回任务索引](README.md)
+
+## 2026-10-22 接续：Python provider启动链
+
+用户再次授权implement后，新增Python ftplugin同步解释器探测的根因修复。显式部署独立provider、保留用户host，部署中断恢复与未完成提示各有先红后绿；详见[故障记录](../issues/2026-10-22-python-provider-startup.md)。97e87e0对应源码的Python项目三轮A/B内部首屏433/653ms、UI flush482/690ms，完整服务与搜索就绪42项数值全部有效；见[性能接续](../evaluations/performance.md)。Windows最终功能/入口复验追加在平台记录；macOS与账号云端边界保持开放。
+
+最终完整回归：dfa43ac，39/39通过，见[本轮原始报告](../evaluations/provider-final-regression.json)。原37项及失败轮次均保留历史，未重写为最新结果。

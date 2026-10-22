@@ -34,3 +34,7 @@
 ## 最终整合回执
 
 运行配置 `c4493af` 的完整回归37/37通过，原始命令/输出见 [最终报告](../evaluations/final-regression.json)。三Windows入口27/27及逐项修订范围见 [平台回执](../platform-acceptance-2026-10-22.md)。本票完成口径为当前Windows目标；macOS原生产物/实机仍归任务21待验。
+
+## 接续：Windows锁竞争
+
+接续完整回归捕获uv.fs_open在Windows并发写入时返回EPERM，原锁只等待EEXIST导致一个编辑器失败。02ac5ff将Windows EPERM/EACCES纳入原2秒等待，永久错误仍抛原文，未抢锁或丢记录。真实四编辑器回归五轮共400条精确保留，静态审查返回码与平台边界通过；首次失败与最终整合结果分别保存在provider-integration-first.json及provider-final-regression.json，详见[本次故障回执](../issues/2026-10-22-python-provider-startup.md)。

@@ -1,0 +1,16 @@
+{
+  "note": "首次A/B在B1 RPC UI采样未返回；日志已到首屏，不能归因于provider仍在同步探测。只终止本次已核实的两个Neovim进程，旧样本不作收益计算。",
+  "baseline": "d1b08f2",
+  "last_startup_lines": [
+    "1276.887  000.038  000.038: sourcing nvim_exec2() called at VimEnter Autocommands for \"*\":0",
+    "1277.469  000.551  000.551: sourcing nvim_exec2() called at VimEnter Autocommands for \"*\":0",
+    "1277.541  000.042  000.042: sourcing nvim_exec2() called at VimEnter Autocommands for \"*\":0",
+    "1277.624  000.028  000.028: sourcing nvim_exec2() called at VimEnter Autocommands for \"*\":0",
+    "1278.277  116.842: VimEnter autocommands",
+    "1279.131  000.854: UIEnter autocommands",
+    "1279.337  000.206: before starting main loop",
+    "1280.732  001.395: first screen update",
+    "1280.751  000.018: --- NVIM STARTED ---",
+    ""
+  ]
+}

@@ -148,3 +148,9 @@ Gitsigns、Fugitive、文件树、lualine、surround和plenary按[选版清单](
 隔离原型已真实验证原生LSP+blink的10语言及go.nvim构建/测试/格式化/失败路径；18个交替补全样本没有显示替换性能收益，保留Coc+vim-go。原生gc在JSX/TSX输出无效注释，保留Comment及语法上下文插件。Treesitter main的实际parser、高亮、嵌套注释、HTTP等已试验，context真实行为尚有迁移缺口，保留master。搜索器三候选全部行为可用，按重复样本和部署成本判断，不凭单次速度换插件。详见[evaluations](evaluations/)。
 
 运行产物留在各平台stdpath(data)，官方macOS LuaLS下载包的哈希与结构已核对，不能替代macOS运行验收。任务21继续保留macOS及用户账号后的AI建议；Windows各入口的真实结果与最终revision单列，历史红测、错误试验装配和后续修正均保留。
+
+### D-NV-015：显式Python provider与部署中断恢复
+
+用户再次授权Matt implement/TDD接续未闭环事项。本轮在d1b08f2之后定位Python ftplugin的has('python3')同步解释器探测，采用官方支持的python3_host_prog，保留Python集成及用户显式host。默认provider在stdpath(data)/tools/python-provider中显式部署，不借用benchmark环境、全局包或项目venv，不关闭provider掩盖等待。Coc/Pyright继续独立负责项目语言服务。
+
+管理标记记录部署是否完成；解释器存在而依赖未装完仍显示指引。已管理venv用标准venv/ensurepip原地补齐，保留已有内容；未知同名目录拒绝修改。部署命令说明先进入源码目录，Windows与macOS使用对应Python命令。详细根因、审查红绿与最终结果见[provider故障记录](issues/2026-10-22-python-provider-startup.md)。

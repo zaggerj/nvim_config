@@ -1091,6 +1091,8 @@ LocalLeader为逗号，所以`LocalLeader nn`实际按`,nn`，与`空格 n`帮�
 
 ## 19. 安装、维护、重载与大文件
 
+Python另需部署编辑器provider：先进入本配置源码目录，执行`python scripts/provision_python.py --data "实际stdpath(data)" --apply`（macOS用`python3`），完整重启后用`:echo py3eval('6 * 7')`验证42。它独立于项目`.venv`及Coc/Pyright；固定host避免打开Python文件时同步探测多个解释器。用户可在启动前显式设置`g:python3_host_prog`使用自己的已配置host。部署中断时重复同一命令补齐，不删除原环境或全局包；完整部署步骤见[安装指南](../WINDOWS-SETUP.md)。
+
 ### 19.1 新机器部署
 
 按 [WINDOWS-SETUP.md](../WINDOWS-SETUP.md)完整部署，尤其编译器、Node22+、Python3.9+、rg、Git、make、Rust/Cargo及平台rocks/parser。源码和平台产物分开，正式运行不依赖诊断时的临时目录。

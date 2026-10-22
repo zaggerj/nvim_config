@@ -39,6 +39,8 @@ LuaLS 下载官方 Windows x64、macOS arm64 或 macOS x64 发布包，按平台
 
 ## Python 项目解释器
 
+编辑器自身的`:python3`支持由独立provider承担：在源码根执行`python scripts/provision_python.py --data "实际stdpath(data)" --apply`，macOS使用`python3`。其路径为`tools/python-provider/Scripts/python.exe`或`tools/python-provider/bin/python`，无需激活。完整重启后`:echo py3eval('6 * 7')`应返回42。这不代替coc-pyright，也不改变项目解释器；固定host避免内置ftplugin同步探测PATH中的多个Python。缺失及中断恢复见[部署说明](../WINDOWS-SETUP.md)，根因及回归见[provider启动故障](issues/2026-10-22-python-provider-startup.md)。
+
 优先在项目根目录创建 `.venv`。不需要先激活 shell；Pyright 能发现项目环境。使用其他环境时，在项目 `.vim/coc-settings.json` 中设置 `python.pythonPath`。不要把个人绝对路径写进此公共配置仓库。
 
 2026-10-22 的真实测试创建未激活的 `.venv`，仅向其 site-packages 放入测试模块，验证定义确实解析到该环境。系统环境场景另行覆盖导入、类型错误、引用、重命名和补全。语言服务不是 Python 包运行器，运行程序仍使用项目自身的解释器与依赖管理方式。

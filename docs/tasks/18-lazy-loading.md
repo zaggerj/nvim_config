@@ -34,3 +34,9 @@
 ## 最终整合回执
 
 运行配置 `c4493af` 的完整回归37/37通过，原始命令/输出见 [最终报告](../evaluations/final-regression.json)。三Windows入口27/27及逐项修订范围见 [平台回执](../platform-acceptance-2026-10-22.md)。本票完成口径为当前Windows目标；macOS原生产物/实机仍归任务21待验。
+
+## 2026-10-22 接续：Python provider启动链
+
+用户再次授权implement后，新增Python ftplugin同步解释器探测的根因修复。显式部署独立provider、保留用户host，部署中断恢复与未完成提示各有先红后绿；详见[故障记录](../issues/2026-10-22-python-provider-startup.md)。97e87e0对应源码的Python项目三轮A/B内部首屏433/653ms、UI flush482/690ms，完整服务与搜索就绪42项数值全部有效；见[性能接续](../evaluations/performance.md)。Windows最终功能/入口复验追加在平台记录；macOS与账号云端边界保持开放。
+
+最终完整回归：dfa43ac，39/39通过，见[本轮原始报告](../evaluations/provider-final-regression.json)。原37项及失败轮次均保留历史，未重写为最新结果。

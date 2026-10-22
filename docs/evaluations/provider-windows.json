@@ -1,0 +1,104 @@
+{
+  "revision": "dfa43ac405fd2e1c4544535e783d07d28acb6e2e",
+  "note": "同一配置和provider；未修改shell配置。POSIX入口只补Scoop与System32基础路径；没有注入provider或Node个人路径。仅验证本轮受影响的三项，不冒充全部39项三入口重复。",
+  "results": [
+    {
+      "entry": "PowerShell",
+      "test": "python_provider_smoke.py",
+      "command": [
+        "D:/install/GlobalScoopApps/apps/python/current/python.exe",
+        "C:\\Users\\zagge\\.config\\nvim\\tests\\python_provider_smoke.py"
+      ],
+      "passed": true,
+      "output": "Native MinGW compiler: x86_64-w64-mingw32\nPASS Python opening skips PATH probes; real py3eval works outside project venv\nPASS Python opening skips PATH probes; real py3eval works outside project venv\nPASS Python opening skips PATH probes; real py3eval works outside project venv\n"
+    },
+    {
+      "entry": "PowerShell",
+      "test": "python_provider_state_smoke.py",
+      "command": [
+        "D:/install/GlobalScoopApps/apps/python/current/python.exe",
+        "C:\\Users\\zagge\\.config\\nvim\\tests\\python_provider_state_smoke.py"
+      ],
+      "passed": true,
+      "output": "尚未部署Neovim Python provider：C:\\Users\\zagge\\AppData\\Local\\Temp\\nvim provider state d7vp8b0u\\data\\nvim-data/tools/python-provider/Scripts/python.exe\n请先进入配置目录：C:\\Users\\zagge\\.config\\nvim\npython scripts/provision_python.py --data \"C:\\Users\\zagge\\AppData\\Local\\Temp\\nvim provider state d7vp8b0u\\data\\nvim-data\" --apply\n部署后完整重启；Coc/Pyright与项目解释器独立。PASS incomplete provider reports deployment instruction and source directory\n"
+    },
+    {
+      "entry": "PowerShell",
+      "test": "language_services_smoke.py",
+      "command": [
+        "D:/install/GlobalScoopApps/apps/python/current/python.exe",
+        "C:\\Users\\zagge\\.config\\nvim\\tests\\language_services_smoke.py",
+        "--language",
+        "python"
+      ],
+      "passed": true,
+      "output": "PASS Python definition, references, rename, completion and typed diagnostics\n"
+    },
+    {
+      "entry": "Git Bash",
+      "test": "python_provider_smoke.py",
+      "command": [
+        "D:/install/GlobalScoopApps/apps/git/current/bin/bash.exe",
+        "-lc",
+        "export PATH='/d/install/GlobalScoopApps/shims:/d/install/Scoop/shims:/c/Windows/System32:'\"$PATH\"; cd 'C:/Users/zagge/.config/nvim' && 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/python_provider_smoke.py' "
+      ],
+      "passed": true,
+      "output": "Native MinGW compiler: x86_64-w64-mingw32\nPASS Python opening skips PATH probes; real py3eval works outside project venv\nPASS Python opening skips PATH probes; real py3eval works outside project venv\nPASS Python opening skips PATH probes; real py3eval works outside project venv\n"
+    },
+    {
+      "entry": "Git Bash",
+      "test": "python_provider_state_smoke.py",
+      "command": [
+        "D:/install/GlobalScoopApps/apps/git/current/bin/bash.exe",
+        "-lc",
+        "export PATH='/d/install/GlobalScoopApps/shims:/d/install/Scoop/shims:/c/Windows/System32:'\"$PATH\"; cd 'C:/Users/zagge/.config/nvim' && 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/python_provider_state_smoke.py' "
+      ],
+      "passed": true,
+      "output": "尚未部署Neovim Python provider：C:\\Users\\zagge\\AppData\\Local\\Temp\\nvim provider state ndu_ag4v\\data\\nvim-data/tools/python-provider/Scripts/python.exe\n请先进入配置目录：C:\\Users\\zagge\\.config\\nvim\npython scripts/provision_python.py --data \"C:\\Users\\zagge\\AppData\\Local\\Temp\\nvim provider state ndu_ag4v\\data\\nvim-data\" --apply\n部署后完整重启；Coc/Pyright与项目解释器独立。PASS incomplete provider reports deployment instruction and source directory\n"
+    },
+    {
+      "entry": "Git Bash",
+      "test": "language_services_smoke.py",
+      "command": [
+        "D:/install/GlobalScoopApps/apps/git/current/bin/bash.exe",
+        "-lc",
+        "export PATH='/d/install/GlobalScoopApps/shims:/d/install/Scoop/shims:/c/Windows/System32:'\"$PATH\"; cd 'C:/Users/zagge/.config/nvim' && 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/language_services_smoke.py' --language python"
+      ],
+      "passed": true,
+      "output": "PASS Python definition, references, rename, completion and typed diagnostics\n"
+    },
+    {
+      "entry": "zsh",
+      "test": "python_provider_smoke.py",
+      "command": [
+        "D:/install/Scoop/apps/msys2/2026-03-22/usr/bin/zsh.exe",
+        "-lc",
+        "export PATH='/d/install/GlobalScoopApps/shims:/d/install/Scoop/shims:/c/Windows/System32:'\"$PATH\"; cd 'C:/Users/zagge/.config/nvim' && 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/python_provider_smoke.py' "
+      ],
+      "passed": true,
+      "output": "Native MinGW compiler: x86_64-w64-mingw32\nPASS Python opening skips PATH probes; real py3eval works outside project venv\nPASS Python opening skips PATH probes; real py3eval works outside project venv\nPASS Python opening skips PATH probes; real py3eval works outside project venv\n"
+    },
+    {
+      "entry": "zsh",
+      "test": "python_provider_state_smoke.py",
+      "command": [
+        "D:/install/Scoop/apps/msys2/2026-03-22/usr/bin/zsh.exe",
+        "-lc",
+        "export PATH='/d/install/GlobalScoopApps/shims:/d/install/Scoop/shims:/c/Windows/System32:'\"$PATH\"; cd 'C:/Users/zagge/.config/nvim' && 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/python_provider_state_smoke.py' "
+      ],
+      "passed": true,
+      "output": "尚未部署Neovim Python provider：D:\\install\\Scoop\\apps\\msys2\\2026-03-22\\tmp\\nvim provider state 9sil_9ic\\data\\nvim-data/tools/python-provider/Scripts/python.exe\n请先进入配置目录：C:\\Users\\zagge\\.config\\nvim\npython scripts/provision_python.py --data \"D:\\install\\Scoop\\apps\\msys2\\2026-03-22\\tmp\\nvim provider state 9sil_9ic\\data\\nvim-data\" --apply\n部署后完整重启；Coc/Pyright与项目解释器独立。PASS incomplete provider reports deployment instruction and source directory\n"
+    },
+    {
+      "entry": "zsh",
+      "test": "language_services_smoke.py",
+      "command": [
+        "D:/install/Scoop/apps/msys2/2026-03-22/usr/bin/zsh.exe",
+        "-lc",
+        "export PATH='/d/install/GlobalScoopApps/shims:/d/install/Scoop/shims:/c/Windows/System32:'\"$PATH\"; cd 'C:/Users/zagge/.config/nvim' && 'D:/install/GlobalScoopApps/apps/python/current/python.exe' 'C:/Users/zagge/.config/nvim/tests/language_services_smoke.py' --language python"
+      ],
+      "passed": true,
+      "output": "PASS Python definition, references, rename, completion and typed diagnostics\n"
+    }
+  ]
+}

@@ -13,6 +13,7 @@
 | 启动 Coc TLS 再报错 | zsh XDG 读到另一份仍启用 Tabnine 的状态 | 固定 canonical Coc 目录、保留源目录复制部署；三入口含重启回归通过 |
 | 黑屏需 Ctrl+C：同步启动等待 | GCC 同步探测和启动 clone 路径 | 移出首屏；停滞 GCC 故障注入通过。它不足以解释后续 Go 黑屏，见下一项 |
 | 原 Go 文件仍黑屏 | vim-go 关闭 gopls 后残留事件同步 go env，按 buffer 目录触发项目工具链下载 | go_compat 清除残留 LSP 事件；保留构建/测试；真实 TUI 和停滞 fixture 均通过 |
+| Python打开波动大、首屏仍慢 | 内置ftplugin调用has('python3')，同步启动多个解释器检测pynvim；未配置provider时没有等待上限 | 显式部署隔离provider并固定host，保留真实Python能力；新增停滞PATH及部署中断红绿回归，见[详细证据](2026-10-22-python-provider-startup.md) |
 | Go首屏1.39秒能否再优化 | 状态栏在主题前加载导致重复setup；文件启动也加载首页 | 本轮交替A/B首屏中位数437→350ms，高亮/状态栏就绪619→512ms；详见启动性能记录 |
 | `_bug`目录主题报E185 | 旧forest-night仓库当前提供的主题名为everforest | 修正主题调用，默认/`_oem`/`_bug`真实回归通过 |
 | 免费 AI 最佳选择与安装 | 选择官方 Copilot Free，固定提交、使用内嵌服务、Ctrl+J 接受 | 本地服务、键位和保护通过；用户执行 Copilot setup，云端建议待验 |

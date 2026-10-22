@@ -14,6 +14,8 @@
 
 配置承担三件主要工作：为普通代码文件提供高亮、补全、Git 信息和导航；在读取大文件时提前避开昂贵的分析；把平台差异收敛到路径、工具发现和进程启动边界。
 
+Python provider另有显式部署边界：`bootstrap.init()`在ftplugin前设置动态数据目录中的`python3_host_prog`，保留用户显式host；默认host及完成标记缺失时只提示部署，不扫描其他解释器或启动pip。`scripts/provision_python.py`使用本平台独立venv与固定依赖，重复执行可补齐中断的ensurepip并保留已有内容。项目Pyright解释器与编辑器provider相互独立。细节和当前验收见[provider启动故障](issues/2026-10-22-python-provider-startup.md)。
+
 Treesitter 提供语法解析和结构高亮，Coc 提供语言服务、诊断、补全及格式化。两者独立：看到语法颜色不表示语言服务器已经安装；补全服务正常也不能证明对应 parser 存在。Git blame 依赖 Gitsigns 成功附加到 Git 跟踪的普通文件。
 
 本仓库保留 Vimscript 设置层和 Lua 插件层，不要求将全部设置改写成 Lua。修改应进入实际负责该行为的模块，避免在多个加载入口重复定义。

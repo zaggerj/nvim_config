@@ -4,7 +4,7 @@
 
 **Blocked by（阻塞依赖）：** [02 恢复Go语言导航并保留构建测试](02-go-language-navigation.md)；[03 让终端Esc只退出输入模式](03-terminal-escape.md)；[04 恢复Git差异导航和安全重置入口](04-git-safe-navigation.md)；[05 补齐长单行编辑增长保护](05-large-line-growth.md)；[06 补齐Python解释器与语言服务](06-python-language-service.md)；[07 恢复Lua服务与补全](07-lua-language-service.md)；[08 建立Vue与React语言能力兼容矩阵](08-vue-language-matrix.md)；[09 统一状态栏模式并保持单次初始化](09-statusline-contract.md)；[10 修正搜索扫描范围与跨平台结果](10-search-scope.md)；[11 让原生搜索扩展失败可诊断](11-native-extension-diagnostics.md)；[18 收敛空首页与普通文本的启动工作](18-lazy-loading.md)；[19 按活跃项目根自动切换主题](19-project-theme.md)。
 
-**Status：** in-progress（Windows完整回归37/37、三入口分阶段矩阵27/27及默认shell TUI通过；macOS实机与账号后云端AI待验）
+**Status：** in-progress（Windows完整回归39/39；原三入口分阶段矩阵27/27及默认shell TUI保留；macOS实机与账号后云端AI待验）
 
 **归属：** 验证；[治理SPEC](../spec.md) ID01、ID08；验收 AC01、AC03、AC05、AC07、AC09、AC11。
 
@@ -32,3 +32,11 @@
 详见[平台验收记录](../platform-acceptance-2026-10-22.md)。Windows三入口真实前台终端/Git/布局/大文件键位通过；真实默认PowerShell、bash、zsh闲置shell的Esc保留任务及恢复后实际命令写文件通过。新增17项WhichKey入口及Neorg真实加载回归已完成；完整回归37/37绑定c4493af，三入口27项为分阶段矩阵，分别记录真实修订范围。
 
 只读检查本机SSH Host声明，仅有通配规则，无具体macOS宿主；macOS未执行，不能完成双平台票。账号后的Copilot建议仍由本人授权后验收。
+
+## 2026-10-22 接续：Python provider启动链
+
+用户再次授权implement后，新增Python ftplugin同步解释器探测的根因修复。显式部署独立provider、保留用户host，部署中断恢复与未完成提示各有先红后绿；详见[故障记录](../issues/2026-10-22-python-provider-startup.md)。97e87e0对应源码的Python项目三轮A/B内部首屏433/653ms、UI flush482/690ms，完整服务与搜索就绪42项数值全部有效；见[性能接续](../evaluations/performance.md)。Windows最终功能/入口复验追加在平台记录；macOS与账号云端边界保持开放。
+
+最终完整回归：dfa43ac，39/39通过，见[本轮原始报告](../evaluations/provider-final-regression.json)。原37项及失败轮次均保留历史，未重写为最新结果。
+
+本轮PowerShell/Git Bash/zsh三项受影响路径分别补验，9/9通过；矩阵源码dfa43ac，详见[新入口证据](../evaluations/provider-windows.json)。跨平台总票仍因macOS/账号云端未验而开放。

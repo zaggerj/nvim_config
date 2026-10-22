@@ -1,6 +1,6 @@
 # 2026-10-22 平台验收记录
 
-本记录关联[治理SPEC](spec.md)、[任务21](tasks/21-platform-acceptance.md)、[任务27](tasks/27-keymap-discoverability.md)和[完整教程](tutorial.md)。运行修复已提交 `c4493af`，完整功能回归37/37通过；三入口分阶段矩阵27/27通过。下文分别标注子矩阵时间与补验范围，保留早期失败证据。
+本记录关联[治理SPEC](spec.md)、[任务21](tasks/21-platform-acceptance.md)、[任务27](tasks/27-keymap-discoverability.md)和[完整教程](tutorial.md)。最新运行状态 `dfa43ac`，完整功能回归39/39、本轮三入口补验9/9通过；原c4493af的37/37及分阶段27/27保留历史。下文分别标注子矩阵时间与补验范围，保留早期失败证据。
 
 ## 源码与入口
 
@@ -20,7 +20,7 @@
 | 回归 | 用户行为与观测 | 结果 |
 |---|---|---|
 | `python tests/keys_smoke.py` | 带空格目录、当前/分屏终端Esc后job存活且不收到exit，再进入后真实接收输入；真实Git多hunk、diff窗口、index暂存/撤销与确认重置；分组前缀、resize；首次大文件无Coc翻页和编辑 | 三个Windows入口通过 |
-| `python tests/keymap_inventory_smoke.py` | 普通Python和Go各17个自定义WhichKey描述具有运行时动作；zR/zM真实折叠；AI接受与隐藏/surround前缀；真实插入包围；norg真实加载12个逗号动作 | PowerShell通过，新增最终三入口复验由整合执行 |
+| `python tests/keymap_inventory_smoke.py` | 普通Python和Go各17个自定义WhichKey描述具有运行时动作；zR/zM真实折叠；AI接受与隐藏/surround前缀；真实插入包围；norg真实加载12个逗号动作 | PowerShell完整回归通过；本项未单独在Bash/zsh重复 |
 | `python tests/neorg_deploy_smoke.py` | 缺本平台parser的配置边界给出明确部署指引，不初始化Neorg、不触发自动安装 | PowerShell通过 |
 | `python scripts/provision_neorg.py --apply` | 显式下载源码并使用本平台编译器重建norg/norg_meta，随后真实norg加载 | Windows通过；不是跨平台复制二进制 |
 | `python tests/ai_smoke.py` | 内嵌Copilot服务初始化，Coc Tab保留，大文件首次启动及增长均禁用AI | 本地初始化通过；不包含账号后云端建议 |
@@ -40,3 +40,9 @@ zsh首次矩阵失败的具体根因：其PATH没有官方Node及WinGet rg目录
 - macOS仍须在目标机器显式重建rocks/parser/fzf，并执行相同测试与交互工作流；任务21保留未完成。
 - Copilot账号由本人完成授权，授权后的真实云端建议单独验收；本地服务初始化不能代替账号云端结果。
 - 完整重启用于Lua、插件、PATH及原生产物变更；Coc设置改动使用CocRestart，分别验证，不以重复source模拟重启。
+
+## 接续：dfa43ac最终运行状态
+
+provider显式部署与中断恢复、Windows频率锁和Git观察器修正后，完整功能回归 **39/39通过**：[当前原始报告](evaluations/provider-final-regression.json)。前两次37/39（频率锁及Go单次请求超时）、38/39（Git观察器单次index读取错误）保留在provider-integration-first.json与provider-integration-second.json；定点与最终结果分列，不掩盖失败。真实安装中断恢复测试另执行通过，保留已有sentinel；此测试会显式安装固定包，故未混入日常不联网回归。
+
+同源码及数据契约的本轮入口补验 **9/9通过**，每入口三项：provider停滞PATH/用户host/真实py3eval、未完成环境实际部署提示、Python定义/引用/rename/补全/类型诊断。三入口具体命令和输出见[本轮矩阵](evaluations/provider-windows.json)，不把它宣称为39项均在三个入口重跑。macOS及账号云端AI状态保持待验。

@@ -88,3 +88,17 @@ Windows入口矩阵为分阶段27/27，并非所有测试都在三个入口重�
 - `c4493af`：评审修正、真实Coc解除、频率并发与Windows工具发现；最终完整回归对应此运行代码。
 - `4fae373`：候选原型、独占性能基准与全部原始证据，含文件树最终补测。
 - 本文与设计、教程、任务状态及双轴审查作为最后一批文档提交；未push。后续仅文档变更不改变上述运行代码指纹。
+
+## 接续实施：provider同步探测与最后整合
+
+用户再次明确授权Matt implement/TDD后，从d1b08f2继续任务18/20/21及关联回归。新增根因：Python内置ftplugin的has('python3')会同步扫描PATH解释器。官方host配置与独立venv部署修复此链，不关闭Python集成、不借用benchmark环境或污染全局包；用户显式host优先。部署中断补齐、complete标记提示、源码目录/平台命令均以真实公共边界先红后绿。详细[根因与审查记录](issues/2026-10-22-python-provider-startup.md)。
+
+生产与测试提交：ce2dfb1（provider）、97e87e0（中断恢复/提示与测量进程边界）、02ac5ff（Windows频率锁竞争）、dfa43ac（异步Git观察器三态）。独立双轴审查及复核无剩余可行动问题，见[评审](review-2026-10-22.md)。
+
+最终 `python tests/run_all.py --output docs/evaluations/provider-final-regression.json` 在dfa43ac **39/39通过**，见[原始报告](evaluations/provider-final-regression.json)。此前两轮37/39、38/39分别保留provider-integration-first.json和provider-integration-second.json；Go定义曾出现默认3000ms超时，未扩大超时或改配置，定点及最终全套均通过。部署中断测试另显式执行（会联网安装固定包），未加入日常不联网总回归。
+
+同环境Python项目完整服务A/B三轮6样本：内部首屏433/653ms，UI flush482/690ms，42个必需指标全部有效；两边使用同一ext_messages UI与当前插件/服务，B仅还原d1b08f2配置源。详细波动与失败采样保留在[性能记录](evaluations/performance.md)，不沿用旧632/558ms直接计算本轮收益，也不将Python场景推广为全语言提速比例。
+
+本机provider已部署，完整退出后重启即可使用；其他机器按更新后的WINDOWS-SETUP显式部署，平台二进制仍在各自数据目录。macOS无目标宿主、用户账号后的云端AI仍归任务21开放。三Windows入口补验在平台记录另列，历史矩阵不覆盖成新revision通过。
+
+本轮三Windows入口受影响路径最终9/9通过，源码dfa43ac；完整命令、输出和边界见provider-windows.json。最终代码之后仅同步文档/原始证据，无插件或运行设置追加变更。

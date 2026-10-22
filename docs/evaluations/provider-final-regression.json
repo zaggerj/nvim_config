@@ -1,0 +1,241 @@
+{
+  "utc": "2026-10-22T07:50:48.090899+00:00",
+  "revision": "dfa43ac405fd2e1c4544535e783d07d28acb6e2e",
+  "note": "修订号加当前工作区；TUI及macOS另列平台验收，候选性能试验不属于此回归。",
+  "results": [
+    {
+      "test": ".\\tests\\process_runner_smoke.py",
+      "passed": true,
+      "output": "PASS success/failure/timeout preserve output and leave unrelated processes alive\n",
+      "seconds": 1.418
+    },
+    {
+      "test": ".\\tests\\windows_tools_smoke.py",
+      "passed": true,
+      "output": "PASS Windows installer roots discovered with stripped MSYS PATH\n",
+      "seconds": 0.873
+    },
+    {
+      "test": ".\\tests\\startup_smoke.py",
+      "passed": true,
+      "output": "Native MinGW compiler: x86_64-w64-mingw32\nPASS stalled compiler does not block startup: 0.36s\n",
+      "seconds": 1.71
+    },
+    {
+      "test": ".\\tests\\python_provider_smoke.py",
+      "passed": true,
+      "output": "Native MinGW compiler: x86_64-w64-mingw32\nPASS Python opening skips PATH probes; real py3eval works outside project venv\nPASS Python opening skips PATH probes; real py3eval works outside project venv\nPASS Python opening skips PATH probes; real py3eval works outside project venv\n",
+      "seconds": 3.88
+    },
+    {
+      "test": ".\\tests\\python_provider_state_smoke.py",
+      "passed": true,
+      "output": "尚未部署Neovim Python provider：C:\\Users\\zagge\\AppData\\Local\\Temp\\nvim provider state iv109r_j\\data\\nvim-data/tools/python-provider/Scripts/python.exe\n请先进入配置目录：C:\\Users\\zagge\\.config\\nvim\npython scripts/provision_python.py --data \"C:\\Users\\zagge\\AppData\\Local\\Temp\\nvim provider state iv109r_j\\data\\nvim-data\" --apply\n部署后完整重启；Coc/Pyright与项目解释器独立。PASS incomplete provider reports deployment instruction and source directory\n",
+      "seconds": 0.368
+    },
+    {
+      "test": ".\\tests\\go_startup_smoke.py",
+      "passed": true,
+      "output": "Native MinGW compiler: x86_64-w64-mingw32\nPASS Go file and disabled-LSP lifecycle do not run Go; commands preserved: 1.18s\n",
+      "seconds": 2.488
+    },
+    {
+      "test": ".\\tests\\git_lifecycle_smoke.py",
+      "passed": true,
+      "output": "PASS rapid buffer/write lifecycle, process exit and output handle cleanup\n",
+      "seconds": 7.947
+    },
+    {
+      "test": ".\\tests\\editor_smoke.py",
+      "passed": true,
+      "output": "PASS highlight sample.jsPASS highlight sample.tsPASS highlight sample.jsxPASS highlight sample.tsxPASS highlight vue2.vuePASS highlight vue3.vuePASS highlight sample.goPASS highlight sample.pyPASS real Git blamePASS large-file bytes.tsPASS large-file lines.tsPASS large-file longline.ts",
+      "seconds": 6.198
+    },
+    {
+      "test": ".\\tests\\ui_startup_smoke.py",
+      "passed": true,
+      "output": "PASS one statusline setup, final theme, dashboard loadingPASS one statusline setup, final theme, dashboard loadingPASS one statusline setup, final theme, dashboard loadingPASS one statusline setup, final theme, dashboard loading",
+      "seconds": 7.301
+    },
+    {
+      "test": ".\\tests\\keys_smoke.py",
+      "passed": true,
+      "output": "PASS terminal current Esc/fj preserve foreground task and resumed input\nPASS terminal split Esc/fj preserve foreground task and resumed input\nHunk 1 of 2Hunk 2 of 2Hunk 1 of 2PASS Git hunk navigation leaves contents unchangedPASS native diff navigation leaves contents unchangedPASS explicit staging, cancelling/confirming reset and real Git diff entry\nPASS bigfile paging works without CocPASS bigfile Enter/Tab/Shift-Tab work without Coc\nPASS grouped resize/nohighlight and unified navigation entries\n",
+      "seconds": 6.572
+    },
+    {
+      "test": ".\\tests\\large_file_growth_smoke.py",
+      "passed": true,
+      "output": "PASS long-line growth via TextChangedPASS long-line growth via TextChangedI1 change; before #1  0 seconds ago\n\"~/AppData/Local/Temp/nvim-growth-smoke-_zqy2lq1/threshold.js\" <Local/Temp/nvim-growth-smoke-_zqy2lq1/threshold.js\" 1L, 21B writtenPASS exact line threshold, real paste, undo and save/close/reopenPASS exact byte and line-count thresholdsPASS independent windows and 500 edits in 19000-line file: 653.1ms\n",
+      "seconds": 4.153
+    },
+    {
+      "test": ".\\tests\\coc_large_growth_smoke.py",
+      "passed": true,
+      "output": "\"growth.ts\" \"growth.ts\" 1L, 21B writtenPASS real Coc per-buffer close, empty lines, no subsequent changes; other buffer definition/edit; saved-small reopen reattaches\n",
+      "seconds": 6.888
+    },
+    {
+      "test": ".\\tests\\project_theme_smoke.py",
+      "passed": true,
+      "output": "PASS absolute files and same-name Git/worktree roots select separate themesPASS portable suffix roots, monorepo override and non-Git project marker项目主题 missing-neovim-test-theme 无法加载，请检查 nvim_project_themes：Vim:E185: Cannot find color scheme 'missing-neovim-test-theme'PASS stable theme, special buffers, global tab switching and invalid-theme diagnostic\n",
+      "seconds": 7.441
+    },
+    {
+      "test": ".\\tests\\search_smoke.py",
+      "passed": true,
+      "output": "PASS default and explicit ignored searches; legitimate lib source preserved\n",
+      "seconds": 2.609
+    },
+    {
+      "test": ".\\tests\\native_extension_smoke.py",
+      "passed": true,
+      "output": "PASS SearchHealth 0\nTelescope fzf原生扩展加载失败：...a/lazy/telescope.nvim/lua/telescope/_extensions/init.lua:10: 'fzf' extension doesn't exist or isn't installed: .../zagge/AppData/Local/Temp/nvim-native-avsxsyvr/probe.lua:6: fixture dynamic library unavailable\n请检查本平台make/编译器并显式执行 :Lazy build telescope-fzf-native.nvim；使用 :SearchHealth 查看状态。\nPASS SearchHealth 1\n",
+      "seconds": 3.37
+    },
+    {
+      "test": ".\\tests\\command_palette_smoke.py",
+      "passed": true,
+      "output": "PASS command palette actions, execution and persistent usage ranking\nPASS usage survives a fresh Neovim process\n",
+      "seconds": 3.286
+    },
+    {
+      "test": ".\\tests\\palette_concurrency_smoke.py",
+      "passed": true,
+      "output": "PASS four concurrent editors preserve all 80 usage updates\n",
+      "seconds": 2.582
+    },
+    {
+      "test": ".\\tests\\palette_migration_smoke.py",
+      "passed": true,
+      "output": "PASS legacy usage import, unknown-record preservation and overwrite refusal\n",
+      "seconds": 1.104
+    },
+    {
+      "test": ".\\tests\\tutor_smoke.py",
+      "passed": true,
+      "output": "PASS Chinese/English builtin Tutor and preserved progress\n",
+      "seconds": 1.437
+    },
+    {
+      "test": ".\\tests\\file_tree_smoke.py",
+      "passed": true,
+      "output": "::PASS tree expand/collapse/locate/split/tab/hidden/create/rename/cancel/close[NvimTree] C:\\Users\\zagge\\AppData\\Local\\Temp\\nvim tree 5scu9x4c/created.txt was properly created[NvimTree] C:\\Users\\zagge\\AppData\\Local\\Temp\\nvim tree 5scu9x4c\\created.txt -> C:\\Users\\zagge\\AppData\\Local\\Temp\\nvim tree 5scu9x4c/renamed.txt\n",
+      "seconds": 2.112
+    },
+    {
+      "test": ".\\tests\\surround_smoke.py",
+      "passed": true,
+      "output": "PASS surround add/change/delete and which-key entry\n",
+      "seconds": 1.829
+    },
+    {
+      "test": ".\\tests\\lazy_loading_smoke.py",
+      "passed": true,
+      "output": "PASS isolated empty/text buffers and on-demand Telescope\nPASS isolated empty/text buffers and on-demand Telescope\n",
+      "seconds": 4.287
+    },
+    {
+      "test": ".\\tests\\parser_deployment_smoke.py",
+      "passed": true,
+      "output": "PASS parser installation requires explicit command\n",
+      "seconds": 1.471
+    },
+    {
+      "test": ".\\tests\\neorg_deploy_smoke.py",
+      "passed": true,
+      "output": "PASS missing parser reports deployment; no automatic install or Neorg initialization\n",
+      "seconds": 1.5
+    },
+    {
+      "test": ".\\tests\\keymap_inventory_smoke.py",
+      "passed": true,
+      "output": "code: PASS 17 advertised actions; native folds; AI/surround prefixes and actual insert\ngo: PASS 17 advertised actions; native folds; AI/surround prefixes and actual insert\nnorg: PASS real Neorg loaded; 12 localleader actions\n",
+      "seconds": 5.354
+    },
+    {
+      "test": ".\\tests\\coc_smoke.py",
+      "passed": true,
+      "output": "PASS shared Coc data, provisioned extensions and retired Tabnine policy; CocRestart rechecked; no TLS rejection\n",
+      "seconds": 13.416
+    },
+    {
+      "test": ".\\tests\\ai_smoke.py",
+      "passed": true,
+      "output": "PASS bundled Copilot initialized; Coc keys preserved; large-file startup and growth guarded",
+      "seconds": 2.843
+    },
+    {
+      "test": ".\\tests\\rest_smoke.py",
+      "passed": true,
+      "output": "PASS GET /get?value=portable\nPASS POST /json\nPASS POST /xml\nPASS POST /file",
+      "seconds": 2.233
+    },
+    {
+      "test": ".\\tests\\language_services_smoke.py --language python",
+      "passed": true,
+      "output": "PASS Python definition, references, rename, completion and typed diagnostics\n",
+      "seconds": 3.49
+    },
+    {
+      "test": ".\\tests\\language_services_smoke.py --language python-venv",
+      "passed": true,
+      "output": "PASS Project .venv import resolves without activating the shell\n",
+      "seconds": 3.881
+    },
+    {
+      "test": ".\\tests\\language_services_smoke.py --language lua",
+      "passed": true,
+      "output": "PASS Lua definition, references, rename, completion and unknown-global diagnostics and vim global recognition\n",
+      "seconds": 4.859
+    },
+    {
+      "test": ".\\tests\\language_services_smoke.py --language javascript",
+      "passed": true,
+      "output": "PASS Real javascript definition, diagnostics, completion, references and rename: javascript\n",
+      "seconds": 4.139
+    },
+    {
+      "test": ".\\tests\\language_services_smoke.py --language typescript",
+      "passed": true,
+      "output": "PASS Real typescript definition, diagnostics, completion, references and rename: typescript\n",
+      "seconds": 4.415
+    },
+    {
+      "test": ".\\tests\\language_services_smoke.py --language javascriptreact",
+      "passed": true,
+      "output": "PASS Real javascriptreact definition, diagnostics, completion, references and rename: javascriptreact\n",
+      "seconds": 5.894
+    },
+    {
+      "test": ".\\tests\\language_services_smoke.py --language typescriptreact",
+      "passed": true,
+      "output": "PASS Real typescriptreact definition, diagnostics, completion, references and rename: typescriptreact\n",
+      "seconds": 7.211
+    },
+    {
+      "test": ".\\tests\\language_services_smoke.py --language vue26",
+      "passed": true,
+      "output": "PASS Real vue definition, diagnostics, completion, references and rename: vue26\n",
+      "seconds": 7.841
+    },
+    {
+      "test": ".\\tests\\language_services_smoke.py --language vue27",
+      "passed": true,
+      "output": "PASS Real vue definition, diagnostics, completion, references and rename: vue27\n",
+      "seconds": 8.539
+    },
+    {
+      "test": ".\\tests\\language_services_smoke.py --language vue3",
+      "passed": true,
+      "output": "PASS Real vue definition, diagnostics, completion, references and rename: vue3\n",
+      "seconds": 7.02
+    },
+    {
+      "test": ".\\tests\\language_services_smoke.py --language go",
+      "passed": true,
+      "output": "PASS Go cross-package definition, references, rename, hover, completion, save formatting, GoBuild/GoTest and failure diagnostics; actual go build ./... and go test ./...\n",
+      "seconds": 16.813
+    }
+  ]
+}
