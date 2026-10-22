@@ -8,18 +8,18 @@
 "mysettings/ngconsole.vim
 " ----------------gf 快速跳转通道----------------
 
+let g:nvim_config_root = fnamemodify(expand('<sfile>:p'), ':h')
+execute 'set runtimepath^=' . fnameescape(g:nvim_config_root)
+if !isdirectory(stdpath('data') . '/lazy/lazy.nvim')
+  echohl WarningMsg
+  echom '尚未部署 lazy.nvim。请运行 scripts/deploy.py --data <stdpath(data)> --bootstrap-lazy --apply'
+  echohl None
+  finish
+endif
 lua << EOF
+require('bootstrap').init(vim.g.nvim_config_root)
+require('large_file')
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
 vim.opt.rtp:prepend(lazypath)
 
 require('plugins')
@@ -40,31 +40,6 @@ endif
 " 这里假定加载按照列表顺序，否则应该用链式加载确保顺序
 exec "runtime! ".s:transform(s:dir, s:modules)
 
-" 检测是否为 Termux 环境 (Android 平台)
-" TabNine 不支持 Android/Termux,因为没有提供对应的二进制文件
-let s:is_termux = !empty($TERMUX_VERSION)
-
-" 基础插件列表
-let s:base_extensions = [
-  \ 'coc-tsserver',
-  \ 'coc-json',
-  \ 'coc-css',
-  \ 'coc-eslint',
-  \ 'coc-pairs',
-  \ 'coc-omni',
-  \ 'coc-marketplace',
-  \ 'coc-lists',
-  \ 'coc-html',
-  \ 'coc-emmet',
-  \ 'coc-dictionary',
-  \ 'coc-cssmodules',
-  \ 'coc-lua',
-  \ 'coc-unocss',
-  \ ]
-
-" 仅在非 Termux 环境下添加 TabNine
-if !s:is_termux
-  let s:base_extensions += ['coc-tabnine']
-endif
-
-let g:coc_global_extensions = s:base_extensions
+" 扩展安装属于部署步骤，不在编辑启动时自动访问 npm 或旧 TabNine 域名。
+let g:coc_global_extensions = []
+lua require('coc_setup').register()

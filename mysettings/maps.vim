@@ -40,14 +40,14 @@ inoremap <silent><expr> _tm strftime("%Y-%m-%d")
 " 改用 Telescope 吧
 "nnoremap <silent> <Leader>fo <Cmd>call Open_fix()<cr>
 noremap <silent> <Leader>fc <Cmd>call Compiler()<cr>
-noremap <silent> <Leader>fr <Cmd>call Runner()<cr>
+noremap <silent> <Leader>rr <Cmd>call Runner()<cr>
 " 打开init.vim 配置文件
 nnoremap <silent> <Leader>fs <Cmd>call Set_it()<cr>
 " 目前好像没啥用 <sfile>：表示当前正在编辑的文件名 :p：表示展开为绝对路径 :h：表示展开为所在目录路径 当前正在编辑的文件所在的目录的绝对路径
 " nnoremap <silent> <Leader>fd <Cmd>exe "e expand('<sfile>:p:h')"."\pack\my\start\myplugin\plugin\one.vim"<cr>
-nnoremap <silent> <Leader>ft <Cmd>call Open_terminal()<cr>
+" fr/ft/fh 由 which-key 统一绑定为最近文件、帮助与隐藏文件搜索。
 " 将nvimtree目录更新到文件所在目录, tcd 是 Vim 的内置命令，用于在新的标签页中改变当前目录。% 表示当前文件的路径，而 :h 是一个修饰符，表示获取当前文件所在目录的路径。
-nnoremap <silent> <Leader>fh <Cmd>tcd %:h<cr>
+nnoremap <silent> <Leader>wd <Cmd>lua require('platform').change_to_file_dir()<cr>
 " (single plugin maps) 使用coc生成vsita 大纲
 nnoremap <silent> <Leader>pv <Cmd>Vista coc<cr>
 " (tree)
@@ -77,8 +77,8 @@ nnoremap <silent> <Leader>pc <Cmd>Lazy clean<cr>
 " (coc) 不遵循通用命名规则，{rhs} 和 vscodevim 保持一致
 nnoremap <silent> <Leader>cr <Cmd>CocRestart<cr>
 nnoremap <silent> gh <Cmd>call CocActionAsync('doHover')<cr>
-" 用系统默认程序打开当前文件所在目录 目前默认使用了cmd打开
-nnoremap gx <Cmd>exec "!start ".expand('<cfile>')<cr>
+" 使用系统默认程序打开光标下的 URL 或路径。
+nnoremap gx <Cmd>lua require('platform').open_target()<cr>
 noremap <Leader>ci <Cmd>call CocActionAsync('organizeImport')<CR> 
 noremap <silent> <Leader>cl <Cmd>CocList<cr>
 " 打开coc-settings.json

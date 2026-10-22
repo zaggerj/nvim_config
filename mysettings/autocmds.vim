@@ -3,14 +3,14 @@ autocmd TermOpen * startinsert
 autocmd TextYankPost * lua vim.highlight.on_yank {higroup="IncSearch", timeout=150, on_visual=true}
 " 调整窗口自动对齐布局
 autocmd VimResized * wincmd =
-" rest.nvim 无法在 win 上使用，此处改用 coc-restclient
-autocmd FileType http noremap <buffer>go <Plug>RestNvim
+" rest.nvim 3.x：各平台使用相同请求入口
+autocmd FileType http nnoremap <silent><buffer> go <Cmd>Rest run<CR>
 " smartindent 看上去和 coc-pairs 冲突
 autocmd BufRead *.ps1 set nosmartindent
 autocmd FileType javascript,vue,scss,less,typescriptreact,javascriptreact,org,json setl softtabstop=2 | setl shiftwidth=2
 " (vimwiki)
 " 自动更新日记索引
-autocmd BufWinEnter diary.md execute "VimwikiDiaryGenerateLinks" | w
+autocmd BufWinEnter diary.md if exists(':VimwikiDiaryGenerateLinks') == 2 | execute "VimwikiDiaryGenerateLinks" | w | endif
 autocmd FileType vimwiki,markdown,text,tex set wrap
 
 " 因为包括了 FocusGained，所以需要判断 mode（）

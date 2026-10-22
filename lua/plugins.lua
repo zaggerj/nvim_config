@@ -1,3 +1,4 @@
+local large_file = require('large_file')
 -- config = true 等于 require('foo').setup({})
 -- 如果同时指定了 opts 和 config，则需要在 config 中显式调用 setup
 -- 非 lua 插件，除了 basic.vim 之外的配置需要写在 init 中
@@ -9,11 +10,32 @@ vim.opt.updatetime = 300
 
 vim.g.mapleader = ' '
 require('lazy').setup({
+  {
+    'github/copilot.vim',
+    branch = 'release',
+    commit = 'a12fd5672110c8aa7e3c8419e28c96943ca179be',
+    event = 'InsertEnter',
+    cmd = 'Copilot',
+    init = function() require('ai').init() end,
+    config = function() require('ai').setup() end,
+  },
+  { 'luarocks/hererocks', lazy = true, build = function(plugin)
+    require('bootstrap').build_rocks(plugin)
+  end },
   { 'tpope/vim-fugitive', event = 'VeryLazy' },
   {
     'lewis6991/gitsigns.nvim',
-    event = 'VeryLazy',
+    event = 'User NormalFile',
     opts = {
+      max_file_length = large_file.max_lines,
+      on_attach = function(buf)
+        if large_file.is_large(buf) then return false end
+        local gs = require('gitsigns')
+        vim.keymap.set('n', '<leader>gb', function() gs.blame_line({ full = true }) end,
+          { buffer = buf, desc = '查看当前行 Git blame' })
+        vim.keymap.set('n', '<leader>tb', gs.toggle_current_line_blame,
+          { buffer = buf, desc = '切换行尾 Git blame' })
+      end,
       current_line_blame = true,
       signcolumn = true,
       linehl = false,
@@ -68,8 +90,13 @@ require('lazy').setup({
   },
   {
     'kevinhwang91/nvim-ufo',
-    event = 'VeryLazy',
-    opts = {},
+    event = 'User NormalFile',
+    opts = {
+      provider_selector = function(buf)
+        if large_file.is_large(buf) then return '' end
+        return { 'treesitter', 'indent' }
+      end,
+    },
     config = function(_, opts)
       local ufo = require('ufo')
 
@@ -92,21 +119,30 @@ require('lazy').setup({
     lazy = true
   },
   {
-    'NTBBloodbath/rest.nvim',
+    'rest-nvim/rest.nvim',
+    dependencies = { 'luarocks/hererocks' },
+    build = function(plugin)
+      require('bootstrap').build_rocks(require('lazy.core.config').plugins.hererocks, plugin)
+    end,
+    config = function()
+      local extension = vim.fn.has('win32') == 1 and 'dll' or 'so'
+      local parser = vim.fn.stdpath('data') .. '/lazy-rocks/rest.nvim/lib/lua/5.1/parser/http.' .. extension
+      -- LuaRocks 将 parser 安装在 lib/lua 中，Neovim 不会在此自动查找。
+      vim.treesitter.language.add('http', { path = parser })
+      require('rest_compat').setup()
+    end,
     ft = 'http',
-    opts = {
-      highlight = {
-        enable = true,
-        timeout = 150,
-      },
-      jump_to_request = true
-    }
+    init = function()
+      vim.g.rest_nvim = {
+        request = { skip_ssl_verification = false },
+        highlight = { enable = true, timeout = 150 },
+      }
+    end,
   },
   {
     'neoclide/coc.nvim',
     branch = 'release',
-    build = ':CocUpdate',
-    event = 'VeryLazy',
+    event = 'User NormalFile',
     init = function()
       -- vim.o 则是字符串
       vim.opt.shortmess:append('c')
@@ -124,7 +160,10 @@ require('lazy').setup({
       }
     }
   },
-  { 'fatih/vim-go',       ft = 'go' },
+  { 'fatih/vim-go', ft = 'go', init = function()
+    vim.g.go_code_completion_enabled = 0
+    vim.g.go_gopls_enabled = 0 -- 语言服务交由 Coc，避免重复启动
+  end, config = function() require('go_compat').setup() end },
   {
     "nvim-neorg/neorg",
     build = ":Neorg sync-parsers",
@@ -195,7 +234,9 @@ require('lazy').setup({
   },
   {
     'goolord/alpha-nvim',
-    event = 'VimEnter',
+    -- 指定文件启动时无需首页；保留空启动与显式 :Alpha。
+    event = function() return vim.fn.argc(-1) == 0 and 'VimEnter' or nil end,
+    cmd = 'Alpha',
     dependencies = { 'kyazdani42/nvim-web-devicons' },
     config = function()
       local alpha = require('alpha')
@@ -291,6 +332,8 @@ require('lazy').setup({
   },
   {
     'nvim-lualine/lualine.nvim',
+    -- 主题在启动设置层确定后再初始化，避免 ColorScheme 触发第二次 setup。
+    event = 'VimEnter',
     opts = {
       options = {
         theme = 'auto',
@@ -441,6 +484,8 @@ require('lazy').setup({
   },
   {
     'JoosepAlviste/nvim-ts-context-commentstring',
+    event = 'User NormalFile',
+    init = function() vim.g.skip_ts_context_commentstring_module = true end,
   },
   {
     'numToStr/Comment.nvim',
@@ -643,7 +688,8 @@ require('lazy').setup({
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    event = 'VeryLazy',
+    branch = 'master', -- 保留兼容 Neovim 0.10 的 configs API
+    event = 'User NormalFile',
     config = function(_, opts)
       -- 高级选项，巨幅提升 parser 下载速度
       -- 要求 curl, tar, 且可以在非 admin 下创建 SymbolicLink
@@ -653,21 +699,14 @@ require('lazy').setup({
       require("nvim-treesitter.configs").setup(opts)
     end,
     opts = {
-      ensurse_installed = {
-        "c", "lua", "go",
+      ensure_installed = {
+        "c", "lua", "go", "python", "css", "scss",
         "typescript", "tsx",
         "html", "http", "javascript", "jsdoc", "json", "vue"
       },
       highlight = {
         enable = true,
-        -- 核心优化：大文件保护。当文件超过 100KB 时禁用 Treesitter 高亮，防止打字卡随
-        disable = function(lang, buf)
-          local max_filesize = 100 * 1024 -- 100 KB
-          local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-          if ok and stats and stats.size > max_filesize then
-            return true
-          end
-        end,
+        disable = function(_, buf) return large_file.is_large(buf) end,
       },
       indent = {
         enable = true,
@@ -680,11 +719,11 @@ require('lazy').setup({
       {
         'lukas-reineke/indent-blankline.nvim',
         main = 'ibl',
-        config = true
+        opts = { exclude = { filetypes = { 'bigfile' } } }
       },
       {
         'nvim-treesitter/nvim-treesitter-context',
-        config = true
+        opts = { on_attach = function(buf) return not large_file.is_large(buf) end }
       },
       {
         'windwp/nvim-ts-autotag',
@@ -692,4 +731,4 @@ require('lazy').setup({
       }
     }
   },
-})
+}, require('bootstrap').lazy_options())

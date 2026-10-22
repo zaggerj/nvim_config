@@ -60,67 +60,29 @@ function! PercentSplit(percent, action)
     exe l:temp.a:action
 endf
 
+" 保留原函数接口，命令发现、路径和 argv 由跨平台模块统一处理。
 function! Compiler()
-    exe "wa"
-    call PercentSplit(0.4, "sp")
-    if &filetype=='c'
-        exe "te clang -o %:r.exe %"
-    elseif &filetype=='cpp'
-        exe "te g++ -o %:r.exe %"
-    elseif &filetype=='java'
-        exe "te javac -encoding utf-8 %"
-    elseif &filetype=='go'
-        exe "go build"
-    else 
-        echo 'Do not support this type of file!'
-        exe "q"
-    endif
-endf
+    lua require('platform').compile_current()
+endfunction
 
 function! Runner()
-    write
-    if &filetype == 'html'
-        exe "!%"
-    elseif &filetype == 'go'
-        exe ":GoRun %"
-    else
-        call PercentSplit(0.4, "sp")
-        if &filetype=='cpp'|| &filetype=='c'
-            exe "te %:r.exe"
-        elseif &filetype == 'javascript'
-            exe "te node %"
-        elseif &filetype == 'java'
-            exe "te java %:r"
-        elseif &filetype == 'typescript'
-            exe "te node %<.js"
-        elseif &filetype == 'rust'
-            exe "te cargo run"
-        elseif &filetype == 'python'
-            exe "te python %"
-        elseif &filetype == 'ps1'
-            exe "te powershell -c \"./%\""
-        else
-            quit
-        endif
-    endif
-endf
+    lua require('platform').run_current()
+endfunction
 
 " Neovim 专属
 function! Set_it()
-    exe g:Sp_height(0.8)."sp ".stdpath("config")."/init.vim"
+    exe g:Sp_height(0.8)."sp ".fnameescape(stdpath("config")."/init.vim")
     " lcd %:h"：这是要执行的命令字符串。在这个命令中，lcd 是 Vim 的内置命令，用于改变当前目录（working directory）。% 表示当前文件的路径，而 :h 是一个修饰符，表示获取当前文件所在目录的路径。
-    exe "lcd %:h"
+    exe "lcd ".fnameescape(expand('%:p:h'))
 endf
 
-let s:cwd = fnamemodify("<sfile>", ":p:h")
 function! Go_plugin()
-    exe "NERDTreeToggle ".s:cwd."/pack/my/start"
+    lua require('nvim-tree.api').tree.open({path = vim.fn.stdpath('data') .. '/lazy'})
 endf
 
 function! Open_terminal()
-    call PercentSplit(0.4, "sp")
-    exe "te D:\\GlobalScoopApps\\apps\\git\\current\\bin\\bash.exe --login -i"
-endf
+    lua require('platform').open_terminal()
+endfunction
 
 " 打开 quickfix 或者 locallist
 function! Open_fix()
