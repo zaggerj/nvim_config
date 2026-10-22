@@ -129,3 +129,22 @@ G01、Go导航、终端Esc、Git键位、长行增长、各语言服务、状态
 
 
 D-NV-012确认回执：用户明确回复`确认当前拆分和依赖`。27份任务已转为ready-for-agent，任务索引记录当前无阻塞前沿；未满足Blocked by的任务仍不能提前执行。本轮仅完成规划与确认，未开始修改运行配置、更新插件或执行迁移。
+
+
+### D-NV-013：按已确认任务实现，保留独立平台边界
+
+用户确认按Matt implement和严格TDD执行27项任务，授权必要修复、优化、定点升级与当前分支提交。本轮起点2aa64bd；实际源码在e3d80f6首批提交，审查修正和文档另行追加，不push。正式回执见[本轮实施](implementation-2026-10-22.md)，各任务正文记录实际状态。
+
+语言服务补齐固定Coc扩展、官方LuaLS、兼容本机Go的gopls和goimports；导航由Coc负责，vim-go继续构建/测试/保存整理imports。终端Esc只回普通模式、Git导航与重置分开；长行增长按变化范围判定；状态栏统一全局模式；搜索输入端控制扫描、默认Unicode和ignore、PCRE2及忽略文件显式选择。主题按活跃项目根切换，完整主题仍为进程级。
+
+G01确认lualine diff通过Scoop shim启动Git，结束shim后真实Git仍持有输出句柄；bootstrap统一解析原生Git，测试只追踪自己后代。另在最终zsh矩阵发现其POSIX PATH包含无扩展名Node副本，不能稳定供原生插件字面node调用；优先原生.exe，按ProgramFiles/LOCALAPPDATA的标准Node/WinGet根后备发现，禁止固定个人盘符或修改shell登录配置。
+
+归档Legendary由现有Telescope和JSON频率/时间排序接替，原命令入口不变，SQLite只读显式导入，未知记录保留。Tutor旧变量从未被上游读取，改宿主内置教材与独立练习副本，保留中英入口和进度。Neorg parser及普通语言parser改显式部署，编辑启动不下载安装；未删除笔记工作流。
+
+Gitsigns、Fugitive、文件树、lualine、surround和plenary按[选版清单](plugin-upgrade-plan-2026-10-22.json)维护，which-key已到所选提交保持。新版plenary宣布停止维护，仍有现存消费者，暂保留并纳入后续picker选型；不因此跳过兼容验证。
+
+### D-NV-014：候选通过不等于立即迁移
+
+隔离原型已真实验证原生LSP+blink的10语言及go.nvim构建/测试/格式化/失败路径；18个交替补全样本没有显示替换性能收益，保留Coc+vim-go。原生gc在JSX/TSX输出无效注释，保留Comment及语法上下文插件。Treesitter main的实际parser、高亮、嵌套注释、HTTP等已试验，context真实行为尚有迁移缺口，保留master。搜索器三候选全部行为可用，按重复样本和部署成本判断，不凭单次速度换插件。详见[evaluations](evaluations/)。
+
+运行产物留在各平台stdpath(data)，官方macOS LuaLS下载包的哈希与结构已核对，不能替代macOS运行验收。任务21继续保留macOS及用户账号后的AI建议；Windows各入口的真实结果与最终revision单列，历史红测、错误试验装配和后续修正均保留。

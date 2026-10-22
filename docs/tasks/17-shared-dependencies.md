@@ -4,17 +4,17 @@
 
 **Blocked by（阻塞依赖）：** [12 用现有能力接替归档命令面板](12-legendary-migration.md)；[13 让内置Tutor承接归档教程入口](13-tutor-migration.md)；[14 定点维护Git插件并回归实际操作](14-git-plugins-update.md)；[15 定点维护文件树与文件定位](15-file-tree-update.md)；[16 定点维护状态栏按键提示和文本包围](16-ui-editing-update.md)。
 
-**Status：** ready-for-agent（用户已确认拆分与依赖，未开始实施；执行前须满足Blocked by）
+**Status：** done（Windows最终功能回归通过；跨平台实机验收独立归任务21）
 
 **归属：** D；[治理SPEC](../spec.md) M02、R08 / ID06；验收 AC08、AC09。
 
 ## 验收标准
 
-- [ ] 按已完成的消费者清单确认共享依赖与独占依赖，列出本批明确范围，避免借此全量更新。
-- [ ] 按依赖逐个选定兼容提交并验证真实消费者动作，每个子批独立可恢复。
-- [ ] 不再需要的依赖仅在确认无消费者且用户数据保留后清理。
-- [ ] 现有HTTP、AI、Coc、大文件和Git关键回归保持通过；原生构建仍显式执行。
-- [ ] 更新锁差异、消费者矩阵、构建/恢复指引及决策回执。
+- [x] 按已完成的消费者清单确认共享依赖与独占依赖，列出本批明确范围，避免借此全量更新。
+- [x] 按依赖逐个选定兼容提交并验证真实消费者动作，每个子批独立可恢复。
+- [x] 不再需要的依赖仅在确认无消费者且用户数据保留后清理。
+- [x] 现有HTTP、AI、Coc、大文件和Git关键回归保持通过；原生构建仍显式执行。
+- [x] 更新锁差异、消费者矩阵、构建/恢复指引及决策回执。
 
 ## 范围与交付记录
 
@@ -25,3 +25,14 @@
 完成时追加复现、改动原因、执行环境/revision、实际结果、未验证边界和恢复方式；同步当前设计、教程、问题状态及决策记录。候选评估票以可复现比较和选型材料完成，不因评估结束自动获得迁移状态。
 
 [返回任务索引](README.md)
+
+
+## 2026-10-22 实施回执
+
+plenary固定74b06c6；Telescope/Neorg是保留消费者，其新版README提示维护终止。移除的sqlite仅由已迁移Legendary消费；Copilot/rest/rocks/Treesitter版本不变，原生产物仍显式构建。
+
+验证入口：`search_smoke.py / command_palette_smoke.py / rest_smoke.py`，在当前Windows Neovim0.12.6配置下执行。完整SHA、根因、恢复与数据迁移见 [实施回执](../implementation-2026-10-22.md)，最终平台/revision见 [21](21-platform-acceptance.md)。macOS无实机，跨平台验收不提前勾选。
+
+## 最终整合回执
+
+运行配置 `c4493af` 的完整回归37/37通过，原始命令/输出见 [最终报告](../evaluations/final-regression.json)。三Windows入口27/27及逐项修订范围见 [平台回执](../platform-acceptance-2026-10-22.md)。本票完成口径为当前Windows目标；macOS原生产物/实机仍归任务21待验。

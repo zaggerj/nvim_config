@@ -1,5 +1,8 @@
 # 配置文档
 
+- [本轮修复、插件升级、数据迁移与最终验证](docs/implementation-2026-10-22.md)
+- [真实语言服务与跨平台工具部署](docs/language-services.md)
+
 - [独立任务规划：27项交付、依赖与验收](docs/tasks/README.md)
 
 - [已接受的治理 SPEC：问题、结论、实施顺序与验收标准](docs/spec.md)
@@ -19,6 +22,8 @@
 - [免费 AI 补全选型与账号配置](docs/ai-completion.md)
 
 # 更新描述
+
+以下为历史更新记录；当前插件、命令与快捷键以完整教程和实施回执为准。Legendary、vim-tutor-mode及独占sqlite依赖已完成替换，Tabnine已按用户选择迁移至Copilot Free。
 
 > 2026/01/11 (第二次更新)
 

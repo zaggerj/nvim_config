@@ -2,7 +2,7 @@
 
 > 本页保留较早的操作整理。当前完整用法、全部自定义键位、buffer/window/tab工作流和进阶教程见 [完整教程](docs/tutorial.md)；性能、插件与主题取舍见 [综合评审](docs/configuration-review-2026-10-22.md)。发生差异时以当前源码和运行映射为准。
 
-当前特别注意：终端Esc发送 `exit`，`]c`重置整个buffer未暂存修改；Go的 `gd` 被vim-go局部映射覆盖。教程提供现状说明及替代入口，本轮评审尚未修改这些键位。
+2026-10-22已修复：终端Esc/fj只回普通模式；]c/[c只导航，hR明确确认重置；Go的gd/gD/Ctrl+]/K统一由Coc负责。命令面板沿用Legendary入口，教程使用内置Tutor；旧版本说明作为历史保留，日常操作以 [当前教程](docs/tutorial.md) 为准。升级和部署见 [实施回执](docs/implementation-2026-10-22.md)。
 
 ## 核心理念
 

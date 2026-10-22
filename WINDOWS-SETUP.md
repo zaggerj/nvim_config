@@ -41,7 +41,7 @@ python3 scripts/deploy.py --data "<实际数据目录>" --bootstrap-lazy --apply
 :CocProvision
 :Lazy build hererocks
 :Lazy build rest.nvim
-:TSInstallSync c lua go python css scss typescript tsx html http javascript jsdoc json vue
+:ParserInstall
 ```
 
 rest.nvim 构建也会先检查并准备隔离工具链。构建只在安装、明确重建或更新时执行，不在每次编辑 HTTP 文件时编译。
@@ -62,7 +62,7 @@ Lua 官网证书曾晚于客户端日期生效。引导器保持 TLS 验证，�
 
 ## 3. 高亮、补全与 Git blame
 
-Treesitter 的 `ensure_installed` 已修正。JSX 使用 JavaScript parser，React TSX 使用 TSX parser，Vue 2/3 共用 Vue parser。高亮与 Coc 语言服务分别管理，不能只凭高亮判断语言服务器已安装。
+支持语言清单在 `lua/parser_setup.lua`，通过 `:ParserInstall` 显式构建；日常 `ensure_installed={}`、`auto_install=false`，打开代码不安装。JSX使用JavaScript parser，React TSX使用TSX parser，Vue2/3共用Vue parser。高亮与Coc语言服务分别验收。
 
 Git 跟踪文件停留约 1 秒后显示行尾 blame。`空格 gb` 查看当前行详情，`空格 tb` 切换行尾 blame。无提交历史的文件没有历史作者信息。
 
@@ -103,3 +103,11 @@ HTTP 最终结果见设计文档。macOS 已审查平台分支，本轮没有 ma
 Go 文件黑屏的后续修复见 [工具链启动记录](docs/issues/2026-10-22-go-toolchain-startup.md)。Coc 接管 Go 语言服务时，配置解除 vim-go 仍注册的 LSP 自动事件；编辑启动不再因此等待工具链下载。明确构建/测试继续遵循项目 Go 版本要求。可运行 `python3 tests/go_startup_smoke.py` 验证，修改后完整退出重开 nvim。
 
 `coc-settings.json` 的语言服务设置可用 `:CocRestart`（空格 cr）重启 Coc；bootstrap、环境、插件和 Lua 模块变化需要完整退出再启动 nvim。`:source $MYVIMRC` 不能刷新全部 Lua 缓存、插件事件和进程环境。完整链路与重载边界见 [设计第 13 节](docs/design.md#13-部署启动平台适配与重载链路)。
+
+## 2026-10-22 治理后的补充部署
+
+语言服务不依赖shell临时目录。先按 [语言服务部署](docs/language-services.md) 显式部署固定的Coc扩展、LuaLS、gopls及goimports；其二进制在各平台自己的 `stdpath(data)` 中。日常打开文件不安装工具。
+
+使用Neorg前，在配置目录执行 `python scripts/provision_neorg.py --apply`，本机编译norg/norg_meta；打开笔记不自动联网安装。搜索原生库在本平台显式运行 `:Lazy build telescope-fzf-native.nvim`，完成后重启，用 `:SearchHealth` 确认。
+
+升级采用锁定提交，清单见 [分组选版](docs/plugin-upgrade-plan-2026-10-22.json)。原Legendary SQLite不会被清理，跨机器迁移步骤见 [实施回执](docs/implementation-2026-10-22.md#原命令面板数据迁移)。安装完成后运行 `python tests/run_all.py --output docs/evaluations/final-regression.json`；macOS必须使用自己的运行产物执行相同回归。

@@ -42,3 +42,10 @@ Go 官方源码 `cmd/go/internal/toolchain/select.go` 与 [工具链选择文档
 本次未改运行配置，复跑 `tests/go_startup_smoke.py` 在30秒处超时。排查发现该次测试启动期间生成的 `git diff --no-color --no-ext-diff -U0 -- main.go` 子进程在父 Neovim 退出后仍存活；终止该测试遗留的Git进程后，Python回传 `subprocess.TimeoutExpired`。当前未核实Git停滞的具体原因，也未证实它与此前的Go工具链下载阻塞相同，不能将本次回归记为通过。后续应检查Git子进程生命周期和Windows管道句柄继承。
 
 同批复核通过：Python脚本语法、JSON解析、editor_smoke（高亮/blame/大文件读取）、ui_startup_smoke（四场景）、ai_smoke、coc_smoke（含重载/TLS）、rest_smoke（四类本地HTTP请求）。macOS本次未实机复核。
+
+
+## G01 根因闭环与本轮修复
+
+与此前Go工具链同步下载是两条路径。此次遗留命令来自lualine diff；Scoop git.exe shim启动原生Git，插件jobstop结束shim时真实Git仍存活，继承输出句柄使Python等待EOF或日志删除失败。快速切换两份Go buffer并发15次BufWritePost可复现旧配置WinError32。Windows bootstrap借现有platform.executable解析.shim，令本进程PATH优先真实Git目录，所有插件字面git共享修复。没有关闭blame、diff或加长超时。
+
+新增nvim_process测试边界使用有界等待、只追踪本次后代及文件输出，避免communicate的继承管道无限等候；成功/失败/超时注入保留输出、清理自己进程并保留无关peer。git_lifecycle连续3轮退出和句柄释放通过，停滞Go fixture仍通过；三入口最终证据见任务21和docs/evaluations/platform-windows.json。未操作用户旧编辑器或此前不属本轮的遗留进程。

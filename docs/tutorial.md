@@ -25,7 +25,7 @@
 15. [不同项目使用不同主题](#15-不同项目使用不同主题)
 16. [当前自定义快捷键完整清单](#16-当前自定义快捷键完整清单)
 17. [插件窗口与默认快捷键清单](#17-插件窗口与默认快捷键清单)
-18. [39 个 Git 插件及 14 个 Coc 扩展怎么用](#18-39-个-git-插件及-14-个-coc-扩展怎么用)
+18. [当前插件及 17 个 Coc 扩展怎么用](#18-当前插件及-17-个-coc-扩展怎么用)
 19. [安装、维护、重载与大文件](#19-安装维护重载与大文件)
 20. [常见问题与练习路线](#20-常见问题与练习路线)
 
@@ -81,7 +81,7 @@ nvim src/App.tsx src/App.test.tsx
 buffer 列表：实现、测试、类型、配置等文件，跨所有 tab 共用
 ```
 
-文件树按需展开后可关闭，不必长期开着占屏。搜索打开文件通常比逐层找目录更快。当前lualine选项虽然写了`globalstatus=true`，配置回调随后又设置`laststatus=2`，运行实测为每个window状态栏；不要把当前画面理解成已经启用跨窗口统一状态栏。
+文件树按需展开后可关闭，不必长期开着占屏。搜索打开文件通常比逐层找目录更快。lualine使用全局状态栏（`laststatus=3`），分屏共享底部状态栏；顶部tabline显示buffer/tab，不把buffer误认为tab。
 
 ## 2. 按键记法、模式和帮助
 
@@ -111,7 +111,7 @@ buffer 列表：实现、测试、类型、配置等文件，跨所有 tab 共�
 | 命令行 | `:`、`/`、`?` | 回车执行，`Esc`取消 | 文件、搜索、Ex 命令 |
 | 终端输入 | `:terminal` 或终端快捷键 | **`fj` 或 `Ctrl+\ Ctrl+n`** | 给 shell / 程序发送键盘输入 |
 
-**当前终端输入模式的 `Esc` 会发送 `exit` 并回车。** 它不是单纯返回普通模式：`maps.vim` 后加载的终端映射覆盖了 `basic.vim` 的同键映射。在 shell 中会退出，在其他前台程序里会把这些字符交给程序。要保留终端任务，使用 `fj` 或原生 `Ctrl+\ Ctrl+n`。
+终端输入模式的 `Esc`、`fj` 和原生 `Ctrl+\ Ctrl+n` 都返回终端普通模式，保留当前shell和前台任务。切回终端window按`i`继续输入；要终止任务，明确使用`Ctrl+e`或程序自己的退出命令。
 
 ### 2.3 忘记快捷键时怎么查
 
@@ -128,7 +128,7 @@ buffer 列表：实现、测试、类型、配置等文件，跨所有 tab 共�
 :verbose tmap <Esc>
 ```
 
-`verbose` 的最后几行会显示映射来自哪个文件。`空格 ?k` 可搜索当前映射，`空格 ?c` 搜索命令，`空格 ft` / `空格 ?h` 搜帮助。which-key 会在输入前缀稍等后显示提示；它显示的分组或描述不一定已经有可执行映射，例如目前 `空格 gd` 只有描述。
+`verbose` 的最后几行会显示映射来自哪个文件。`空格 ?k` 可搜索当前映射，`空格 ?c` 搜索命令，`空格 ft` / `空格 ?h` 搜帮助。which-key会在输入前缀稍等后显示提示；分组继续输入子键才执行动作，描述项已按实际运行映射核对，`空格 gd`打开Git差异。
 
 ## 3. buffer、window、tab 的关系
 
@@ -242,9 +242,9 @@ Alt组合键可能被Windows Terminal、macOS终端或系统快捷键截获。�
 
 | 按键/命令 | 作用 |
 |---|---|
-| `空格 b` | 当前窗口增高8行 |
+| `空格 w+` | 当前窗口增高8行 |
 | `空格 B` | 增高50行，受屏幕空间限制 |
-| `空格 w` | 当前窗口增宽8列 |
+| `空格 w>` | 当前窗口增宽8列 |
 | `空格 W` | 增宽56列 |
 | `Ctrl+w +` / `Ctrl+w -` | 高度增/减1；可加数字，例如`5Ctrl+w +` |
 | `Ctrl+w >` / `Ctrl+w <` | 宽度增/减1 |
@@ -255,7 +255,7 @@ Alt组合键可能被Windows Terminal、macOS终端或系统快捷键截获。�
 | `:call PercentSplit(0.4, 'sp')` | 当前配置提供的函数，按当前窗口高度比例上下分屏 |
 | `:call PercentSplit(0.5, 'vsp')` | 按当前宽度比例左右分屏 |
 
-终端窗口大小变化时，配置会自动执行 `wincmd =` 均分布局，因此之前手动调的尺寸可能被重置。`空格 b` 和 `空格 w` 本身已经是完整映射，虽然which-key也把它们显示为分组，不应随意往这两个前缀追加更多键。
+终端窗口大小变化时，配置会自动执行 `wincmd =` 均分布局，因此之前手动调的尺寸可能被重置。`空格 b`、`空格 w`、`空格 n`专用于帮助分组；增高/增宽改为`空格 w+`/`空格 w>`，取消搜索高亮用`空格 sn`。
 
 ### 5.4 关闭和临时聚焦
 
@@ -322,7 +322,7 @@ Ctrl+Shift+方向键在某些终端无法区分；`:tabnew`、`:tabclose`、`gt/
 5. 结果很多时从Telescope送入quickfix，`:cnext/:cprevious`逐项看，避免不断重新搜索。
 6. Git问题用`空格 gb`看当前行作者，必要时`:Git blame`或`:Git log -p -- %`看完整历史。
 
-**Go例外：当前Go buffer的`gd`是vim-go的`:GoDef`，会覆盖全局Coc定义跳转。** 本配置关闭了vim-go的gopls，专用Coc Go服务也尚未补齐，不能保证该跳转可用。此时先使用文本搜索；已有相应Coc服务时可明确执行`:call CocActionAsync('jumpDefinition')`核对服务，而不是反复按一个被覆盖的键。
+Go与JS/TS/Python/Lua统一使用Coc导航：`gd`定义、`gD`类型定义、`gr`引用、`K`/`gh`悬浮文档、F2重命名；vim-go不再覆盖这些映射。Go构建/测试仍用`:GoBuild`、`:GoTest`。语义服务需按第19节显式部署工具，并等待项目服务就绪。
 
 ### 7.3 前后端联调
 
@@ -341,16 +341,16 @@ Ctrl+Shift+方向键在某些终端无法区分；`:tabnew`、`:tabclose`、`gt/
 | 最近文件 | `空格 fr` / `空格 lr` | 历史记录，不限当前项目 |
 | 全文 | `空格 fg` / `空格 lg` | cwd下live_grep |
 | 光标词 | `空格 ls` | grep_string |
-| 隐藏文件 | `空格 fh` | 显式带`--hidden`，仍受全局忽略模式影响 |
+| 隐藏文件 | `空格 fh` | 显式带`--hidden`，尊重`.gitignore` |
 | 帮助 | `空格 ft` / `空格 lh` / `空格 ?h` | 帮助tags |
 | 标记 | `空格 lm` | marks |
 | 寄存器 | `空格 lt` | registers；旧注释称location list不准确 |
 | 可调选项 | `空格 lv` | vim_options |
 | Git状态/分支/stash | `空格 lj` / `空格 ll` / `空格 lk` | 当前Git仓库 |
 
-当前`find_files`默认不带`--hidden`，而`live_grep`带`--hidden`及`--no-ignore-vcs`。后者会绕过`.gitignore`，但仍有配置的Lua忽略模式。两者范围不完全相同，不能把找不到文件一律归于插件故障。
+`find_files`默认不带`--hidden`，全文`live_grep`带`--hidden`；二者都尊重`.gitignore`。所有入口在rg扫描时排除`.git`、`node_modules`、`__pycache__`和`.pnpm-store`，不再用Lua结果过滤隐藏`lib/`、`vendor/`、lock文件或`.env`。
 
-全局忽略中还有`vendor/`、`lib/`、构建目录、日志、lock文件、图片和`.env`等。业务代码恰好位于`lib/`时也可能被隐藏。这里的Lua忽略是rg扫描后的结果过滤，不能阻止rg先遍历目录；而且`lib/`等模式要求斜杠，Windows结果若使用反斜杠可能不命中。因此当前目录排除尚未做到所有搜索入口和平台完全一致，参见 [配置综合评审](configuration-review-2026-10-22.md)。`空格 fh`不是完全取消忽略的“找所有文件”。要核实特定文件，直接`:edit 路径`；临时全范围搜索可在终端用自己明确限定目录的`rg`命令，不在编辑器里盲目扫描依赖和巨大日志。
+显式查找被Git忽略的文件用`:FindFilesIgnored`，全文搜索用`:GrepIgnored 关键词`；这两个入口仍排除Git内部目录和依赖缓存。`.env`属于隐藏文件，可用`空格 fh`查找；若项目将它加入`.gitignore`则用`:FindFilesIgnored`。需要lookbehind等高级正则时使用`:GrepPCRE (?<=prefix)value`；该入口显式探测PCRE2，缺失时给出具体错误，普通中文搜索仍可直接使用live_grep。`:SearchHealth`检查fzf原生扩展及rg路径；原生扩展缺失会提示显式`:Lazy build telescope-fzf-native.nvim`，不会无声地忽略失败。
 
 ### 8.2 搜索结果在哪里打开
 
@@ -402,7 +402,7 @@ Vista需要对应语言服务提供符号；Go/Python/Vue专用服务缺失时�
 
 普通模式`/`和`?`自动加上`\v`（very magic），因此括号、`+`、`|`等默认按正则操作符解释。例如按`/`后输入`(foo|bar)`即可搜两者。需要原样字符串时，在已经自动出现的`\v`后加`\V`切到very nomagic，再输入文字；或用`:let @/ = '\V' . escape('literal.text', '\')`等明确设置。
 
-`n/N`重复搜索；`空格 n`取消当前高亮。原生`*`/`#`搜索光标单词，不经过`/`映射。配置`ignorecase`使普通搜索默认不区分大小写；需强制时在模式中加`\C`，强制忽略用`\c`。
+`n/N`重复搜索；`空格 sn`取消当前高亮。原生`*`/`#`搜索光标单词，不经过`/`映射。配置`ignorecase`使普通搜索默认不区分大小写；需强制时在模式中加`\C`，强制忽略用`\c`。
 
 替换由Ex命令控制，不经过普通模式`/`映射：
 
@@ -432,7 +432,7 @@ cs"'     把外围双引号改成单引号
 ds"      删除外围双引号
 ```
 
-`yss)`包住整行，`ysiw(`会添加带空白的括号形式，而`)`通常不加内侧空格。可视选中后`S`再输入包围字符，`gS`使用换行形式。插入模式默认`Ctrl+g s/S`由surround使用，而Copilot配置了独立`Ctrl+g`隐藏建议，二者存在前缀等待关系；感觉停顿时先用普通模式的`ys/cs/ds`路径，查看`:verbose imap <C-g>`和`:verbose imap <C-g>s`。
+`yss)`包住整行，`ysiw(`会添加带空白的括号形式，而`)`通常不加内侧空格。可视选中后`S`再输入包围字符，`gS`使用换行形式。插入模式`Ctrl+g s/S`分别插入包围/换行包围；Copilot隐藏建议改为`Ctrl+g d`，接受仍为`Ctrl+j`，不再单独占用surround前缀。例：插入模式按`Ctrl+g s )`得到`()`。
 
 ## 10. 补全、诊断与重构
 
@@ -463,7 +463,7 @@ ds"      删除外围双引号
 - `空格 cf`格式化整个文件，可视模式同键格式化选区。
 - `空格 ci`组织import；`空格 cl`打开CocList，可继续输入`diagnostics`、`symbols`、`extensions`等可用来源。
 - `Up/Down`在普通模式被改为上/下一个诊断，移动一行改用`k/j`。
-- `af/if`在可视与操作符等待模式代表函数对象，例如`vif`选函数内部；Go中被vim-go局部文本对象覆盖。
+- `af/if`在可视与操作符等待模式代表函数对象，例如`vif`选函数内部；Go也使用同一组Coc文本对象。
 
 相关命令：
 
@@ -477,7 +477,7 @@ ds"      删除外围双引号
 :CocRestart
 ```
 
-扩展未激活时它的命令可能不在列表中。确认Coc识别了项目根和语言服务后，再判断快捷键是否工作。Go局部映射覆盖见[第16节](#16-当前自定义快捷键完整清单)。
+扩展未激活时它的命令可能不在列表中。确认Coc识别了项目根和语言服务后，再判断快捷键是否工作。Go与其他语言一致的导航见[第16节](#16-当前自定义快捷键完整清单)。
 
 ### 10.4 保存时会发生什么
 
@@ -503,20 +503,20 @@ Gitsigns显示当前文件行级变化、hunk和行尾blame；Fugitive管理仓�
 
 | 操作 | 当前键/命令 |
 |---|---|
-| 下一/上一hunk | `]g` / `[g` |
+| 下一/上一hunk | `]c` / `[c`；diff窗口使用原生导航，普通Git文件使用Gitsigns |
+| 兼容导航 | `]g` / `[g` |
 | 看当前行完整blame | `空格 gb`，只在Gitsigns成功附加的Git buffer出现 |
 | 切换行尾blame | `空格 tb`，同上 |
-| 和index比较 | `[d`，实际`:Gitsigns diffthis` |
-| 与`~`基准比较 | `[f`，实际`:Gitsigns diffthis ~`；不要简单称作只看staged文件 |
-| 暂存整个buffer | `[c`，不是上一diff hunk |
-| **重置整个buffer修改** | **`]c`，实际`:Gitsigns reset_buffer`，可能丢失未暂存改动** |
-| 仅暂存当前hunk | `:Gitsigns stage_hunk` |
-| 撤销最近一次hunk暂存 | `:Gitsigns undo_stage_hunk` |
+| 和index比较 | `空格 gd` / `[d` |
+| 与`~`基准比较 | `[f`，实际`:Gitsigns diffthis ~` |
+| 暂存/撤销暂存当前hunk | `空格 hs` / `空格 hu` |
+| 暂存整个buffer | `空格 hS` |
+| 撤销整个buffer暂存 | `空格 hU`（恢复index，保留工作区修改） |
+| 重置整个buffer未暂存修改 | `空格 hR`，先在选择框确认，默认取消 |
 | 预览当前hunk | `:Gitsigns preview_hunk` |
 | 完整blame视图 | `:Git blame` |
 
-**这里的`]c`覆盖了diff模式原生“下一个差异”键。** 在不熟悉配置前，不要习惯性用`]c/[c`导航diff；用`:normal! ]c`、`:normal! [c`明确执行原生动作，或使用当前Gitsigns的`]g/[g`。任何reset操作前先看diff和备份。
-
+`]c/[c`只导航，不暂存、不重置。重置确认期间文件再次改变会拒绝执行，需重新确认；确认前先看diff。
 行尾blame配置延迟1000ms，是停留后显示的延迟，不是启动卡顿。非Git文件、未附加、大文件保护等情况下没有blame属于可解释状态。
 
 ### 11.3 原生diff与历史
@@ -542,7 +542,7 @@ Gitsigns显示当前文件行级变化、hunk和行尾blame；Fugitive管理仓�
 | `空格 csd` | 分屏打开系统shell |
 | 终端输入`fj` | 回终端普通模式，任务继续运行 |
 | `Ctrl+\ Ctrl+n` | 原生回终端普通模式 |
-| 终端输入`Esc` | 当前配置发送exit和回车，可能退出shell |
+| 终端输入`Esc` | 返回终端普通模式，保留shell与任务 |
 | 终端buffer中`Ctrl+e` | 当前配置调用jobstop终止该终端任务；不只是把窗口隐藏 |
 
 终端用的是`NVIM_TERMINAL`、SHELL以及可发现的zsh/bash/PowerShell等候选，不保证和Neovim执行`:!`时的`shell`一致。Windows配置将`:!`的shell设为cmd.exe，而平台模块创建终端使用argv；不要从其中一个推断另一个。
@@ -587,7 +587,7 @@ vim-go按Go filetype加载，启动兼容模块已解除关闭gopls后残留的�
 :GoCoverageToggle
 ```
 
-构建测试命令和gopls语义导航不是一项能力。当前gopls关闭，GoDef/GoDefType/GoDoc等依赖工具/语言服务的功能不能仅凭命令存在认定可用；查看`:CocInfo`、`:CocList extensions`和项目工具，再决定用哪个入口。此教程不自动安装工具或改变项目Go版本。
+Go语言服务由Coc使用显式部署的gopls提供，vim-go内部gopls仍关闭，避免重复服务；`:GoDef`/`:GoDoc`不作为本配置主入口。先用`gd/gr/K/F2`完成语义工作，再用`:GoBuild`/`:GoTest`执行项目命令。`:CocInfo`查看语言服务状态，`:CocList extensions`检查扩展。
 
 ## 13. HTTP、AI、折叠与笔记
 
@@ -635,7 +635,7 @@ Content-Type: application/json
 | `Ctrl+j` | 接受当前AI建议 |
 | `Alt+]` | 下一个建议 |
 | `Alt+[` | 上一个建议 |
-| `Ctrl+g` | 隐藏建议；与surround的Ctrl+g前缀存在等待关系 |
+| `Ctrl+g d` | 隐藏建议；保留surround的Ctrl+g s/S |
 
 Copilot默认Tab映射已关闭，默认其他映射也关闭，只保留这里显式设置的键。不要用官方默认Alt+Right或Ctrl+Right等键假设本配置支持逐词接受。Free方案当前每月2000次补全，额度与账号政策可能变化，以GitHub账号页为准。
 
@@ -643,7 +643,7 @@ Copilot默认Tab映射已关闭，默认其他映射也关闭，只保留这里�
 
 ### 13.3 折叠、缩进线和上下文
 
-UFO使用Treesitter/indent provider，普通文件默认全部展开（foldlevel99）。`zc`收当前折叠、`zo`展开、`za`切换、`zR`全部展开、`zM`全部折叠；后两键由UFO注册。折叠只影响视图，不删除内容。
+UFO使用Treesitter/indent provider，普通文件默认全部展开（foldlevel99）。`zc`收当前折叠、`zo`展开、`za`切换、`zR`全部展开、`zM`全部折叠；后两键在普通文件可由UFO提供，并保留原生折叠语义。折叠只影响视图，不删除内容。
 
 IBL显示缩进线，Treesitter context显示顶部当前函数/作用域，autotag辅助HTML/Vue/JSX标签补齐，context-commentstring选择注释风格。这些功能没有在本仓库额外定义独立快捷键；没有看到相应UI时先看filetype、parser和大文件状态。
 
@@ -660,7 +660,7 @@ Neorg使用`.norg`，不是Markdown。当前配置的workspace名是`notes`，�
 
 代码配置启用了core.defaults、concealer、calendar、dirman。Norg语法：`* 标题`、`** 子标题`、`- 列表`、`- ( ) 未完成任务`、`- (x) 已完成任务`，代码块用`@code 语言`到`@end`。
 
-默认预设主要键见第17节。**LocalLeader没有独立设置，通常是反斜杠；但当前全局反斜杠已映射成冒号。** Neorg注册时会检查已有映射并跳过冲突键，不能把默认文档里的所有LocalLeader操作都视为本机已生效。先用命令入口，并在norg buffer里`:verbose nmap \nn`核对。Neorg parser、日历和笔记完整工作流仍未作为当前回归验收项。
+LocalLeader已设为逗号`,`，与全局反斜杠命令入口分开。norg buffer中`,nn`新笔记，`,td`标记完成，`,tu`标记未完成；`:verbose nmap ,nn`核对实际动作。真实加载和12个逗号前缀映射已回归；工作区路径仍需本人按实际笔记位置配置。parser缺失时给出部署提示，打开文件不会自动联网编译；在配置目录运行`python scripts/provision_neorg.py --apply`，构建成功后完整重启。
 
 ## 14. 高级工具：quickfix、寄存器、宏与会话
 
@@ -730,26 +730,27 @@ quickfix是一组“文件+行列+消息”的目标，可以由搜索、编译�
 
 ## 15. 不同项目使用不同主题
 
-### 15.1 当前已经有的行为
+### 15.1 自动识别当前项目
 
-`mysettings/ngconsole.vim`启动时检查当前cwd字符串：包含`_oem`使用onelight；否则包含`_bug`使用everforest；否则catppuccin-latte。规则是路径子串匹配，不是按Git root的严格项目注册表。两个条件同时命中时_oem优先。
+当前buffer的实际文件路径决定活跃项目。优先识别祖先`.git`目录/文件，其次使用`go.work`、`go.mod`、`package.json`、`pyproject.toml`或`Cargo.toml`，无标记时用cwd。切换buffer/tab以及`:cd/:tcd/:lcd`时重新应用主题，同一项目根使用缓存，不为换buffer启动Git进程。
 
-当前DirChanged自动命令是注释状态，因此`:cd/:tcd/:lcd`之后不会自动重算。主题是全局colorscheme，同一进程所有tab/window都受影响；每个tab不可能仅凭`:tcd`拥有独立完整colorscheme。
+默认保留历史规则：项目根路径含`_oem`用onelight，含`_bug`用everforest，其余catppuccin-latte。显式规则优先，可在配置中设置：
 
-### 15.2 现在怎么手动切换
-
-```vim
-:colorscheme catppuccin-latte
-:colorscheme catppuccin-macchiato
-:colorscheme onelight
-:colorscheme everforest
-:colorscheme tokyonight
-:call TrySwitchTheme()
+```lua
+vim.g.nvim_project_themes = {
+  { root = 'frontend', theme = 'tokyonight' },
+  { root = 'backend', theme = 'catppuccin-macchiato' },
+  { root = 'monorepo', subdir = 'apps/admin', theme = 'onelight' },
+}
 ```
 
-具体主题名要看已安装插件提供的colors文件；旧forest-night仓库当前主题名是everforest。TrySwitchTheme按当前cwd再执行已有规则。lualine会响应ColorScheme改变，不需要为手动换主题完整重启。
+相对名称匹配项目根尾部，方便Windows/macOS复用；绝对路径规则适合本机特定项目。绝对根优先于名称，项目内更具体的subdir优先。修改规则后完整重启；`:call TrySwitchTheme()`可手动重算当前规则。无效主题提示一次并保留现有主题。
 
-最通用的项目识别方案是不同项目使用独立nvim进程，并从项目根启动。后续若增加明确的项目→主题配置、根目录识别和TabEnter/DirChanged处理，应在正式评审中实施和验收，不把本节的建议当作已安装功能。
+### 15.2 全局主题与tab
+
+colorscheme仍是进程全局状态；当前tab中进入另一个项目buffer时，全局主题随活跃项目切换，其他窗口也会变色。需要同时保留两套独立颜色时使用两个nvim进程。
+
+手动`:colorscheme tokyonight`立即生效，lualine响应ColorScheme事件；下一次项目切换会重新应用项目规则。规则和事件回归见`tests/project_theme_smoke.py`。
 
 ## 16. 当前自定义快捷键完整清单
 
@@ -763,7 +764,7 @@ quickfix是一组“文件+行列+消息”的目标，可以由搜索、编译�
 | I | `Ctrl+v` | 从系统`+`寄存器粘贴 |
 | N等 | `\` | 输入冒号进入命令行；影响默认LocalLeader前缀 |
 | N | `/` / `?` | 自动加very magic前缀的向前/向后搜索 |
-| N | `空格 n` | `noh`清高亮 |
+| N | `空格 sn` | `noh`清高亮 |
 | C | `Alt+b` / `Alt+f` | 发送Ctrl+Left/Right，按词移动命令行光标 |
 | I | `_tm` | 插入当前`YYYY-MM-DD`，这是输入映射不是命令 |
 | N/V/O | `'` / Backspace | Sneak正向/反向两字符跳转 |
@@ -778,8 +779,8 @@ quickfix是一组“文件+行列+消息”的目标，可以由搜索、编译�
 | N等 | `Ctrl+Shift+Up` | `tabnew` |
 | N等 | `Ctrl+Shift+Down` | `tabclose` |
 | N等 | `空格 Left` | `bdelete`当前buffer |
-| N | `空格 b/B` | window增高8/50行 |
-| N | `空格 w/W` | window增宽8/56列 |
+| N | `空格 w+` / `空格 B` | window增高8/50行 |
+| N | `空格 w>` / `空格 W` | window增宽8/56列 |
 | N | `空格 wd` | tab cwd改到当前文件目录 |
 | N等 | `空格 dt/do` | 当前window启用/关闭diff |
 | N | `空格 fs` | 高度约80%的横分屏打开配置init.vim，并将该window lcd到其目录 |
@@ -812,7 +813,7 @@ quickfix是一组“文件+行列+消息”的目标，可以由搜索、编译�
 | N | `空格 ?h` | Telescope help_tags |
 | N | `空格 ?k` | Telescope keymaps |
 | N | `空格 ?c` | Telescope commands |
-| N | `空格 空格` | Legendary命令面板 |
+| N | `空格 空格` | CommandPalette命令面板（Legendary兼容入口） |
 
 `f*`与`l*`有部分重复，推荐主用f系列，光标词搜索和标记/寄存器等补用l系列。不要把旧`fr/ft/fh`记成运行/终端/目录切换。
 
@@ -828,7 +829,7 @@ quickfix是一组“文件+行列+消息”的目标，可以由搜索、编译�
 | N | `空格 pu` | **Lazy update，会更新插件与锁文件** |
 | N | `空格 pc` | **Lazy clean，清理不在规格中的插件** |
 
-`空格 h/t/d/g/c/...`等which-key组名并不都是可直接执行的动作。尤其`空格 gd`目前只有“Git Diff”描述，没有实际rhs；请用`[d`、`:Gdiffsplit`等已存在入口。
+`空格 h/t/d/g/c/...`等which-key组名是前缀，继续输入子键执行动作；`空格 gd`已是真实Git diff动作。Git blame描述随Git buffer附加映射出现；普通非Git文件不展示虚假blame入口。
 
 ### 16.5 Coc
 
@@ -840,18 +841,18 @@ quickfix是一组“文件+行列+消息”的目标，可以由搜索、编译�
 | N等 | `空格 cl` | CocList |
 | N | `空格 cc` | CocConfig |
 | N | `空格 .` | Coc code action |
-| N | `gd` | Coc definition；Go局部覆盖 |
+| N | `gd` | Coc definition；Go一致 |
 | N | `gr` | Coc references；覆盖原生gr行为并可能影响原生LSP gr系列前缀 |
-| V/O | `af` / `if` | Coc函数对象；Go局部覆盖 |
+| V/O | `af` / `if` | Coc函数对象；Go一致 |
 | N | `空格 cf` | Coc format |
 | V | `空格 cf` | Coc format-selected |
 | V | `空格 cv` | Coc convert-snippet；需要可用扩展/provider |
 | N | F2 | Coc rename |
 | N | Up / Down | Coc上/下一个诊断 |
-| N | `Ctrl+f` / `Ctrl+b` | 先调用Coc判断浮窗，可滚动则滚浮窗，否则原生翻整屏；这条表达式要求Coc函数可用 |
-| I | Enter | 菜单可见确认，否则换行+Coc enter |
-| I | Tab | 菜单下一项/空白插入Tab/刷新补全 |
-| I | Shift+Tab | 菜单上一项，否则退格 |
+| N | `Ctrl+f` / `Ctrl+b` | Coc已加载且当前buffer启用时滚浮窗，否则原生翻整屏；大文件无Coc也可用 |
+| I | Enter | Coc可用时确认菜单/换行；未加载或大文件时原生换行 |
+| I | Tab | Coc可用时菜单下一项/空白Tab/刷新补全；其他情况原生Tab |
+| I | Shift+Tab | Coc可用时菜单上一项，否则退格；未加载或大文件时原生Shift+Tab |
 
 ### 16.6 Git与diff
 
@@ -866,8 +867,11 @@ quickfix是一组“文件+行列+消息”的目标，可以由搜索、编译�
 | N | `]g` / `[g` | Gitsigns next_hunk / prev_hunk |
 | N | `[d` | Gitsigns diffthis |
 | N | `[f` | Gitsigns diffthis ~ |
-| N | `[c` | Gitsigns stage_buffer，整文件暂存 |
-| N | **`]c`** | **Gitsigns reset_buffer，整文件重置** |
+| N | `[c` / `]c` | 上一/下一差异，diff窗口使用原生导航 |
+| N | `空格 gd` | Gitsigns diffthis |
+| N | `空格 hs/hu` | 暂存/撤销暂存当前hunk |
+| N | `空格 hS/hU` | 暂存/撤销暂存整个buffer |
+| N | `空格 hR` | 选择确认后重置整个buffer未暂存修改 |
 | Git buffer N | `空格 gb` | Gitsigns blame_line full |
 | Git buffer N | `空格 tb` | 切换行尾blame |
 
@@ -878,7 +882,7 @@ quickfix是一组“文件+行列+消息”的目标，可以由搜索、编译�
 | N | `空格 ct/cs` | 当前window/横分屏打开首选终端 |
 | N | `空格 cd/csd` | 当前window/横分屏打开系统shell |
 | T | `fj` | 进入终端普通模式 |
-| T | **Esc** | **发送exit与回车**，后加载映射已覆盖早期退出输入模式映射 |
+| T | Esc | 进入终端普通模式，任务继续运行 |
 | 终端buffer N/T | **Ctrl+e** | **jobstop当前任务** |
 | N等 | `空格 fc` | Compiler，当前类型编译；会wall保存 |
 | N等 | `空格 rr` | Runner，当前类型运行；会write保存 |
@@ -886,24 +890,21 @@ quickfix是一组“文件+行列+消息”的目标，可以由搜索、编译�
 
 ### 16.8 AI显式映射
 
-首次InsertEnter或Copilot命令加载后：I模式Ctrl+j接受，Alt+]下一建议，Alt+[上一建议，Ctrl+g隐藏。默认Tab与其他默认AI映射均关闭。
+首次InsertEnter或Copilot命令加载后：I模式Ctrl+j接受，Alt+]下一建议，Alt+[上一建议，Ctrl+g d隐藏。默认Tab与其他默认AI映射均关闭。
 
-### 16.9 Go文件的局部覆盖与新增键
+### 16.9 Go文件与其他语言使用一致导航
 
-以下来自锁定vim-go的ftplugin，普通JS文件没有这些覆盖。运行probe已确认gd/gD/K/Ctrl+]和函数文本对象。
+vim-go的定义、类型定义、文档、鼠标跳转和函数文本对象覆盖已关闭，以下入口保持Coc路径：
 
 | 模式 | 键 | Go buffer行为 |
 |---|---|---|
-| N | `gd` / `gD` | GoDef / GoDefType |
-| N | `K` | GoDoc |
-| N | `Ctrl+]` | GoDef，替代原生tag跳转 |
-| N | `Ctrl+LeftMouse` / `g LeftMouse` | 鼠标定位后GoDef，需终端鼠标支持 |
-| N | `Ctrl+w Ctrl+]` / `Ctrl+w ]` | 用split形式Go定义跳转 |
-| V/O | `af/if` | vim-go函数对象，替代Coc |
-| V/O | `ac/ic` | vim-go注释对象 |
-| N/V/O | `]]` / `[[` | 下/上一个Go函数 |
+| N | `gd` / `gD` | Coc定义 / 类型定义 |
+| N | `K` / `gh` | Coc悬浮文档 |
+| N | `Ctrl+]` | Coc定义 |
+| N | `gr` / F2 | Coc引用 / 重命名 |
+| V/O | `af/if` | Coc函数对象 |
 
-源码还按Vim兼容条件选择是否注册Ctrl+t返回Go定义栈；当前Neovim不要把它一律当成GoDefStackPop，原生Ctrl+t用于tag stack。使用`:verbose nmap <C-t>`核对本机。
+构建、测试、运行用第12节的`:GoBuild`、`:GoTest`等命令；当前无Go专用语义快捷键覆盖。可在Go文件内`:verbose nmap gd`核对来源。
 
 ### 16.10 首页按钮
 
@@ -911,7 +912,7 @@ quickfix是一组“文件+行列+消息”的目标，可以由搜索、编译�
 
 ## 17. 插件窗口与默认快捷键清单
 
-本节的键只在相应插件/窗口/模式中有效。插件更新可能改变默认值，优先用窗口内帮助与安装版本docs。映射不是全局统一菜单，文件树中的`]c`是下个Git节点，普通代码中的`]c`却是重置buffer。
+本节的键只在相应插件/窗口/模式中有效。插件更新可能改变默认值，优先用窗口内帮助与安装版本docs。映射不是全局统一菜单，文件树中的`]c`是下个Git节点，普通代码中的`]c`是下一处hunk，原生diff窗口中是下一处差异。
 
 ### 17.1 NvimTree当前58项默认映射
 
@@ -980,7 +981,7 @@ quickfix是一组“文件+行列+消息”的目标，可以由搜索、编译�
 | surround | yS{motion}{char}/ySS{char} | 换行形式添加包围 |
 | surround | ds{char}/cs{old}{new}/cS{old}{new} | 删除/修改/换行修改包围 |
 | surround V | S{char}/gS{char} | 给选区加包围/换行包围 |
-| surround I | Ctrl+g s / Ctrl+g S | 插入包围/换行包围；受Ctrl+g前缀关系影响 |
+| surround I | Ctrl+g s / Ctrl+g S | 插入包围/换行包围；AI隐藏用Ctrl+g d |
 | Vista | Enter/双击左键 | 跳符号 |
 | Vista | p/s/q | 预览/切排序/关闭 |
 
@@ -990,9 +991,9 @@ quickfix是一组“文件+行列+消息”的目标，可以由搜索、编译�
 
 `:Git blame`窗口：`g?`帮助，`A/C/D`调作者/commit/日期列宽，Enter到引入该行的patch，`o/O/p`在split/tab/preview打开patch或blob，`-`在对应提交重新blame，`gq`关闭blame并返回工作树版本。不是所有Git缓冲区都使用同一组键，始终看当前buffer类型。
 
-### 17.5 Neorg默认预设与冲突
+### 17.5 Neorg默认预设与独立前缀
 
-以下是锁定版本预设，**不是本机全部已验证生效的快捷键**。模块会跳过冲突，LocalLeader也与本配置反斜杠映射冲突。实际以norg buffer内`:verbose map`和插件帮助为准。
+以下是锁定版本的主要默认预设，LocalLeader为逗号`,`。真实norg加载已验证12个逗号前缀动作；其他按键仍受终端编码和模块启用条件影响，以buffer内`:verbose map`为准。
 
 | 模式 | 默认键 | 作用 |
 |---|---|---|
@@ -1010,9 +1011,9 @@ quickfix是一组“文件+行列+消息”的目标，可以由搜索、编译�
 | I | Alt+Enter/Alt+d | 新列表项/插入日期 |
 | V | `>` / `<` | 提升/降低所选对象 |
 
-默认预设与具体模块是否载入有关，代码块放大等不能只凭预设存在就认为已配置完整。当前配置未设LocalLeader为空格，不能将`LocalLeader nn`误写成`空格 nn`。
+LocalLeader为逗号，所以`LocalLeader nn`实际按`,nn`，与`空格 n`帮助分组不同。日历和代码块放大等操作仍需相应模块，查看`:Neorg`补全。
 
-## 18. 39 个 Git 插件及 14 个 Coc 扩展怎么用
+## 18. 当前插件及 17 个 Coc 扩展怎么用
 
 ### 18.1 用户直接使用的插件与主题
 
@@ -1020,15 +1021,15 @@ quickfix是一组“文件+行列+消息”的目标，可以由搜索、编译�
 |---|---|---|
 | lazy.nvim | :Lazy、pi/pu/pc | 安装、锁定、profile、按插件恢复；`:help lazy.nvim` |
 | alpha-nvim | 空启动、:Alpha | 首页文件/搜索/最近/配置/教程/Lazy按钮 |
-| lualine.nvim | 每window状态栏与顶部buffer/tab | laststatus运行值2；globalstatus选项与后续覆盖有冲突，注意tabline同时显示两种对象 |
+| lualine.nvim | 全局底部状态栏与顶部buffer/tab | laststatus=3；tabline同时显示两种对象 |
 | telescope.nvim | f/l搜索系列 | picker多选、分屏、quickfix；`:help telescope` |
 | telescope-fzf-native.nvim | Telescope内部排序 | 原生扩展依赖make/C编译；不是独立fzf终端UI |
 | nvim-tree.lua | e/pd | 文件树、文件操作、书签、根与过滤；`:help nvim-tree` |
 | nvim-web-devicons | 树、首页等图标 | 字体缺字时检查Nerd Font，不需要单独快捷键 |
-| coc.nvim | 补全、gd/gr、gh、F2、cf等 | 配合14个扩展；`:help coc-nvim` |
+| coc.nvim | 补全、gd/gr、gh、F2、cf等 | 配合17个扩展；`:help coc-nvim` |
 | vista.vim | v/pv | Coc符号大纲；`:help vista` |
 | copilot.vim | :Copilot、I Ctrl+j | 账号、云端建议、代码类型白名单；`:help copilot` |
-| vim-go | GoBuild/Test等及Go局部键 | gopls关闭、跳转映射仍在；`:help vim-go` |
+| vim-go | GoBuild/Test等构建命令 | 内部gopls关闭，导航统一交给Coc；`:help vim-go` |
 | vim-fugitive | gs、:Git、:Gdiffsplit | Git状态/历史/diff；`:help fugitive` |
 | gitsigns.nvim | ]g/[g、gb/tb | 行级Git信息；`:help gitsigns` |
 | nvim-treesitter | 自动高亮/缩进 | 当前旧master configs API；`:help nvim-treesitter` |
@@ -1041,10 +1042,10 @@ quickfix是一组“文件+行列+消息”的目标，可以由搜索、编译�
 | vim-sneak | '/Backspace两字符跳转 | 标签和重复查找；`:help sneak` |
 | nvim-ufo | zR/zM、zc/zo/za | Treesitter/indent折叠；`:help ufo.txt` |
 | which-key.nvim | 输入前缀稍等 | 帮助发现键位，不等于每个描述都注册动作；`:help which-key` |
-| legendary.nvim | 空格空格、:Legendary | 命令/键位面板与频率记录；当前上游已归档，替换待实施 |
+| 本地command_palette模块 | 空格空格、:CommandPalette / :Legendary | Telescope命令面板；频率及最近使用记入运行数据目录command-palette/usage.json |
 | rest.nvim | HTTP go、:Rest | env、请求、结果、日志；`:help rest-nvim` |
 | neorg | .norg、:Neorg | norg笔记；默认workspace需核实，完整工作流待验 |
-| vim-tutor-mode | :Tutor zh、?t | 交互教程；已归档，不能把“旧插件”直接等同于不能练习 |
+| 宿主内置Tutor + tutor_progress模块 | :Tutor zh / :Tutor en、?t/?e | 中文/英文练习副本与位置保存在运行数据目录tutor-progress，保留宿主原文 |
 | catppuccin | 默认catppuccin-latte | 可手动切其他flavour |
 | onedarkpro.nvim | _oem目录onelight | 当前目录主题策略的一个分支 |
 | forest-night | _bug目录everforest | 仓库别名与实际colorscheme名字不同 |
@@ -1055,7 +1056,6 @@ quickfix是一组“文件+行列+消息”的目标，可以由搜索、编译�
 | 插件 | 作用 |
 |---|---|
 | plenary.nvim | 共享Lua工具，Telescope等使用 |
-| sqlite.lua | legendary频率记录依赖；模块能加载不等于数据库业务读写已验 |
 | promise-async | UFO异步依赖 |
 | hererocks | 构建隔离Lua/LuaRocks工具链，Windows HTTP部署会使用 |
 | lua-utils.nvim | Neorg依赖 |
@@ -1063,9 +1063,9 @@ quickfix是一组“文件+行列+消息”的目标，可以由搜索、编译�
 | nvim-nio | 异步依赖 |
 | pathlib.nvim | Neorg路径依赖 |
 
-31个用户可感知插件/主题加8个依赖，共39项。不要因为某依赖没有快捷键，就以为它没有用途；也不要在不检查使用者的情况下独立删除。
+插件的当前精确清单以`lazy-lock.json`和`:Lazy`为准。Legendary、vim-tutor-mode及独立sqlite依赖已由现有Telescope和宿主教程承接，旧数据保留；不要对保留数据目录执行不明清理。其他插件只按审核批次升级，候选替换结论见`docs/evaluations/`。
 
-### 18.3 Coc版本清单中的14个扩展
+### 18.3 Coc版本清单中的17个扩展
 
 | 扩展 | 用途 | 怎么接触它 |
 |---|---|---|
@@ -1081,10 +1081,13 @@ quickfix是一组“文件+行列+消息”的目标，可以由搜索、编译�
 | coc-emmet | Emmet缩写补全 | 通过Coc补全/命令，不把VSCode的Tab习惯直接套进来 |
 | coc-dictionary | 词典补全source | 补全源及本地词典配置决定结果 |
 | coc-cssmodules | CSS Modules补全 | 对应项目的import/class场景 |
-| coc-lua | Lua支持 | 自定义lua-lsp命令当前不可执行，Lua整套服务仍需核实 |
+| coc-lua | LuaLS服务 | 使用显式部署的lua-language-server，版本和路径由部署模块提供 |
 | coc-unocss | UnoCSS补全 | 使用UnoCSS的项目中激活与提示 |
+| coc-go | Go语言服务 | 显式部署gopls，gd/gr/F2及诊断/补全 |
+| coc-pyright | Python语言服务 | 项目.venv解释器与Pyright，gd/gr/F2及诊断/补全 |
+| @yaegassy/coc-volar | Vue语言服务 | 项目Vue/TypeScript版本矩阵见语言验收记录 |
 
-准确版本见仓库`coc-extensions.json`，安装状态看`:CocList extensions`。Coc设置里有volar、vetur、rust、snippets和PowerShell等键，不代表相应扩展已装；当前也没有coc-go/coc-pyright/Vue专用扩展。Tabnine旧状态保留但禁用，不作为现在的AI方案。
+准确版本见`coc-extensions.json`，安装状态看`:CocList extensions`。设置里出现扩展名不等于已安装，新增扩展须显式`:CocProvision`；Tabnine旧状态保留但禁用，AI使用Copilot。Go/Lua工具通过`python scripts/provision_languages.py --data "<stdpath(data)>" --lua --go --apply`部署，`:LanguageToolsInfo`查看实际路径。Neovim内部PATH加入托管Go工具目录，不修改系统PATH；工具版本为gopls0.23.0和LuaLS3.19.2，启动不下载。Python优先使用项目`.venv`。Vue2.6.14、2.7.16和3.5.13配项目TypeScript5.7.3已验证模板定义、引用、重命名、诊断与补全，使用Volar单服务，不另启Vetur。
 
 ## 19. 安装、维护、重载与大文件
 
@@ -1119,8 +1122,9 @@ Windows默认LOCALAPPDATA入口通过联接指向当前源码；Coc配置和数�
 | `:Lazy clean` | 清理规格外插件 | 确认不再需要后 |
 | `:Lazy sync` | 安装+清理+更新组合 | 先理解影响，不用于随手排障 |
 | `:CocProvision` | 按仓库清单明确安装Coc扩展 | 部署或修复缺扩展 |
+| `:ParserInstall` | 显式构建当前平台支持语言parser | 新机部署/原生产物重建，完成后完整重启 |
 
-当前Treesitter锁在旧master API；更新Neovim宿主不意味着可以直接切新main。rest依赖、平台构建和关联插件需要配套验收。更新建议见 [插件评审](plugin-review-2026-10-22.md)，不要因为有23项SHA不同就直接判定全部应该升级。
+日常启动不运行Treesitter自动安装（ensure_installed为空、auto_install=false）；缺parser时先显式`:ParserInstall`，Neorg专用parser使用`python scripts/provision_neorg.py --apply`。高级单语言维护仍可用`:TSInstall`/`:TSInstallSync`。当前Treesitter锁在旧master API；更新Neovim宿主不意味着可以直接切新main。rest依赖、平台构建和关联插件需要配套验收。更新建议见 [插件评审](plugin-review-2026-10-22.md)，不要因为有23项SHA不同就直接判定全部应该升级。
 
 ### 19.3 什么修改需要重启
 
@@ -1141,7 +1145,7 @@ Windows默认LOCALAPPDATA入口通过联接指向当前源码；Coc配置和数�
 
 进入后关闭Coc、Copilot、Treesitter高亮、IBL、Git附加、折叠等昂贵功能，并关闭wrap、spell、部分行号/光标装饰。`:LargeFileInfo`显示是否启用以及原因；普通文件切回时恢复相应窗口选项。
 
-**当前已发现的边界：**编辑过程中总字节数和行数增长有检查，单行长度增长只在读入时检查。普通文件后来粘贴成很长一行、但总大小和行数仍低于阈值时，可能不进入保护，属于待修事项。不要把“所有增长路径都已覆盖”当成事实。已经标记为bigfile的buffer也不会因删小就自动恢复整套语言服务；保存后重新打开该文件/重启并检查更稳妥。
+读入、插入模式、普通模式以及API替换后的编辑事件均检查总字节数、行数和变更行长度。普通文件后来增长为超长单行也会进入保护，扫描只覆盖变更范围，避免每次编辑重扫全文件。已进入bigfile的buffer不会因删小自动重启昂贵服务；保存并完整重开后按实际大小重新判断。Coc未加载时Ctrl+f/b、Enter和Tab/Shift+Tab保留原生动作。
 
 ### 19.5 性能和启动排查
 
@@ -1160,22 +1164,22 @@ nvim --startuptime nvim-startup.log path/to/file.go
 | 现象 | 先检查 | 推荐下一步 |
 |---|---|---|
 | 空格键前缀不对 | :echo mapleader | 本配置是空格，确认读到同一init |
-| gd在JS与Go行为不同 | :verbose nmap gd | Go局部vim-go覆盖全局Coc，服务缺口见审查 |
+| Go导航无结果 | :verbose nmap gd、:CocInfo | 应为Coc定义入口，核对项目gopls就绪和部署工具路径 |
 | 有高亮没补全/大纲 | :set filetype?、CocInfo、CocList extensions | 分别查parser与语言服务 |
 | 插入Tab只缩进或出现菜单 | 光标前空白、菜单可见性 | 按当前Coc条件分支理解，不是AI接受键 |
 | Ctrl+j没有AI | :Copilot status、账号、Node、filetype | 先在允许的普通代码buffer中本人授权验收 |
-| 搜不到.env或lib源码 | :pwd、Telescope ignore策略 | 显式edit；fh仍受全局忽略影响 |
+| 搜不到.env或lib源码 | :pwd、:SearchHealth | fh显示隐藏文件；被Git忽略时用FindFilesIgnored；lib不再被Lua结果过滤 |
 | blame没有 | 是否Git文件、Gitsigns附加、LargeFileInfo | 普通Git文件停留1秒；用gb或Git blame核对 |
 | 大文件无高亮/补全 | :LargeFileInfo | 保护设计；不要强开全部插件来“修复” |
 | Go文件黑屏/要Ctrl+c | 新进程、startuptime、具体buffer目录 | 当前go_compat已解除残留LSP事件；保存/构建下载与首屏区分 |
-| 终端Esc把shell退了 | :verbose tmap <Esc> | 当前映射就是exit，保留任务请用fj |
+| 终端操作异常 | :verbose tmap <Esc> | 应为<C-\><C-n>；Esc后i恢复输入，不终止任务 |
 | Ctrl+e后任务没了 | 当前是否终端buffer | 它是jobstop，不是普通隐藏窗口 |
 | ]c后改动没了 | :verbose nmap ]c、Git diff | 当前映射为reset_buffer；不要把它当diff导航 |
 | nvim树命令E492 | lazy是否已加载树 | 先空格e/pd或NvimTreeFindFileToggle |
 | 换tab主题都变了 | 全局colorscheme机制 | 独立进程隔离项目，当前没有tab局部主题 |
-| cd后没有自动换主题 | DirChanged被注释 | 手动主题或TrySwitchTheme，待正式项目主题方案 |
+| cd后主题未变 | 活跃文件项目根、nvim_project_themes | 文件所属项目优先于cwd；检查显式规则与项目标记 |
 | Lua保存服务报错 | lua-lsp是否executable | 自定义服务命令目前存在缺口，别只装插件不查命令 |
-| norg键位没注册 | LocalLeader及mapcheck冲突 | 使用Neorg命令，查当前buffer映射 |
+| norg键位没注册 | :verbose nmap ,nn | LocalLeader为逗号；缺parser先执行provision_neorg.py --apply后重启 |
 
 ### 20.2 三阶段练习
 
@@ -1197,4 +1201,4 @@ nvim --startuptime nvim-startup.log path/to/file.go
 - [安装与部署](../WINDOWS-SETUP.md)：新机器/迁移/平台构建。
 - [AI方案](ai-completion.md)：账号、服务和免费额度边界。
 
-本次教程核对了当前配置源码、安装版本官方帮助及运行映射probe：普通JS与Go的gd/gr/F2、Go局部覆盖、terminal Esc、which-key描述与实际rhs区别、NvimTree默认58项。没有把Neorg完整笔记工作流、账号后真实AI建议、缺失语言服务器和macOS实机当作已验收功能。
+本次教程依据当前源码、锁定插件帮助和Neovim子进程回归更新：普通代码/Go一致导航、终端Esc、Git导航与确认重置、17个WhichKey动作、Neorg真实加载和12个逗号前缀、AI/surround插入前缀、大文件增长、搜索、主题与内置教程。完整验收范围及仍待实机/账号验证内容见[平台验收记录](platform-acceptance-2026-10-22.md)。

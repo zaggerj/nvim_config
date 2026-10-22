@@ -1,8 +1,8 @@
 # Neovim 配置设计与维护
 
-现状以本文和源码为准；用户已接受的后续目标、批次和验收契约见 [治理 SPEC](spec.md)。规格中的目标尚未全部实施。后续交付已整理为 [独立任务与依赖索引](tasks/README.md)，用户已确认拆分与依赖，尚未实施。
+现状以本文和源码为准；用户已接受的目标、批次和验收契约见 [治理 SPEC](spec.md)，本轮修复、选版及验证见 [实施回执](implementation-2026-10-22.md)。各项实际状态见 [独立任务与依赖索引](tasks/README.md)，macOS实机及账号后的AI建议单列待验。
 
-2026-10-22补充：当前完整教程见 [tutorial.md](tutorial.md)，最新功能缺口和性能评审见 [综合评审](configuration-review-2026-10-22.md)。本轮确认长单行编辑增长漏保护、Go跳转覆盖和搜索路径过滤差异；下文历史验收不能作为这些新场景已修复的依据。
+2026-10-22补充：当前完整教程见 [tutorial.md](tutorial.md)，[综合评审](configuration-review-2026-10-22.md)保存改造前缺陷；长行增长、Go服务、键位及搜索修复的最新证据见实施回执。
 
 本文以当前仓库源码为依据，说明启动、插件、语言高亮、大文件保护和跨平台命令如何协作。配置同时面向 Windows 原生 Neovim（从 PowerShell、Git Bash 或 MSYS2 zsh 启动）和 macOS Neovim。Windows 的 `/c/Users/...` 是 Git Bash 表示法；Neovim 原生进程、编译器和 Python 接收的路径应使用其实际支持的 Windows 路径。
 
@@ -49,7 +49,7 @@ flowchart TD
 
 | 文件或目录 | 职责与维护入口 |
 |---|---|
-| [init.vim](../init.vim) | 引导 lazy.nvim、启动顺序、Coc 扩展清单 |
+| [init.vim](../init.vim) | 引导lazy.nvim与启动顺序，注册显式部署和内置教程/面板入口 |
 | [lua/bootstrap.lua](../lua/bootstrap.lua) | 解析源码根、固定锁文件、注册隔离工具链路径、执行构建引导 |
 | [lua/plugins.lua](../lua/plugins.lua) | 插件依赖、加载条件、插件设置和 which-key 注册 |
 | [lua/large_file.lua](../lua/large_file.lua) | 文件大小判定、buffer 标记、插件解除附加、窗口设置恢复 |
@@ -62,7 +62,10 @@ flowchart TD
 | [mysettings/maps.vim](../mysettings/maps.vim) | 编辑、Coc、Git、搜索与导航映射 |
 | [mysettings/autocmds.vim](../mysettings/autocmds.vim) | 文件类型别名、终端插入模式、复制高亮与窗口事件 |
 | [mysettings/ui.vim](../mysettings/ui.vim) | TUI/GUI 高亮、透明度、字体和 Neovide 设置 |
-| [mysettings/ngconsole.vim](../mysettings/ngconsole.vim) | 按启动目录选择主题 |
+| [mysettings/ngconsole.vim](../mysettings/ngconsole.vim) / [lua/project_theme.lua](../lua/project_theme.lua) | 保留TrySwitchTheme入口，按活跃项目根选择主题 |
+| [lua/languages.lua](../lua/languages.lua) / [scripts/provision_languages.py](../scripts/provision_languages.py) | 本平台固定语言工具的显式部署、路径发现与缺失诊断 |
+| [lua/parser_setup.lua](../lua/parser_setup.lua) / [lua/neorg_setup.lua](../lua/neorg_setup.lua) | 普通语言与Neorg parser部署，编辑启动不安装 |
+| [lua/search.lua](../lua/search.lua) / [lua/command_palette.lua](../lua/command_palette.lua) | 扫描策略、原生库诊断、命令发现和频率数据 |
 | [coc-settings.json](../coc-settings.json) | Coc 和扩展的静态设置 |
 | [my_snippets/](../my_snippets/) | 历史 Java、JavaScript、Vim 片段文件 |
 | [lazy-lock.json](../lazy-lock.json) | 插件提交版本锁定，跨平台共享 |
@@ -70,7 +73,7 @@ flowchart TD
 
 源码真实位置由 `g:nvim_config_root` 保存，入口通常位于 `stdpath('config')`；插件通常位于 `stdpath('data')/lazy`；构建产物、依赖环境和下载缓存归入数据目录。不要把某台机器的用户目录、临时目录、DLL 或编译结果提交为跨平台配置。parser 和本地模块应在目标操作系统上重新安装，不能直接复制 Windows 的 DLL 到 macOS。
 
-主题选择使用启动 cwd：路径含 `_oem` 时为 `onelight`，含 `_bug` 时为 `forest-night`，其余为 `catppuccin-latte`。当前未启用随 `DirChanged` 自动切换。GUI 字体名称属于本机显示设置，终端字体由终端应用负责。
+主题按活跃普通文件的项目根识别：Git/worktree优先，其次workspace/package标记，最后cwd；BufEnter/DirChanged更新，特殊buffer保留最近主题，同目标不重复应用。可用 `g:nvim_project_themes` 规则配置绝对根、便携后缀及monorepo子目录；默认_oem→onelight、_bug→everforest，其余catppuccin-latte。完整colorscheme仍为进程级。GUI字体由宿主设置，终端字体由终端负责。
 
 Windows 工具发现会还原无附加参数的 Scoop shim 指向的真实程序，优先加入真实 GCC 目录，避免 MSYS DLL 覆盖编译器依赖；只修改 Neovim 子进程 PATH。启动阶段不运行编译器探测，目标检查留在显式构建脚本。Python 在使用时按实际版本选择 3.9+，跳过 zsh 中可能仍存在的 Python 2.7。
 
@@ -91,16 +94,16 @@ Coc 数据固定为 `stdpath('data')/coc`，配置固定为源码根。Windows �
 | `User NormalFile` | nvim-treesitter | IBL、treesitter-context、nvim-ts-autotag |
 | `User NormalFile` | nvim-ts-context-commentstring | 按语法节点选择注释样式 |
 | `VeryLazy` | vim-fugitive | Git 状态、提交、拉取与推送命令 |
-| `VeryLazy` | legendary.nvim | sqlite.lua；命令面板与使用频率数据 |
+| `:Legendary` / `:CommandPalette` | 本地command_palette模块 | Telescope命令发现；JSON保存次数与最近时间，旧SQLite显式导入 |
 | `VeryLazy` | nvim-surround、which-key.nvim | 包围符编辑与快捷键提示 |
 | `VeryLazy` | Comment.nvim | 集成 context-commentstring |
-| `VeryLazy` | telescope.nvim | ripgrep、fzf-native（`make` 构建） |
+| `:Telescope` / 搜索命令 | telescope.nvim | ripgrep、fzf-native（`make` 显式构建）；SearchHealth诊断 |
 | `VeryLazy` | vim-sneak | 双字符跳转 |
 | `FileType http` | rest.nvim | HTTP parser、Lua rocks、curl；详见 HTTP 章节 |
 | `FileType go` | vim-go | Go 工具命令；插件自己的 gopls 和代码补全已关闭 |
-| `FileType norg` / `:Neorg` | neorg | `:Neorg sync-parsers` 构建；笔记与日历 |
+| `FileType norg` / `:Neorg` | neorg | 本平台parser显式部署；传递依赖按需加载，缺失parser显示指引 |
 | `:NvimTreeFindFileToggle` | nvim-tree.lua | 文件树 |
-| `:Tutor` | vim-tutor-mode | 中文/英文教程 |
+| `:Tutor zh` / `:Tutor en` | 宿主内置Tutor | 独立练习副本和位置，不写宿主教材 |
 | 按需 | plenary.nvim、nvim-web-devicons | 公共 Lua 工具与图标资源 |
 
 `VeryLazy` 插件仍可能在大文件会话中加载。大文件保护重点避开逐 buffer 的语法解析、补全、诊断、Git 附加和折叠分析，并没有将所有交互界面插件全部卸载。
@@ -111,19 +114,19 @@ Coc 数据固定为 `stdpath('data')/coc`，配置固定为源码根。Windows �
 
 当前使用 `nvim-treesitter` 的 `master` 分支及锁定提交，以保留 `nvim-treesitter.configs` API，与 Neovim 0.10 系列配置保持一致。不要只把分支改成新架构分支而保留旧 `setup` 调用。
 
-`ensure_installed` 声明的 parser 为：
+`lua/parser_setup.lua` 部署清单的parser为：
 
 `c lua go python css scss typescript tsx html http javascript jsdoc json vue`
 
-JavaScript/JSX 使用 `javascript`，TypeScript 使用 `typescript`，TSX 使用 `tsx`；Vue 2 和 Vue 3 的单文件组件使用 `vue` 并依赖内嵌 HTML/CSS/JavaScript 等 parser。Go、Python 分别使用 `go`、`python`。`ensure_installed` 的键名必须正确；旧拼写 `ensurse_installed` 无法安装声明的 parser。
+JavaScript/JSX使用javascript，TypeScript使用typescript，TSX使用tsx；Vue2/3使用vue及内嵌HTML/CSS/JavaScript parser，Go/Python各使用同名parser。日常 `ensure_installed={}`、`auto_install=false`；`:ParserInstall`调用锁定版同步安装API只补缺失并验证可加载，不使用会逐项询问重装的TSInstallSync命令。
 
 高亮回调会检查大文件状态。缩进也由 Treesitter 提供，但 JavaScript 已排除。安装需要 C 编译器以及下载/解包工具；成功下载插件不等于 parser 已经编译成功。
 
 ### 5.2 Coc
 
-`init.vim` 声明 `coc-tsserver`、`coc-json`、`coc-css`、`coc-eslint`、`coc-pairs`、`coc-omni`、`coc-marketplace`、`coc-lists`、`coc-html`、`coc-emmet`、`coc-dictionary`、`coc-cssmodules`、`coc-lua` 和 `coc-unocss`；非 Termux 还保留历史的 `coc-tabnine` 声明。TabNine 的实际可用状态见后文。
+`coc-extensions.json` 固定17项扩展，包括原14项及coc-pyright、coc-go、@yaegassy/coc-volar；Tabnine列入retired且不再部署。`g:coc_global_extensions=[]`避免编辑启动安装，`:CocProvision`为显式扩展入口。
 
-Go、Python、Vue 的 parser 声明已经存在，但当前扩展清单没有相应的专用语言服务器扩展，不能据此承诺其诊断、定义跳转和完整补全。`coc-settings.json` 内保留的 Volar/Vetur/Rust/Svelte/snippets 设置也不代表对应扩展已经安装。该文件还存在固定的外部 Lua language server 配置，迁移机器时需要核对实际可执行文件。
+Go使用托管gopls，Python使用Pyright及项目.venv，Lua使用显式部署的官方LuaLS，Vue使用兼容2.6/2.7/3的固定Volar/TS hybrid组合。工具路径由stdpath(data)生成，Rust/Svelte/snippets等保留设置不代表扩展已安装。各语言真实定义、补全、诊断、引用和重命名的能力矩阵与命令见 [语言服务](language-services.md)。
 
 ### 5.3 Git blame
 
@@ -137,16 +140,16 @@ Gitsigns 在普通文件事件后加载，并在 `on_attach` 为当前 buffer �
 
 - 文件体积大于 1 MiB。
 - 行数大于 20000 行。
-- 读取时发现单行大于 20000 字节。
+- 读取或编辑后发现单行大于20000字节。
 
-`BufReadPre` 根据文件 stat 提前检查体积；`BufReadPost` 检查读取后的行数和字节，并对较小文件分块查找超长行。编辑和窗口进入事件会复查体积、行数；编辑过程中不会为每次输入重新扫描所有长行。
+BufReadPre提前检查stat，BufReadPost检查行数/字节及分块查单行。on_lines仅记录变化行范围，TextChanged/I按该范围检查超长行，并复查总体积/行数；不会每次按键遍历全文。
 
 ```mermaid
 stateDiagram-v2
     [*] --> 未判定
     未判定 --> 普通文件: 未超过阈值
     未判定 --> 大文件: 体积/行数/长行超限
-    普通文件 --> 大文件: 编辑后体积或行数超限
+    普通文件 --> 大文件: 编辑后体积/行数/单行超限
     大文件 --> [*]: 关闭 buffer
     普通文件 --> [*]: 关闭 buffer
 ```
@@ -164,7 +167,7 @@ stateDiagram-v2
 | 接口 | 边界 |
 |---|---|
 | `home()` | Windows 使用 `USERPROFILE`，其他平台使用系统主目录 |
-| `executable(candidates)` | 通过 PATH 查找工具，不在源码固定盘符 |
+| `executable(candidates)` | 原生PATH优先、解析Scoop shim，Windows标准Node/WinGet安装根后备发现，不固定盘符 |
 | `shell_argv()` | 选择 `NVIM_TERMINAL`、`SHELL` 或系统可用 shell |
 | `open_terminal(opts)` | 用 argv 启动终端，可指定 cwd 与分屏 |
 | `close_terminal()` | 通过 job API 结束终端任务 |
@@ -281,7 +284,7 @@ macOS 尚无本次实机运行结果；可确认的是平台分支和工具发�
 
 Windows 使用原生 Neovim 的数据目录，Git Bash/zsh 仅是启动入口；子进程 HOME/XDG_CONFIG_HOME 按统一契约设置。编译器优先使用真实目录，避免 MSYS DLL 污染；首屏只发现路径，不执行 GCC 探测。macOS 保持其平台目录与工具发现分支，二进制和 rocks 在当地构建。PATH、工具 argv 与源码/运行产物边界由 `bootstrap.lua`、`platform.lua` 承担。
 
-移除的同步等待包括启动 Git clone 与 GCC 探测；Coc 扩展改为显式安装，Copilot 使用内嵌服务。Treesitter 仍保留缺失 parser 的异步安装机制，不能据此声称整个编辑会话完全没有网络活动。
+移除的同步等待包括启动Git clone与GCC探测；Coc扩展改为显式安装，Copilot使用内嵌服务。Treesitter普通语言parser由 `:ParserInstall` 部署，Neorg由 `scripts/provision_neorg.py --apply` 部署，缺parser不在编辑启动时下载编译。语言服务和用户发起的AI/HTTP请求仍正常使用网络。
 
 ### 重载边界
 
@@ -303,11 +306,11 @@ PowerShell、Git Bash、zsh 均通过 `tests/coc_smoke.py`（含真实 `:CocRest
 
 ## 14. 当前宿主基线与维护入口（2026-10-22追加）
 
-Windows 当前基线为 Neovim **0.12.6**，旧0.10.2保留。前文0.10相关描述解释锁定 Treesitter configs API 和 ABI14产物的历史选择；本轮未切换 Treesitter main，也未批量更新插件。
+Windows当前基线为Neovim **0.12.6**，旧0.10.2保留。前文0.10相关描述解释锁定Treesitter configs API和ABI14产物的历史选择；本轮保留该架构，其他插件已按分组定点维护，见升级清单。
 
 0.12 的 get_node 不再隐式 parse，`rest_compat.lua` 在请求定位前显式调用插件解析函数，仅作用于0.12+；普通代码高亮与 HTTP 实际请求回归通过。详见 [升级与兼容记录](issues/2026-10-22-neovim-012-upgrade.md)。
 
-接续时先看 [全部问题台账](issues/README.md) 与 [39项插件审查](plugin-review-2026-10-22.md)。新增 `tests/editor_smoke.py` 验证8类语言真实高亮、真实Git作者和三类大文件保护。完整语言服务有 Go/Python/Vue 与自定义 Lua 命令缺口，不能用高亮验收代替。Copilot账号与macOS实机仍开放。
+接续时先看 [全部问题台账](issues/README.md) 与 [实施回执](implementation-2026-10-22.md)；[39项插件审查](plugin-review-2026-10-22.md)保留改造前快照。`tests/editor_smoke.py`验证8类高亮、Git作者和三类读取保护，语言服务由独立真实项目测试验收，见 [语言服务](language-services.md)。Copilot账号与macOS实机仍开放。
 
 ## 15. UI启动顺序与性能预算（2026-10-22追加）
 
