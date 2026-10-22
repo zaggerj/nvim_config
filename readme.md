@@ -1,5 +1,9 @@
 # 配置文档
 
+- [独立任务规划：27项交付、依赖与验收](docs/tasks/README.md)
+
+- [已接受的治理 SPEC：问题、结论、实施顺序与验收标准](docs/spec.md)
+
 - [完整使用教程：buffer、window、tab、插件与全部自定义快捷键](docs/tutorial.md)
 - [当前配置综合评审：性能、升级替换与项目主题](docs/configuration-review-2026-10-22.md)
 - [设计与维护说明](docs/design.md)

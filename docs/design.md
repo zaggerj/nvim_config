@@ -1,5 +1,7 @@
 # Neovim 配置设计与维护
 
+现状以本文和源码为准；用户已接受的后续目标、批次和验收契约见 [治理 SPEC](spec.md)。规格中的目标尚未全部实施。后续交付已整理为 [独立任务与依赖索引](tasks/README.md)，用户已确认拆分与依赖，尚未实施。
+
 2026-10-22补充：当前完整教程见 [tutorial.md](tutorial.md)，最新功能缺口和性能评审见 [综合评审](configuration-review-2026-10-22.md)。本轮确认长单行编辑增长漏保护、Go跳转覆盖和搜索路径过滤差异；下文历史验收不能作为这些新场景已修复的依据。
 
 本文以当前仓库源码为依据，说明启动、插件、语言高亮、大文件保护和跨平台命令如何协作。配置同时面向 Windows 原生 Neovim（从 PowerShell、Git Bash 或 MSYS2 zsh 启动）和 macOS Neovim。Windows 的 `/c/Users/...` 是 Git Bash 表示法；Neovim 原生进程、编译器和 Python 接收的路径应使用其实际支持的 Windows 路径。
