@@ -1,0 +1,247 @@
+{
+  "checked_on": "2026-10-22",
+  "extensions": [
+    {
+      "name": "coc-tsserver",
+      "pinned": "2.4.1",
+      "source": "https://registry.npmjs.org/coc-tsserver/latest",
+      "version": "2.4.1",
+      "engines": {
+        "coc": "^0.0.82"
+      },
+      "repository": {
+        "url": "git+https://github.com/neoclide/coc-tsserver.git",
+        "type": "git"
+      },
+      "deprecated": null
+    },
+    {
+      "name": "coc-json",
+      "pinned": "1.9.17",
+      "source": "https://registry.npmjs.org/coc-json/latest",
+      "version": "1.9.17",
+      "engines": {
+        "coc": ">= 0.0.80"
+      },
+      "repository": {
+        "url": "git+https://github.com/neoclide/coc-json.git",
+        "type": "git"
+      },
+      "deprecated": null
+    },
+    {
+      "name": "coc-css",
+      "pinned": "2.2.4",
+      "source": "https://registry.npmjs.org/coc-css/latest",
+      "version": "2.2.4",
+      "engines": {
+        "coc": "^0.0.82",
+        "node": ">=22"
+      },
+      "repository": {
+        "url": "git+https://github.com/neoclide/coc-css.git",
+        "type": "git"
+      },
+      "deprecated": null
+    },
+    {
+      "name": "coc-eslint",
+      "pinned": "3.1.4",
+      "source": "https://registry.npmjs.org/coc-eslint/latest",
+      "version": "3.1.4",
+      "engines": {
+        "coc": "^0.0.82"
+      },
+      "repository": {
+        "url": "git+https://github.com/neoclide/coc-eslint.git",
+        "type": "git"
+      },
+      "deprecated": null
+    },
+    {
+      "name": "coc-pairs",
+      "pinned": "1.5.6",
+      "source": "https://registry.npmjs.org/coc-pairs/latest",
+      "version": "1.5.6",
+      "engines": {
+        "coc": "^0.0.80"
+      },
+      "repository": {
+        "url": "git+https://github.com/neoclide/coc-pairs.git",
+        "type": "git"
+      },
+      "deprecated": null
+    },
+    {
+      "name": "coc-omni",
+      "pinned": "1.2.4",
+      "source": "https://registry.npmjs.org/coc-omni/latest",
+      "version": "1.2.4",
+      "engines": {
+        "coc": ">=0.0.57"
+      },
+      "repository": {
+        "url": "git+https://github.com/neoclide/coc-sources.git",
+        "type": "git"
+      },
+      "deprecated": null
+    },
+    {
+      "name": "coc-marketplace",
+      "pinned": "1.9.0",
+      "source": "https://registry.npmjs.org/coc-marketplace/latest",
+      "version": "1.9.0",
+      "engines": {
+        "coc": "^0.0.73"
+      },
+      "repository": {
+        "url": "git+https://github.com/fannheyward/coc-marketplace.git",
+        "type": "git"
+      },
+      "deprecated": null
+    },
+    {
+      "name": "coc-lists",
+      "pinned": "1.5.9",
+      "source": "https://registry.npmjs.org/coc-lists/latest",
+      "version": "1.5.9",
+      "engines": {
+        "coc": "^0.0.80"
+      },
+      "repository": {
+        "url": "git+https://github.com/neoclide/coc-lists.git",
+        "type": "git"
+      },
+      "deprecated": null
+    },
+    {
+      "name": "coc-html",
+      "pinned": "1.9.2",
+      "source": "https://registry.npmjs.org/coc-html/latest",
+      "version": "1.9.2",
+      "engines": {
+        "coc": "^0.0.80",
+        "node": ">=22"
+      },
+      "repository": {
+        "url": "git+https://github.com/neoclide/coc-html.git",
+        "type": "git"
+      },
+      "deprecated": null
+    },
+    {
+      "name": "coc-emmet",
+      "pinned": "1.1.6",
+      "source": "https://registry.npmjs.org/coc-emmet/latest",
+      "version": "1.1.6",
+      "engines": {
+        "coc": "^0.0.29"
+      },
+      "repository": null,
+      "deprecated": null
+    },
+    {
+      "name": "coc-dictionary",
+      "pinned": "1.2.3",
+      "source": "https://registry.npmjs.org/coc-dictionary/latest",
+      "version": "1.2.3",
+      "engines": {
+        "coc": ">=0.0.57"
+      },
+      "repository": {
+        "url": "git+https://github.com/neoclide/coc-sources.git",
+        "type": "git"
+      },
+      "deprecated": null
+    },
+    {
+      "name": "coc-cssmodules",
+      "pinned": "1.1.1",
+      "source": "https://registry.npmjs.org/coc-cssmodules/latest",
+      "version": "1.1.1",
+      "engines": {
+        "coc": ">= 0.0.70"
+      },
+      "repository": {
+        "url": "git+https://github.com/antonk52/coc-cssmodules.git",
+        "type": "git"
+      },
+      "deprecated": null
+    },
+    {
+      "name": "coc-lua",
+      "pinned": "2.0.6",
+      "source": "https://registry.npmjs.org/coc-lua/latest",
+      "version": "2.0.6",
+      "engines": {
+        "coc": "^0.0.82",
+        "node": ">=16"
+      },
+      "repository": {
+        "url": "git+https://github.com/josa42/coc-lua.git",
+        "type": "git"
+      },
+      "deprecated": null
+    },
+    {
+      "name": "coc-unocss",
+      "pinned": "0.2.0",
+      "source": "https://registry.npmjs.org/coc-unocss/latest",
+      "version": "0.2.0",
+      "engines": {
+        "coc": "^0.0.80"
+      },
+      "repository": {
+        "url": "git+https://github.com/auvred/coc-unocss.git",
+        "type": "git"
+      },
+      "deprecated": null
+    },
+    {
+      "name": "coc-go",
+      "pinned": null,
+      "source": "https://registry.npmjs.org/coc-go/latest",
+      "version": "1.3.35",
+      "engines": {
+        "coc": "^0.0.82",
+        "node": ">=16"
+      },
+      "repository": {
+        "url": "git+https://github.com/josa42/coc-go.git",
+        "type": "git"
+      },
+      "deprecated": null
+    },
+    {
+      "name": "coc-pyright",
+      "pinned": null,
+      "source": "https://registry.npmjs.org/coc-pyright/latest",
+      "version": "1.1.414",
+      "engines": {
+        "coc": "^0.0.80"
+      },
+      "repository": {
+        "url": "git+https://github.com/fannheyward/coc-pyright.git",
+        "type": "git"
+      },
+      "deprecated": null
+    },
+    {
+      "name": "coc-volar",
+      "pinned": null,
+      "source": "https://registry.npmjs.org/coc-volar/latest",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "name": "coc-vetur",
+      "pinned": null,
+      "source": "https://registry.npmjs.org/coc-vetur/latest",
+      "version": "1.2.5",
+      "engines": {
+        "coc": "^0.0.80"
+      },
+      "repository": null,
+      "deprecated": null
+    }
+  ]
+}

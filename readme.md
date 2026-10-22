@@ -1,3 +1,19 @@
+# 配置文档
+
+- [完整使用教程：buffer、window、tab、插件与全部自定义快捷键](docs/tutorial.md)
+- [当前配置综合评审：性能、升级替换与项目主题](docs/configuration-review-2026-10-22.md)
+- [设计与维护说明](docs/design.md)
+- [Windows / macOS 安装与验证](WINDOWS-SETUP.md)
+- [日常操作与快捷键](BEST_PRACTICES.md)
+- [持续追加的配置决策](docs/decisions.md)
+- [全部问题台账与当前状态](docs/issues/README.md)
+- [Neovim 0.12.6 升级与兼容回归](docs/issues/2026-10-22-neovim-012-upgrade.md)
+- [39项插件审查与分批维护建议](docs/plugin-review-2026-10-22.md)
+- [Coc TLS 与启动阻塞故障记录](docs/issues/2026-10-22-startup-coc-tls.md)
+- [Go 文件黑屏与工具链同步下载修复](docs/issues/2026-10-22-go-toolchain-startup.md)
+- [Go启动耗时优化与对照测量](docs/issues/2026-10-22-startup-performance.md)
+- [免费 AI 补全选型与账号配置](docs/ai-completion.md)
+
 # 更新描述
 
 > 2026/01/11 (第二次更新)
