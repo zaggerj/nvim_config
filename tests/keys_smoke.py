@@ -135,15 +135,21 @@ local function verify()
   end
   vim.cmd('diffoff!')
   print('PASS native diff navigation leaves contents unchanged')
+  local stage_error
   local function staged()
     local out=vim.system({'git','diff','--cached','--numstat'},{text=true}):wait(3000)
-    assert(out.code==0,out.stderr)
+    -- gitsigns正在异步替换index时，Windows读者可能暂时无法打开它。
+    -- 未能读取不是已暂存/未暂存；在现有就绪期限内继续观察真实Git结果。
+    if out.code~=0 then stage_error=out.stderr; return nil end
+    stage_error=nil
     return out.stdout~=''
   end
   vim.api.nvim_feedkeys(' hS','xt',false)
-  assert(vim.wait(2000,staged,30),'explicit stage-buffer key did not stage changes')
+  local stage_ready=vim.wait(2000,function() return staged()==true end,30)
+  assert(stage_ready,'explicit stage-buffer key did not stage changes: '..tostring(stage_error))
   vim.api.nvim_feedkeys(' hU','xt',false)
-  assert(vim.wait(2000,function() return not staged() end,30),'explicit unstage-buffer key did not unstage')
+  local unstage_ready=vim.wait(2000,function() return staged()==false end,30)
+  assert(unstage_ready,'explicit unstage-buffer key did not unstage: '..tostring(stage_error))
   assert(vim.wait(2500,function() local h=require('gitsigns').get_hunks(); return h and #h==2 end,20),'unstaged hunks did not become ready')
   local pending
   -- User choice is the external UI boundary; no Git/internal action is mocked.
@@ -153,14 +159,14 @@ local function verify()
   assert(pending,'reset key did not request confirmation')
   pending.choose(pending.items[1],1)
   assert(vim.deep_equal(before,vim.api.nvim_buf_get_lines(0,0,-1,false)),'cancelled reset changed contents')
-  assert(not staged(),'cancelled reset changed staging')
+  assert(staged()==false,'cancelled reset changed staging: '..tostring(stage_error))
   pending=nil
   vim.api.nvim_feedkeys(' hR','xt',false)
   assert(pending,'reset key lost confirmation')
   pending.choose(pending.items[2],2)
   assert(vim.wait(2000,function() return vim.api.nvim_buf_get_lines(0,2,3,false)[1]=='line 3' end,20),'confirmed reset did not restore contents')
   vim.ui.select=original_select
-  assert(not staged(),'reset changed staging')
+  assert(staged()==false,'reset changed staging: '..tostring(stage_error))
   vim.api.nvim_feedkeys(' gd','xt',false)
   assert(vim.wait(2000,function() return #vim.api.nvim_tabpage_list_wins(0)==2 end,20),'Git diff key did not open real diff')
   assert(vim.wo.diff,'Git diff key did not enable diff mode')
