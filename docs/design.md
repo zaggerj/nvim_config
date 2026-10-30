@@ -323,3 +323,7 @@ Windows当前基线为Neovim **0.12.6**，旧0.10.2保留。前文0.10相关描�
 主题仍由ngconsole按目录设置；lualine等最终主题确定后在VimEnter初始化，避免主题事件重复setup。alpha只在空参数启动自动载入，显式:Alpha保留。旧forest-night插件目前提供everforest主题，_bug分支使用此实际名称。
 
 性能同时检查首屏与高亮/状态栏、Coc RPC就绪，数值和回归见 [性能记录](issues/2026-10-22-startup-performance.md)。约350ms首屏是本机暖缓存三次中位数，不是跨平台固定承诺；配置不引用临时计时脚本。
+
+## Go 项目环境与构建策略的边界（2026-10-22追加）
+
+语言工具部署由本仓库维护；模块模式和代理等项目构建策略由项目自身 .vim/coc-settings.json 维护，使用 go.goplsOptions.env。编辑器直接启动服务不会执行 Makefile，必须显式对齐已接受的项目设置，不能将单项目模块模式推给所有 Go 项目。AIPaaS 实例、真实导航验证及下载 EOF 证据边界见 [工作区加载故障](issues/2026-10-22-go-workspace-load.md)。

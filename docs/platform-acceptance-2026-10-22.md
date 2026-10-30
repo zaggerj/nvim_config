@@ -46,3 +46,7 @@ zsh首次矩阵失败的具体根因：其PATH没有官方Node及WinGet rg目录
 provider显式部署与中断恢复、Windows频率锁和Git观察器修正后，完整功能回归 **39/39通过**：[当前原始报告](evaluations/provider-final-regression.json)。前两次37/39（频率锁及Go单次请求超时）、38/39（Git观察器单次index读取错误）保留在provider-integration-first.json与provider-integration-second.json；定点与最终结果分列，不掩盖失败。真实安装中断恢复测试另执行通过，保留已有sentinel；此测试会显式安装固定包，故未混入日常不联网回归。
 
 同源码及数据契约的本轮入口补验 **9/9通过**，每入口三项：provider停滞PATH/用户host/真实py3eval、未完成环境实际部署提示、Python定义/引用/rename/补全/类型诊断。三入口具体命令和输出见[本轮矩阵](evaluations/provider-windows.json)，不把它宣称为39项均在三个入口重跑。macOS及账号云端AI状态保持待验。
+
+## AIPaaS Go 工作区定点验收
+
+最终项目配置 `GOFLAGS=-mod=readonly`、项目既有代理。PowerShell（仓库根、CocRestart）、Git Bash（仓库根）、MSYS2 zsh（backend）三入口实际打开 build_upload.go；定义251行、悬浮、3处引用和go输出频道检查均通过，三次go.mod/go.sum字节一致。zsh按既有矩阵补基础Scoop/System32 PATH，未改shell配置。完整Go功能fixture顺序复验通过；未把它计入三入口全套回归。历史EOF未复现、初次探针/并发超时失败和修正过程见 [工作区加载故障](issues/2026-10-22-go-workspace-load.md)。macOS本轮仍无实机结果。

@@ -1,6 +1,28 @@
 -- 语言工具运行位置动态计算；下载与编译仅由显式部署命令执行。
 local M = {}
 
+local function is_aipaas()
+  local entry = vim.fn.argc() > 0 and vim.fn.argv(0) or vim.fn.getcwd()
+  local current = vim.fs.normalize(vim.fn.fnamemodify(entry, ':p'))
+  if vim.fn.isdirectory(current) == 0 then current = vim.fs.dirname(current) end
+  while current do
+    for _, relative in ipairs({ 'go.mod', 'backend/go.mod' }) do
+      local path = current .. '/' .. relative
+      if vim.fn.filereadable(path) == 1 then
+        for _, line in ipairs(vim.fn.readfile(path)) do
+          local name = line:match('^%s*module%s+([^%s]+)')
+          if name then return name == 'github.com/aipaas/aipaas' end
+        end
+        return false
+      end
+    end
+    local parent = vim.fs.dirname(current)
+    if parent == current then break end
+    current = parent
+  end
+  return false
+end
+
 function M.setup()
   local data = vim.fn.stdpath('data')
   local suffix = vim.fn.has('win32') == 1 and '.exe' or ''
@@ -12,6 +34,14 @@ function M.setup()
   local goimports = bin .. '/goimports' .. suffix
   local lua_ls = data .. '/coc/extensions/coc-lua-data/lua-language-server/bin/lua-language-server' .. suffix
   local config = vim.g.coc_user_config or {}
+  -- 一项目一进程；在 Coc 初始化前注入个人项目环境，不向业务仓写 .vim 配置。
+  if is_aipaas() then
+    local options = config['go.goplsOptions'] or {}
+    options.env = vim.tbl_extend('force', options.env or {}, {
+      GOFLAGS = '-mod=readonly', GOPROXY = 'https://goproxy.cn,direct',
+    })
+    config['go.goplsOptions'] = options
+  end
   -- coc-go 在未配置路径时会隐式 go install；指定路径后缺工具只提示，不下载。
   config['go.goplsPath'] = gopls
   -- coc-lua 在 Windows 上的内置安装器不能解包zip；只使用显式部署后的官方产物。

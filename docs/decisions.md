@@ -162,3 +162,19 @@ Gitsigns、Fugitive、文件树、lualine、surround和plenary按[选版清单](
 ### 2026-10-22追加：落实指定项目配色
 
 用户明确指定aipaas使用Tokyonight、zagger_obsidian_gc使用Catppuccin Latte，并要求推荐后配置。已在mysettings/ngconsole.vim按项目根名称设规则；推荐将Tokyonight固定为tokyonight-night/dark，Latte固定light，跨平台不写绝对路径。真实往返发现深色切回Latte会被Catppuccin自动选成Mocha，因此项目规则增加可选background，先切深浅模式再应用主题；默认Latte同样明确light。扩展现有project_theme_smoke先复现错误变体再修正，往返、重复BufEnter、默认回退及现有项目规则验证通过；UI启动四场景另复验。当前同进程主题仍为全局，未改变tab的语义，未安装新主题插件。
+
+### 2026-10-22追加：Go 工作区环境由项目维护
+
+**历史方案，已由下文 2026-10-23 的个人配置迁移决定替代；不再创建业务仓 `backend/.vim`。**
+
+用户要求继续修复截图的 workspace folders / EOF。真实 AIPaaS gopls 因未经过 Makefile 而缺少模块模式，读取旧 vendor 后加载失败；子进程只加 -mod=mod 即恢复导航。采用该项目 backend/.vim/coc-settings.json 的 gopls env，采用只读模块解析绕过vendor，代理与Makefile对齐；不向全局 Go 配置添加项目特例、不改变其他 vendor 项目。实际文件定义、悬浮、3处引用及 CocRestart 已验证，完整 Go fixture 顺序复验通过。历史签名下载 EOF 本轮未重现，不能与已复现的 vendor 错误混同。配置范围、失败探针、代理全新下载对照与未验 macOS 见 [故障记录](issues/2026-10-22-go-workspace-load.md)。没有修改依赖版本、go.mod/sum或项目产品代码。
+
+### 2026-10-22追加：固化本次问题、过程与结论
+
+按用户本次要求，完善 [Go工作区故障记录](issues/2026-10-22-go-workspace-load.md) 的结论状态、阶段证据表、初版mod模式副作用和回撤、最终readonly选择、复现命令及四步接续。已修复的是项目模块模式缺失造成的语义失效；历史下载EOF网络原因及macOS实机仍待验证。readonly不被描述为所有Go命令永不写go.sum的承诺；本次文件不变依据来自探针字节比较。本轮仅整理文档，沿用上一轮真实验收结果，没有重新执行或扩大功能验证，也没有修改运行配置。
+
+### 2026-10-23追加：个人 Go 工作区环境留在 Neovim 配置
+
+用户确认迁出业务仓的个人编辑器配置。`lua/languages.lua` 在 Coc 初始化前，以首个文件参数或 cwd 向上查找 Go module；仅 `github.com/aipaas/aipaas` 合并 `GOFLAGS=-mod=readonly`、`GOPROXY=https://goproxy.cn,direct` 到已有 `go.goplsOptions.env`。从仓库根通过 `backend/go.mod` 识别，独立嵌套 module 不继承外层环境，不以仓库目录名判断。保留已有 Coc/gopls 设置，不修改系统 Go 或 Neovim 进程环境，不新增 wrapper。
+
+继续采用一项目一 Neovim 进程，更新后完整退出重开。`tests/go_project_env_smoke.py` 先复现五种 AIPaaS 入口缺失环境，再验证八种入口及普通 module 隔离、设置保留和项目文件不变。业务仓旧 `backend/.vim` 经保全迁出后，仓根/backend 和 CocRestart 真实导航均通过，go.mod/go.sum 字节未变，普通 Go 全功能回归通过；首次仓根请求超时及随后的包加载日志保留在仓外。本决定替代前述业务仓项目配置方案。macOS 实机和历史 EOF 原因仍按原记录跟踪。

@@ -84,3 +84,9 @@ Go 强化验收实际执行跨包定义、引用、重命名、悬浮、成员�
 插件更新和工具更新分别评审。修改扩展清单后重新 `:CocProvision`；修改工具固定版本及官方哈希后重新显式部署。coc-lua/coc-go 自动检查更新关闭，避免启动阶段网络请求。
 
 若新工具回归，退出 Neovim 后检查 LuaLS 的 `-previous` 备份，保留当前目录再恢复旧目录；Go 工具按上一个已验证版本显式 `go install` 到同一个托管目录。不要删除整个 nvim-data 或用户 Coc 状态来排障。候选替换与恢复方案见[语言栈候选评估](evaluations/language-stack.md)。
+
+## AIPaaS 真实项目工作区配置
+
+AIPaaS 的个人工作区环境由 `lua/languages.lua` 在 Coc 初始化前写入既有 `g:coc_user_config`。从启动参数首个文件（无文件参数时用 cwd）向父目录读取 `go.mod` 或仓库根的 `backend/go.mod`，仅在 module 为 `github.com/aipaas/aipaas` 时，为 `go.goplsOptions.env` 加入 `GOFLAGS=-mod=readonly`、`GOPROXY=https://goproxy.cn,direct`。已有其他 Coc/gopls 设置保留，系统及 Neovim 进程的 Go 环境不变，其他 Go module 使用自己的策略。
+
+沿用一项目一 Neovim 进程；从其他目录打开 AIPaaS 时直接把绝对文件路径传给新进程。更新本配置后完整退出重开；同一项目后续可用 `:CocRestart`。此前生成在业务仓的 `backend/.vim` 已迁出，不再通过创建项目配置修复此问题。回归入口为 `python tests/go_project_env_smoke.py`，真实导航仍使用 `tests/go_workspace_probe.py`。Windows 仓根/backend 及重启结果见 [工作区加载故障](issues/2026-10-22-go-workspace-load.md)；macOS 实机仍待验。
