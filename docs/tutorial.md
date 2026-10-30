@@ -734,17 +734,19 @@ quickfix是一组“文件+行列+消息”的目标，可以由搜索、编译�
 
 当前buffer的实际文件路径决定活跃项目。优先识别祖先`.git`目录/文件，其次使用`go.work`、`go.mod`、`package.json`、`pyproject.toml`或`Cargo.toml`，无标记时用cwd。切换buffer/tab以及`:cd/:tcd/:lcd`时重新应用主题，同一项目根使用缓存，不为换buffer启动Git进程。
 
-默认保留历史规则：项目根路径含`_oem`用onelight，含`_bug`用everforest，其余catppuccin-latte。显式规则优先，可在配置中设置：
+当前在`mysettings/ngconsole.vim`中已配置：`aipaas`使用深色`tokyonight-night`，`zagger_obsidian_gc`使用浅色`catppuccin-latte`。按项目根目录名称匹配，Windows/macOS共用，无需写安装盘符。其他项目保留历史规则：项目根路径含`_oem`用onelight，含`_bug`用everforest，其余catppuccin-latte。显式规则优先：
 
 ```lua
 vim.g.nvim_project_themes = {
-  { root = 'frontend', theme = 'tokyonight' },
-  { root = 'backend', theme = 'catppuccin-macchiato' },
+  { root = 'aipaas', theme = 'tokyonight-night', background = 'dark' },
+  { root = 'zagger_obsidian_gc', theme = 'catppuccin-latte', background = 'light' },
   { root = 'monorepo', subdir = 'apps/admin', theme = 'onelight' },
 }
 ```
 
 相对名称匹配项目根尾部，方便Windows/macOS复用；绝对路径规则适合本机特定项目。绝对根优先于名称，项目内更具体的subdir优先。修改规则后完整重启；`:call TrySwitchTheme()`可手动重算当前规则。无效主题提示一次并保留现有主题。
+
+`background`可选，值为`dark`或`light`，在应用主题前切换。Tokyonight固定Night变体，避免通用入口跟随浅色背景选Day；Latte显式light，避免从深色项目回来时被自动切成Mocha。同项目重复进入不会重新加载主题。
 
 ### 15.2 全局主题与tab
 

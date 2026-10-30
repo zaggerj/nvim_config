@@ -38,7 +38,7 @@ end
 local function theme_for(root, file)
   local identity = normalized(root)
   local active = file ~= '' and normalized(file) or identity
-  local best, score = nil, -1
+  local best, background, score = nil, nil, -1
   for _, rule in ipairs(vim.g.nvim_project_themes or {}) do
     local rank
     if rule.root then
@@ -55,14 +55,14 @@ local function theme_for(root, file)
       local target = subdir == '' and identity or normalized(root .. '/' .. subdir)
       if active == target or active:sub(1, #target + 1) == target .. '/' then
         local priority = rank * 10000 + #subdir
-        if priority > score then best, score = rule.theme, priority end
+        if priority > score then best, background, score = rule.theme, rule.background, priority end
       end
     end
   end
-  if best then return best end
+  if best then return best, background end
   if identity:find('_oem', 1, true) then return 'onelight' end
   if identity:find('_bug', 1, true) then return 'everforest' end
-  return 'catppuccin-latte'
+  return 'catppuccin-latte', 'light'
 end
 
 function M.apply()
@@ -72,7 +72,11 @@ function M.apply()
     file = vim.fn.fnamemodify(vim.fn.argv(0), ':p')
   end
   local root = file ~= '' and project_root(file) or vim.fn.getcwd()
-  local theme = theme_for(root, file)
+  local theme, background = theme_for(root, file)
+  -- 先确定背景模式；主题插件可能在深浅切换时重选变体（如Latte/Mocha）。
+  if (background == 'light' or background == 'dark') and vim.o.background ~= background then
+    vim.o.background = background
+  end
   if theme and vim.g.colors_name ~= theme then
     local ok, err = pcall(vim.cmd.colorscheme, theme)
     if not ok and not warned[theme] then

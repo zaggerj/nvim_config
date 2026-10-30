@@ -9,6 +9,23 @@ LUA = r'''
 local root = vim.env.NVIM_THEME_TEST
 vim.defer_fn(function()
   local ok, err = xpcall(function()
+    -- 使用实际默认项目规则，覆盖深浅主题往返而不是测试内重设规则。
+    local function open_project(name, theme, background)
+      vim.cmd.edit(vim.fn.fnameescape(root .. '/' .. name .. '/notes.txt'))
+      assert(vim.g.colors_name == theme, name .. ': expected ' .. theme .. ', got ' .. tostring(vim.g.colors_name))
+      assert(vim.o.background == background, name .. ': wrong background')
+    end
+    open_project('zagger_obsidian_gc', 'catppuccin-latte', 'light')
+    open_project('aipaas', 'tokyonight-night', 'dark')
+    open_project('zagger_obsidian_gc', 'catppuccin-latte', 'light')
+    open_project('aipaas', 'tokyonight-night', 'dark')
+    local repeated = 0
+    local counter = vim.api.nvim_create_autocmd('ColorScheme', {callback=function() repeated=repeated+1 end})
+    vim.api.nvim_exec_autocmds('BufEnter', {buffer=0})
+    assert(repeated == 0, 'configured project reloads unchanged theme')
+    vim.api.nvim_del_autocmd(counter)
+    open_project('ordinary', 'catppuccin-latte', 'light')
+    print('PASS configured aipaas/vault light-dark round trips and stable default fallback')
     local a = root .. '/client/app/src/a.js'
     local b = root .. '/other/app/src/b.js'
     vim.g.nvim_project_themes = {
@@ -64,6 +81,10 @@ end, 100)
 def main():
     with tempfile.TemporaryDirectory(prefix='nvim-theme-smoke-') as directory:
         root = Path(directory)
+        for name in ('aipaas', 'zagger_obsidian_gc', 'ordinary'):
+            project = root / name
+            (project / '.git').mkdir(parents=True)
+            (project / 'notes.txt').write_text('sample\n', encoding='utf-8')
         for name in ('client/app', 'other/app'):
             project = root / name
             (project / 'src').mkdir(parents=True)
