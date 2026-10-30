@@ -4,6 +4,8 @@
 
 2026-10-22补充：当前完整教程见 [tutorial.md](tutorial.md)，[综合评审](configuration-review-2026-10-22.md)保存改造前缺陷；长行增长、Go服务、键位及搜索修复的最新证据见实施回执。
 
+后续性能测量、插件保留依据及未安装候选见[下一阶段路线](next-stage-roadmap.md)。该文档是评估建议，不改变本设计中的当前实现或已接受SPEC。
+
 本文以当前仓库源码为依据，说明启动、插件、语言高亮、大文件保护和跨平台命令如何协作。配置同时面向 Windows 原生 Neovim（从 PowerShell、Git Bash 或 MSYS2 zsh 启动）和 macOS Neovim。Windows 的 `/c/Users/...` 是 Git Bash 表示法；Neovim 原生进程、编译器和 Python 接收的路径应使用其实际支持的 Windows 路径。
 
 本文是仓库设计说明。日常操作参见 [BEST_PRACTICES.md](../BEST_PRACTICES.md)，部署参见 [WINDOWS-SETUP.md](../WINDOWS-SETUP.md)，持续追加的取舍见 [决策记录](decisions.md)，本轮证据见 [启动与 Coc TLS 故障](issues/2026-10-22-startup-coc-tls.md)，免费 AI 见 [选型与使用](ai-completion.md)。源码变化后，同步更新对应模块与验收边界。

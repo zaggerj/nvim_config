@@ -154,3 +154,7 @@ Gitsigns、Fugitive、文件树、lualine、surround和plenary按[选版清单](
 用户再次授权Matt implement/TDD接续未闭环事项。本轮在d1b08f2之后定位Python ftplugin的has('python3')同步解释器探测，采用官方支持的python3_host_prog，保留Python集成及用户显式host。默认provider在stdpath(data)/tools/python-provider中显式部署，不借用benchmark环境、全局包或项目venv，不关闭provider掩盖等待。Coc/Pyright继续独立负责项目语言服务。
 
 管理标记记录部署是否完成；解释器存在而依赖未装完仍显示指引。已管理venv用标准venv/ensurepip原地补齐，保留已有内容；未知同名目录拒绝修改。部署命令说明先进入源码目录，Windows与macOS使用对应Python命令。详细根因、审查红绿与最终结果见[provider故障记录](issues/2026-10-22-python-provider-startup.md)。
+
+### 2026-10-22追加：后续插件与优化建议的记录范围
+
+用户要求评估当前插件性能、记录下阶段推荐和配置优化方向。本轮只核对已有证据与官方说明，形成[下一阶段路线](next-stage-roadmap.md)，不安装、不升级、不改变锁文件或键位。会话恢复优先、调试与格式化按需、Snacks及语言栈保留为迁移候选，均为建议而非用户已接受的实施决定；既有D-NV-014及27项任务状态不变。未来确认具体范围后再形成任务与兼容验收，不提前将候选写成当前可用功能。
